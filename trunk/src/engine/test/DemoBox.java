@@ -147,7 +147,7 @@ public class DemoBox extends AbstractDemo {
 	public static void main(String[] argv) {
 		DemoBox box = new DemoBox();
 
-		box.add(new Demo1());
+		box.add(new Demo01());
 		box.add(new Demo02());
 		box.add(new Demo03());
 		box.add(new Demo04());
