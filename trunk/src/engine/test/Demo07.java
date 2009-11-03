@@ -4,27 +4,25 @@ import engine.raw.Body;
 import engine.raw.StaticBody;
 import engine.raw.World;
 import engine.raw.shapes.Box;
-import engine.raw.shapes.Circle;
-import engine.raw.shapes.DynamicShape;
 import engine.vector.Vector2f;
 
 /**
- * A stacking demonstration with balls!
+ * A stacking demonstration
  * 
  * @author Jeffery D. Ahern
  * @author Keith Kowalski
  * @author Matt DePorter
  * @author Kevin Mcomber
  */
-public class Demo11 extends AbstractDemo {
+public class Demo07 extends AbstractDemo {
 	/** The world in which the simulation takes place */
 	private World world;
 	
 	/**
 	 * Create the demo
 	 */
-	public Demo11() {
-		super("Ball/Stack Demo - Hit space");
+	public Demo07() {
+		super("Stacking Demo - Hit space");
 	}
 
 	/**
@@ -34,7 +32,7 @@ public class Demo11 extends AbstractDemo {
 		super.keyHit(c);
 		
 		if (c == ' ') {
-			Body body2 = new Body("Mover1", new Circle(20), 300.0f);
+			Body body2 = new Body("Mover1", new Box(40.0f, 40.0f), 300.0f);
 			body2.setPosition(-50, (float) (((Math.random() * 50) + 150)));
 			world.add(body2);
 			body2.adjustAngularVelocity(1);
@@ -53,20 +51,10 @@ public class Demo11 extends AbstractDemo {
 		body1.setFriction(1);
 		world.add(body1);
 		
-		for (int y=0;y<5;y++) {
+		for (int y=0;y<7;y++) {
 			int xbase = 250 - (y * 21);
 			for (int x=0;x<y+1;x++) {
-				DynamicShape shape = new Box(40,40);
-				if ((x == 1) && (y == 2)) {
-					shape = new Circle(19);
-				}
-				if ((x == 1) && (y == 4)) {
-					shape = new Circle(19);
-				}
-				if ((x == 3) && (y == 4)) {
-					shape = new Circle(19);
-				}
-				Body body2 = new Body("Mover1", shape, 100.0f);
+				Body body2 = new Body("Mover1", new Box(40.0f, 40.0f), 100.0f);
 				body2.setPosition(xbase + (x * 42), y*45);
 				world.add(body2);
 			}
@@ -79,7 +67,7 @@ public class Demo11 extends AbstractDemo {
 	 * @param argv The arguments to the test
 	 */
 	public static void main(String[] argv) {
-		Demo11 demo = new Demo11();
+		Demo07 demo = new Demo07();
 		demo.start();
 	}
 }

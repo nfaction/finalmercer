@@ -10,7 +10,10 @@ import engine.vector.Vector2f;
 /**
  * Demo for the spring joint.
  * 
- * @author Gideon Smeding
+ * @author Jeffery D. Ahern
+ * @author Keith Kowalski
+ * @author Matt DePorter
+ * @author Kevin Mcomber
  */
 public class Demo21 extends AbstractDemo {
 

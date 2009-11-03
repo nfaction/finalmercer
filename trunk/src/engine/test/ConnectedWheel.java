@@ -11,7 +11,10 @@ import engine.vector.Vector2f;
 /**
  * A test to show the FixedAngleJoint at work
  * 
- * @author guRuQu 
+ * @author Jeffery D. Ahern
+ * @author Keith Kowalski
+ * @author Matt DePorter
+ * @author Kevin Mcomber
  */
 public class ConnectedWheel extends AbstractDemo {
 	/** The wheel being turned */

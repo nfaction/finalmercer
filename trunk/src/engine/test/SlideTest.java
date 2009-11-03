@@ -10,7 +10,10 @@ import engine.vector.Vector2f;
 /**
  * A test to demonstrate the SlidingJoint - wierd results! :)
  * 
- * @author guRuQu
+ * @author Jeffery D. Ahern
+ * @author Keith Kowalski
+ * @author Matt DePorter
+ * @author Kevin Mcomber
  */
 public class SlideTest extends AbstractDemo {
 	
