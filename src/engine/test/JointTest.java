@@ -12,7 +12,10 @@ import engine.vector.Vector2f;
 /**
  * A test to demonstrate the distance constraint
  * 
- * @author guRuQu
+ * @author Jeffery D. Ahern
+ * @author Keith Kowalski
+ * @author Matt DePorter
+ * @author Kevin Mcomber
  */
 public class JointTest extends AbstractDemo {
 	/**

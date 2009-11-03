@@ -10,7 +10,10 @@ import engine.vector.Vector2f;
 /**
  * A test to demonstrate AngleJoint
  * 
- * @author guRuQu
+ * @author Jeffery D. Ahern
+ * @author Keith Kowalski
+ * @author Matt DePorter
+ * @author Kevin Mcomber
  */
 public class AngularConstraint extends AbstractDemo {
 	/** The body under test */

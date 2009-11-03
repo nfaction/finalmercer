@@ -7,19 +7,19 @@ import engine.raw.shapes.Box;
 import engine.raw.shapes.Circle;
 
 /**
- * Splitting a set of balls
+ * A simple demo with balls falling
  * 
  * @author Jeffery D. Ahern
  * @author Keith Kowalski
  * @author Matt DePorter
  * @author Kevin Mcomber
  */
-public class Demo10 extends AbstractDemo {
+public class Demo08 extends AbstractDemo {
 	/**
 	 * Create the demo
 	 */
-	public Demo10() {
-		super("Phys2D Demo 10 - fallers");
+	public Demo08() {
+		super("Phys2D Demo 8 - Balls");
 	}
 
 	/**
@@ -29,26 +29,22 @@ public class Demo10 extends AbstractDemo {
 		Body body1 = new StaticBody("Ground1", new Box(400.0f, 20.0f));
 		body1.setPosition(250.0f, 400);
 		world.add(body1);
+		Body body1a = new StaticBody("Ground2", new Box(200.0f, 20.0f));
+		body1a.setPosition(350.0f, 280);
+		body1a.setRotation(-0.7f);
+		world.add(body1a);
 		Body body1b = new StaticBody("Ground1", new Box(20.0f, 400.0f));
 		body1b.setPosition(20.0f, 200);
 		world.add(body1b);
-
-		Body body3 = new Body("Mover2", new Circle(25), 50.0f);
-		body3.setPosition(225.0f, 365);
-		world.add(body3);
-		Body body2 = new Body("Mover1", new Circle(25), 50.0f);
-		body2.setPosition(275.0f, 365);
-		world.add(body2);
-		Body body3a = new Body("Mover2", new Circle(25), 50.0f);
-		body3a.setPosition(175.0f, 365);
-		world.add(body3a);
-		Body body2a = new Body("Mover1", new Circle(25), 50.0f);
-		body2a.setPosition(325.0f, 365);
-		world.add(body2a);
 		
-		Body faller = new Body("Faller", new Circle(25), 200.0f);
-		faller.setPosition(250.0f, -20f);
-		world.add(faller);
+		Body body2 = new Body("Mover1", new Circle(25), 100.0f);
+		body2.setPosition(300.0f, 4.0f);
+		world.add(body2);
+		//Body body3 = new Body("Mover2", new Box(25,25), 10.0f);
+		Body body3 = new Body("Mover2", new Circle(25), 10.0f);
+		body3.setRotation(0.3f);
+		body3.setPosition(380.0f, 100.0f);
+		world.add(body3);
 	}
 	
 	/**
@@ -57,7 +53,7 @@ public class Demo10 extends AbstractDemo {
 	 * @param argv The arguments to the test
 	 */
 	public static void main(String[] argv) {
-		Demo10 demo = new Demo10();
+		Demo08 demo = new Demo08();
 		demo.start();
 	}
 }
