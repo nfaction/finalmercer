@@ -73,14 +73,7 @@ public abstract class Ball implements Entities {
 		return upperX;
 	}
 
-	/**
-	 * @param upperX
-	 *            the upperX to set
-	 */
-	public void setUpperX(int upperX) {
-		this.upperX = upperX;
-	}
-
+	
 	/**
 	 * @return the lowerX
 	 */
@@ -88,14 +81,7 @@ public abstract class Ball implements Entities {
 		return lowerX;
 	}
 
-	/**
-	 * @param lowerX
-	 *            the lowerX to set
-	 */
-	public void setLowerX(int lowerX) {
-		this.lowerX = lowerX;
-	}
-
+	
 	/**
 	 * @return the upperY
 	 */
@@ -103,27 +89,12 @@ public abstract class Ball implements Entities {
 		return upperY;
 	}
 
-	/**
-	 * @param upperY
-	 *            the upperY to set
-	 */
-	public void setUpperY(int upperY) {
-		this.upperY = upperY;
-	}
-
+	
 	/**
 	 * @return the lowerY
 	 */
 	public int getLowerY() {
 		return lowerY;
-	}
-
-	/**
-	 * @param lowerY
-	 *            the lowerY to set
-	 */
-	public void setLowerY(int lowerY) {
-		this.lowerY = lowerY;
 	}
 
 	/**
