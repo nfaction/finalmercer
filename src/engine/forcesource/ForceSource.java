@@ -1,6 +1,6 @@
 package engine.forcesource;
 
-import engine.Body;
+import engine.body.Body;
 
 /**
  * A source of force that can potentially be applied to every body every frame

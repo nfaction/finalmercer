@@ -1,9 +1,9 @@
 package engine.test;
 
-import engine.AngleJoint;
-import engine.Body;
-import engine.DistanceJoint;
 import engine.World;
+import engine.body.Body;
+import engine.joint.AngleJoint;
+import engine.joint.DistanceJoint;
 import engine.shapes.Circle;
 import engine.vector.Vector2f;
 

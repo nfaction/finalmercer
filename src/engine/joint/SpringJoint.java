@@ -38,8 +38,9 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
  * OF SUCH DAMAGE.
  */
-package engine;
+package engine.joint;
 
+import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.ROVector2f;

@@ -1,6 +1,6 @@
 package engine.forcesource;
 
-import engine.Body;
+import engine.body.Body;
 import engine.vector.Vector2f;
 
 /**
@@ -25,7 +25,7 @@ public class WindSource implements ForceSource {
 	}
 	
 	/**
-	 * @see engine.forcesource.ForceSource#apply(engine.Body, float)
+	 * @see engine.forcesource.ForceSource#apply(engine.body.Body, float)
 	 */
 	public void apply(Body body, float delta) {
 		body.addForce(force);

@@ -42,6 +42,8 @@ package engine;
 
 import java.util.ArrayList;
 
+import engine.body.Body;
+
 
 /**
  * A typed list of <code>Body</code>
@@ -64,7 +66,7 @@ public class BodyList {
 	 * 
 	 * @param list The list of elements to add to the new list
 	 */
-	BodyList(BodyList list) {
+	public BodyList(BodyList list) {
 		elements.addAll(list.elements);
 	}
 	

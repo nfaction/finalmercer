@@ -1,10 +1,10 @@
 package engine.test;
 
-import engine.Body;
-import engine.DistanceJoint;
-import engine.FixedAngleJoint;
 import engine.StaticBody;
 import engine.World;
+import engine.body.Body;
+import engine.joint.DistanceJoint;
+import engine.joint.FixedAngleJoint;
 import engine.shapes.Circle;
 import engine.vector.Vector2f;
 

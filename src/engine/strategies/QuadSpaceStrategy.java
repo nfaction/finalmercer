@@ -39,10 +39,10 @@ package engine.strategies;
 
 import java.util.ArrayList;
 
-import engine.Body;
 import engine.BodyList;
 import engine.BroadCollisionStrategy;
 import engine.CollisionContext;
+import engine.body.Body;
 import engine.shapes.AABox;
 
 

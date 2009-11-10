@@ -2,6 +2,7 @@ package engine;
 
 import java.util.ArrayList;
 
+import engine.body.Body;
 import engine.vector.ROVector2f;
 
 

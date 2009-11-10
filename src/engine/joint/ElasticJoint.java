@@ -38,8 +38,9 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
  * OF SUCH DAMAGE.
  */
-package engine;
+package engine.joint;
 
+import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.ROVector2f;
@@ -47,13 +48,16 @@ import engine.vector.Vector2f;
 
 /**
  * A joint between two bodies. The joint affects the impulses applied to 
- * each body each step constraining the movement.
+ * each body each step constraining the movement. Behaves a bit like elastic
+ * 
+ * Behaviour is undefined - it does something and it's definitely odd. Might
+ * be useful for something
  * 
  * @author Kevin Glass
  */
-public strictfp class BasicJoint implements Joint {
+public strictfp class ElasticJoint implements Joint {
 	/** The next ID to be used */
-	private static int NEXT_ID = 0;
+	public static int NEXT_ID = 0;
 	
 	/** The first body attached to the joint */
 	private Body body1;
@@ -85,15 +89,13 @@ public strictfp class BasicJoint implements Joint {
 	 * 
 	 * @param b1 The first body attached to the joint
 	 * @param b2 The second body attached to the joint
-	 * @param anchor The anchor point which movement/rotation will occur 
-	 * arround.
 	 */
-	public BasicJoint(Body b1, Body b2, Vector2f anchor) {
+	public ElasticJoint(Body b1, Body b2) {
 		id = NEXT_ID++;
 		accumulatedImpulse.set(0.0f, 0.0f);
 		relaxation = 1.0f;
 		
-		set(b1,b2,anchor);
+		set(b1,b2);
 	}
 
 	/**
@@ -147,9 +149,8 @@ public strictfp class BasicJoint implements Joint {
 	 * 
 	 * @param b1 The first body attached to this joint
 	 * @param b2 The second body attached to this joint
-	 * @param anchor The static anchor point between the joints
 	 */
-	public void set(Body b1, Body b2, Vector2f anchor) {
+	public void set(Body b1, Body b2) {
 		body1 = b1;
 		body2 = b2;
 
@@ -158,10 +159,10 @@ public strictfp class BasicJoint implements Joint {
 		Matrix2f rot1T = rot1.transpose();
 		Matrix2f rot2T = rot2.transpose();
 
-		Vector2f a1 = new Vector2f(anchor);
+		Vector2f a1 = new Vector2f(body2.getPosition());
 		a1.sub(body1.getPosition());
 		localAnchor1 = MathUtil.mul(rot1T,a1);
-		Vector2f a2 = new Vector2f(anchor);
+		Vector2f a2 = new Vector2f(body1.getPosition());
 		a2.sub(body2.getPosition());
 		localAnchor2 = MathUtil.mul(rot2T,a2);
 
@@ -216,19 +217,15 @@ public strictfp class BasicJoint implements Joint {
 		// Apply accumulated impulse.
 		accumulatedImpulse.scale(relaxation);
 		
-		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(accumulatedImpulse);
-			accum1.scale(-body1.getInvMass());
-			body1.adjustVelocity(accum1);
-			body1.adjustAngularVelocity(-(body1.getInvI() * MathUtil.cross(r1, accumulatedImpulse)));
-		}
+		Vector2f accum1 = new Vector2f(accumulatedImpulse);
+		accum1.scale(-body1.getInvMass());
+		body1.adjustVelocity(accum1);
+		body1.adjustAngularVelocity(-(body1.getInvI() * MathUtil.cross(r1, accumulatedImpulse)));
 
-		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(accumulatedImpulse);
-			accum2.scale(body2.getInvMass());
-			body2.adjustVelocity(accum2);
-			body2.adjustAngularVelocity(body2.getInvI() * MathUtil.cross(r2, accumulatedImpulse));
-		}
+		Vector2f accum2 = new Vector2f(accumulatedImpulse);
+		accum2.scale(body2.getInvMass());
+		body2.adjustVelocity(accum2);
+		body2.adjustAngularVelocity(body2.getInvI() * MathUtil.cross(r2, accumulatedImpulse));
 	}
 	
 	/**
@@ -240,7 +237,7 @@ public strictfp class BasicJoint implements Joint {
 		dv.sub(body1.getVelocity());
 		dv.sub(MathUtil.cross(body1.getAngularVelocity(),r1));
 	    dv.scale(-1);
-	    dv.add(bias); // TODO: is this baumgarte stabilization?
+	    dv.add(bias);
 	    
 	    if (dv.lengthSquared() == 0) {
 	    	return;
@@ -248,20 +245,16 @@ public strictfp class BasicJoint implements Joint {
 	    
 		Vector2f impulse = MathUtil.mul(M, dv);
 
-		if (!body1.isStatic()) {
-			Vector2f delta1 = new Vector2f(impulse);
-			delta1.scale(-body1.getInvMass());
-			body1.adjustVelocity(delta1);
-			body1.adjustAngularVelocity(-body1.getInvI() * MathUtil.cross(r1,impulse));
-		}
+		Vector2f delta1 = new Vector2f(impulse);
+		delta1.scale(-body1.getInvMass());
+		body1.adjustVelocity(delta1);
+		body1.adjustAngularVelocity(-body1.getInvI() * MathUtil.cross(r1,impulse));
 
-		if (!body2.isStatic()) {
-			Vector2f delta2 = new Vector2f(impulse);
-			delta2.scale(body2.getInvMass());
-			body2.adjustVelocity(delta2);
-			body2.adjustAngularVelocity(body2.getInvI() * MathUtil.cross(r2,impulse));
-		}
-		
+		Vector2f delta2 = new Vector2f(impulse);
+		delta2.scale(body2.getInvMass());
+		body2.adjustVelocity(delta2);
+		body2.adjustAngularVelocity(body2.getInvI() * MathUtil.cross(r2,impulse));
+
 		accumulatedImpulse.add(impulse);
 	}
 	
@@ -277,7 +270,7 @@ public strictfp class BasicJoint implements Joint {
 	 */
 	public boolean equals(Object other) {
 		if (other.getClass() == getClass()) {
-			return ((BasicJoint) other).id == id;
+			return ((ElasticJoint) other).id == id;
 		}
 		
 		return false;

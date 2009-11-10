@@ -1,5 +1,6 @@
-package engine;
+package engine.joint;
 
+import engine.body.Body;
 import engine.vector.Vector2f;
 
 /**
@@ -59,7 +60,7 @@ public class ConstrainingJoint implements Joint {
 	}
 	
 	/**
-	 * @see engine.Joint#applyImpulse()
+	 * @see engine.joint.Joint#applyImpulse()
 	 */
 	public void applyImpulse() {
 		if (active) {
@@ -68,21 +69,21 @@ public class ConstrainingJoint implements Joint {
 	}
 
 	/**
-	 * @see engine.Joint#getBody1()
+	 * @see engine.joint.Joint#getBody1()
 	 */
 	public Body getBody1() {
 		return body1;
 	}
 
 	/**
-	 * @see engine.Joint#getBody2()
+	 * @see engine.joint.Joint#getBody2()
 	 */
 	public Body getBody2() {
 		return body2;
 	}
 
 	/**
-	 * @see engine.Joint#preStep(float)
+	 * @see engine.joint.Joint#preStep(float)
 	 */
 	public void preStep(float invDT) {
 		if (isActive()) {
@@ -94,7 +95,7 @@ public class ConstrainingJoint implements Joint {
 	}
 
 	/**
-	 * @see engine.Joint#setRelaxation(float)
+	 * @see engine.joint.Joint#setRelaxation(float)
 	 */
 	public void setRelaxation(float relaxation) {
 	}

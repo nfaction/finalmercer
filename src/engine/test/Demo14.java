@@ -1,7 +1,7 @@
 package engine.test;
 
-import engine.Body;
 import engine.World;
+import engine.body.Body;
 import engine.shapes.Circle;
 import engine.vector.Vector2f;
 

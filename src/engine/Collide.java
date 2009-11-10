@@ -40,6 +40,7 @@
  */
 package engine;
 
+import engine.body.Body;
 import engine.collide.Collider;
 import engine.collide.ColliderFactory;
 import engine.collide.ColliderUnavailableException;
