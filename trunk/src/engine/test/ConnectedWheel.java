@@ -1,11 +1,11 @@
 package engine.test;
 
-import engine.raw.Body;
-import engine.raw.DistanceJoint;
-import engine.raw.FixedAngleJoint;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.Circle;
+import engine.Body;
+import engine.DistanceJoint;
+import engine.FixedAngleJoint;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.Circle;
 import engine.vector.Vector2f;
 
 /**
@@ -28,7 +28,7 @@ public class ConnectedWheel extends AbstractDemo {
 	}
 	
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		Body leftAxis = new StaticBody(new Circle(10));

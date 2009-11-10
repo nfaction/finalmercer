@@ -1,11 +1,11 @@
 package engine.test;
 
-import engine.raw.Body;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.Box;
-import engine.raw.shapes.Circle;
-import engine.raw.shapes.DynamicShape;
+import engine.Body;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.Box;
+import engine.shapes.Circle;
+import engine.shapes.DynamicShape;
 import engine.vector.Vector2f;
 
 /**
@@ -43,7 +43,7 @@ public class Demo11 extends AbstractDemo {
 	}
 	
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		this.world = world;

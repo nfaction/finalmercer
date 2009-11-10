@@ -1,12 +1,12 @@
 package engine.test;
 
-import engine.raw.Body;
-import engine.raw.FixedJoint;
-import engine.raw.Joint;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.Box;
-import engine.raw.shapes.Circle;
+import engine.Body;
+import engine.FixedJoint;
+import engine.Joint;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.Box;
+import engine.shapes.Circle;
 
 /**
  * Rejoing test
@@ -25,7 +25,7 @@ public class Demo19 extends AbstractDemo {
 	}
 
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		Body body1 = new StaticBody("Ground1", new Box(400.0f, 20.0f));

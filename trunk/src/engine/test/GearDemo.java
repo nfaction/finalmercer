@@ -1,11 +1,11 @@
 package engine.test;
 
-import engine.raw.BasicJoint;
-import engine.raw.Body;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.ConvexPolygon;
-import engine.raw.shapes.Polygon;
+import engine.BasicJoint;
+import engine.Body;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.ConvexPolygon;
+import engine.shapes.Polygon;
 import engine.vector.Vector2f;
 
 /**
@@ -28,7 +28,7 @@ public class GearDemo extends AbstractDemo {
 	}
 
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		Vector2f[] groundVerts = {new Vector2f(-200, -10), new Vector2f(200,-10), new Vector2f(200,10), new Vector2f(-200,10)};

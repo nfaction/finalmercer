@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-import engine.raw.Body;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.*;
+import engine.Body;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.*;
 import engine.vector.Vector2f;
 
 
@@ -100,7 +100,7 @@ public class AllShapesDemo extends AbstractDemo  {
 	}
 
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		this.world = world;

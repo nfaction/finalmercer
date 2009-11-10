@@ -1,10 +1,10 @@
 package engine.test;
 
-import engine.raw.Body;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.Box;
-import engine.raw.shapes.Circle;
+import engine.Body;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.Box;
+import engine.shapes.Circle;
 
 /**
  * ExclusionTest
@@ -23,7 +23,7 @@ public class Demo17 extends AbstractDemo {
 	}
 
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		Body[] bodies = new Body[5];

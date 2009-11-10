@@ -1,6 +1,6 @@
 package entities;
 
-import engine.raw.Body;
+import engine.Body;
 
 public abstract class  Entities {
 	

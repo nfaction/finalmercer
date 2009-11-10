@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
-import engine.raw.World;
+import engine.World;
 
 
 /**
@@ -112,7 +112,7 @@ public class DemoBox extends AbstractDemo {
 	}
 	
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		if (demos.size() == 0) {
