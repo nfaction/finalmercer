@@ -43,7 +43,7 @@ package engine.joint;
 import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Create a joint that keeps the distance between two bodies in a given range
@@ -63,13 +63,13 @@ public class SlideJoint implements Joint {
 	/**The second body in the constraint*/
 	private Body body2;
 	/** Anchor point for first body, on which impulse is going to apply*/
-	private Vector2f anchor1;
+	private Vector anchor1;
 	/** Anchor point for second body, on which impulse is going to apply*/
-	private Vector2f anchor2;
+	private Vector anchor2;
 	/** The rotation of the first body */
-	protected Vector2f r1;
+	protected Vector r1;
 	/** The rotation of the second body */
-	protected Vector2f r2;
+	protected Vector r2;
 	/** The minimum distance between the two bodies */
 	protected float minDistance;
 	/** The maximum distance between the two bodies */
@@ -80,7 +80,7 @@ public class SlideJoint implements Joint {
 	/** The collision side of the end of the joint if any */
 	private int collideSide;
 	/** Normalised distance vector*/
-	private Vector2f ndp;
+	private Vector ndp;
 	/** The cached impulse through the calculation to yield correct impulse faster */
 	private float accumulateImpulse;
 	/** The minimum distance between the two bodies squared */
@@ -103,7 +103,7 @@ public class SlideJoint implements Joint {
 	 * @param maxDistance The minimum distance limit of the slide
 	 * @param restitution The restitution body is going to be effected when bounce off the distance limit
 	 */
-	public SlideJoint(Body body1,Body body2,Vector2f anchor1,Vector2f anchor2,float minDistance,float maxDistance,float restitution){
+	public SlideJoint(Body body1,Body body2,Vector anchor1,Vector anchor2,float minDistance,float maxDistance,float restitution){
 		this.restitutionConstant=restitution;
 		this.minDistance2=minDistance;
 		this.maxDistance2=maxDistance;
@@ -123,7 +123,7 @@ public class SlideJoint implements Joint {
 		if(collideSide==COLLIDE_NONE)
 			return;
 		
-		Vector2f dv = new Vector2f(body2.getVelocity());
+		Vector dv = new Vector(body2.getVelocity());
 		dv.add(MathUtil.cross(body2.getAngularVelocity(),r2));
 		dv.sub(body1.getVelocity());
 		dv.sub(MathUtil.cross(body1.getAngularVelocity(),r1));
@@ -139,17 +139,17 @@ public class SlideJoint implements Joint {
 		P = newImpulse-accumulateImpulse;
 		accumulateImpulse = newImpulse;
 		
-		Vector2f impulse = new Vector2f(ndp);
+		Vector impulse = new Vector(ndp);
 		impulse.scale(P);
 		
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(r1, impulse)));
 		}
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(-body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(-(body2.getInvI() * MathUtil.cross(r2, impulse)));
@@ -182,33 +182,33 @@ public class SlideJoint implements Joint {
 		 r1 = MathUtil.mul(rot1,anchor1);
 		 r2 = MathUtil.mul(rot2,anchor2);
 		
-		Vector2f p1 = new Vector2f(body1.getPosition());
+		Vector p1 = new Vector(body1.getPosition());
 		p1.add(r1);
-		Vector2f p2 = new Vector2f(body2.getPosition());
+		Vector p2 = new Vector(body2.getPosition());
 		p2.add(r2);
-		Vector2f dp = new Vector2f(p2);
+		Vector dp = new Vector(p2);
 		dp.sub(p1);
 		
-		Vector2f dv = new Vector2f(body2.getVelocity());
+		Vector dv = new Vector(body2.getVelocity());
 		dv.add(MathUtil.cross(body2.getAngularVelocity(),r2));
 		dv.sub(body1.getVelocity());
 		dv.sub(MathUtil.cross(body1.getAngularVelocity(),r1));
 	    
-		ndp = new Vector2f(dp);
+		ndp = new Vector(dp);
 		ndp.normalise();
 		
 		restitute = -restitutionConstant*dv.dot(ndp);
 		
-		Vector2f v1 = new Vector2f(ndp);
+		Vector v1 = new Vector(ndp);
 		v1.scale(-body2.getInvMass() - body1.getInvMass());
 
-		Vector2f v2 = MathUtil.cross(MathUtil.cross(r2, ndp), r2);
+		Vector v2 = MathUtil.cross(MathUtil.cross(r2, ndp), r2);
 		v2.scale(-body2.getInvI());
 		
-		Vector2f v3 = MathUtil.cross(MathUtil.cross(r1, ndp),r1);
+		Vector v3 = MathUtil.cross(MathUtil.cross(r1, ndp),r1);
 		v3.scale(-body1.getInvI());
 		
-		Vector2f K1 = new Vector2f(v1);
+		Vector K1 = new Vector(v1);
 		K1.add(v2);
 		K1.add(v3);
 		
@@ -233,17 +233,17 @@ public class SlideJoint implements Joint {
 			accumulateImpulse=0;
 		}
 		restitute+=biasImpulse;
-		Vector2f impulse = new Vector2f(ndp);
+		Vector impulse = new Vector(ndp);
 		impulse.scale(accumulateImpulse);
 		
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(r1, impulse)));
 		}
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(-body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(-(body2.getInvI() * MathUtil.cross(r2, impulse)));
@@ -315,7 +315,7 @@ public class SlideJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the first body
 	 */
-	public Vector2f getAnchor1() {
+	public Vector getAnchor1() {
 		return anchor1;
 	}
 
@@ -324,7 +324,7 @@ public class SlideJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the second body
 	 */
-	public Vector2f getAnchor2() {
+	public Vector getAnchor2() {
 		return anchor2;
 	}
 

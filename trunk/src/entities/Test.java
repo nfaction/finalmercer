@@ -32,7 +32,7 @@ import engine.strategies.QuadSpaceStrategy;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 
 /**
@@ -49,7 +49,7 @@ public abstract class Test {
 	/** The title of the current demo */
 	protected String title;
 	/** The world containing the physics model */
-	protected World world = new World(new Vector2f(0.0f, 10.0f), 10, new QuadSpaceStrategy(20,5));
+	protected World world = new World(new Vector(0.0f, 10.0f), 10, new QuadSpaceStrategy(20,5));
 	/** True if the simulation is running */
 	private boolean running = true;
 	/** The rendering strategy */
@@ -298,7 +298,7 @@ public abstract class Test {
 //		float dy = line.getDY();
 //		
 //		g.drawLine((int) x,(int) y,(int) (x+dx),(int) (y+dy));
-		Vector2f[] verts = line.getVertices(body.getPosition(), body.getRotation());
+		Vector[] verts = line.getVertices(body.getPosition(), body.getRotation());
 		g.drawLine(
 				(int) verts[0].getX(),
 				(int) verts[0].getY(), 
@@ -334,12 +334,12 @@ public abstract class Test {
 	 * @param box The shape to be drawn
 	 */
 	protected void drawBoxBody(Graphics2D g, Body body, Box box) {
-		Vector2f[] pts = box.getPoints(body.getPosition(), body.getRotation());
+		Vector[] pts = box.getPoints(body.getPosition(), body.getRotation());
 		
-		Vector2f v1 = pts[0];
-		Vector2f v2 = pts[1];
-		Vector2f v3 = pts[2];
-		Vector2f v4 = pts[3];
+		Vector v1 = pts[0];
+		Vector v2 = pts[1];
+		Vector v3 = pts[2];
+		Vector v4 = pts[3];
 		
 		g.setColor(Color.black);
 		g.drawLine((int) v1.x,(int) v1.y,(int) v2.x,(int) v2.y);
@@ -376,14 +376,14 @@ public abstract class Test {
 			Matrix2f R2 = new Matrix2f(b2.getRotation());
 	
 			ROVector2f x1 = b1.getPosition();
-			Vector2f p1 = MathUtil.mul(R1,joint.getAnchor1());
+			Vector p1 = MathUtil.mul(R1,joint.getAnchor1());
 			p1.add(x1);
 	
 			ROVector2f x2 = b2.getPosition();
-			Vector2f p2 = MathUtil.mul(R2,joint.getAnchor2());
+			Vector p2 = MathUtil.mul(R2,joint.getAnchor2());
 			p2.add(x2);
 			
-			Vector2f im = new Vector2f(p2);
+			Vector im = new Vector(p2);
 			im.sub(p1);
 			im.normalise();
 			
@@ -401,18 +401,18 @@ public abstract class Test {
 			float RA = j.getBody1().getRotation() + angleJoint.getRotateA();
 			float RB = j.getBody1().getRotation() + angleJoint.getRotateB();
 			
-			Vector2f VA = new Vector2f((float) Math.cos(RA), (float) Math.sin(RA));
-			Vector2f VB = new Vector2f((float) Math.cos(RB), (float) Math.sin(RB));
+			Vector VA = new Vector((float) Math.cos(RA), (float) Math.sin(RA));
+			Vector VB = new Vector((float) Math.cos(RB), (float) Math.sin(RB));
 			
 			Matrix2f R1 = new Matrix2f(b1.getRotation());
 			Matrix2f R2 = new Matrix2f(b2.getRotation());
 			
 			ROVector2f x1 = b1.getPosition();
-			Vector2f p1 = MathUtil.mul(R1,angleJoint.getAnchor1());
+			Vector p1 = MathUtil.mul(R1,angleJoint.getAnchor1());
 			p1.add(x1);
 	
 			ROVector2f x2 = b2.getPosition();
-			Vector2f p2 = MathUtil.mul(R2,angleJoint.getAnchor2());
+			Vector p2 = MathUtil.mul(R2,angleJoint.getAnchor2());
 			p2.add(x2);
 			
 			g.setColor(Color.red);
@@ -429,11 +429,11 @@ public abstract class Test {
 			Matrix2f R2 = new Matrix2f(b2.getRotation());
 	
 			ROVector2f x1 = b1.getPosition();
-			Vector2f p1 = MathUtil.mul(R1,joint.getLocalAnchor1());
+			Vector p1 = MathUtil.mul(R1,joint.getLocalAnchor1());
 			p1.add(x1);
 	
 			ROVector2f x2 = b2.getPosition();
-			Vector2f p2 = MathUtil.mul(R2,joint.getLocalAnchor2());
+			Vector p2 = MathUtil.mul(R2,joint.getLocalAnchor2());
 			p2.add(x2);
 	
 			g.setColor(Color.red);
@@ -452,11 +452,11 @@ public abstract class Test {
 			Matrix2f R2 = new Matrix2f(b2.getRotation());
 	
 			ROVector2f x1 = b1.getPosition();
-			Vector2f p1 = MathUtil.mul(R1,joint.getAnchor1());
+			Vector p1 = MathUtil.mul(R1,joint.getAnchor1());
 			p1.add(x1);
 	
 			ROVector2f x2 = b2.getPosition();
-			Vector2f p2 = MathUtil.mul(R2,joint.getAnchor2());
+			Vector p2 = MathUtil.mul(R2,joint.getAnchor2());
 			p2.add(x2);
 			
 			g.setColor(Color.red);
@@ -472,11 +472,11 @@ public abstract class Test {
 			Matrix2f R2 = new Matrix2f(b2.getRotation());
 	
 			ROVector2f x1 = b1.getPosition();
-			Vector2f p1 = MathUtil.mul(R1,joint.getLocalAnchor1());
+			Vector p1 = MathUtil.mul(R1,joint.getLocalAnchor1());
 			p1.add(x1);
 	
 			ROVector2f x2 = b2.getPosition();
-			Vector2f p2 = MathUtil.mul(R2,joint.getLocalAnchor2());
+			Vector p2 = MathUtil.mul(R2,joint.getLocalAnchor2());
 			p2.add(x2);
 			
 			g.setColor(Color.red);

@@ -1,7 +1,7 @@
 package engine.forcesource;
 
 import engine.body.Body;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A source to apply wind to all bodies in a given direction
@@ -10,7 +10,7 @@ import engine.vector.Vector2f;
  */
 public class WindSource implements ForceSource {
 	/** The force to be applied */
-	private Vector2f force = new Vector2f();
+	private Vector force = new Vector();
 	
 	/** 
 	 * Create a new source

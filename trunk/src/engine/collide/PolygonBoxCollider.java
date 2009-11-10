@@ -41,7 +41,7 @@ import engine.Contact;
 import engine.body.Body;
 import engine.shapes.Box;
 import engine.shapes.Polygon;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Collide a Convex Polygon with a Box.
@@ -60,12 +60,12 @@ public class PolygonBoxCollider extends PolygonPolygonCollider {
 		
 		// TODO: this can be optimized using matrix multiplications and moving only one shape
 		// specifically the box, because it has fewer vertices.
-		Vector2f[] vertsA = poly.getVertices(bodyA.getPosition(), bodyA.getRotation());
-		Vector2f[] vertsB = box.getPoints(bodyB.getPosition(), bodyB.getRotation());
+		Vector[] vertsA = poly.getVertices(bodyA.getPosition(), bodyA.getRotation());
+		Vector[] vertsB = box.getPoints(bodyB.getPosition(), bodyB.getRotation());
 		
 		// TODO: use a sweepline that has the smallest projection of the box
 		// now we use just an arbitrary one
-		Vector2f sweepline = new Vector2f(vertsB[1]);
+		Vector sweepline = new Vector(vertsB[1]);
 		sweepline.sub(vertsB[2]);
 		
 		EdgeSweep sweep = new EdgeSweep(sweepline);

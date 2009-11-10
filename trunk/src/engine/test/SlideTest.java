@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.joint.SlideJoint;
 import engine.shapes.Circle;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A test to demonstrate the SlidingJoint - wierd results! :)
@@ -43,10 +43,10 @@ public class SlideTest extends AbstractDemo {
 		}
 		
 		for(int i=1;i<N;i++){
-			SlideJoint sj = new SlideJoint(bodies[i-1],bodies[i],new Vector2f(),new Vector2f(),40,80,1f);
+			SlideJoint sj = new SlideJoint(bodies[i-1],bodies[i],new Vector(),new Vector(),40,80,1f);
 			world.add(sj);
 		}
-		SlideJoint sj = new SlideJoint(knot,bodies[0],new Vector2f(),new Vector2f(),10,80,1f);
+		SlideJoint sj = new SlideJoint(knot,bodies[0],new Vector(),new Vector(),10,80,1f);
 		world.add(sj);
 	}
 	

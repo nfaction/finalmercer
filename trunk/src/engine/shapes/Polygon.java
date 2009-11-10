@@ -38,7 +38,7 @@
 package engine.shapes;
 
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A polygon represented by a list of its vertices in counterclockwise
@@ -56,11 +56,11 @@ import engine.vector.Vector2f;
 public class Polygon extends AbstractShape implements DynamicShape {
 
 	/** The vertices of this polygon in counterclockwise order */
-	protected Vector2f[] vertices;
+	protected Vector[] vertices;
 	/** The total area of this polygon */
 	protected float area;
 	/** The center of mass of this polygon */
-	protected Vector2f centroid;
+	protected Vector centroid;
 	
 	/** Construct the polygon with a list of vertices
 	 * sorted in counterclockwise order.
@@ -75,10 +75,10 @@ public class Polygon extends AbstractShape implements DynamicShape {
 		if ( vertices.length < 3 )
 			throw new IllegalArgumentException("A polygon can not have fewer than 3 edges!");
 		
-		this.vertices = new Vector2f[vertices.length];
+		this.vertices = new Vector[vertices.length];
 		
 		for ( int i = 0; i < vertices.length; i++ ) {
-			this.vertices[i] = new Vector2f(vertices[i]);
+			this.vertices[i] = new Vector(vertices[i]);
 		}
 		
 		
@@ -103,7 +103,7 @@ public class Polygon extends AbstractShape implements DynamicShape {
 	protected float computeArea() {
 		this.area = 0;
 		
-		Vector2f v1, v2;
+		Vector v1, v2;
 		
 		for ( int i = 0; i < vertices.length; i++ ) {
 			v1 = vertices[i];
@@ -124,11 +124,11 @@ public class Polygon extends AbstractShape implements DynamicShape {
 	 * 
 	 * @return the computed centroid
 	 */
-	protected Vector2f computeCentroid() {
+	protected Vector computeCentroid() {
 		float x = 0;
 		float y = 0;
 		
-		Vector2f v1, v2;
+		Vector v1, v2;
 		
 		for ( int i = 0; i < vertices.length; i++ ) {
 			v1 = vertices[i];
@@ -138,7 +138,7 @@ public class Polygon extends AbstractShape implements DynamicShape {
 			y += (v1.y + v2.y) * (v1.x * v2.y - v2.x * v1.y);
 		}
 		
-		return new Vector2f(x / (6 * this.area), y / (6 * this.area));
+		return new Vector(x / (6 * this.area), y / (6 * this.area));
 	}
 	
 	/**
@@ -173,7 +173,7 @@ public class Polygon extends AbstractShape implements DynamicShape {
 	 * Get the center of mass (aka centroid) for this polygon.
 	 * @return the center of mass
 	 */
-	public Vector2f getCentroid() {
+	public Vector getCentroid() {
 		return centroid;
 	}
 	
@@ -202,9 +202,9 @@ public class Polygon extends AbstractShape implements DynamicShape {
 		int l = vertices.length;
 		
 		for ( int i = 0; i < vertices.length; i++ ) {
-			Vector2f x = vertices[i];
-			Vector2f y = vertices[(i+1)%l];
-			Vector2f z = vertices[(i+2)%l];
+			Vector x = vertices[i];
+			Vector y = vertices[(i+1)%l];
+			Vector z = vertices[(i+2)%l];
 			
 			// does the 3d cross product point up or down?
 			if ( (z.x-x.x)*(y.y-x.y)-(y.x-x.x)*(z.y-x.y) >= 0 )
@@ -228,8 +228,8 @@ public class Polygon extends AbstractShape implements DynamicShape {
 	 * @param rotation 
 	 * @return this polygon's vertices translated and rotated
 	 */
-	public Vector2f[] getVertices(ROVector2f displacement, float rotation) {
-		Vector2f[] retVertices = new Vector2f[vertices.length];
+	public Vector[] getVertices(ROVector2f displacement, float rotation) {
+		Vector[] retVertices = new Vector[vertices.length];
 		
 		float cos = (float) Math.cos(rotation);
 		float sin = (float) Math.sin(rotation);
@@ -240,7 +240,7 @@ public class Polygon extends AbstractShape implements DynamicShape {
 			x += displacement.getX();
 			y += displacement.getY();
 			
-			retVertices[i] = new Vector2f(x, y);
+			retVertices[i] = new Vector(x, y);
 		}
 		
 		return retVertices;
@@ -255,11 +255,11 @@ public class Polygon extends AbstractShape implements DynamicShape {
 	 * @param rotation 
 	 * @return this polygon's vertices translated and rotated
 	 */
-	public Vector2f getCentroid(ROVector2f displacement, float rotation) {
+	public Vector getCentroid(ROVector2f displacement, float rotation) {
 		float cos = (float) Math.cos(rotation);
 		float sin = (float) Math.sin(rotation);
 		
-		return new Vector2f(
+		return new Vector(
 				centroid.x * cos - centroid.y * sin + displacement.getX(),
 				centroid.y * cos + centroid.x * sin + displacement.getY());
 	}

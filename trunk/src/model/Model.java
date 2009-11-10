@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import engine.World;
 import engine.forcesource.ForceSource;
 import engine.strategies.QuadSpaceStrategy;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 import entities.BasketBall;
 import entities.Entities;
 
 public class Model {
 	/** The world containing the physics model */
-	protected World world = new World(new Vector2f(0.0f, 10.0f), 10, new QuadSpaceStrategy(1,5));
+	protected World world = new World(new Vector(0.0f, 10.0f), 10, new QuadSpaceStrategy(1,5));
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private int maxY;
 	private int maxX;

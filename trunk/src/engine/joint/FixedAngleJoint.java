@@ -43,7 +43,7 @@ package engine.joint;
 import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A joint that will maintain a fixed angle between two bodies
@@ -58,9 +58,9 @@ public class FixedAngleJoint implements Joint {
 	/** The second body jointed */
 	private Body body2;
 	/** Anchor point for first body, on which impulse is going to apply*/
-	private Vector2f anchor1;
+	private Vector anchor1;
 	/** Anchor point for second body, on which impulse is going to apply*/
-	private Vector2f anchor2;
+	private Vector anchor2;
 	/** The cached impulse through the calculation to yield correct impulse faster */
 	private float accumulateImpulse;
 	/** The squared distance of two body*/
@@ -68,13 +68,13 @@ public class FixedAngleJoint implements Joint {
 	/** Used to calculate the relation ship between impulse and velocity change between body*/
 	private float K;
 	/** Normalised distance vector*/
-	private Vector2f ndp;
+	private Vector ndp;
 	/** Distance Vector*/
-	private Vector2f dp;
+	private Vector dp;
 	/** The normal vector of the impulse direction*/
-	private Vector2f n;
+	private Vector n;
 	/** R = r1 + d */
-	private Vector2f R;
+	private Vector R;
 
 	/**
 	 * @param body1	The first body to be attached on constraint
@@ -83,8 +83,8 @@ public class FixedAngleJoint implements Joint {
 	 * @param anchor2 The anchor point on second body
 	 * @param rotateA The fixed angle on body2 from body1
 	 */
-	public FixedAngleJoint(Body body1, Body body2, Vector2f anchor1,
-			Vector2f anchor2, float rotateA) {
+	public FixedAngleJoint(Body body1, Body body2, Vector anchor1,
+			Vector anchor2, float rotateA) {
 		this.body1 = body1;
 		this.body2 = body2;
 		this.rotateA = rotateA;
@@ -98,10 +98,10 @@ public class FixedAngleJoint implements Joint {
 	public void applyImpulse() {
 		Matrix2f rot1 = new Matrix2f(body1.getRotation());
 		Matrix2f rot2 = new Matrix2f(body2.getRotation());
-		Vector2f r1 = MathUtil.mul(rot1, anchor1);
-		Vector2f r2 = MathUtil.mul(rot2, anchor2);
+		Vector r1 = MathUtil.mul(rot1, anchor1);
+		Vector r2 = MathUtil.mul(rot2, anchor2);
 
-		Vector2f relativeVelocity = new Vector2f(body2.getVelocity());
+		Vector relativeVelocity = new Vector(body2.getVelocity());
 		relativeVelocity.add(MathUtil.cross(r2, body2.getAngularVelocity()));
 		relativeVelocity.sub(body1.getVelocity());
 		relativeVelocity.sub(MathUtil.cross(r1, body1.getAngularVelocity()));
@@ -125,17 +125,17 @@ public class FixedAngleJoint implements Joint {
 
 		accumulateImpulse = newImpulse;
 
-		Vector2f impulse = new Vector2f(n);
+		Vector impulse = new Vector(n);
 		impulse.scale(p);
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(R,
 					impulse)));
 		}
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(-body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(-(body2.getInvI() * MathUtil.cross(r2,
@@ -165,27 +165,27 @@ public class FixedAngleJoint implements Joint {
 		float biasImpulse = 0.0f;
 		float RA = body1.getRotation() + rotateA;
 
-		Vector2f VA = new Vector2f((float) Math.cos(RA), (float) Math.sin(RA));
+		Vector VA = new Vector((float) Math.cos(RA), (float) Math.sin(RA));
 
 		Matrix2f rot1 = new Matrix2f(body1.getRotation());
 		Matrix2f rot2 = new Matrix2f(body2.getRotation());
-		Vector2f r1 = MathUtil.mul(rot1, anchor1);
-		Vector2f r2 = MathUtil.mul(rot2, anchor2);
+		Vector r1 = MathUtil.mul(rot1, anchor1);
+		Vector r2 = MathUtil.mul(rot2, anchor2);
 
-		Vector2f p1 = new Vector2f(body1.getPosition());
+		Vector p1 = new Vector(body1.getPosition());
 		p1.add(r1);
-		Vector2f p2 = new Vector2f(body2.getPosition());
+		Vector p2 = new Vector(body2.getPosition());
 		p2.add(r2);
-		dp = new Vector2f(p2);
+		dp = new Vector(p2);
 		dp.sub(p1);
 		dlength2 = dp.lengthSquared();
-		ndp = new Vector2f(dp);
+		ndp = new Vector(dp);
 		ndp.normalise();
 
-		R = new Vector2f(r1);
+		R = new Vector(r1);
 		R.add(dp);
 		// System.out.println(accumulateImpulse);
-		Vector2f relativeVelocity = new Vector2f(body2.getVelocity());
+		Vector relativeVelocity = new Vector(body2.getVelocity());
 		relativeVelocity.add(MathUtil.cross(r2, body2.getAngularVelocity()));
 		relativeVelocity.sub(body1.getVelocity());
 		relativeVelocity.sub(MathUtil.cross(r1, body1.getAngularVelocity()));
@@ -196,17 +196,17 @@ public class FixedAngleJoint implements Joint {
 		 * relativeVelocity.add(MathUtil.mul(tr1, dp));
 		 */
 		// relativeVelocity.add(MathUtil.cross(dp,body1.getAngularVelocity()));
-		n = new Vector2f(-ndp.y, ndp.x);
-		Vector2f v1 = new Vector2f(n);
+		n = new Vector(-ndp.y, ndp.x);
+		Vector v1 = new Vector(n);
 		v1.scale(-body2.getInvMass() - body1.getInvMass());
 
-		Vector2f v2 = MathUtil.cross(MathUtil.cross(r2, n), r2);
+		Vector v2 = MathUtil.cross(MathUtil.cross(r2, n), r2);
 		v2.scale(-body2.getInvI());
 
-		Vector2f v3 = MathUtil.cross(MathUtil.cross(R, n), r1);
+		Vector v3 = MathUtil.cross(MathUtil.cross(R, n), r1);
 		v3.scale(-body1.getInvI());
 
-		Vector2f K1 = new Vector2f(v1);
+		Vector K1 = new Vector(v1);
 		K1.add(v2);
 		K1.add(v3);
 
@@ -217,17 +217,17 @@ public class FixedAngleJoint implements Joint {
 
 			biasImpulse = biasFactor * MathUtil.cross(ndp, VA) * invDT;
 
-		Vector2f impulse = new Vector2f(n);
+		Vector impulse = new Vector(n);
 		impulse.scale(accumulateImpulse+biasImpulse);
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(R,
 					impulse)));
 		}
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(-body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(-(body2.getInvI() * MathUtil.cross(r2,
@@ -256,7 +256,7 @@ public class FixedAngleJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the first body
 	 */
-	public Vector2f getAnchor1() {
+	public Vector getAnchor1() {
 		return anchor1;
 	}
 
@@ -265,7 +265,7 @@ public class FixedAngleJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the second body
 	 */
-	public Vector2f getAnchor2() {
+	public Vector getAnchor2() {
 		return anchor2;
 	}
 

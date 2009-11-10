@@ -37,7 +37,7 @@
  */
 package engine.collide;
 
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 
 /** Class representing a single intersection.
@@ -52,7 +52,7 @@ public class Intersection {
 	public int edgeB;
 	
 	/** The position of the intersection in world (absolute) coordinates */
-	public Vector2f position;
+	public Vector position;
 	
 	/** True iff this is an intersection where polygon A enters B */
 	public boolean isIngoing;
@@ -65,7 +65,7 @@ public class Intersection {
 	 * @param position The position of the intersection in world (absolute) coordinates
 	 * @param isIngoing True iff this is an intersection where polygon A enters B 
 	 */
-	public Intersection(int edgeA, int edgeB, Vector2f position, boolean isIngoing) {
+	public Intersection(int edgeA, int edgeB, Vector position, boolean isIngoing) {
 		super();
 		this.edgeA = edgeA;
 		this.edgeB = edgeB;

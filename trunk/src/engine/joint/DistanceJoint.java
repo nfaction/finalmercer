@@ -43,7 +43,7 @@ package engine.joint;
 import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A joint that constrains the distance that two bodies can be from each other
@@ -54,9 +54,9 @@ public class DistanceJoint implements Joint {
 	/** The cached impulse through the calculation to yield correct impulse faster */
 	protected float accumulatedImpulse;
 	/** Anchor point for first body, on which impulse is going to apply*/
-	protected Vector2f anchor1;
+	protected Vector anchor1;
 	/** Anchor point for second body, on which impulse is going to apply*/
-	protected Vector2f anchor2;
+	protected Vector anchor2;
 	/** The caculated bias */
 	protected float bias;
 	/** The first body in this joint */
@@ -66,13 +66,13 @@ public class DistanceJoint implements Joint {
 	/** The distance between the bodies */
 	private float distant;
 	/** Distance Vector*/
-	protected Vector2f dp;
+	protected Vector dp;
 	/** The matrix for applying impulse */
 	protected Matrix2f M;
 	/** The rotation of the first body */
-	protected Vector2f r1;
+	protected Vector r1;
 	/** The rotation of the second body */
-	protected Vector2f r2;
+	protected Vector r2;
 	/** The scalar */
 	protected float sc;
 
@@ -83,8 +83,8 @@ public class DistanceJoint implements Joint {
 	 * @param anchor2 The anchor point on second body
 	 * @param distant The fixed distance that is going to keep between two bodies
 	 */
-	public DistanceJoint(Body body1, Body body2, Vector2f anchor1,
-			Vector2f anchor2, float distant) {
+	public DistanceJoint(Body body1, Body body2, Vector anchor1,
+			Vector anchor2, float distant) {
 		this.body1 = body1;
 		this.body2 = body2;
 		this.anchor1 = anchor1;
@@ -96,7 +96,7 @@ public class DistanceJoint implements Joint {
 	 * @see engine.joint.Joint#applyImpulse()
 	 */
 	public void applyImpulse() {
-		Vector2f dv = new Vector2f(body2.getVelocity());
+		Vector dv = new Vector(body2.getVelocity());
 		dv.add(MathUtil.cross(body2.getAngularVelocity(), r2));
 		dv.sub(body1.getVelocity());
 		dv.sub(MathUtil.cross(body1.getAngularVelocity(), r1));
@@ -104,11 +104,11 @@ public class DistanceJoint implements Joint {
 		float ju = -dv.dot(dp) + bias;
 		float p = ju / sc;
 
-		Vector2f impulse = new Vector2f(dp);
+		Vector impulse = new Vector(dp);
 		impulse.scale(p);
 
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(-body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity(-(body1.getInvI() * MathUtil.cross(r1,
@@ -116,7 +116,7 @@ public class DistanceJoint implements Joint {
 		}
 
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(body2.getInvI()
@@ -131,7 +131,7 @@ public class DistanceJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the first body
 	 */
-	public Vector2f getAnchor1() {
+	public Vector getAnchor1() {
 		return anchor1;
 	}
 
@@ -140,7 +140,7 @@ public class DistanceJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the second body
 	 */
-	public Vector2f getAnchor2() {
+	public Vector getAnchor2() {
 		return anchor2;
 	}
 
@@ -187,11 +187,11 @@ public class DistanceJoint implements Joint {
 
 		Matrix2f K = MathUtil.add(MathUtil.add(K1, K2), K3);
 
-		Vector2f p1 = new Vector2f(body1.getPosition());
+		Vector p1 = new Vector(body1.getPosition());
 		p1.add(r1);
-		Vector2f p2 = new Vector2f(body2.getPosition());
+		Vector p2 = new Vector(body2.getPosition());
 		p2.add(r2);
-		dp = new Vector2f(p2);
+		dp = new Vector(p2);
 		dp.sub(p1);
 
 		float biasFactor = 0.3f;
@@ -201,11 +201,11 @@ public class DistanceJoint implements Joint {
 
 		sc = MathUtil.mul(K, dp).dot(dp);
 
-		Vector2f impulse = new Vector2f(dp);
+		Vector impulse = new Vector(dp);
 		impulse.scale(accumulatedImpulse);
 
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(-body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity(-(body1.getInvI() * MathUtil.cross(r1,
@@ -213,7 +213,7 @@ public class DistanceJoint implements Joint {
 		}
 
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(body2.getInvI()

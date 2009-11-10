@@ -38,7 +38,7 @@
 package engine.collide;
 
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * <p>Implements a sweepline algorithm that facilitates collision detection between
@@ -119,14 +119,14 @@ public class EdgeSweep {
 	private ProjectedVertex current;	
 	
 	/** The direction in which to sweep */
-	private Vector2f sweepDir;
+	private Vector sweepDir;
 	
 	/** Constructs an EdgeSweep object with the given sweep direction.
 	 * 
 	 * @param sweepDir The direction in which to sweep
 	 */
 	public EdgeSweep(ROVector2f sweepDir) {
-		this.sweepDir = new Vector2f(sweepDir);
+		this.sweepDir = new Vector(sweepDir);
 	}
 	
 	/**
@@ -516,7 +516,7 @@ public class EdgeSweep {
 	 * @param isA True iff the inserted vertices are of the first object
 	 * @param verts The list of vertices to be inserted in counter clockwise order
 	 */
-	public void addVerticesToSweep(boolean isA, Vector2f[] verts) {
+	public void addVerticesToSweep(boolean isA, Vector[] verts) {
 		for ( int i = 0, j = verts.length-1; i < verts.length; j = i, i++ ) {
 			float dist = sweepDir.dot(verts[i]);
 			

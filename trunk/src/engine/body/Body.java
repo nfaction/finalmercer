@@ -6,7 +6,7 @@ import engine.BodyList;
 import engine.shapes.DynamicShape;
 import engine.shapes.Shape;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 
 /**
@@ -21,28 +21,28 @@ public strictfp class Body {
 	public static final float INFINITE_MASS = Float.MAX_VALUE;
 	
 	/** The current position of this body */
-	private Vector2f position = new Vector2f();
+	private Vector position = new Vector();
 	/** The position of this body in the last frame */
-	private Vector2f lastPosition = new Vector2f();
+	private Vector lastPosition = new Vector();
 	/** The current rotation of this body in radians */
 	private float rotation;
 
 	/** The velocity of this body */
-	private Vector2f velocity = new Vector2f();
+	private Vector velocity = new Vector();
 	/** The angular velocity of this body */
 	private float angularVelocity;
 	/** The last velocity of this body (before last update) */
-	private Vector2f lastVelocity = new Vector2f();
+	private Vector lastVelocity = new Vector();
 	/** The last angular velocity of this body (before last update) */
 	private float lastAngularVelocity;
 	
 	/** The velocity of this body */
-	private Vector2f biasedVelocity = new Vector2f();
+	private Vector biasedVelocity = new Vector();
 	/** The angular velocity of this body */
 	private float biasedAngularVelocity;
 
 	/** The force being applied to this body - i.e. driving velocity */
-	private Vector2f force = new Vector2f();
+	private Vector force = new Vector();
 	/** The angular force being applied this body - i.e. driving angular velocity */
 	private float torque;
 
@@ -79,9 +79,9 @@ public strictfp class Body {
 	/** A hook for the library's user's data */
 	private Object userData = null;
 	/** The old position */
-	private Vector2f oldPosition;
+	private Vector oldPosition;
 	/** The new position */
-	private Vector2f newPosition;
+	private Vector newPosition;
 	/** True if we've been hit by another this frame */
 	private boolean hitByAnother;
 	/** True if we're considered static at the moment */
@@ -118,7 +118,7 @@ public strictfp class Body {
 	private boolean added = false;
 	
 	/** The maximum velocity the the body can travel at on each axis */
-	private Vector2f maxVelocity;
+	private Vector maxVelocity;
 	
 	/**
 	 * Create a new un-named body
@@ -329,7 +329,7 @@ public strictfp class Body {
 			return;
 		}
 		
-		oldPosition = new Vector2f(getPosition());
+		oldPosition = new Vector(getPosition());
 		hitByAnother = false;
 		hitCount = 0;
 		touching.clear();
@@ -374,7 +374,7 @@ public strictfp class Body {
 			touchingStatic = false;
 			touchingCount = touching.size();
 		} else {
-			newPosition = new Vector2f(getPosition());
+			newPosition = new Vector(getPosition());
 			if (!hitByAnother) {
 				if (true
 					&& (newPosition.distanceSquared(oldPosition) <= positionTolerance)
@@ -815,7 +815,7 @@ public strictfp class Body {
 	 * @return The change in position in the last update 
 	 */
 	public ROVector2f getPositionDelta() {
-		Vector2f vec = new Vector2f(getPosition());
+		Vector vec = new Vector(getPosition());
 		vec.sub(getLastPosition());
 		
 		return vec;
@@ -837,7 +837,7 @@ public strictfp class Body {
 	 * @return The change in velocity in the last update 
 	 */
 	public ROVector2f getVelocityDelta() {
-		Vector2f vec = new Vector2f(getVelocity());
+		Vector vec = new Vector(getVelocity());
 		vec.sub(getLastVelocity());
 		
 		return vec;
@@ -901,7 +901,7 @@ public strictfp class Body {
 	 * 
 	 * @param delta The amount to change the position by
 	 */
-	public void adjustPosition(Vector2f delta) {
+	public void adjustPosition(Vector delta) {
 		lastPosition.set(position);
 		position.add(delta);
 	}
@@ -957,7 +957,7 @@ public strictfp class Body {
 	 * 
 	 * @param delta The amount to change the velocity by
 	 */
-	public void adjustVelocity(Vector2f delta) {
+	public void adjustVelocity(Vector delta) {
 		if (!isMoveable()) {
 			return;
 		}
@@ -1012,7 +1012,7 @@ public strictfp class Body {
 	 * 
 	 * @param f The force to be applied
 	 */
-	public void addForce(Vector2f f) {
+	public void addForce(Vector f) {
 		force.add(f);
 	}
 	
@@ -1073,7 +1073,7 @@ public strictfp class Body {
 	 * 
 	 * @param delta The amount to change the velocity by
 	 */
-	public void adjustBiasedVelocity(Vector2f delta) {
+	public void adjustBiasedVelocity(Vector delta) {
 		if (!isMoveable()) {
 			return;
 		}
@@ -1177,7 +1177,7 @@ public strictfp class Body {
 	 * @param maxY The maximum veloicty on the Y axis
 	 */
 	public void setMaxVelocity(float maxX, float maxY) {
-		maxVelocity = new Vector2f(maxX, maxY);
+		maxVelocity = new Vector(maxX, maxY);
 	}
 	
 	/**

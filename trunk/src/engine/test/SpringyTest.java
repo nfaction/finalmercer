@@ -7,7 +7,7 @@ import engine.joint.DistanceJoint;
 import engine.joint.SpringJoint;
 import engine.joint.SpringyAngleJoint;
 import engine.shapes.Circle;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A test to demonstrate the SpringAngleJoint which can be used to produce free
@@ -46,10 +46,10 @@ public class SpringyTest extends AbstractDemo {
 		
 		for(int i=0;i<N;i++){
 			if(i==0){
-				SpringyAngleJoint saj1 = new SpringyAngleJoint(knot,balls[i],new Vector2f(),new Vector2f(),1e6f,-(float)Math.PI/2.0f-0.15f);
-				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls[i],knot,new Vector2f(),new Vector2f(),1e6f,(float)Math.PI/2.0f);
+				SpringyAngleJoint saj1 = new SpringyAngleJoint(knot,balls[i],new Vector(),new Vector(),1e6f,-(float)Math.PI/2.0f-0.15f);
+				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls[i],knot,new Vector(),new Vector(),1e6f,(float)Math.PI/2.0f);
 				//DistantConstraint daj = new DistantConstraint(knot,balls[i],new Vector2f(),new Vector2f(),50);
-				SpringJoint daj = new SpringJoint(knot,balls[i],new Vector2f(100,400),new Vector2f(balls[i].getPosition()));
+				SpringJoint daj = new SpringJoint(knot,balls[i],new Vector(100,400),new Vector(balls[i].getPosition()));
 				daj.setCompressedSpringConst(100);
 				daj.setStretchedSpringConst(100);
 				daj.setSpringSize(30);
@@ -57,10 +57,10 @@ public class SpringyTest extends AbstractDemo {
 				world.add(saj1);
 				world.add(saj2);
 			}else{
-				SpringyAngleJoint saj1 = new SpringyAngleJoint(balls[i-1],balls[i],new Vector2f(),new Vector2f(),1e6f,-(float)Math.PI/2.0f);
-				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls[i],balls[i-1],new Vector2f(),new Vector2f(),1e6f,(float)Math.PI/2.0f);
+				SpringyAngleJoint saj1 = new SpringyAngleJoint(balls[i-1],balls[i],new Vector(),new Vector(),1e6f,-(float)Math.PI/2.0f);
+				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls[i],balls[i-1],new Vector(),new Vector(),1e6f,(float)Math.PI/2.0f);
 				//DistantConstraint daj = new DistantConstraint(balls[i-1],balls[i],new Vector2f(),new Vector2f(),50);
-				SpringJoint daj = new SpringJoint(balls[i-1],balls[i],new Vector2f(balls[i-1].getPosition()),new Vector2f(balls[i].getPosition()));
+				SpringJoint daj = new SpringJoint(balls[i-1],balls[i],new Vector(balls[i-1].getPosition()),new Vector(balls[i].getPosition()));
 				daj.setCompressedSpringConst(100);
 				daj.setStretchedSpringConst(100);
 				daj.setSpringSize(50);
@@ -79,17 +79,17 @@ public class SpringyTest extends AbstractDemo {
 		}
 		for(int i=0;i<N;i++){
 			if(i==0){
-				SpringyAngleJoint saj1 = new SpringyAngleJoint(knot,balls1[i],new Vector2f(),new Vector2f(),1e6f,-(float)Math.PI/2.0f+0.45f);
-				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls1[i],knot,new Vector2f(),new Vector2f(),1e6f,(float)Math.PI/2.0f);
-				DistanceJoint daj = new DistanceJoint(knot,balls1[i],new Vector2f(),new Vector2f(),50);
+				SpringyAngleJoint saj1 = new SpringyAngleJoint(knot,balls1[i],new Vector(),new Vector(),1e6f,-(float)Math.PI/2.0f+0.45f);
+				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls1[i],knot,new Vector(),new Vector(),1e6f,(float)Math.PI/2.0f);
+				DistanceJoint daj = new DistanceJoint(knot,balls1[i],new Vector(),new Vector(),50);
 
 				world.add(daj);
 				world.add(saj1);
 				world.add(saj2);
 			}else{
-				SpringyAngleJoint saj1 = new SpringyAngleJoint(balls1[i-1],balls1[i],new Vector2f(),new Vector2f(),1e6f,-(float)Math.PI/2.0f);
-				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls1[i],balls1[i-1],new Vector2f(),new Vector2f(),1e6f,(float)Math.PI/2.0f);
-				DistanceJoint daj = new DistanceJoint(balls1[i-1],balls1[i],new Vector2f(),new Vector2f(),50);
+				SpringyAngleJoint saj1 = new SpringyAngleJoint(balls1[i-1],balls1[i],new Vector(),new Vector(),1e6f,-(float)Math.PI/2.0f);
+				SpringyAngleJoint saj2 = new SpringyAngleJoint(balls1[i],balls1[i-1],new Vector(),new Vector(),1e6f,(float)Math.PI/2.0f);
+				DistanceJoint daj = new DistanceJoint(balls1[i-1],balls1[i],new Vector(),new Vector(),50);
 
 				world.add(daj);
 				world.add(saj1);

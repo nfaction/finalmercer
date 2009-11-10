@@ -42,7 +42,7 @@ import engine.body.Body;
 import engine.shapes.Line;
 import engine.shapes.Polygon;
 import engine.vector.MathUtil;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Collider for a Line and a Convex Polygon.
@@ -62,10 +62,10 @@ public class LinePolygonCollider  extends PolygonPolygonCollider {
 		
 		// TODO: this can be optimized using matrix multiplications and moving only one shape
 		// specifically the line, because it has only two vertices
-		Vector2f[] vertsA = line.getVertices(bodyA.getPosition(), bodyA.getRotation());
-		Vector2f[] vertsB = poly.getVertices(bodyB.getPosition(), bodyB.getRotation());
+		Vector[] vertsA = line.getVertices(bodyA.getPosition(), bodyA.getRotation());
+		Vector[] vertsB = poly.getVertices(bodyB.getPosition(), bodyB.getRotation());
 
-		Vector2f pos = poly.getCentroid(bodyB.getPosition(), bodyB.getRotation());
+		Vector pos = poly.getCentroid(bodyB.getPosition(), bodyB.getRotation());
 		
 		// using the z axis of a 3d cross product we determine on what side B is
 		boolean isLeftOf = 0 > (pos.x - vertsA[0].x) * (vertsA[1].y - vertsA[0].y) - (vertsA[1].x - vertsA[0].x) * (pos.y - vertsA[0].y);
@@ -74,13 +74,13 @@ public class LinePolygonCollider  extends PolygonPolygonCollider {
 		// the line's normal is pointing towards the polygon
 		// TODO: verify that it's not actually pointing in the opposite direction
 		if ( isLeftOf ) {
-			Vector2f tmp = vertsA[0];
+			Vector tmp = vertsA[0];
 			vertsA[0] = vertsA[1];
 			vertsA[1] = tmp;
 		}
 		
 		// we use the line's normal for our sweepline projection
-		Vector2f normal = new Vector2f(vertsA[1]);
+		Vector normal = new Vector(vertsA[1]);
 		normal.sub(vertsA[0]);
 		normal.set(normal.y, -normal.x);
 		EdgeSweep sweep = new EdgeSweep(normal);
@@ -109,7 +109,7 @@ public class LinePolygonCollider  extends PolygonPolygonCollider {
 	 * {@link IntersectionGatherer#getIntersections()}
 	 * @return The number of contacts that have been set in the contact array
 	 */
-	public int populateContacts(Contact[] contacts, Vector2f[] vertsA, Vector2f[] vertsB, Intersection[] intersections) {	
+	public int populateContacts(Contact[] contacts, Vector[] vertsA, Vector[] vertsB, Intersection[] intersections) {	
 		if ( intersections.length == 0 )
 			return 0;
 		
@@ -194,8 +194,8 @@ public class LinePolygonCollider  extends PolygonPolygonCollider {
 	 * @param vertsA The line's vertices
 	 * @param vertsB The polygon's vertices
 	 */
-	public void setLineEndContact(Contact contact, Intersection intersection, Vector2f[] vertsA, Vector2f[] vertsB) {
-		Vector2f separation = new Vector2f(intersection.position);
+	public void setLineEndContact(Contact contact, Intersection intersection, Vector[] vertsA, Vector[] vertsB) {
+		Vector separation = new Vector(intersection.position);
 		if ( intersection.isIngoing )
 			separation.sub(vertsA[1]);
 		else

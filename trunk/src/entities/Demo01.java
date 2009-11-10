@@ -8,7 +8,7 @@ import engine.joint.FixedJoint;
 import engine.joint.Joint;
 import engine.shapes.Box;
 import engine.shapes.Circle;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A simple demo with so flat blocks falling
@@ -38,7 +38,7 @@ public class Demo01 extends Test {
 		
 		body2 = new Body("FW", new Circle(20.0f), 1.0f);
 		body2.setPosition(250, 100.0f);
-		Vector2f f = new Vector2f(0,-100);
+		Vector f = new Vector(0,-100);
 		world.add(body2);
 		
 		Body body4 = new Body("RW", new Circle(25.0f), 10.0f);
@@ -68,7 +68,7 @@ public class Demo01 extends Test {
 	 */
 	protected void update() {
 		
-		body2.addForce(new Vector2f(-100,0));
+		body2.addForce(new Vector(-100,0));
 	}
 	
 	/**

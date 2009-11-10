@@ -4,7 +4,7 @@ import engine.StaticBody;
 import engine.World;
 import engine.body.Body;
 import engine.shapes.Box;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A stacking demonstration
@@ -36,7 +36,7 @@ public class Demo07 extends AbstractDemo {
 			body2.setPosition(-50, (float) (((Math.random() * 50) + 150)));
 			world.add(body2);
 			body2.adjustAngularVelocity(1);
-			body2.adjustVelocity(new Vector2f(200,(float) (Math.random() * 200)));
+			body2.adjustVelocity(new Vector(200,(float) (Math.random() * 200)));
 		}
 	}
 	

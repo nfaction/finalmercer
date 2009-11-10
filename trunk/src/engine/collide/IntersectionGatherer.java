@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 
 /**
@@ -209,9 +209,9 @@ public class IntersectionGatherer {
 	private int noIntersections = 0;
 	
 	/** The vertices of polygon A */
-	private Vector2f[] vertsA;
+	private Vector[] vertsA;
 	/** The vertices of polygon B */
-	private Vector2f[] vertsB;
+	private Vector[] vertsB;
 
 	/**
 	 * Construct an IntersectionGatherer for a specific pair of polygons.
@@ -219,7 +219,7 @@ public class IntersectionGatherer {
 	 * @param vertsA The 'first' polygon involved in this collision check
 	 * @param vertsB The 'second' polygon involved in this collision check
 	 */
-	public IntersectionGatherer(Vector2f[] vertsA, Vector2f[] vertsB) {
+	public IntersectionGatherer(Vector[] vertsA, Vector[] vertsB) {
 		this.intersections = new SortableIntersection[MAX_INTERSECTIONS];
 		this.noIntersections = 0;
 		this.vertsA = vertsA;
@@ -237,10 +237,10 @@ public class IntersectionGatherer {
 		if ( noIntersections >= MAX_INTERSECTIONS )
 			return;
 		
-		Vector2f startA = vertsA[a];
-		Vector2f endA = vertsA[(a+1) % vertsA.length ];
-		Vector2f startB = vertsB[b];
-		Vector2f endB = vertsB[(b+1) % vertsB.length ];
+		Vector startA = vertsA[a];
+		Vector endA = vertsA[(a+1) % vertsA.length ];
+		Vector startB = vertsB[b];
+		Vector endB = vertsB[(b+1) % vertsB.length ];
 		//TODO: reuse mathutil.intersect
 		float d = (endB.y - startB.y) * (endA.x - startA.x) - (endB.x - startB.x) * (endA.y - startA.y);
 		
@@ -255,14 +255,14 @@ public class IntersectionGatherer {
 		if ( uA < 0 || uA > 1 || uB < 0 || uB > 1 ) 
 			return; // intersection point isn't between the start and endpoints
 		
-		Vector2f position = new Vector2f(
+		Vector position = new Vector(
 				startA.x + uA * (endA.x - startA.x),
 				startA.y + uA * (endA.y - startA.y));
 		
-		Vector2f dist = new Vector2f(position);
+		Vector dist = new Vector(position);
 		dist.sub(startA);
 		float distFromVertA = dist.lengthSquared();
-		dist = new Vector2f(position);
+		dist = new Vector(position);
 		dist.sub(startB);
 		float distFromVertB = dist.lengthSquared();
 		
@@ -463,7 +463,7 @@ public class IntersectionGatherer {
 		 * @param distFromVertA The squared distance from the vertice that starts edgeA
 		 * @param distFromVertB The squared distance from the vertice that starts edgeB
 		 */
-		public SortableIntersection(int edgeA, int edgeB, Vector2f position, boolean isIngoing, float distFromVertA, float distFromVertB) {
+		public SortableIntersection(int edgeA, int edgeB, Vector position, boolean isIngoing, float distFromVertA, float distFromVertB) {
 			super(edgeA, edgeB, position, isIngoing);
 			this.distFromVertA = distFromVertA;
 			this.distFromVertB = distFromVertB;

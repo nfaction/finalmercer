@@ -43,7 +43,7 @@ import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.vector.MathUtil;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A collider for boxes hitting circles. Box = bodyA, Circle = bodyB
@@ -71,7 +71,7 @@ public strictfp class BoxCircleCollider implements Collider {
 		Box box = (Box) boxBody.getShape();
 		Circle circle = (Circle) circleBody.getShape();
 		
-		Vector2f[] pts = box.getPoints(boxBody.getPosition(), boxBody.getRotation());
+		Vector[] pts = box.getPoints(boxBody.getPosition(), boxBody.getRotation());
 		Line[] lines = new Line[4];
 		lines[0] = new Line(pts[0],pts[1]);
 		lines[1] = new Line(pts[1],pts[2]);
@@ -98,10 +98,10 @@ public strictfp class BoxCircleCollider implements Collider {
 			
 			// this should really be where the edge and the line
 			// between the two elements cross?
-			Vector2f contactPoint = new Vector2f();
+			Vector contactPoint = new Vector();
 			lines[closest].getClosestPoint(circleBody.getPosition(), contactPoint);
 			
-			Vector2f normal = MathUtil.sub(circleBody.getPosition(), contactPoint);
+			Vector normal = MathUtil.sub(circleBody.getPosition(), contactPoint);
 			normal.normalise();
 			contacts[0].setNormal(normal);
 			contacts[0].setPosition(contactPoint);

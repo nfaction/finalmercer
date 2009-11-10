@@ -43,7 +43,7 @@ package engine.joint;
 import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A joint providing a springy resistance between bodies. Wiring a series together
@@ -54,9 +54,9 @@ import engine.vector.Vector2f;
  */
 public class SpringyAngleJoint implements Joint {
 	/** Anchor point for first body, on which impulse is going to apply*/
-	private Vector2f anchor1;
+	private Vector anchor1;
 	/** Anchor point for second body, on which impulse is going to apply*/
-	private Vector2f anchor2;
+	private Vector anchor2;
 
 	/** The first body jointed */
 	private Body body1;
@@ -78,8 +78,8 @@ public class SpringyAngleJoint implements Joint {
 	 * @param compressConstant The constant k of hooke's law
 	 * @param originalAngle The original angle of the spring
 	 */
-	public SpringyAngleJoint(Body body1, Body body2, Vector2f anchor1,
-			Vector2f anchor2, float compressConstant, float originalAngle) {
+	public SpringyAngleJoint(Body body1, Body body2, Vector anchor1,
+			Vector anchor2, float compressConstant, float originalAngle) {
 		this.body1 = body1;
 		this.body2 = body2;
 		this.anchor1 = anchor1;
@@ -114,37 +114,37 @@ public class SpringyAngleJoint implements Joint {
 	public void preStep(float invDT) {
 		Matrix2f rot1 = new Matrix2f(body1.getRotation());
 		Matrix2f rot2 = new Matrix2f(body2.getRotation());
-		Vector2f r1 = MathUtil.mul(rot1, anchor1);
-		Vector2f r2 = MathUtil.mul(rot2, anchor2);
+		Vector r1 = MathUtil.mul(rot1, anchor1);
+		Vector r2 = MathUtil.mul(rot2, anchor2);
 
-		Vector2f p1 = new Vector2f(body1.getPosition());
+		Vector p1 = new Vector(body1.getPosition());
 		p1.add(r1);
-		Vector2f p2 = new Vector2f(body2.getPosition());
+		Vector p2 = new Vector(body2.getPosition());
 		p2.add(r2);
-		Vector2f dp = new Vector2f(p2);
+		Vector dp = new Vector(p2);
 		dp.sub(p1);
 		float length = dp.length();
 		// dp.scale(1.0f/length);
-		Vector2f V = new Vector2f((float) Math.cos(originalAngle
+		Vector V = new Vector((float) Math.cos(originalAngle
 				+ body1.getRotation()), (float) Math.sin(originalAngle
 				+ body1.getRotation()));
-		Vector2f ndp = new Vector2f(dp);
+		Vector ndp = new Vector(dp);
 		ndp.normalise();
 		float torq = (float) Math.asin(MathUtil.cross(ndp, V))
 				* compressConstant / invDT;
 		float P = torq / length;
-		Vector2f n = new Vector2f(ndp.y, -ndp.x);
-		Vector2f impulse = new Vector2f(n);
+		Vector n = new Vector(ndp.y, -ndp.x);
+		Vector impulse = new Vector(n);
 		impulse.scale(P);
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(dp,
 					impulse)));
 		}
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(-body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(-(body2.getInvI() * MathUtil.cross(r2,

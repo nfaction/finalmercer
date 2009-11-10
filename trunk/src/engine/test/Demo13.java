@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Pool triangle
@@ -56,7 +56,7 @@ public class Demo13 extends AbstractDemo {
 		Body body2 = new Body("Cue", new Circle(20.0f),1);
 		//Body body2 = new Body("Cue", new Box(40.0f,40.0f),1);
 		body2.setPosition(250,0);
-		body2.adjustVelocity(new Vector2f(0,100));
+		body2.adjustVelocity(new Vector(0,100));
 		body2.setRestitution(1.0f);
 		body2.setFriction(0);
 		world.add(body2);

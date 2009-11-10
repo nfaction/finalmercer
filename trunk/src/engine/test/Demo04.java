@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.joint.BasicJoint;
 import engine.shapes.Box;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Teeter Test
@@ -48,7 +48,7 @@ public class Demo04 extends AbstractDemo {
 		body5.setPosition(350, 50);
 		world.add(body5);
 
-		BasicJoint j = new BasicJoint(body1, body2, new Vector2f(250, 370));
+		BasicJoint j = new BasicJoint(body1, body2, new Vector(250, 370));
 		world.add(j);
 	}
 

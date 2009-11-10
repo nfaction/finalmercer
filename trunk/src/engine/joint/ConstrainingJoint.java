@@ -1,7 +1,7 @@
 package engine.joint;
 
 import engine.body.Body;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A joint which only applys forces when the bodie's attempt to get too far apart, as 
@@ -32,7 +32,7 @@ public class ConstrainingJoint implements Joint {
 	 * @param anchor The anchor point for the underlying basic joint
 	 * @param distance The distance the bodies must be apart before force is applied
 	 */
-	public ConstrainingJoint(Body body1, Body body2, Vector2f anchor, float distance) {
+	public ConstrainingJoint(Body body1, Body body2, Vector anchor, float distance) {
 		this.distance = distance;
 		this.body1 = body1;
 		this.body2 = body2;
@@ -46,10 +46,10 @@ public class ConstrainingJoint implements Joint {
 	 */
 	public boolean isActive() {
 		if (body1.getPosition().distanceSquared(body2.getPosition()) < distance) {
-			Vector2f to2 = new Vector2f(body2.getPosition());
+			Vector to2 = new Vector(body2.getPosition());
 			to2.sub(body1.getPosition());
 			to2.normalise();
-			Vector2f vel = new Vector2f(body1.getVelocity());
+			Vector vel = new Vector(body1.getVelocity());
 			vel.normalise();
 			if (body1.getVelocity().dot(to2) < 0) {
 				return true;

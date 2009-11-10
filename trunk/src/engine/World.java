@@ -46,7 +46,7 @@ import engine.body.Body;
 import engine.forcesource.ForceSource;
 import engine.joint.Joint;
 import engine.strategies.BruteCollisionStrategy;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 
 /**
@@ -59,7 +59,7 @@ public strictfp class World extends CollisionSpace {
 	/** The joints contained in the world */
 	private JointList joints = new JointList(); 
 	/** The direction and force of gravity */
-	private Vector2f gravity = new Vector2f(0,0);
+	private Vector gravity = new Vector(0,0);
 	/** The number of iteration to run each step */
 	private int iterations;
 	/** The damping in effect in the system */
@@ -82,7 +82,7 @@ public strictfp class World extends CollisionSpace {
 	 * @param iterations The number of iterations to run each step. More iteration
 	 * is more accurate but slower
 	 */
-	public World(Vector2f gravity, int iterations) {
+	public World(Vector gravity, int iterations) {
 		this(gravity, iterations, new BruteCollisionStrategy());
 	}
 
@@ -95,7 +95,7 @@ public strictfp class World extends CollisionSpace {
 	 * @param strategy The strategy used to determine which bodies to check detailed
 	 * collision on
 	 */
-	public World(Vector2f gravity, int iterations, BroadCollisionStrategy strategy) {
+	public World(Vector gravity, int iterations, BroadCollisionStrategy strategy) {
 		super(strategy);
 		
 		this.gravity = gravity;
@@ -309,7 +309,7 @@ public strictfp class World extends CollisionSpace {
 				continue;
 			}
 
-			Vector2f temp = new Vector2f(b.getForce());
+			Vector temp = new Vector(b.getForce());
 			temp.scale(b.getInvMass());
 			if (b.getGravityEffected()) {
 				temp.add(gravity);
@@ -318,7 +318,7 @@ public strictfp class World extends CollisionSpace {
 			
 			b.adjustVelocity(temp);
 			
-			Vector2f damping = new Vector2f(b.getVelocity());
+			Vector damping = new Vector(b.getVelocity());
 			damping.scale(-b.getDamping() * b.getInvMass());
 			b.adjustVelocity(damping);
 			

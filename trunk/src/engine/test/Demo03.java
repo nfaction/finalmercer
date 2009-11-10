@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.joint.BasicJoint;
 import engine.shapes.Box;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Pendulum test
@@ -33,7 +33,7 @@ public class Demo03 extends AbstractDemo {
 		super.keyHit(c);
 		
 		if (c == ' ') {
-			b2.addForce(new Vector2f(-100000,0));
+			b2.addForce(new Vector(-100000,0));
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class Demo03 extends AbstractDemo {
 				b2 = body;
 			}
 			
-			BasicJoint j = new BasicJoint(b1, body, new Vector2f(170.0f + (i*20), 111.0f));
+			BasicJoint j = new BasicJoint(b1, body, new Vector(170.0f + (i*20), 111.0f));
 			world.add(j);
 		}
 	}

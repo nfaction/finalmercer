@@ -6,7 +6,7 @@ import engine.body.Body;
 import engine.joint.BasicJoint;
 import engine.shapes.Box;
 import engine.shapes.Circle;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A simple demo with so flat blocks falling
@@ -51,16 +51,16 @@ public class Demo12 extends AbstractDemo {
 		box.setRotation(0.15f);
 		world.add(box);
 		
-		BasicJoint j1 = new BasicJoint(body3, swing, new Vector2f(160,110));
+		BasicJoint j1 = new BasicJoint(body3, swing, new Vector(160,110));
 		world.add(j1);
-		BasicJoint j2 = new BasicJoint(body3, swing2, new Vector2f(340,110));
+		BasicJoint j2 = new BasicJoint(body3, swing2, new Vector(340,110));
 		world.add(j2);
-		BasicJoint j3 = new BasicJoint(swing, swing3, new Vector2f(160,300));
+		BasicJoint j3 = new BasicJoint(swing, swing3, new Vector(160,300));
 		world.add(j3);
-		BasicJoint j4 = new BasicJoint(swing2, swing3, new Vector2f(340,300));
+		BasicJoint j4 = new BasicJoint(swing2, swing3, new Vector(340,300));
 		world.add(j4);
 		
-		swing.adjustVelocity(new Vector2f(-100,0));
+		swing.adjustVelocity(new Vector(-100,0));
 	}
 	
 	/**

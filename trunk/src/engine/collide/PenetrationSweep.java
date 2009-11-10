@@ -37,7 +37,7 @@
  */
 package engine.collide;
 
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * This class will, given an intersection pair (an ingoing and outgoing 
@@ -101,10 +101,10 @@ import engine.vector.Vector2f;
 public class PenetrationSweep {
 	
 	/** The collision normal onto which the penetration depth is projected */
-	private Vector2f normal;
+	private Vector normal;
 	/** The direction of our sweep, pointing from the ingoing intersection to
 	 * the outgoing intersection */
-	private Vector2f sweepDir;
+	private Vector sweepDir;
 	/** The projection of the ingoing intersection onto the sweepDir, defines
 	 * a border of the intersecting area. */
 	private float startDist;
@@ -115,7 +115,7 @@ public class PenetrationSweep {
  	/**
  	 * Constructs a Penetration Sweep object, with all its attributes set.
  	 * This constructor is public only for testing purposes. The static method
- 	 * {@link PenetrationSweep#getPenetrationDepth(Intersection, Intersection, Vector2f, Vector2f[], Vector2f[])}
+ 	 * {@link PenetrationSweep#getPenetrationDepth(Intersection, Intersection, Vector, Vector[], Vector[])}
  	 * should be called to get the penetration depth. 
  	 * 
  	 * @param normal The collision normal
@@ -123,7 +123,7 @@ public class PenetrationSweep {
  	 * @param intersectionStart The start bound of the intersection area
  	 * @param intersectionEnd The end bound of the intersection area.
  	 */
-	public PenetrationSweep(Vector2f normal, Vector2f sweepDir, Vector2f intersectionStart, Vector2f intersectionEnd) {
+	public PenetrationSweep(Vector normal, Vector sweepDir, Vector intersectionStart, Vector intersectionEnd) {
 		super();
 		this.normal = normal;
 		this.sweepDir = sweepDir;
@@ -143,8 +143,8 @@ public class PenetrationSweep {
 	 * @param vertsB The vertices of polygon B
 	 * @return the maximum penetration depth along the given normal
 	 */
-	public static float getPenetrationDepth(Intersection in, Intersection out, Vector2f normal, Vector2f[] vertsA, Vector2f[] vertsB) {
-		Vector2f sweepdir = new Vector2f(out.position);
+	public static float getPenetrationDepth(Intersection in, Intersection out, Vector normal, Vector[] vertsA, Vector[] vertsB) {
+		Vector sweepdir = new Vector(out.position);
 		sweepdir.sub(in.position);
 		
 		PenetrationSweep ps = new PenetrationSweep(normal, sweepdir, in.position, out.position);
@@ -210,7 +210,7 @@ public class PenetrationSweep {
 	public class ContourWalker {
 		
 		/** The vertices of the polygon which's contour is being followed */
-		private Vector2f[] verts;
+		private Vector[] verts;
 		/** The index of the vertex we are currently at */
 		private int currentVert;
 		/** The index of the vertex where the contour's subsection which we 
@@ -245,7 +245,7 @@ public class PenetrationSweep {
 		 * walk on ends
 		 * @param isBackwards True iff we're walking backwards over the contour
 		 */
-		public ContourWalker(Vector2f[] verts, int firstVert, int lastVert, boolean isBackwards) {
+		public ContourWalker(Vector[] verts, int firstVert, int lastVert, boolean isBackwards) {
 			if ( firstVert < 0 || lastVert < 0 )
 				throw new IllegalArgumentException("Vertex numbers cannot be negative.");
 			

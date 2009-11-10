@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.joint.SpringJoint;
 import engine.shapes.Box;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Demo for the spring joint.
@@ -44,7 +44,7 @@ public class Demo21 extends AbstractDemo {
 		body4.setPosition(200f, 200f);
 		world.add(body4);
 		
-		SpringJoint joint1 = new SpringJoint(body1, body2, new Vector2f(150,60), new Vector2f(100, 90));
+		SpringJoint joint1 = new SpringJoint(body1, body2, new Vector(150,60), new Vector(100, 90));
 		joint1.setBrokenSpringConst(10);
 		joint1.setCompressedSpringConst(0);
 		joint1.setStretchedSpringConst(0);
@@ -52,7 +52,7 @@ public class Demo21 extends AbstractDemo {
 		joint1.setMaxSpringSize(joint1.getSpringSize());
 		world.add(joint1);
 		
-		SpringJoint joint2 = new SpringJoint(body2, body3, new Vector2f(100,110), new Vector2f(160, 150));
+		SpringJoint joint2 = new SpringJoint(body2, body3, new Vector(100,110), new Vector(160, 150));
 		joint2.setBrokenSpringConst(10);
 		joint2.setCompressedSpringConst(0);
 		joint2.setStretchedSpringConst(0);
@@ -61,7 +61,7 @@ public class Demo21 extends AbstractDemo {
 		joint2.setMaxSpringSize(joint2.getSpringSize());
 		world.add(joint2);
 //		
-		SpringJoint joint3 = new SpringJoint(body3, body4, new Vector2f(150,160), new Vector2f(200, 210));
+		SpringJoint joint3 = new SpringJoint(body3, body4, new Vector(150,160), new Vector(200, 210));
 		joint3.setBrokenSpringConst(100);
 		joint3.setCompressedSpringConst(0);
 		joint3.setStretchedSpringConst(0);
@@ -69,7 +69,7 @@ public class Demo21 extends AbstractDemo {
 		joint3.setMaxSpringSize(joint3.getSpringSize());
 		world.add(joint3);
 		
-		SpringJoint joint5 = new SpringJoint(body4, body1, new Vector2f(190, 200), new Vector2f(400, 60));
+		SpringJoint joint5 = new SpringJoint(body4, body1, new Vector(190, 200), new Vector(400, 60));
 		joint5.setBrokenSpringConst(1);
 		joint5.setCompressedSpringConst(0.5f);
 		joint5.setStretchedSpringConst(0.5f);
