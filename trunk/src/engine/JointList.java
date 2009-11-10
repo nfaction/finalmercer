@@ -42,6 +42,8 @@ package engine;
 
 import java.util.ArrayList;
 
+import engine.joint.Joint;
+
 /**
  * A typed list of type <code>Joint</code>
  * 

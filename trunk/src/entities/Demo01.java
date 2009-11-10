@@ -1,11 +1,11 @@
 package entities;
 
-import engine.Body;
-import engine.ElasticJoint;
-import engine.FixedJoint;
-import engine.Joint;
 import engine.StaticBody;
 import engine.World;
+import engine.body.Body;
+import engine.joint.ElasticJoint;
+import engine.joint.FixedJoint;
+import engine.joint.Joint;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.vector.Vector2f;

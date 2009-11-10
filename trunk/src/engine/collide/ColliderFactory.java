@@ -37,7 +37,7 @@
  */
 package engine.collide;
 
-import engine.Body;
+import engine.body.Body;
 import engine.shapes.*;
 
 /**

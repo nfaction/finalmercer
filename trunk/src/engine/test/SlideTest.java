@@ -1,9 +1,9 @@
 package engine.test;
 
-import engine.Body;
-import engine.SlideJoint;
 import engine.StaticBody;
 import engine.World;
+import engine.body.Body;
+import engine.joint.SlideJoint;
 import engine.shapes.Circle;
 import engine.vector.Vector2f;
 

@@ -38,8 +38,9 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
  * OF SUCH DAMAGE.
  */
-package engine;
+package engine.joint;
 
+import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.Vector2f;
@@ -92,7 +93,7 @@ public class DistanceJoint implements Joint {
 	}
 	
 	/**
-	 * @see engine.Joint#applyImpulse()
+	 * @see engine.joint.Joint#applyImpulse()
 	 */
 	public void applyImpulse() {
 		Vector2f dv = new Vector2f(body2.getVelocity());
@@ -144,21 +145,21 @@ public class DistanceJoint implements Joint {
 	}
 
 	/**
-	 * @see engine.Joint#getBody1()
+	 * @see engine.joint.Joint#getBody1()
 	 */
 	public Body getBody1() {
 		return body1;
 	}
 
 	/**
-	 * @see engine.Joint#getBody2()
+	 * @see engine.joint.Joint#getBody2()
 	 */
 	public Body getBody2() {
 		return body2;
 	}
 
 	/**
-	 * @see engine.Joint#preStep(float)
+	 * @see engine.joint.Joint#preStep(float)
 	 */
 	public void preStep(float invDT) {
 		Matrix2f rot1 = new Matrix2f(body1.getRotation());
@@ -221,7 +222,7 @@ public class DistanceJoint implements Joint {
 	}
 
 	/**
-	 * @see engine.Joint#setRelaxation(float)
+	 * @see engine.joint.Joint#setRelaxation(float)
 	 */
 	public void setRelaxation(float relaxation) {
 	}

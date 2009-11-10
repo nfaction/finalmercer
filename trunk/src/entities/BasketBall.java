@@ -1,7 +1,7 @@
 package entities;
 
-import engine.Body;
 import engine.World;
+import engine.body.Body;
 import engine.shapes.Circle;
 
 public class BasketBall extends Ball {

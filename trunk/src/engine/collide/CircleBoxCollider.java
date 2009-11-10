@@ -37,8 +37,8 @@
  */
 package engine.collide;
 
-import engine.Body;
 import engine.Contact;
+import engine.body.Body;
 import engine.shapes.Circle;
 import engine.vector.MathUtil;
 import engine.vector.Vector2f;
@@ -71,7 +71,7 @@ public strictfp class CircleBoxCollider extends BoxCircleCollider {
 	}
 	
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.Body, engine.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
 	 */
 	public int collide(Contact[] contacts, Body circleBody, Body boxBody) {
 		int count = super.collide(contacts, boxBody, circleBody);

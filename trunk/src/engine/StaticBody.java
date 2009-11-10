@@ -40,6 +40,7 @@
  */
 package engine;
 
+import engine.body.Body;
 import engine.shapes.Shape;
 
 /**
@@ -69,14 +70,14 @@ public strictfp class StaticBody extends Body {
 	}
 
 	/**
-	 * @see engine.Body#isRotatable()
+	 * @see engine.body.Body#isRotatable()
 	 */
 	public boolean isRotatable() {
 		return false;
 	}
 	
 	/**
-	 * @see engine.Body#isMoveable()
+	 * @see engine.body.Body#isMoveable()
 	 */
 	public boolean isMoveable() {
 		return false;
@@ -92,7 +93,7 @@ public strictfp class StaticBody extends Body {
 	}
 	
 	/**
-	 * @see engine.Body#isResting()
+	 * @see engine.body.Body#isResting()
 	 */
 	public boolean isResting() {
 		return true;

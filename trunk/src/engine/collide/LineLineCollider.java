@@ -37,8 +37,8 @@
  */
 package engine.collide;
 
-import engine.Body;
 import engine.Contact;
+import engine.body.Body;
 import engine.vector.Vector2f;
 
 /**
@@ -50,7 +50,7 @@ import engine.vector.Vector2f;
 public class LineLineCollider implements Collider {
 
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.Body, engine.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		// TODO: function disabled until we can remember on what side of A,

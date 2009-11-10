@@ -1,45 +1,6 @@
-/*
- * Phys2D - a 2D physics engine based on the work of Erin Catto. The
- * original source remains:
- * 
- * Copyright (c) 2006 Erin Catto http://www.gphysics.com
- * 
- * This source is provided under the terms of the BSD License.
- * 
- * Copyright (c) 2006, Phys2D
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or 
- * without modification, are permitted provided that the following 
- * conditions are met:
- * 
- *  * Redistributions of source code must retain the above 
- *    copyright notice, this list of conditions and the 
- *    following disclaimer.
- *  * Redistributions in binary form must reproduce the above 
- *    copyright notice, this list of conditions and the following 
- *    disclaimer in the documentation and/or other materials provided 
- *    with the distribution.
- *  * Neither the name of the Phys2D/New Dawn Software nor the names of 
- *    its contributors may be used to endorse or promote products 
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
- * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- */
-package engine;
+package engine.joint;
 
+import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.Vector2f;
@@ -127,7 +88,7 @@ public class AngleJoint implements Joint {
 	}
 
 	/**
-	 * @see engine.Joint#applyImpulse()
+	 * @see engine.joint.Joint#applyImpulse()
 	 */
 	public void applyImpulse() {
 		if (bounceSide == BOUNCE_NONE)
@@ -141,12 +102,6 @@ public class AngleJoint implements Joint {
 		relativeVelocity.add(MathUtil.cross(r2, body2.getAngularVelocity()));
 		relativeVelocity.sub(body1.getVelocity());
 		relativeVelocity.sub(MathUtil.cross(r1, body1.getAngularVelocity()));
-
-		/*
-		 * Matrix2f tr1 = new Matrix2f(-body1.getRotation()); relativeVelocity =
-		 * MathUtil.mul(tr1, relativeVelocity);
-		 * relativeVelocity.add(MathUtil.mul(tr1, dp));
-		 */
 
 		float rv = MathUtil.cross(dp, relativeVelocity) / dlength2
 				- body1.getAngularVelocity();
@@ -186,21 +141,21 @@ public class AngleJoint implements Joint {
 	}
 
 	/**
-	 * @see engine.Joint#getBody1()
+	 * @see engine.joint.Joint#getBody1()
 	 */
 	public Body getBody1() {
 		return body1;
 	}
 
 	/**
-	 * @see engine.Joint#getBody2()
+	 * @see engine.joint.Joint#getBody2()
 	 */
 	public Body getBody2() {
 		return body2;
 	}
 
 	/**
-	 * @see engine.Joint#preStep(float)
+	 * @see engine.joint.Joint#preStep(float)
 	 */
 	public void preStep(float invDT) {
 		float biasFactor = 0.005f;
@@ -234,11 +189,6 @@ public class AngleJoint implements Joint {
 		relativeVelocity.sub(body1.getVelocity());
 		relativeVelocity.sub(MathUtil.cross(r1, body1.getAngularVelocity()));
 
-		/*
-		 * Matrix2f tr1 = new Matrix2f(-body1.getRotation()); relativeVelocity =
-		 * MathUtil.mul(tr1, relativeVelocity);
-		 * relativeVelocity.add(MathUtil.mul(tr1, dp));
-		 */
 		// relativeVelocity.add(MathUtil.cross(dp,body1.getAngularVelocity()));
 		n = new Vector2f(-ndp.y, ndp.x);
 		Vector2f v1 = new Vector2f(n);
@@ -305,7 +255,7 @@ public class AngleJoint implements Joint {
 	}
 
 	/**
-	 * @see engine.Joint#setRelaxation(float)
+	 * @see engine.joint.Joint#setRelaxation(float)
 	 */
 	public void setRelaxation(float relaxation) {
 	}

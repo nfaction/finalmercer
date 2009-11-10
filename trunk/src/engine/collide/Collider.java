@@ -37,8 +37,8 @@
  */
 package engine.collide;
 
-import engine.Body;
 import engine.Contact;
+import engine.body.Body;
 
 /**
  * The description of any geometry collision resolver. 

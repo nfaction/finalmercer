@@ -37,8 +37,8 @@
  */
 package engine.collide;
 
-import engine.Body;
 import engine.Contact;
+import engine.body.Body;
 import engine.shapes.Polygon;
 import engine.vector.MathUtil;
 import engine.vector.Vector2f;
@@ -51,7 +51,7 @@ import engine.vector.Vector2f;
  */
 public class PolygonPolygonCollider implements Collider {
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.Body, engine.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		Polygon polyA = (Polygon) bodyA.getShape();

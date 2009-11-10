@@ -1,5 +1,6 @@
 package engine;
 
+import engine.body.Body;
 import engine.vector.ROVector2f;
 
 /**

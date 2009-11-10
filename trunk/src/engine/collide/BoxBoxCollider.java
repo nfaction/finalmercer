@@ -40,8 +40,8 @@
  */
 package engine.collide;
 
-import engine.Body;
 import engine.Contact;
+import engine.body.Body;
 import engine.shapes.Box;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
@@ -253,7 +253,7 @@ public strictfp class BoxBoxCollider implements Collider {
 	}
 	
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.Body, engine.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		float x1 = bodyA.getPosition().getX();

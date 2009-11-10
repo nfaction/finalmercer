@@ -1,8 +1,8 @@
 package engine.test;
 
-import engine.Body;
 import engine.StaticBody;
 import engine.World;
+import engine.body.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
