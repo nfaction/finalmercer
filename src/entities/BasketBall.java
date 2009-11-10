@@ -8,15 +8,19 @@ public class BasketBall extends Ball {
 
 	public BasketBall(String objType) {
 		super("BasketBall");
-		// TODO Auto-generated constructor stub
 	}
+	
+	private Body bBall;
 
-	protected void init(World world) {
+	protected void init() {
 		
-		Body bBall = new Body("BasketBall", new Circle(20.0f), 1);
+		bBall = new Body("BasketBall", new Circle(20.0f), 1);
 		bBall.setRestitution(1.0f);
 		
-		world.add(bBall);  //I think this needs to be done in Model??
 		setImagePath("Images/bball.jpg");
+	}
+	
+	public void addObj(World world){
+		world.add(bBall);  //I think this needs to be done in Model?? //jeff- no.
 	}
 }

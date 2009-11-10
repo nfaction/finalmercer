@@ -3,7 +3,7 @@ package engine.test;
 import engine.World;
 import engine.body.Body;
 import engine.shapes.Circle;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Back and forth
@@ -36,7 +36,7 @@ public class Demo14 extends AbstractDemo {
 		circle1.setPosition(150,100);
 		circle1.setRestitution(1.0f);
 		circle1.setFriction(0.0f);
-		circle1.adjustVelocity(new Vector2f(100,0));
+		circle1.adjustVelocity(new Vector(100,0));
 		world.add(circle1);
 		circle2 = new Body("Circle 2", new Circle(20.0f), 1);
 		circle2.setPosition(250,100);

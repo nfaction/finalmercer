@@ -1,11 +1,14 @@
 package entities;
 
+import engine.World;
 import engine.body.Body;
 
 public abstract class  Entities {
 	
-	/** Middle coordinates */
-	private int x, y;
+	/** The x midpoint */
+	private int x;
+	/** The y midpoint */
+	private int y;
 
 	/** Upper and lower X,Y coordinates  */
 	private int upperX, lowerX, upperY, lowerY;
@@ -26,8 +29,6 @@ public abstract class  Entities {
 
 	public Entities(String objType){
 		state = 0;
-
-		
 	}
 	
 	/**
@@ -164,5 +165,7 @@ public abstract class  Entities {
 	public String getImagePath() {
 		return imagePath;
 	}
+	
+	public abstract void addObj(World world);
 
 }

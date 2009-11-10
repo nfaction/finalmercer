@@ -42,7 +42,7 @@ package engine;
 
 import engine.collide.FeaturePair;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A description of a single contact point between two bodies
@@ -52,10 +52,10 @@ import engine.vector.Vector2f;
 public strictfp class Contact {
 	// TODO: the positions are absolute, right? if not make them so
 	/** The position of the contact */
-	Vector2f position = new Vector2f();
+	Vector position = new Vector();
 	/** The normal at the contact point which, for convex bodies,
 	 * points away from the first body. */
-	Vector2f normal = new Vector2f();
+	Vector normal = new Vector();
 	/** ? */
 	float separation;
 	/** The impulse accumlated in the direction of the normal */

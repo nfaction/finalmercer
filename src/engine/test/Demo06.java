@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.joint.BasicJoint;
 import engine.shapes.Box;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Dominos demo
@@ -32,7 +32,7 @@ public class Demo06 extends AbstractDemo {
 	protected void keyHit(char c) {
 		if (c == ' ') {
 			if (ball.getVelocity().length() == 0) {
-				ball.addForce(new Vector2f(-2000000,0));
+				ball.addForce(new Vector(-2000000,0));
 			}
 		}
 	}
@@ -63,7 +63,7 @@ public class Demo06 extends AbstractDemo {
 		ball.setPosition(70.0f, 170);
 		world.add(ball);
 		
-		j = new BasicJoint(body,ball,new Vector2f(70,110));
+		j = new BasicJoint(body,ball,new Vector(70,110));
 		world.add(j);
 		
 		// dominos
@@ -85,7 +85,7 @@ public class Demo06 extends AbstractDemo {
 		body.setPosition(250.0f, 360);
 		//body.setFriction(3.0f);
 		world.add(body);
-		j = new BasicJoint(body,base,new Vector2f(250,360));
+		j = new BasicJoint(body,base,new Vector(250,360));
 		world.add(j);
 		
 		// turner
@@ -93,13 +93,13 @@ public class Demo06 extends AbstractDemo {
 		body.setPosition(390.0f, 330);
 		body.setFriction(0f);
 		world.add(body);
-		j = new BasicJoint(base,body,new Vector2f(390,335));
+		j = new BasicJoint(base,body,new Vector(390,335));
 		world.add(j);
 		Body top = new Body("Top",new Box(40.0f, 5.0f), 0.01f);
 		top.setPosition(390.0f, 307.5f);
 		top.setFriction(0f);
 		world.add(top);
-		j = new BasicJoint(top,body,new Vector2f(410,310));
+		j = new BasicJoint(top,body,new Vector(410,310));
 		world.add(j);
 	}
 

@@ -39,7 +39,7 @@ package engine.shapes;
 
 import engine.vector.MathUtil;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Class representing a convex and closed polygon as a list of vertices
@@ -65,10 +65,10 @@ public class ConvexPolygon extends Polygon implements DynamicShape {
 		if ( vertices.length < 3 )
 			throw new IllegalArgumentException("A polygon can not have fewer than 3 edges!");
 		
-		this.vertices = new Vector2f[vertices.length];
+		this.vertices = new Vector[vertices.length];
 		
 		for ( int i = 0; i < vertices.length; i++ ) {
-			this.vertices[i] = new Vector2f(vertices[i]);
+			this.vertices[i] = new Vector(vertices[i]);
 		}
 		
 		if ( !super.isConvex() )
@@ -96,13 +96,13 @@ public class ConvexPolygon extends Polygon implements DynamicShape {
 	 * @param p The point to be tested for inclusion in this polygon
 	 * @return true iff the p is in this polygon (not on a border)
 	 */
-	public boolean contains(Vector2f p) {
+	public boolean contains(Vector p) {
 		// p is in the polygon if it is left of all the edges
 		int l = vertices.length;
 		for ( int i = 0; i < vertices.length; i++ ) {
-			Vector2f x = vertices[i];
-			Vector2f y = vertices[(i+1)%l];
-			Vector2f z = p;
+			Vector x = vertices[i];
+			Vector y = vertices[(i+1)%l];
+			Vector z = p;
 			
 			// does the 3d cross product point up or down?
 			if ( (z.x-x.x)*(y.y-x.y)-(y.x-x.x)*(z.y-x.y) >= 0 )
@@ -124,11 +124,11 @@ public class ConvexPolygon extends Polygon implements DynamicShape {
 		// TODO: this can be done with a kind of binary search
 		float r = Float.MAX_VALUE;
 		float l;
-		Vector2f v;
+		Vector v;
 		int m = -1;
 		
 		for ( int i = 0; i < vertices.length; i++ ) {
-			v = new Vector2f(vertices[i]);
+			v = new Vector(vertices[i]);
 			v.sub(p);
 			l = v.x * v.x + v.y * v.y;
 			
@@ -142,14 +142,14 @@ public class ConvexPolygon extends Polygon implements DynamicShape {
 		// this happens when the angle between v[m-1]-v[m] and p-v[m] is
 		// smaller than 90 degrees, same for v[m+1]-v[m]
 		int length = vertices.length;
-		Vector2f pm = new Vector2f(p);
+		Vector pm = new Vector(p);
 		pm.sub(vertices[m]);
-		Vector2f l1 = new Vector2f(vertices[(m-1+length)%length]);
+		Vector l1 = new Vector(vertices[(m-1+length)%length]);
 		l1.sub(vertices[m]);
-		Vector2f l2 = new Vector2f(vertices[(m+1)%length]);
+		Vector l2 = new Vector(vertices[(m+1)%length]);
 		l2.sub(vertices[m]);
 		
-		Vector2f normal;
+		Vector normal;
 		if ( pm.dot(l1) > 0 ) {
 			normal = MathUtil.getNormal(vertices[(m-1+length)%length], vertices[m]);
 		} else if ( pm.dot(l2) > 0 ) {

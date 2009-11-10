@@ -81,7 +81,7 @@ public interface ROVector2f {
 	 * @param b The vector to project onto
 	 * @param result The projected vector
 	 */
-	public void projectOntoUnit(ROVector2f b, Vector2f result);
+	public void projectOntoUnit(ROVector2f b, Vector result);
 	
 	/**
 	 * The length of the vector squared

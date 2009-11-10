@@ -42,7 +42,7 @@ import engine.body.Body;
 import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Collision routines betwene a circle and a line. The create method is
@@ -59,14 +59,14 @@ public strictfp class LineCircleCollider implements Collider {
 		Line line = (Line) bodyA.getShape();
 		Circle circle = (Circle) bodyB.getShape();
 		
-		Vector2f[] vertsA = line.getVertices(bodyA.getPosition(), bodyA.getRotation());
+		Vector[] vertsA = line.getVertices(bodyA.getPosition(), bodyA.getRotation());
 		
 		// compute intersection of the line A and a line parallel to 
 		// the line A's normal passing through the origin of B
-		Vector2f startA = vertsA[0];
-		Vector2f endA = vertsA[1];
+		Vector startA = vertsA[0];
+		Vector endA = vertsA[1];
 		ROVector2f startB = bodyB.getPosition();
-		Vector2f endB = new Vector2f(endA);
+		Vector endB = new Vector(endA);
 		endB.sub(startA);
 		endB.set(endB.y, -endB.x);
 //		endB.add(startB);// TODO: inline endB into equations below, this last operation will be useless..
@@ -85,19 +85,19 @@ public strictfp class LineCircleCollider implements Collider {
 		uA -= endB.y * (startA.x - startB.getX());
 		uA /= d;
 		
-		Vector2f position = null;
+		Vector position = null;
 		
 		if ( uA < 0 ) { // the intersection is somewhere before startA
 			position = startA;
 		} else if ( uA > 1 ) { // the intersection is somewhere after endA
 			position = endA;
 		} else {
-			position = new Vector2f(
+			position = new Vector(
 					startA.x + uA * (endA.x - startA.x),
 					startA.y + uA * (endA.y - startA.y));
 		}
 		
-		Vector2f normal = endB; // reuse of vector object
+		Vector normal = endB; // reuse of vector object
 		normal.set(startB);
 		normal.sub(position);
 		float distSquared = normal.lengthSquared();

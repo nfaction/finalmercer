@@ -41,7 +41,7 @@ import engine.Contact;
 import engine.body.Body;
 import engine.shapes.Circle;
 import engine.vector.MathUtil;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A collider for circle 2 circle collisions
@@ -74,11 +74,11 @@ public strictfp class CircleCircleCollider implements Collider {
 			return 0;
 		}
 		
-		Vector2f normal = MathUtil.sub(bodyB.getPosition(),bodyA.getPosition());
+		Vector normal = MathUtil.sub(bodyB.getPosition(),bodyA.getPosition());
 		float sep = (circleA.getRadius() + circleB.getRadius()) - normal.length();
 
 		normal.normalise();
-		Vector2f pt = MathUtil.scale(normal, circleA.getRadius());
+		Vector pt = MathUtil.scale(normal, circleA.getRadius());
 		pt.add(bodyA.getPosition());
 
 		contacts[0].setSeparation(-sep);

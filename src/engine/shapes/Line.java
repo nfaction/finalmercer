@@ -38,7 +38,7 @@
 package engine.shapes;
 
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Implemenation of a bunch of maths functions to do with lines. Note
@@ -53,23 +53,23 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 	/** The end point of the line */
 	private ROVector2f end;
 	/** The vector between the two points */
-	private Vector2f vec;
+	private Vector vec;
 	/** The length of the line squared */
 	private float lenSquared;
 	
 	/** Temporary storage - declared globally to reduce GC */
-	private Vector2f loc = new Vector2f(0,0);
+	private Vector loc = new Vector(0,0);
 	/** Temporary storage - declared globally to reduce GC */
-	private Vector2f v = new Vector2f(0,0);
+	private Vector v = new Vector(0,0);
 	/** Temporary storage - declared globally to reduce GC */
-	private Vector2f v2 = new Vector2f(0,0);
+	private Vector v2 = new Vector(0,0);
 	/** Temporary storage - declared globally to reduce GC */
-	private Vector2f proj = new Vector2f(0,0);
+	private Vector proj = new Vector(0,0);
 
 	/** Temporary storage - declared globally to reduce GC */
-	private Vector2f closest = new Vector2f(0,0);
+	private Vector closest = new Vector(0,0);
 	/** Temporary storage - declared globally to reduce GC */
-	private Vector2f other = new Vector2f(0,0);
+	private Vector other = new Vector(0,0);
 
 	/** True if this line blocks on the outer edge */
 	private boolean outerEdge = true;
@@ -110,7 +110,7 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 	 * @param y2 The y coordinate of the end point
 	 */
 	public Line(float x1, float y1, float x2, float y2) {
-		this(new Vector2f(x1,y1), new Vector2f(x2,y2));
+		this(new Vector(x1,y1), new Vector(x2,y2));
 	}
 	
 	/**
@@ -227,7 +227,7 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 		this.start = start;
 		this.end = end;
 		
-		vec = new Vector2f(end);
+		vec = new Vector(end);
 		vec.sub(start);
 		
 		lenSquared = vec.length();
@@ -319,7 +319,7 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 	 * @param point The point which we want to project
 	 * @param result The point on the line closest to the given point
 	 */
-	public void getClosestPoint(ROVector2f point, Vector2f result) {
+	public void getClosestPoint(ROVector2f point, Vector result) {
 		loc.set(point);
 		loc.sub(start);
 		
@@ -362,7 +362,7 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 	 * @return The newly created line
 	 */
 	public Line getPositionedLine(ROVector2f displacement, float rotation) {
-		Vector2f[] verts = getVertices(displacement, rotation);
+		Vector[] verts = getVertices(displacement, rotation);
 		Line line = new Line(verts[0], verts[1]);
 		
 		return line;
@@ -375,16 +375,16 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 	 * @param rotation The rotation of the line in radians
 	 * @return The two endpoints of this line
 	 */
-	public Vector2f[] getVertices(ROVector2f displacement, float rotation) {
+	public Vector[] getVertices(ROVector2f displacement, float rotation) {
 		float cos = (float) Math.cos(rotation);
 		float sin = (float) Math.sin(rotation);
 		
-		Vector2f[] endPoints = new Vector2f[2];
-		endPoints[0] = new Vector2f(//getX1(), getY1());
+		Vector[] endPoints = new Vector[2];
+		endPoints[0] = new Vector(//getX1(), getY1());
 				getX1() * cos - getY1() * sin,
 				getY1() * cos + getX1() * sin);
 		endPoints[0].add(displacement);
-		endPoints[1] = new Vector2f(//getX2(), getY2());
+		endPoints[1] = new Vector(//getX2(), getY2());
 				getX2() * cos - getY2() * sin,
 				getY2() * cos + getX2() * sin);
 		endPoints[1].add(displacement);
@@ -398,10 +398,10 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 	 * @param v The amount to move the line
 	 */
 	public void move(ROVector2f v) {
-		Vector2f temp = new Vector2f(start);
+		Vector temp = new Vector(start);
 		temp.add(v);
 		start = temp;
-		temp = new Vector2f(end);
+		temp = new Vector(end);
 		temp.add(v);
 		end = temp;
 	}
@@ -419,7 +419,7 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 	 * @param other The other line we should intersect with
 	 * @return The intersection point or null if the lines are parallel
 	 */
-	public Vector2f intersect(Line other) {
+	public Vector intersect(Line other) {
 		float dx1 = end.getX() - start.getX();
 		float dx2 = other.end.getX() - other.start.getX();
 		float dy1 = end.getY() - start.getY();
@@ -440,7 +440,7 @@ public strictfp class Line extends AbstractShape implements DynamicShape {
 		float ix = start.getX() + (u * (end.getX() - start.getX()));
 		float iy = start.getY() + (u * (end.getY() - start.getY()));
 		
-		return new Vector2f(ix,iy);
+		return new Vector(ix,iy);
 	}
 	
 }

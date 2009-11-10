@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.joint.BasicJoint;
 import engine.shapes.Box;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Rope bridge demo
@@ -54,7 +54,7 @@ public class Demo05 extends AbstractDemo {
 		body2.setPosition(80.0f, 300);
 		world.add(body2);
 		
-		BasicJoint j = new BasicJoint(body1,body2,new Vector2f(40,300));
+		BasicJoint j = new BasicJoint(body1,body2,new Vector(40,300));
 		j.setRelaxation(relax);
 		world.add(j);
 		
@@ -65,7 +65,7 @@ public class Demo05 extends AbstractDemo {
 			body3.setPosition(80.0f+(i*45), 300);
 			world.add(body3);
 			
-			BasicJoint j2 = new BasicJoint(body2,body3,new Vector2f(65+(i*45),300));
+			BasicJoint j2 = new BasicJoint(body2,body3,new Vector(65+(i*45),300));
 			j2.setRelaxation(relax);
 			world.add(j2);
 			if (i == 4) {
@@ -75,7 +75,7 @@ public class Demo05 extends AbstractDemo {
 			body2 = body3;
 		}
 
-		BasicJoint j3 = new BasicJoint(body1,body2,new Vector2f(80+(i*45),300));
+		BasicJoint j3 = new BasicJoint(body1,body2,new Vector(80+(i*45),300));
 		j3.setRelaxation(relax);
 		world.add(j3);
 	}

@@ -40,7 +40,7 @@
  */
 package engine.vector;
 
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A two dimensional vector
@@ -49,9 +49,9 @@ import engine.vector.Vector2f;
  */
 public strictfp class Matrix2f {
 	/** The first column of the matrix */
-	public Vector2f col1 = new Vector2f();
+	public Vector col1 = new Vector();
 	/** The second column of the matrix */
-	public Vector2f col2 = new Vector2f();
+	public Vector col2 = new Vector();
 	
 	/**
 	 * Create an empty matrix
@@ -78,7 +78,7 @@ public strictfp class Matrix2f {
 	 * @param col1 The first column
 	 * @param col2 The second column
 	 */
-	public Matrix2f(Vector2f col1, Vector2f col2) {
+	public Matrix2f(Vector col1, Vector col2) {
 		this.col1.set(col1);
 		this.col2.set(col2);
 	}
@@ -90,8 +90,8 @@ public strictfp class Matrix2f {
 	 */
 	public Matrix2f transpose() 
 	{
-		return new Matrix2f(new Vector2f(col1.x, col2.x), 
-							new Vector2f(col1.y, col2.y));
+		return new Matrix2f(new Vector(col1.x, col2.x), 
+							new Vector(col1.y, col2.y));
 	}
 
 	/**

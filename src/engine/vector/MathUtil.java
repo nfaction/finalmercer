@@ -40,7 +40,7 @@
  */
 package engine.vector;
 
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Simple utility wrapping up a bunch of math operations so that 
@@ -59,8 +59,8 @@ public final strictfp class MathUtil {
 	 * @param scale The amount to scale the vector by
 	 * @return A newly created vector - a scaled version of the new vector
 	 */
-	public static Vector2f scale(ROVector2f a, float scale) {
-		Vector2f temp = new Vector2f(a);
+	public static Vector scale(ROVector2f a, float scale) {
+		Vector temp = new Vector(a);
 		temp.scale(scale);
 		
 		return temp;
@@ -73,8 +73,8 @@ public final strictfp class MathUtil {
 	 * @param b The vector to subtract
 	 * @return A newly created containing the result
 	 */
-	public static Vector2f sub(ROVector2f a,ROVector2f b) {
-		Vector2f temp = new Vector2f(a);
+	public static Vector sub(ROVector2f a,ROVector2f b) {
+		Vector temp = new Vector(a);
 		temp.sub(b);
 		
 		return temp;
@@ -98,9 +98,9 @@ public final strictfp class MathUtil {
 	 * @param v The vector to multiple by
 	 * @return A newly created vector containing the resultant vector
 	 */
-	public static Vector2f mul(Matrix2f A, ROVector2f v)
+	public static Vector mul(Matrix2f A, ROVector2f v)
 	{
-		return new Vector2f(A.col1.x * v.getX() + A.col2.x * v.getY(), A.col1.y * v.getX() + A.col2.y * v.getY());
+		return new Vector(A.col1.x * v.getX() + A.col2.x * v.getY(), A.col1.y * v.getX() + A.col2.y * v.getY());
 	}
 	
 	/**
@@ -131,9 +131,9 @@ public final strictfp class MathUtil {
 	 * @param a The vector to make absolute
 	 * @return A newly created result vector
 	 */
-	public static Vector2f abs(Vector2f a)
+	public static Vector abs(Vector a)
 	{
-		return new Vector2f(Math.abs(a.x), Math.abs(a.y));
+		return new Vector(Math.abs(a.x), Math.abs(a.y));
 	}
 
 	/**
@@ -145,9 +145,9 @@ public final strictfp class MathUtil {
 	 */
 	public static Matrix2f add(Matrix2f A, Matrix2f B)
 	{
-		Vector2f temp1 = new Vector2f(A.col1);
+		Vector temp1 = new Vector(A.col1);
 		temp1.add(B.col1);
-		Vector2f temp2 = new Vector2f(A.col2);
+		Vector temp2 = new Vector(A.col2);
 		temp2.add(B.col2);
 		
 		return new Matrix2f(temp1,temp2);
@@ -160,7 +160,7 @@ public final strictfp class MathUtil {
 	 * @param b The second vector
 	 * @return The cross product of the two vectors
 	 */
-	public static float cross(Vector2f a, Vector2f b)
+	public static float cross(Vector a, Vector b)
 	{
 		return a.x * b.y - a.y * b.x;
 	}
@@ -172,9 +172,9 @@ public final strictfp class MathUtil {
 	 * @param a The vector to fidn the cross of
 	 * @return A newly created resultant vector
 	 */
-	public static Vector2f cross(float s, Vector2f a)
+	public static Vector cross(float s, Vector a)
 	{
-		return new Vector2f(-s * a.y, s * a.x);
+		return new Vector(-s * a.y, s * a.x);
 	}
 
 	/**
@@ -184,9 +184,9 @@ public final strictfp class MathUtil {
 	 * @param a The vector to fidn the cross of
 	 * @return A newly created resultant vector
 	 */
-	public static Vector2f cross(Vector2f a, float s)
+	public static Vector cross(Vector a, float s)
 	{
-		return new Vector2f(s * a.y, -s * a.x);
+		return new Vector(s * a.y, -s * a.x);
 	}
 	
 	/**
@@ -214,11 +214,11 @@ public final strictfp class MathUtil {
 	 * @param y endpoint of the line
 	 * @return a (normalised) normal
 	 */
-	public static Vector2f getNormal(ROVector2f x, ROVector2f y) {
-		Vector2f normal = new Vector2f(y);
+	public static Vector getNormal(ROVector2f x, ROVector2f y) {
+		Vector normal = new Vector(y);
 		normal.sub(x);
 		
-		normal = new Vector2f(normal.y, -normal.x);
+		normal = new Vector(normal.y, -normal.x);
 		normal.normalise();
 		
 		return normal;

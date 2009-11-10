@@ -6,7 +6,7 @@ import engine.body.Body;
 import engine.joint.DistanceJoint;
 import engine.joint.FixedAngleJoint;
 import engine.shapes.Circle;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A test to show the FixedAngleJoint at work
@@ -47,10 +47,10 @@ public class ConnectedWheel extends AbstractDemo {
 		socket.setRestitution(1);
 		world.add(socket);
 		
-		FixedAngleJoint angle = new FixedAngleJoint(leftAxis,socket,new Vector2f(),new Vector2f(),0);
+		FixedAngleJoint angle = new FixedAngleJoint(leftAxis,socket,new Vector(),new Vector(),0);
 		world.add(angle);
 		
-		DistanceJoint dist = new DistanceJoint(socket,wheel,new Vector2f(),new Vector2f(65,0),165);
+		DistanceJoint dist = new DistanceJoint(socket,wheel,new Vector(),new Vector(65,0),165);
 		world.add(dist);
 	}
 	

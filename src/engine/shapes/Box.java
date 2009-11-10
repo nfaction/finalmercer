@@ -40,7 +40,7 @@ package engine.shapes;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A simple box in the engine - defined by a width and height
@@ -49,7 +49,7 @@ import engine.vector.Vector2f;
  */
 public strictfp class Box extends AbstractShape implements DynamicShape {
 	/** The size of the box */
-	private Vector2f size = new Vector2f();
+	private Vector size = new Vector();
 	
 	/**
 	 * Create a box in the simulation 
@@ -90,18 +90,18 @@ public strictfp class Box extends AbstractShape implements DynamicShape {
 	 * @param rotation The rotation of the box
 	 * @return The points building up a box at this position and rotation
 	 */
-	public Vector2f[] getPoints(ROVector2f pos, float rotation) {
+	public Vector[] getPoints(ROVector2f pos, float rotation) {
 		Matrix2f R = new Matrix2f(rotation);
-		Vector2f[] pts = new Vector2f[4];
+		Vector[] pts = new Vector[4];
 		ROVector2f h = MathUtil.scale(getSize(),0.5f);
 
-		pts[0] = MathUtil.mul(R, new Vector2f(-h.getX(), -h.getY()));
+		pts[0] = MathUtil.mul(R, new Vector(-h.getX(), -h.getY()));
 		pts[0].add(pos);
-		pts[1] = MathUtil.mul(R, new Vector2f(h.getX(), -h.getY()));
+		pts[1] = MathUtil.mul(R, new Vector(h.getX(), -h.getY()));
 		pts[1].add(pos);
-		pts[2] = MathUtil.mul(R, new Vector2f( h.getX(),  h.getY()));
+		pts[2] = MathUtil.mul(R, new Vector( h.getX(),  h.getY()));
 		pts[2].add(pos);
-		pts[3] = MathUtil.mul(R, new Vector2f(-h.getX(),  h.getY()));
+		pts[3] = MathUtil.mul(R, new Vector(-h.getX(),  h.getY()));
 		pts[3].add(pos);
 
 		return pts;

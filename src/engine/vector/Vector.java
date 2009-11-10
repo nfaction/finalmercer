@@ -45,7 +45,7 @@ package engine.vector;
  * 
  * @author Kevin Glass
  */
-public strictfp class Vector2f implements ROVector2f {
+public strictfp class Vector implements ROVector2f {
 	/** The x component of this vector */
 	public float x;
 	/** The y component of this vector */
@@ -54,7 +54,7 @@ public strictfp class Vector2f implements ROVector2f {
 	/**
 	 * Create an empty vector
 	 */
-	public Vector2f() {
+	public Vector() {
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public strictfp class Vector2f implements ROVector2f {
 	 * 
 	 * @param other The other vector to copy into this one
 	 */
-	public Vector2f(ROVector2f other) {
+	public Vector(ROVector2f other) {
 		this(other.getX(),other.getY());
 	}
 	
@@ -86,7 +86,7 @@ public strictfp class Vector2f implements ROVector2f {
 	 * @param x The x component to assign
 	 * @param y The y component to assign
 	 */
-	public Vector2f(float x, float y) {
+	public Vector(float x, float y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -123,8 +123,8 @@ public strictfp class Vector2f implements ROVector2f {
 	 * 
 	 * @return A copy of this vector negated
 	 */
-	public Vector2f negate() {
-		return new Vector2f(-x, -y); 
+	public Vector negate() {
+		return new Vector(-x, -y); 
 	}
 	
 	/**
@@ -197,7 +197,7 @@ public strictfp class Vector2f implements ROVector2f {
 	 * @param b The vector to project onto
 	 * @param result The projected vector
 	 */
-	public void projectOntoUnit(ROVector2f b, Vector2f result) {
+	public void projectOntoUnit(ROVector2f b, Vector result) {
 		float dp = b.dot(this);
 		
 		result.x = dp * b.getX();

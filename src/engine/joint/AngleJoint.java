@@ -3,7 +3,7 @@ package engine.joint;
 import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A joint that constrains the angle two bodies can be at in relation to each other.
@@ -20,9 +20,9 @@ public class AngleJoint implements Joint {
 	/**The second body in the constraint*/
 	private Body body2;
 	/** Anchor point for first body, on which impulse is going to apply*/
-	private Vector2f anchor1;
+	private Vector anchor1;
 	/** Anchor point for second body, on which impulse is going to apply*/
-	private Vector2f anchor2;
+	private Vector anchor2;
 	/** The cached impulse through the calculation to yield correct impulse faster */
 	private float accumulateImpulse;
 	/** The target angular velocity after bounce on either side*/
@@ -34,11 +34,11 @@ public class AngleJoint implements Joint {
 	/** Used to calculate the relation ship between impulse and velocity change between body*/
 	private float K;
 	/** Normalised distance vector*/
-	private Vector2f ndp;
+	private Vector ndp;
 	/** Distance Vector*/
-	private Vector2f dp;
+	private Vector dp;
 	/** The normal vector of the impulse direction*/
-	private Vector2f n;
+	private Vector n;
 	/** for bounceSide to indicate bounce on lower side*/
 	private final int BOUNCE_LOWER = -1;
 	/** for bounceSide to indicate bounce on no side*/
@@ -48,7 +48,7 @@ public class AngleJoint implements Joint {
 	/** The restitution constant when angle bounce on either side*/
 	float restitution;
 	/** R = r1 + d */
-	private Vector2f R;
+	private Vector R;
 
 	/**
 	 * Create a new angle joint 
@@ -60,8 +60,8 @@ public class AngleJoint implements Joint {
 	 * @param rotateA The higher angle bound for constraint
 	 * @param rotateB The lower angle bound for constraint
 	 */
-	public AngleJoint(Body body1, Body body2, Vector2f anchor1,
-			Vector2f anchor2, float rotateA, float rotateB) {
+	public AngleJoint(Body body1, Body body2, Vector anchor1,
+			Vector anchor2, float rotateA, float rotateB) {
 		this(body1, body2, anchor1, anchor2, rotateA, rotateB, 0);
 	}
 
@@ -76,8 +76,8 @@ public class AngleJoint implements Joint {
 	 * @param rotateB The lower angle bound for constraint
 	 * @param restitution The restitution when body bounce on either side
 	 */
-	public AngleJoint(Body body1, Body body2, Vector2f anchor1,
-			Vector2f anchor2, float rotateA, float rotateB, float restitution) {
+	public AngleJoint(Body body1, Body body2, Vector anchor1,
+			Vector anchor2, float rotateA, float rotateB, float restitution) {
 		this.body1 = body1;
 		this.body2 = body2;
 		this.rotateA = rotateA;
@@ -95,10 +95,10 @@ public class AngleJoint implements Joint {
 			return;
 		Matrix2f rot1 = new Matrix2f(body1.getRotation());
 		Matrix2f rot2 = new Matrix2f(body2.getRotation());
-		Vector2f r1 = MathUtil.mul(rot1, anchor1);
-		Vector2f r2 = MathUtil.mul(rot2, anchor2);
+		Vector r1 = MathUtil.mul(rot1, anchor1);
+		Vector r2 = MathUtil.mul(rot2, anchor2);
 
-		Vector2f relativeVelocity = new Vector2f(body2.getVelocity());
+		Vector relativeVelocity = new Vector(body2.getVelocity());
 		relativeVelocity.add(MathUtil.cross(r2, body2.getAngularVelocity()));
 		relativeVelocity.sub(body1.getVelocity());
 		relativeVelocity.sub(MathUtil.cross(r1, body1.getAngularVelocity()));
@@ -122,17 +122,17 @@ public class AngleJoint implements Joint {
 		}
 		accumulateImpulse = newImpulse;
 
-		Vector2f impulse = new Vector2f(n);
+		Vector impulse = new Vector(n);
 		impulse.scale(p);
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(R,
 					impulse)));
 		}
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(-body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(-(body2.getInvI() * MathUtil.cross(r2,
@@ -163,44 +163,44 @@ public class AngleJoint implements Joint {
 		float RA = body1.getRotation() + rotateA;
 		float RB = body1.getRotation() + rotateB;
 
-		Vector2f VA = new Vector2f((float) Math.cos(RA), (float) Math.sin(RA));
-		Vector2f VB = new Vector2f((float) Math.cos(RB), (float) Math.sin(RB));
+		Vector VA = new Vector((float) Math.cos(RA), (float) Math.sin(RA));
+		Vector VB = new Vector((float) Math.cos(RB), (float) Math.sin(RB));
 
 		Matrix2f rot1 = new Matrix2f(body1.getRotation());
 		Matrix2f rot2 = new Matrix2f(body2.getRotation());
-		Vector2f r1 = MathUtil.mul(rot1, anchor1);
-		Vector2f r2 = MathUtil.mul(rot2, anchor2);
+		Vector r1 = MathUtil.mul(rot1, anchor1);
+		Vector r2 = MathUtil.mul(rot2, anchor2);
 
-		Vector2f p1 = new Vector2f(body1.getPosition());
+		Vector p1 = new Vector(body1.getPosition());
 		p1.add(r1);
-		Vector2f p2 = new Vector2f(body2.getPosition());
+		Vector p2 = new Vector(body2.getPosition());
 		p2.add(r2);
-		dp = new Vector2f(p2);
+		dp = new Vector(p2);
 		dp.sub(p1);
 		dlength2 = dp.lengthSquared();
-		ndp = new Vector2f(dp);
+		ndp = new Vector(dp);
 		ndp.normalise();
 
-		R = new Vector2f(r1);
+		R = new Vector(r1);
 		R.add(dp);
 		// System.out.println(accumulateImpulse);
-		Vector2f relativeVelocity = new Vector2f(body2.getVelocity());
+		Vector relativeVelocity = new Vector(body2.getVelocity());
 		relativeVelocity.add(MathUtil.cross(r2, body2.getAngularVelocity()));
 		relativeVelocity.sub(body1.getVelocity());
 		relativeVelocity.sub(MathUtil.cross(r1, body1.getAngularVelocity()));
 
 		// relativeVelocity.add(MathUtil.cross(dp,body1.getAngularVelocity()));
-		n = new Vector2f(-ndp.y, ndp.x);
-		Vector2f v1 = new Vector2f(n);
+		n = new Vector(-ndp.y, ndp.x);
+		Vector v1 = new Vector(n);
 		v1.scale(-body2.getInvMass() - body1.getInvMass());
 
-		Vector2f v2 = MathUtil.cross(MathUtil.cross(r2, n), r2);
+		Vector v2 = MathUtil.cross(MathUtil.cross(r2, n), r2);
 		v2.scale(-body2.getInvI());
 
-		Vector2f v3 = MathUtil.cross(MathUtil.cross(R, n), r1);
+		Vector v3 = MathUtil.cross(MathUtil.cross(R, n), r1);
 		v3.scale(-body1.getInvI());
 
-		Vector2f K1 = new Vector2f(v1);
+		Vector K1 = new Vector(v1);
 		K1.add(v2);
 		K1.add(v3);
 
@@ -236,17 +236,17 @@ public class AngleJoint implements Joint {
 		}
 		restituteAngular += biasImpulse;
 
-		Vector2f impulse = new Vector2f(n);
+		Vector impulse = new Vector(n);
 		impulse.scale(accumulateImpulse);
 		if (!body1.isStatic()) {
-			Vector2f accum1 = new Vector2f(impulse);
+			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
 			body1.adjustVelocity(accum1);
 			body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(R,
 					impulse)));
 		}
 		if (!body2.isStatic()) {
-			Vector2f accum2 = new Vector2f(impulse);
+			Vector accum2 = new Vector(impulse);
 			accum2.scale(-body2.getInvMass());
 			body2.adjustVelocity(accum2);
 			body2.adjustAngularVelocity(-(body2.getInvI() * MathUtil.cross(r2,
@@ -283,7 +283,7 @@ public class AngleJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the first body
 	 */
-	public Vector2f getAnchor1() {
+	public Vector getAnchor1() {
 		return anchor1;
 	}
 
@@ -292,7 +292,7 @@ public class AngleJoint implements Joint {
 	 * 
 	 * @return The anchor of the joint on the second body
 	 */
-	public Vector2f getAnchor2() {
+	public Vector getAnchor2() {
 		return anchor2;
 	}
 

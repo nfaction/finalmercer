@@ -41,7 +41,7 @@ import engine.Contact;
 import engine.body.Body;
 import engine.shapes.Polygon;
 import engine.vector.MathUtil;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Collision detection functions for colliding two polygons.
@@ -57,12 +57,12 @@ public class PolygonPolygonCollider implements Collider {
 		Polygon polyA = (Polygon) bodyA.getShape();
 		Polygon polyB = (Polygon) bodyB.getShape();
 
-		Vector2f[] vertsA = polyA.getVertices(bodyA.getPosition(), bodyA.getRotation());
-		Vector2f[] vertsB = polyB.getVertices(bodyB.getPosition(), bodyB.getRotation());
+		Vector[] vertsA = polyA.getVertices(bodyA.getPosition(), bodyA.getRotation());
+		Vector[] vertsB = polyB.getVertices(bodyB.getPosition(), bodyB.getRotation());
 		
-		Vector2f centroidA = new Vector2f(polyA.getCentroid());
+		Vector centroidA = new Vector(polyA.getCentroid());
 		centroidA.add(bodyA.getPosition());
-		Vector2f centroidB = new Vector2f(polyB.getCentroid());
+		Vector centroidB = new Vector(polyB.getCentroid());
 		centroidB.add(bodyB.getPosition());
 		
 		int[][] collEdgeCands = getCollisionCandidates(vertsA, vertsB, centroidA, centroidB);
@@ -80,11 +80,11 @@ public class PolygonPolygonCollider implements Collider {
 	 * @param vertsB The rotated and translated vertices of the second polygon
 	 * @param collEdgeCands The edges of the two vertices that can collide. Expects the
 	 * same layout as returned by 
-	 * {@link PolygonPolygonCollider#getCollisionCandidates(EdgeSweep, Vector2f[], Vector2f[])}
+	 * {@link PolygonPolygonCollider#getCollisionCandidates(EdgeSweep, Vector[], Vector[])}
 	 * @return The points where the two polygons overlap, with for each overlapping
 	 * area the ingoing and outgoing edges in feature pairs.
 	 */
-	public Intersection[][] getIntersectionPairs(Vector2f[] vertsA, Vector2f[] vertsB, int[][] collEdgeCands) {
+	public Intersection[][] getIntersectionPairs(Vector[] vertsA, Vector[] vertsB, int[][] collEdgeCands) {
 		if ( collEdgeCands.length == 0 )
 			return new Intersection[0][2];
 		
@@ -105,11 +105,11 @@ public class PolygonPolygonCollider implements Collider {
 	 * @param vertsA The vertices of polygon A
 	 * @param vertsB The vertices of polygon B
 	 * @param intersections The array of intersections as returned by
-	 * {@link PolygonPolygonCollider#getIntersectionPairs(Vector2f[], Vector2f[], int[][])}
+	 * {@link PolygonPolygonCollider#getIntersectionPairs(Vector[], Vector[], int[][])}
 	 * @return The number of contacts that have been determined and hence
 	 * populated in the array.
 	 */
-	public int populateContacts(Contact[] contacts, Vector2f[] vertsA, Vector2f[] vertsB, Intersection[][] intersections) {
+	public int populateContacts(Contact[] contacts, Vector[] vertsA, Vector[] vertsB, Intersection[][] intersections) {
 		if ( intersections.length == 0 )
 			return 0;
 		
@@ -147,13 +147,13 @@ public class PolygonPolygonCollider implements Collider {
 	 * @param vertsA The vertices of polygon A
 	 * @param vertsB The vertices of polygon B
 	 */
-	public void setContact(Contact contact, Intersection intersection, Vector2f[] vertsA, Vector2f[] vertsB) {		
-		Vector2f startA = vertsA[intersection.edgeA];
-		Vector2f endA = vertsA[(intersection.edgeA + 1) % vertsA.length];
-		Vector2f startB = vertsB[intersection.edgeB];
-		Vector2f endB = vertsB[(intersection.edgeB + 1) % vertsB.length];
+	public void setContact(Contact contact, Intersection intersection, Vector[] vertsA, Vector[] vertsB) {		
+		Vector startA = vertsA[intersection.edgeA];
+		Vector endA = vertsA[(intersection.edgeA + 1) % vertsA.length];
+		Vector startB = vertsB[intersection.edgeB];
+		Vector endB = vertsB[(intersection.edgeB + 1) % vertsB.length];
 		
-		Vector2f normal = MathUtil.getNormal(startA, endA);
+		Vector normal = MathUtil.getNormal(startA, endA);
 		normal.sub(MathUtil.getNormal(startB, endB));
 		normal.normalise();
 		
@@ -179,12 +179,12 @@ public class PolygonPolygonCollider implements Collider {
 			Contact contact2,
 			Intersection in,
 			Intersection out,
-			Vector2f[] vertsA,
-			Vector2f[] vertsB) {
-		Vector2f entryPoint = in.position;
-		Vector2f exitPoint = out.position;
+			Vector[] vertsA,
+			Vector[] vertsB) {
+		Vector entryPoint = in.position;
+		Vector exitPoint = out.position;
 		
-		Vector2f normal = MathUtil.getNormal(entryPoint, exitPoint);
+		Vector normal = MathUtil.getNormal(entryPoint, exitPoint);
 		
 		FeaturePair feature = new FeaturePair(in.edgeA, in.edgeB, out.edgeA, out.edgeB);
 		
@@ -221,7 +221,7 @@ public class PolygonPolygonCollider implements Collider {
 	 * the edge between vertsA[r[x][0]] and vertsA[r[x][0] + 1]
 	 * overlaps with vertsB[r[x][1]] and vertsB[r[x][1] + 1].
 	 */
-	public int[][] getCollisionCandidates(EdgeSweep sweep, Vector2f[] vertsA, Vector2f[] vertsB) {
+	public int[][] getCollisionCandidates(EdgeSweep sweep, Vector[] vertsA, Vector[] vertsB) {
 		sweep.addVerticesToSweep(true, vertsA);
 		sweep.addVerticesToSweep(false, vertsB);
 
@@ -234,7 +234,7 @@ public class PolygonPolygonCollider implements Collider {
 	 * number of line-line intersections that is tested for collisions.
 	 * 
 	 * This version simply calls 
-	 * {@link PolygonPolygonCollider#getCollisionCandidates(EdgeSweep, Vector2f[], Vector2f[]) }
+	 * {@link PolygonPolygonCollider#getCollisionCandidates(EdgeSweep, Vector[], Vector[]) }
 	 * with a new empty EdgeSweep.
 	 * 
 	 * @param vertsA The vertices of the first polygon ordered counterclockwise (TODO: verify this/order matters?)
@@ -248,8 +248,8 @@ public class PolygonPolygonCollider implements Collider {
 	 * the edge between vertsA[r[x][0]] and vertsA[r[x][0] + 1]
 	 * overlaps with vertsB[r[x][1]] and vertsB[r[x][1] + 1].
 	 */
-	public int[][] getCollisionCandidates(Vector2f[] vertsA, Vector2f[] vertsB, Vector2f sweepDirStart, Vector2f sweepDirEnd) {
-		Vector2f sweepDir = new Vector2f(sweepDirEnd);
+	public int[][] getCollisionCandidates(Vector[] vertsA, Vector[] vertsB, Vector sweepDirStart, Vector sweepDirEnd) {
+		Vector sweepDir = new Vector(sweepDirEnd);
 		sweepDir.sub(sweepDirStart);
 		
 		return getCollisionCandidates(new EdgeSweep(sweepDir), vertsA, vertsB);

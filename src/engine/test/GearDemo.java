@@ -6,7 +6,7 @@ import engine.body.Body;
 import engine.joint.BasicJoint;
 import engine.shapes.ConvexPolygon;
 import engine.shapes.Polygon;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A demo showing gears inteacting in a most un-believeable way
@@ -31,7 +31,7 @@ public class GearDemo extends AbstractDemo {
 	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
-		Vector2f[] groundVerts = {new Vector2f(-200, -10), new Vector2f(200,-10), new Vector2f(200,10), new Vector2f(-200,10)};
+		Vector[] groundVerts = {new Vector(-200, -10), new Vector(200,-10), new Vector(200,10), new Vector(-200,10)};
 		ConvexPolygon groundBox = new ConvexPolygon(groundVerts);
 		Body ground = new StaticBody("ground", groundBox);
 		ground.setPosition(250, 50);
@@ -39,11 +39,11 @@ public class GearDemo extends AbstractDemo {
 		
 		{
 			int noVerts = 40;
-			Vector2f[] circleVerts = new Vector2f[noVerts];
+			Vector[] circleVerts = new Vector[noVerts];
 			float[] radius = {50,42,42,50};
 			for( int i = 0; i < noVerts; i++ ) {
 				float angle = (float) (i* 2 * Math.PI/noVerts);
-				circleVerts[i] = new Vector2f(
+				circleVerts[i] = new Vector(
 						(float) (Math.cos(angle) * radius[i%radius.length]), 
 						(float) (Math.sin(angle) * radius[i%radius.length]));
 			}
@@ -52,23 +52,23 @@ public class GearDemo extends AbstractDemo {
 			circle.setPosition(250, 150);
 			world.add(circle);
 			
-			BasicJoint joint = new BasicJoint(ground, circle, new Vector2f(circle.getPosition()));
+			BasicJoint joint = new BasicJoint(ground, circle, new Vector(circle.getPosition()));
 			world.add(joint);
 		}
 		{
 			int outerCircleVerts = 30;
 			int noVerts = 120;
-			Vector2f[] circleVerts = new Vector2f[outerCircleVerts+1 + noVerts+1];
+			Vector[] circleVerts = new Vector[outerCircleVerts+1 + noVerts+1];
 			for( int i = 0; i <= outerCircleVerts; i++ ) {
 				float angle = (float) (i* 2 * Math.PI/outerCircleVerts);
-				circleVerts[i] = new Vector2f(
+				circleVerts[i] = new Vector(
 						(float) (Math.cos(angle) * 150), 
 						(float) (Math.sin(angle) * 150));
 			}
 			float[] radius = {140, 133, 133, 140};
 			for( int i = 0; i <= noVerts; i++ ) {
 				float angle = (float) (i* 2 * Math.PI/noVerts);
-				circleVerts[outerCircleVerts+1 + noVerts-i] = new Vector2f(
+				circleVerts[outerCircleVerts+1 + noVerts-i] = new Vector(
 						(float) (Math.cos(angle) * radius[i%radius.length]), 
 						(float) (Math.sin(angle) * radius[i%radius.length]));
 			}
@@ -80,11 +80,11 @@ public class GearDemo extends AbstractDemo {
 		
 		{
 			int noVerts = 20;
-			Vector2f[] circleVerts = new Vector2f[noVerts];
+			Vector[] circleVerts = new Vector[noVerts];
 			float[] radius = {30,20,20,30};
 			for( int i = 0; i < noVerts; i++ ) {
 				float angle = (float) (i* 2 * Math.PI/noVerts);
-				circleVerts[i] = new Vector2f(
+				circleVerts[i] = new Vector(
 						(float) (Math.cos(angle) * radius[i%radius.length]), 
 						(float) (Math.sin(angle) * radius[i%radius.length]));
 			}
@@ -93,13 +93,13 @@ public class GearDemo extends AbstractDemo {
 			circle.setPosition(250, 300);
 			world.add(circle);
 			
-			Vector2f[] nonConvexPoly = {new Vector2f(-20,-10), new Vector2f(20,-10), new Vector2f(10,0), new Vector2f(20,10), new Vector2f(-20,10), new Vector2f(-10,0)};
+			Vector[] nonConvexPoly = {new Vector(-20,-10), new Vector(20,-10), new Vector(10,0), new Vector(20,10), new Vector(-20,10), new Vector(-10,0)};
 			Polygon poly = new Polygon(nonConvexPoly);
 			Body nonConvexBody = new Body("poly", poly, 25);
 			nonConvexBody.setPosition(250, 400);
 			world.add(nonConvexBody);
 			
-			BasicJoint joint = new BasicJoint(circle,nonConvexBody, new Vector2f(circle.getPosition()));
+			BasicJoint joint = new BasicJoint(circle,nonConvexBody, new Vector(circle.getPosition()));
 			world.add(joint);
 			
 			wheel = circle;

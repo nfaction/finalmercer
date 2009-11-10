@@ -39,7 +39,7 @@ package engine.collide;
 
 import engine.Contact;
 import engine.body.Body;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Collides two lines with oneanother.
@@ -131,9 +131,9 @@ public class LineLineCollider implements Collider {
 	 * @param point The point to get a closes point on the line for
 	 * @return the closest point on the line or null if the lines are parallel
 	 */
-	public static Vector2f getClosestPoint(Vector2f startA, Vector2f endA, Vector2f point) {
-		Vector2f startB = point;
-		Vector2f endB = new Vector2f(endA);
+	public static Vector getClosestPoint(Vector startA, Vector endA, Vector point) {
+		Vector startB = point;
+		Vector endB = new Vector(endA);
 		endB.sub(startA);
 		endB.set(endB.y, -endB.x);
 
@@ -147,7 +147,7 @@ public class LineLineCollider implements Collider {
 		uA -= endB.y * (startA.x - startB.getX());
 		uA /= d;
 		
-		return new Vector2f(
+		return new Vector(
 			startA.x + uA * (endA.x - startA.x),
 			startA.y + uA * (endA.y - startA.y));
 	}

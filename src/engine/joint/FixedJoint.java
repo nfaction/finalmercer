@@ -41,7 +41,7 @@
 package engine.joint;
 
 import engine.body.Body;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 
 /**
@@ -119,8 +119,8 @@ public strictfp class FixedJoint implements Joint {
 		body1 = b1;
 		body2 = b2;
 
-		joint1 = new BasicJoint(b1,b2,new Vector2f(b1.getPosition()));
-		joint2 = new BasicJoint(b2,b1,new Vector2f(b2.getPosition()));
+		joint1 = new BasicJoint(b1,b2,new Vector(b1.getPosition()));
+		joint2 = new BasicJoint(b2,b1,new Vector(b2.getPosition()));
 	}
 
 	/**

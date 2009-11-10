@@ -44,7 +44,7 @@ import engine.body.Body;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A joint representing a spring. The spring can have different constants for 
@@ -64,9 +64,9 @@ public strictfp class SpringJoint implements Joint {
 	private Body body2;
 
 	/** The local anchor for the first body */
-	private Vector2f localAnchor1 = new Vector2f();
+	private Vector localAnchor1 = new Vector();
 	/** The local anchor for the second body */
-	private Vector2f localAnchor2 = new Vector2f();
+	private Vector localAnchor2 = new Vector();
 
 //	/** Determince the damping caused by compressing or stretching of the spring */ 
 //	private float damping;
@@ -104,7 +104,7 @@ public strictfp class SpringJoint implements Joint {
 		compressedSpringConst = 100;
 		brokenSpringConst = 100;
 		
-		Vector2f spring = new Vector2f(anchor1);
+		Vector spring = new Vector(anchor1);
 		spring.sub(anchor2);
 		springSize = spring.length();
 		minSpringSize = 0;
@@ -163,13 +163,13 @@ public strictfp class SpringJoint implements Joint {
 
 		Matrix2f rot1 = new Matrix2f(body1.getRotation());
 		Matrix2f rot1T = rot1.transpose();
-		Vector2f a1 = new Vector2f(anchor1);
+		Vector a1 = new Vector(anchor1);
 		a1.sub(body1.getPosition());
 		localAnchor1 = MathUtil.mul(rot1T,a1);
 		
 		Matrix2f rot2 = new Matrix2f(body2.getRotation());
 		Matrix2f rot2T = rot2.transpose();
-		Vector2f a2 = new Vector2f(anchor2);
+		Vector a2 = new Vector(anchor2);
 		a2.sub(body2.getPosition());
 		localAnchor2 = MathUtil.mul(rot2T,a2);
 	}
@@ -183,7 +183,7 @@ public strictfp class SpringJoint implements Joint {
 	public void preStep(float invDT) {
 
 		// calculate the spring's vector (pointing from body1 to body2) and length
-		spring = new Vector2f(body2.getPosition());
+		spring = new Vector(body2.getPosition());
 		spring.add(r2);
 		spring.sub(body1.getPosition());
 		spring.sub(r1);
@@ -218,7 +218,7 @@ public strictfp class SpringJoint implements Joint {
 			float springImpulse =
 				invDT != 0 ? brokenSpringConst * (springLength - springSize) / invDT : 0;
 			
-			Vector2f impulse = MathUtil.scale(spring, springImpulse);
+			Vector impulse = MathUtil.scale(spring, springImpulse);
 			body1.adjustBiasedVelocity(MathUtil.scale(impulse, body1.getInvMass()));
 			body1.adjustBiasedAngularVelocity((body1.getInvI() * MathUtil.cross(r1, impulse)));
 
@@ -240,7 +240,7 @@ public strictfp class SpringJoint implements Joint {
 			invDT != 0 ? springConst * (springLength - springSize) / invDT : 0;
 
 		// apply the spring's forces
-		Vector2f impulse = MathUtil.scale(spring, springImpulse);
+		Vector impulse = MathUtil.scale(spring, springImpulse);
 		body1.adjustVelocity(MathUtil.scale(impulse, body1.getInvMass()));
 		body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(r1, impulse)));
 
@@ -253,13 +253,13 @@ public strictfp class SpringJoint implements Joint {
 	/** Current lenght of the spring */
 	private float springLength;
 	/** The spring's normalized vector */
-	private Vector2f spring;
+	private Vector spring;
 	/** The massNormal, normalizes the speed to get the impulse (right?) */
 	private float massNormal;
 	/** The rotation of the anchor of the first body */
-	private Vector2f r1 = new Vector2f();
+	private Vector r1 = new Vector();
 	/** The rotation of the anchor of the second body */
-	private Vector2f r2 = new Vector2f();
+	private Vector r2 = new Vector();
 	/** True iff the spring is overstretched or overcompressed */
 	private boolean isBroken;
 	
@@ -270,7 +270,7 @@ public strictfp class SpringJoint implements Joint {
 		if ( isBroken ) {
 			// calculate difference in velocity
 			// TODO: share this code with BasicJoint and Arbiter
-			Vector2f relativeVelocity =  new Vector2f(body2.getVelocity());
+			Vector relativeVelocity =  new Vector(body2.getVelocity());
 			relativeVelocity.add(MathUtil.cross(body2.getAngularVelocity(), r2));
 			relativeVelocity.sub(body1.getVelocity());
 			relativeVelocity.sub(MathUtil.cross(body1.getAngularVelocity(), r1));
@@ -288,7 +288,7 @@ public strictfp class SpringJoint implements Joint {
 			if ( springLength < minSpringSize && normalImpulse < 0
 					|| springLength > maxSpringSize && normalImpulse > 0 ) {
 				// now apply the impulses to the bodies
-				Vector2f impulse = MathUtil.scale(spring, normalImpulse);
+				Vector impulse = MathUtil.scale(spring, normalImpulse);
 				body1.adjustVelocity(MathUtil.scale(impulse, body1.getInvMass()));
 				body1.adjustAngularVelocity((body1.getInvI() * MathUtil.cross(r1, impulse)));
 		

@@ -6,7 +6,7 @@ import engine.body.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Edge test
@@ -59,7 +59,7 @@ public class Demo20 extends AbstractDemo {
 	 * @see engine.test.AbstractDemo#update()
 	 */
 	protected void update() {
-		body2.addForce(new Vector2f(-100,0));
+		body2.addForce(new Vector(-100,0));
 	}
 	
 	/**

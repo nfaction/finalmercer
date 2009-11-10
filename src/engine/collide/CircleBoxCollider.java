@@ -41,7 +41,7 @@ import engine.Contact;
 import engine.body.Body;
 import engine.shapes.Circle;
 import engine.vector.MathUtil;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * A collider for circles hitting boxes, Circle = BodyA, Box = BodyB
@@ -79,10 +79,10 @@ public strictfp class CircleBoxCollider extends BoxCircleCollider {
 		// reverse the collision results by inverting normals
 		// and projecting the results onto the circle
 		for (int i=0;i<count;i++) {
-			Vector2f vec = MathUtil.scale(contacts[i].getNormal(),-1);
+			Vector vec = MathUtil.scale(contacts[i].getNormal(),-1);
 			contacts[i].setNormal(vec);
 			
-			Vector2f pt = MathUtil.sub(contacts[i].getPosition(), circleBody.getPosition());
+			Vector pt = MathUtil.sub(contacts[i].getPosition(), circleBody.getPosition());
 			pt.normalise();
 			pt.scale(((Circle) circleBody.getShape()).getRadius());
 			pt.add(circleBody.getPosition());

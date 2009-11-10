@@ -43,7 +43,7 @@ import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.shapes.Polygon;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * Collide a circle with a convex polygon
@@ -61,9 +61,9 @@ public class PolygonCircleCollider extends PolygonPolygonCollider {
 		Circle circle = (Circle) bodyB.getShape();
 		
 		// TODO: this can be optimized using matrix multiplications and moving only the circle
-		Vector2f[] vertsA = polyA.getVertices(bodyA.getPosition(), bodyA.getRotation());
+		Vector[] vertsA = polyA.getVertices(bodyA.getPosition(), bodyA.getRotation());
 		
-		Vector2f centroidA = new Vector2f(polyA.getCentroid());
+		Vector centroidA = new Vector(polyA.getCentroid());
 		centroidA.add(bodyA.getPosition());
 
 		
@@ -74,18 +74,18 @@ public class PolygonCircleCollider extends PolygonPolygonCollider {
 			if ( noContacts >= contacts.length )
 				return contacts.length;
 			
-			Vector2f lineStartA = vertsA[collPairs[i][0]];
-			Vector2f lineEndA = vertsA[(collPairs[i][0]+1) % vertsA.length ];
+			Vector lineStartA = vertsA[collPairs[i][0]];
+			Vector lineEndA = vertsA[(collPairs[i][0]+1) % vertsA.length ];
 			Line line = new Line(lineStartA, lineEndA);
 						
 			float dis2 = line.distanceSquared(bodyB.getPosition());
 			float r2 = circle.getRadius() * circle.getRadius();
 
 			if ( dis2 < r2 ) {
-				Vector2f pt = new Vector2f();
+				Vector pt = new Vector();
 				
 				line.getClosestPoint(bodyB.getPosition(), pt);
-				Vector2f normal = new Vector2f(bodyB.getPosition());
+				Vector normal = new Vector(bodyB.getPosition());
 				normal.sub(pt);
 				float sep = circle.getRadius() - normal.length();
 				normal.normalise();
@@ -112,8 +112,8 @@ public class PolygonCircleCollider extends PolygonPolygonCollider {
 	 * @param circlePos The position (center) of the circle
 	 * @return The list of edges that can collide with the circle
 	 */
-	protected int[][] getCollisionCandidates(Vector2f[] vertsA, ROVector2f centroid, float radius, ROVector2f circlePos) {
-		Vector2f sweepDir = new Vector2f(centroid);
+	protected int[][] getCollisionCandidates(Vector[] vertsA, ROVector2f centroid, float radius, ROVector2f circlePos) {
+		Vector sweepDir = new Vector(centroid);
 		sweepDir.sub(circlePos);
 		sweepDir.normalise(); //TODO: this normalization might not be necessary
 		

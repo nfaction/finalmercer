@@ -46,7 +46,7 @@ import engine.shapes.Box;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.ROVector2f;
-import engine.vector.Vector2f;
+import engine.vector.Vector;
 
 /**
  * The implementation of box to box collision. The create() method is
@@ -92,9 +92,9 @@ public strictfp class BoxBoxCollider implements Collider {
 	public static final int EDGE4 = 4;
 
 	/** Temp vector */
-	private static Vector2f hA = new Vector2f();
+	private static Vector hA = new Vector();
 	/** Temp vector */
-	private static Vector2f hB = new Vector2f();
+	private static Vector hB = new Vector();
 	
 	/**
 	 * A simple structure describe a vertex against which the
@@ -104,7 +104,7 @@ public strictfp class BoxBoxCollider implements Collider {
 	 */
 	private class ClipVertex {
 		/** The vertex */
-		Vector2f v = new Vector2f();
+		Vector v = new Vector();
 		/** The pair this clipping applied to */
 		FeaturePair fp = new FeaturePair();
 		
@@ -141,7 +141,7 @@ public strictfp class BoxBoxCollider implements Collider {
 	 * @return The number of points we've clipped
 	 */
 	private int clipSegmentToLine(ClipVertex[] vOut, ClipVertex[] vIn,
-						  Vector2f normal, float offset, char clipEdge) {
+						  Vector normal, float offset, char clipEdge) {
 		// Start with no output points
 		int numOut = 0;
 
@@ -191,12 +191,12 @@ public strictfp class BoxBoxCollider implements Collider {
 	private void computeIncidentEdge(ClipVertex[] c, 
 									ROVector2f h, 
 									ROVector2f pos,
-									Matrix2f rot, Vector2f normal) {
+									Matrix2f rot, Vector normal) {
 		// The normal is from the reference box. Convert it
 		// to the incident boxe's frame and flip sign.
 		Matrix2f rotT = rot.transpose();
-		Vector2f n = MathUtil.scale(MathUtil.mul(rotT,normal),-1);
-		Vector2f nAbs = MathUtil.abs(n);
+		Vector n = MathUtil.scale(MathUtil.mul(rotT,normal),-1);
+		Vector nAbs = MathUtil.abs(n);
 
 		if (nAbs.x > nAbs.y)
 		{
@@ -291,16 +291,16 @@ public strictfp class BoxBoxCollider implements Collider {
 //		Vector2f b1 = rotB.col1;
 //		Vector2f b2 = rotB.col2;
 
-		Vector2f dp = MathUtil.sub(posB,posA);
-		Vector2f dA = MathUtil.mul(RotAT,dp);
-		Vector2f dB = MathUtil.mul(RotBT,dp);
+		Vector dp = MathUtil.sub(posB,posA);
+		Vector dA = MathUtil.mul(RotAT,dp);
+		Vector dB = MathUtil.mul(RotBT,dp);
 
 		Matrix2f C = MathUtil.mul(RotAT,rotB);
 		Matrix2f absC = MathUtil.abs(C);
 		Matrix2f absCT = absC.transpose();
 
 		// Box A faces
-		Vector2f faceA = MathUtil.abs(dA);
+		Vector faceA = MathUtil.abs(dA);
 		faceA.sub(hA);
 		faceA.sub(MathUtil.mul(absC,hB));
 		
@@ -309,7 +309,7 @@ public strictfp class BoxBoxCollider implements Collider {
 		}
 
 		// Box B faces
-		Vector2f faceB = MathUtil.abs(dB);
+		Vector faceB = MathUtil.abs(dB);
 		faceB.sub(MathUtil.mul(absCT,hA));
 		faceB.sub(hB);
 		//MathUtil.sub(MathUtil.sub(MathUtil.abs(dB),MathUtil.mul(absCT,hA)),hB);
@@ -320,7 +320,7 @@ public strictfp class BoxBoxCollider implements Collider {
 		// Find best axis
 		int axis;
 		float separation;
-		Vector2f normal;
+		Vector normal;
 
 		// Box A faces
 		axis = FACE_A_X;
@@ -350,7 +350,7 @@ public strictfp class BoxBoxCollider implements Collider {
 		}
 
 		// Setup clipping plane data based on the separating axis
-		Vector2f frontNormal, sideNormal;
+		Vector frontNormal, sideNormal;
 		ClipVertex[] incidentEdge = new ClipVertex[] {new ClipVertex(), new ClipVertex()};
 		float front, negSide, posSide;
 		char negEdge, posEdge;
