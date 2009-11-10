@@ -43,7 +43,7 @@ package engine.shapes;
  * 
  * @author Kevin Glass
  */
-public strictfp class Circle extends AbstractShape implements DynamicShape {
+public strictfp class Circle extends AbstractShape {
 	/** The radius of the circle */
 	private float radius;
 	

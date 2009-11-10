@@ -47,7 +47,7 @@ import engine.vector.Vector;
  * 
  * @author Kevin Glass
  */
-public strictfp class Box extends AbstractShape implements DynamicShape {
+public strictfp class Box extends AbstractShape {
 	/** The size of the box */
 	private Vector size = new Vector();
 	
