@@ -49,7 +49,7 @@ import engine.vector.Vector;
  * @author Gideon Smeding
  *
  */
-public class ConvexPolygon extends Polygon implements DynamicShape {
+public class ConvexPolygon extends Polygon {
 	
 	/** Construct the convex polygon with a list of vertices
 	 * sorted in counterclockwise order.

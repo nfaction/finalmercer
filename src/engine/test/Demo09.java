@@ -6,7 +6,7 @@ import engine.body.Body;
 import engine.joint.BasicJoint;
 import engine.shapes.Box;
 import engine.shapes.Circle;
-import engine.shapes.DynamicShape;
+import engine.shapes.Shape;
 import engine.vector.Vector;
 
 /**
@@ -54,7 +54,7 @@ public class Demo09 extends AbstractDemo {
 			if (i == 0) {
 				size = 10;
 			}
-			DynamicShape shape = new Circle(size);
+			Shape shape = new Circle(size);
 			Body body = new Body(shape, i == 0 ? 100.0f : 10.0f);
 			body.setFriction(0.4f);
 			body.setPosition(170.0f + (i*20), 171.0f);

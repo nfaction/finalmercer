@@ -3,7 +3,6 @@ package engine.body;
 import java.util.ArrayList;
 
 import engine.BodyList;
-import engine.shapes.DynamicShape;
 import engine.shapes.Shape;
 import engine.vector.ROVector2f;
 import engine.vector.Vector;
@@ -121,16 +120,6 @@ public strictfp class Body {
 	private Vector maxVelocity;
 	
 	/**
-	 * Create a new un-named body
-	 * 
-	 * @param shape The shape describing this body
-	 * @param m The mass of the body
-	 */
-	public Body(DynamicShape shape, float m) {
-		this("UnnamedBody",(Shape) shape,m);
-	}
-	
-	/**
 	 * Check if this body is disabled
 	 * 
 	 * @return True if this body is disabled
@@ -154,19 +143,8 @@ public strictfp class Body {
 	 * @param shape The shape describing this body
 	 * @param m The mass of the body
 	 */
-	protected Body(Shape shape, float m) {
+	public Body(Shape shape, float m) {
 		this("UnnamedBody",shape,m);
-	}
-
-	/**
-	 * Create a named body
-	 * 
-	 * @param name The name to assign to the body
-	 * @param shape The shape describing this body
-	 * @param m The mass of the body
-	 */
-	public Body(String name,DynamicShape shape, float m) {
-		this(name,(Shape) shape,m);
 	}
 	
 	/**
@@ -176,7 +154,7 @@ public strictfp class Body {
 	 * @param shape The shape describing this body
 	 * @param m The mass of the body
 	 */
-	protected Body(String name,Shape shape, float m) {
+	public Body(String name,Shape shape, float m) {
 		this.name = name;
 
 		id = NEXT_ID++;

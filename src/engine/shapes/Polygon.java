@@ -53,7 +53,7 @@ import engine.vector.Vector;
  * @author Gideon Smeding
  *
  */
-public class Polygon extends AbstractShape implements DynamicShape {
+public class Polygon extends AbstractShape {
 
 	/** The vertices of this polygon in counterclockwise order */
 	protected Vector[] vertices;

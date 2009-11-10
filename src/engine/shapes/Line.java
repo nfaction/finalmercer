@@ -47,7 +47,7 @@ import engine.vector.Vector;
  * 
  * @author Kevin Glass
  */
-public strictfp class Line extends AbstractShape implements DynamicShape {
+public strictfp class Line extends AbstractShape {
 	/** The start point of the line */
 	private ROVector2f start;
 	/** The end point of the line */

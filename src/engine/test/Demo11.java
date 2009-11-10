@@ -5,7 +5,7 @@ import engine.World;
 import engine.body.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
-import engine.shapes.DynamicShape;
+import engine.shapes.Shape;
 import engine.vector.Vector;
 
 /**
@@ -56,7 +56,7 @@ public class Demo11 extends AbstractDemo {
 		for (int y=0;y<5;y++) {
 			int xbase = 250 - (y * 21);
 			for (int x=0;x<y+1;x++) {
-				DynamicShape shape = new Box(40,40);
+				Shape shape = new Box(40,40);
 				if ((x == 1) && (y == 2)) {
 					shape = new Circle(19);
 				}
