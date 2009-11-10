@@ -1,10 +1,10 @@
 package engine.test;
 
-import engine.raw.Body;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.Box;
-import engine.raw.shapes.Line;
+import engine.Body;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.Box;
+import engine.shapes.Line;
 
 /**
  * Lines terrain testing extensive
@@ -26,7 +26,7 @@ public class Demo18 extends AbstractDemo {
 	}
 
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		Body land = new StaticBody("Line1", new Line(100,50));

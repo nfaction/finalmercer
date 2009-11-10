@@ -2,9 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-import engine.raw.World;
-import engine.raw.forcesource.ForceSource;
-import engine.raw.strategies.QuadSpaceStrategy;
+import engine.World;
+import engine.forcesource.ForceSource;
+import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector2f;
 import entities.BasketBall;
 import entities.Entities;

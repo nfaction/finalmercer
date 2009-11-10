@@ -1,10 +1,10 @@
 package engine.test;
 
-import engine.raw.Body;
-import engine.raw.DistanceJoint;
-import engine.raw.World;
-import engine.raw.shapes.Box;
-import engine.raw.shapes.Circle;
+import engine.Body;
+import engine.DistanceJoint;
+import engine.World;
+import engine.shapes.Box;
+import engine.shapes.Circle;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
 import engine.vector.Vector2f;
@@ -101,7 +101,7 @@ public class JointTest extends AbstractDemo {
 	}
 
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		// world.setGravity(0, 0);

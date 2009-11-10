@@ -1,11 +1,11 @@
 package engine.test;
 
-import engine.raw.BasicJoint;
-import engine.raw.Body;
-import engine.raw.StaticBody;
-import engine.raw.World;
-import engine.raw.shapes.Box;
-import engine.raw.shapes.Circle;
+import engine.BasicJoint;
+import engine.Body;
+import engine.StaticBody;
+import engine.World;
+import engine.shapes.Box;
+import engine.shapes.Circle;
 import engine.vector.Vector2f;
 
 /**
@@ -25,7 +25,7 @@ public class Demo12 extends AbstractDemo {
 	}
 
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		Body body1 = new StaticBody("Ground1", new Box(400.0f, 20.0f));

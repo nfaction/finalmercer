@@ -1,10 +1,10 @@
 package engine.test;
 
-import engine.raw.AngleJoint;
-import engine.raw.Body;
-import engine.raw.DistanceJoint;
-import engine.raw.World;
-import engine.raw.shapes.Circle;
+import engine.AngleJoint;
+import engine.Body;
+import engine.DistanceJoint;
+import engine.World;
+import engine.shapes.Circle;
 import engine.vector.Vector2f;
 
 /**
@@ -27,7 +27,7 @@ public class AngularConstraint extends AbstractDemo {
 	}
 	
 	/**
-	 * @see engine.test.AbstractDemo#init(engine.raw.World)
+	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
 		b1= new Body(new Circle(15),1e3f);
