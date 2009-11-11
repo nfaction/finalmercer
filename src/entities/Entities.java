@@ -1,93 +1,87 @@
 package entities;
 
+import java.util.Observable;
+
 import engine.World;
-import engine.body.Body;
 
-public abstract class  Entities {
-	
-	/** The x midpoint */
-	private int x;
-	/** The y midpoint */
-	private int y;
+public abstract class Entities extends Observable {
 
-	/** Upper and lower X,Y coordinates  */
-	private int upperX, lowerX, upperY, lowerY;
+	/** Upper X coordinate */
+	private float upperX;
+	/** Lower X coordinate */
+	private float lowerX;
+	/** Upper Y coordinate */
+	private float upperY;
+	/** Lower Y coordinate */
+	private float lowerY;
 
-	/** Object's state  */
+	/** Object's state */
 	private int state;
 
-	/** Object's length and width  */
+	/** Object's length and width */
 	private int length, height;
 
-	/** Object name / type  */
+	/** Object name / type */
 	private String objType;
 
-	/**Image for specific object type*/
+	/** Image for specific object type */
 	private String imagePath;
 
 	// ///// METHODS /////////////////////////////////////////////////
 
-	public Entities(String objType){
+	public Entities(String objType) {
 		state = 0;
 	}
-	
+
 	/**
 	 * @param x
 	 * @param y
-	 * Sets the location for the image to be printed. Based on x and y coordinates in the center of the object.
+	 *            Sets the location for the image to be printed. Based on x and
+	 *            y coordinates in the center of the object.
 	 */
-	public void setImageLocations(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public void setImageLocations(float x, float y) {
 
-		this.upperX = this.x - (getLength() / 2);
-		this.upperY = this.y - (getHeight() / 2);
-		this.lowerX = this.x + (getLength() / 2);
-		this.lowerY = this.x + (getHeight() / 2);
+		this.upperX = this.getX() - (getLength() / 2);
+		this.upperY = this.getY() - (getHeight() / 2);
+		this.lowerX = this.getX() + (getLength() / 2);
+		this.lowerY = this.getY() + (getHeight() / 2);
 	}
 
 	/**
 	 * @return the x
 	 */
-	public int getX() {
-		return x;
-	}
+	public abstract float getX();
 
 	/**
 	 * @return the y
 	 */
-	public int getY() {
-		return y;
-	}
+	public abstract float getY();
 
 	/**
 	 * @return the upperX
 	 */
-	public int getUpperX() {
+	public float getUpperX() {
 		return upperX;
 	}
 
-	
 	/**
 	 * @return the lowerX
 	 */
-	public int getLowerX() {
+	public float getLowerX() {
 		return lowerX;
 	}
 
-	
 	/**
 	 * @return the upperY
 	 */
-	public int getUpperY() {
+	public float getUpperY() {
 		return upperY;
 	}
 
-	
 	/**
 	 * @return the lowerY
 	 */
-	public int getLowerY() {
+	public float getLowerY() {
 		return lowerY;
 	}
 
@@ -165,7 +159,7 @@ public abstract class  Entities {
 	public String getImagePath() {
 		return imagePath;
 	}
-	
-	public abstract void addObj(World world);
+
+	public abstract void addObj(World world, float x, float y);
 
 }

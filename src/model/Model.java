@@ -26,7 +26,9 @@ public class Model {
 		Entities thisEntitie;
 		//add object first then look for collisions and off the board
 		if (objType.equals("BasketBall"))
-			this.objList.add(new BasketBall("BasketBall"));
+			this.objList.add(new BasketBall());
+			// bBall.add();
+		
 		
 		// if it will fit on the board then don't remove
 		thisEntitie = objList.get(objListSize);
@@ -34,7 +36,7 @@ public class Model {
 			objList.remove(objListSize);
 			return false;
 		}
-		//error here needs to be a body!!
+
 		ForceSource body = null;
 		world.add(body);
 		return true;
