@@ -27,7 +27,6 @@ import engine.joint.SpringJoint;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
-import engine.shapes.Polygon;
 import engine.strategies.QuadSpaceStrategy;
 import engine.vector.MathUtil;
 import engine.vector.Matrix2f;
@@ -257,31 +256,8 @@ public abstract class AbstractDemo {
 		if (body.getShape() instanceof Line) {
 			drawLineBody(g,body,(Line) body.getShape());
 		}
-		if (body.getShape() instanceof Polygon) {
-			drawPolygonBody(g,body,(Polygon) body.getShape());
-		}
 	}
 	
-	/**
-	 * Draw a polygon into the demo
-	 * 
-	 * @param g The graphics to draw the poly onto
-	 * @param body The body describing the poly's position
-	 * @param poly The poly to be drawn
-	 */
-	protected void drawPolygonBody(Graphics2D g, Body body, Polygon poly) {
-		g.setColor(Color.black);
-
-		ROVector2f[] verts = poly.getVertices(body.getPosition(), body.getRotation());
-		for ( int i = 0, j = verts.length-1; i < verts.length; j = i, i++ ) {			
-			g.drawLine(
-					(int) (0.5f + verts[i].getX()),
-					(int) (0.5f + verts[i].getY()), 
-					(int) (0.5f + verts[j].getX()),
-					(int) (0.5f + verts[j].getY()));
-		}
-	}
-
 	/**
 	 * Draw a line into the demo
 	 * 
@@ -291,13 +267,7 @@ public abstract class AbstractDemo {
 	 */
 	protected void drawLineBody(Graphics2D g, Body body, Line line) {
 		g.setColor(Color.black);
-//
-//		float x = body.getPosition().getX();
-//		float y = body.getPosition().getY();
-//		float dx = line.getDX();
-//		float dy = line.getDY();
-//		
-//		g.drawLine((int) x,(int) y,(int) (x+dx),(int) (y+dy));
+
 		Vector[] verts = line.getVertices(body.getPosition(), body.getRotation());
 		g.drawLine(
 				(int) verts[0].getX(),

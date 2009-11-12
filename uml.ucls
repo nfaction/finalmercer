@@ -1,0 +1,180 @@
+<class-diagram version="0.9.86" automaticImage="JPEG" icons="true" always-add-relationships="true" 
+  generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.body.Body" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/body/Body.java" binary="false">    
+    <position x="329" y="-205" width="271" height="681"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.BodyList" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/BodyList.java" binary="false">    
+    <position x="98" y="-207" width="220" height="255"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Shape" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false">    
+    <position x="672" y="613" width="140" height="99"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.StaticBody" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/StaticBody.java" binary="false">    
+    <position x="744" y="287" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.AbstractShape" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false">    
+    <position x="512" y="662" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Box" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/shapes/Box.java" binary="false">    
+    <position x="-143" y="623" width="233" height="135"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Circle" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/shapes/Circle.java" binary="false">    
+    <position x="-26" y="545" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.ConvexPolygon" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/shapes/ConvexPolygon.java" binary="false">    
+    <position x="-308" y="308" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Line" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/shapes/Line.java" binary="false">    
+    <position x="-144" y="762" width="231" height="693"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Polygon" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/shapes/Polygon.java" binary="false">    
+    <position x="-27" y="305" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="engine.joint.Joint" project="JefferyAhernFinal" 
+    file="/JefferyAhernFinal/src/engine/joint/Joint.java" binary="false">    
+    <position x="912" y="670" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <dependency>    
+    <bendpoint x="858" y="135"/>    
+    <source project="JefferyAhernFinal" name="engine.joint.Joint" file="/JefferyAhernFinal/src/engine/joint/Joint.java" 
+      binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+      binary="false"/>  
+  </dependency>  
+  <generalization>    
+    <bendpoint x="174" y="661"/>    
+    <source project="JefferyAhernFinal" name="engine.shapes.Box" file="/JefferyAhernFinal/src/engine/shapes/Box.java" 
+      binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
+      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <bendpoint x="173" y="687"/>    
+    <source project="JefferyAhernFinal" name="engine.shapes.Line" file="/JefferyAhernFinal/src/engine/shapes/Line.java" 
+      binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
+      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+      binary="false" navigable="false">      
+      <attribute name="excluded"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="JefferyAhernFinal" name="engine.BodyList" file="/JefferyAhernFinal/src/engine/BodyList.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+      binary="false" navigable="false">      
+      <attribute name="touching"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="JefferyAhernFinal" name="engine.BodyList" file="/JefferyAhernFinal/src/engine/BodyList.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <bendpoint x="173" y="641"/>    
+    <source project="JefferyAhernFinal" name="engine.shapes.Circle" 
+      file="/JefferyAhernFinal/src/engine/shapes/Circle.java" binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
+      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+  </generalization>  
+  <realization>    
+    <source project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
+      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.shapes.Shape" 
+      file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false"/>  
+  </realization>  
+  <association>    
+    <bendpoint x="463" y="521"/>    
+    <bendpoint x="741" y="521"/>    
+    <source project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+      binary="false" navigable="false">      
+      <attribute name="shape"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="JefferyAhernFinal" name="engine.shapes.Shape" 
+      file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="JefferyAhernFinal" name="engine.StaticBody" file="/JefferyAhernFinal/src/engine/StaticBody.java" 
+      binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+      binary="false"/>  
+  </generalization>  
+  <dependency>    
+    <source project="JefferyAhernFinal" name="engine.StaticBody" file="/JefferyAhernFinal/src/engine/StaticBody.java" 
+      binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.shapes.Shape" 
+      file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false"/>  
+  </dependency>  
+  <dependency>    
+    <source project="JefferyAhernFinal" name="engine.BodyList" file="/JefferyAhernFinal/src/engine/BodyList.java" 
+      binary="false"/>    
+    <target project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+      binary="false"/>  
+  </dependency>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

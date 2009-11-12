@@ -73,10 +73,7 @@ public class ColliderFactory {
 			return createColliderFor((Box) shapeA, shapeB);
 		} else if ( shapeA instanceof Line ) {
 			return createColliderFor((Line) shapeA, shapeB);
-		} else if ( shapeA instanceof Polygon ) {
-			return createColliderFor((Polygon) shapeA, shapeB);
 		}
-		
 		throw new ColliderUnavailableException(shapeA, shapeB);
 	}
 	
@@ -99,8 +96,6 @@ public class ColliderFactory {
 			return new SwapCollider(new BoxCircleCollider());
 		} else if ( shapeB instanceof Line ) {
 			return new SwapCollider(new LineCircleCollider());
-		} else if ( shapeB instanceof Polygon ) {
-			return new SwapCollider(new PolygonCircleCollider());
 		}
 		
 		throw new ColliderUnavailableException(shapeA, shapeB);
@@ -125,8 +120,6 @@ public class ColliderFactory {
 			return new BoxBoxCollider();
 		} else if ( shapeB instanceof Line ) {
 			return new SwapCollider(new LineBoxCollider());
-		} else if ( shapeB instanceof Polygon ) {
-			return new SwapCollider(new PolygonBoxCollider());
 		}
 		
 		throw new ColliderUnavailableException(shapeA, shapeB);
@@ -151,36 +144,9 @@ public class ColliderFactory {
 			return new LineBoxCollider();
 		} else if ( shapeB instanceof Line ) {
 			return new LineLineCollider();
-		} else if ( shapeB instanceof Polygon ) {
-			return new LinePolygonCollider();
 		}
 		
 		throw new ColliderUnavailableException(shapeA, shapeB);
 	}
-	
-	/**
-	 * Creates a collider for a ConvexPolygon and a Shape.
-	 * The choice is based on the kind of Shape that is provided
-	 * 
-	 * @param shapeA The convex polygon to provide a collider for
-	 * @param shapeB The shape to provide a collider for
-	 * @return a suitable collider
-	 * @throws ColliderUnavailableException
-	 * 	       This exception will be thrown if no suitable collider can be found.
-	 */
-	public Collider createColliderFor(Polygon shapeA, Shape shapeB) 
-	throws ColliderUnavailableException {
 
-		if ( shapeB instanceof Circle ) {
-			return new PolygonCircleCollider();
-		} else if ( shapeB instanceof Box ) {
-			return new PolygonBoxCollider();
-		} else if ( shapeB instanceof Line ) {
-			return new SwapCollider(new LinePolygonCollider());
-		} else if ( shapeB instanceof Polygon ) {
-			return new PolygonPolygonCollider();
-		}
-		
-		throw new ColliderUnavailableException(shapeA, shapeB);
-	}
 }
