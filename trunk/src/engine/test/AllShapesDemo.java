@@ -41,25 +41,10 @@ public class AllShapesDemo extends AbstractDemo  {
 		
 		Body newBody = null;
 		
-		if (c == 's') {		
-			Vector[] circleVerts = new Vector[30];
-			float[] radius = {20,10};
-			for( int i = 0; i < 30; i++ ) {
-				float angle = (float) (3*4 * i * Math.PI/180);
-				circleVerts[i] = new Vector(
-						(float) (Math.cos(angle) * radius[i%2]), 
-						(float) (Math.sin(angle) * radius[i%2]));
-			}
-			Polygon circlePolygon = new Polygon(circleVerts);
-			newBody = new Body(circlePolygon, 4);
-		} else if ( c == 'w' ) {
+		if ( c == 'c' ) {
 			newBody = new Body(new Circle(15), 2);
 		} else if ( c == 'l' ) {
 			newBody = new Body(new Line(0,-50,0,50), 1f);
-		} else if ( c == 't' ) {
-			Vector[] triangleVerts = {new Vector(-20, -20), new Vector(20,-20), new Vector(20,20)};
-			ConvexPolygon trianglePolygon = new ConvexPolygon(triangleVerts);
-			newBody = new Body(trianglePolygon, 3);
 		} else if ( c == 'b' ) {
 			newBody = new Body(new Box(20,30), 3);
 		} else {
