@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class MainGUI extends JFrame{
@@ -27,6 +29,7 @@ public class MainGUI extends JFrame{
 	/** Scenarios panel*/
 	JPanel scenario = new JPanel();
 	JLabel select = new JLabel("Please select a scenario:");
+	JButton mainMenuScenario = new JButton("Main Menu");
 	JButton s1 = new JButton("Scenario 1");
 	JButton s2 = new JButton("Scenario 2");
 	JButton s3 = new JButton("Scenario 3");
@@ -40,13 +43,14 @@ public class MainGUI extends JFrame{
 	/** Options panel*/
 	JPanel options = new JPanel();
 	JLabel optionL = new JLabel("Options:");
-	JButton mainMenu = new JButton("Main Menu");
+	JButton mainMenuOptions = new JButton("Main Menu");
 	JLabel gravityL = new JLabel("Gravity:");
 	JTextField gravityText = new JTextField();
 	JButton soundon = new JButton("Sound ON");
 	JButton soundoff = new JButton("Sound OFF");
 	/** Sandbox Panel*/
 	JPanel sandbox = new JPanel();
+	JButton mainMenuSandbox = new JButton("Main Menu");
 	
 	/**
 	 * Main method creates a GUI
@@ -96,7 +100,12 @@ public class MainGUI extends JFrame{
 	}
 	
 	public void registerListeners(){
-		
+		startB.addActionListener(new startButtonListener());
+		scenarioB.addActionListener(new scenarioButtonListener());
+		optionB.addActionListener(new optionButtonListener());
+		mainMenuSandbox.addActionListener(new mainMenuSandboxButtonListener());
+		mainMenuOptions.addActionListener(new mainMenuOptionsButtonListener());
+		mainMenuScenario.addActionListener(new mainMenuScenarioButtonListener());
 	}
 	
 	
@@ -123,6 +132,17 @@ public class MainGUI extends JFrame{
 		main.add(optionB);
 	}
 	
+	public void setupSandbox(){
+		sandbox.setLayout(null);
+		sandbox.setSize(950, 500);
+		sandbox.setLocation(0,0);
+		
+		mainMenuSandbox.setSize(125,30);
+		mainMenuSandbox.setLocation(50, 20);
+		
+		sandbox.add(mainMenuSandbox);
+	}
+	
 	public void setupScenarios(){
 		scenario.setLayout(null);
 		scenario.setSize(950, 500);
@@ -130,6 +150,9 @@ public class MainGUI extends JFrame{
 		
 		select.setSize(250, 20);
 		select.setLocation(50, 20);
+		
+		mainMenuScenario.setSize(125, 30);
+		mainMenuScenario.setLocation(800, 10);
 		
 		// First Column
 		s1.setSize(150, 80);
@@ -164,6 +187,7 @@ public class MainGUI extends JFrame{
 		s10.setLocation(450, 410);
 		
 		scenario.add(select);
+		scenario.add(mainMenuScenario);
 		scenario.add(s1);
 		scenario.add(s2);
 		scenario.add(s3);
@@ -184,8 +208,8 @@ public class MainGUI extends JFrame{
 		optionL.setSize(250, 20);
 		optionL.setLocation(365, 50);
 		
-		mainMenu.setSize(200, 40);
-		mainMenu.setLocation(50, 20);
+		mainMenuOptions.setSize(125,30);
+		mainMenuOptions.setLocation(50, 20);
 		
 		gravityL.setSize(250, 20);
 		gravityL.setLocation(365, 100);
@@ -200,7 +224,7 @@ public class MainGUI extends JFrame{
 		soundoff.setLocation(575, 180);
 		
 		options.add(optionL);
-		options.add(mainMenu);
+		options.add(mainMenuOptions);
 		options.add(gravityL);
 		options.add(gravityText);
 		options.add(soundon);
@@ -209,12 +233,107 @@ public class MainGUI extends JFrame{
 	
 	
 	
-	public void setupSandbox(){
-		
+	
+	
+	// All Listeners for Main window
+	/**
+	 * This action listener listens for a start button click and handles that
+	 * action.
+	 */
+	public class startButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			master.removeAll();
+			master.add(sandbox);
+			master.updateUI();
+			repaint();
+		}
+	}
+
+	/**
+	 * This action listener listens for a scenario button click and handles that
+	 * action.
+	 */
+	public class scenarioButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			master.removeAll();
+			master.add(scenario);
+			master.updateUI();
+			repaint();
+		}
+	}
+
+	/**
+	 * This action listener listens for a option button click and handles that
+	 * action.
+	 */
+	public class optionButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			master.removeAll();
+			master.add(options);
+			master.updateUI();
+			repaint();
+		}
 	}
 	
+	//All listeners for Sandbox window
+	/**
+	 * This action listener listens for a Main Menu Scenario button click and handles that
+	 * action.
+	 */
+	public class mainMenuSandboxButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			master.removeAll();
+			master.add(main);
+			master.updateUI();
+			
+		}
+	}
 	
+	//All listeners for Scenario window
+	/**
+	 * This action listener listens for a Main Menu Scenario button click and handles that
+	 * action.
+	 */
+	public class mainMenuScenarioButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			master.removeAll();
+			master.add(main);
+			master.updateUI();
+			
+		}
+	}
 	
+	/**
+	 * This action listener listens for a Scenario 1 button click and handles that
+	 * action.
+	 */
+	public class s1ButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+		}
+	}
+	
+	//All listeners for Options window
+	/**
+	 * This action listener listens for a Main Menu Scenario button click and handles that
+	 * action.
+	 */
+	public class mainMenuOptionsButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			System.out.println("Options Main menu was clicked");
+			master.removeAll();
+			master.add(main);
+			master.updateUI();
+			
+		}
+	}
 	
 	
 }
