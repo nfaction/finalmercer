@@ -99,7 +99,8 @@ public class MainGUI extends JFrame{
 		// First panel added
 		//master.add(main);
 		//master.add(scenario);
-		master.add(options);
+		//master.add(options);
+		master.add(sandbox);
 		cp.add(master);
 	}
 	
@@ -151,6 +152,7 @@ public class MainGUI extends JFrame{
 		mainMenuSandbox.setLocation(50, 20);
 		
 		sandbox.add(mainMenuSandbox);
+		sandbox.add(sandboxPanel);
 	}
 	
 	public void setupScenarios(){
