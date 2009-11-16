@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,10 +47,13 @@ public class MainGUI extends JFrame{
 	JButton mainMenuOptions = new JButton("Main Menu");
 	JLabel gravityL = new JLabel("Gravity:");
 	JTextField gravityText = new JTextField();
+	JButton submit = new JButton("Submit");
+	JLabel soundL = new JLabel("Sound:");
 	JButton soundon = new JButton("Sound ON");
 	JButton soundoff = new JButton("Sound OFF");
 	/** Sandbox Panel*/
 	JPanel sandbox = new JPanel();
+	SandboxPanel sandboxPanel = new SandboxPanel();
 	JButton mainMenuSandbox = new JButton("Main Menu");
 	
 	/**
@@ -93,9 +97,9 @@ public class MainGUI extends JFrame{
 		setupSandbox();
 		
 		// First panel added
-		master.add(main);
+		//master.add(main);
 		//master.add(scenario);
-		//master.add(options);
+		master.add(options);
 		cp.add(master);
 	}
 	
@@ -103,8 +107,14 @@ public class MainGUI extends JFrame{
 		startB.addActionListener(new startButtonListener());
 		scenarioB.addActionListener(new scenarioButtonListener());
 		optionB.addActionListener(new optionButtonListener());
+		//Sandbox
 		mainMenuSandbox.addActionListener(new mainMenuSandboxButtonListener());
+		//Options
 		mainMenuOptions.addActionListener(new mainMenuOptionsButtonListener());
+		submit.addActionListener(new submitButtonListener());
+		soundon.addActionListener(new soundOnButtonListener());
+		soundoff.addActionListener(new soundOffButtonListener());
+		//Scenario
 		mainMenuScenario.addActionListener(new mainMenuScenarioButtonListener());
 	}
 	
@@ -205,28 +215,43 @@ public class MainGUI extends JFrame{
 		options.setSize(950, 500);
 		options.setLocation(0,0);
 		
-		optionL.setSize(250, 20);
-		optionL.setLocation(365, 50);
+		Font optionLf = new Font("serif", Font.BOLD, 18);
+
+		optionL.setSize(250, 30);
+		optionL.setLocation(380, 50);
+		optionL.setFont(optionLf);
 		
 		mainMenuOptions.setSize(125,30);
 		mainMenuOptions.setLocation(50, 20);
 		
+		Font gravityLf = new Font("serif", Font.BOLD, 14);
+		
 		gravityL.setSize(250, 20);
-		gravityL.setLocation(365, 100);
+		gravityL.setLocation(275, 100);
+		gravityL.setFont(gravityLf);
 		
-		gravityText.setSize(150, 20);
-		gravityText.setLocation(365, 150);
+		gravityText.setSize(150, 30);
+		gravityText.setLocation(275, 130);
 		
-		soundon.setSize(200, 40);
-		soundon.setLocation(365, 180);
+		submit.setSize(100, 30);
+		submit.setLocation(435, 130);
 		
-		soundoff.setSize(200, 40);
-		soundoff.setLocation(575, 180);
+		soundL.setSize(250, 20);
+		soundL.setLocation(275, 165);
+		soundL.setFont(gravityLf);
+		
+		soundon.setSize(125, 40);
+		soundon.setLocation(275, 200);
+		
+		soundoff.setSize(125, 40);
+		soundoff.setLocation(410, 200);
 		
 		options.add(optionL);
 		options.add(mainMenuOptions);
 		options.add(gravityL);
 		options.add(gravityText);
+		options.add(submit);
+		options.add(soundL);
 		options.add(soundon);
 		options.add(soundoff);
 	}
@@ -321,13 +346,12 @@ public class MainGUI extends JFrame{
 	
 	//All listeners for Options window
 	/**
-	 * This action listener listens for a Main Menu Scenario button click and handles that
+	 * This action listener listens for a Main Menu Options button click and handles that
 	 * action.
 	 */
 	public class mainMenuOptionsButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println("Options Main menu was clicked");
 			master.removeAll();
 			master.add(main);
 			master.updateUI();
@@ -335,5 +359,36 @@ public class MainGUI extends JFrame{
 		}
 	}
 	
+	/**
+	 * This action listener listens for a Submit Options button click and handles that
+	 * action.
+	 */
+	public class submitButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+		}
+	}
 	
+	/**
+	 * This action listener listens for a Sound On Options button click and handles that
+	 * action.
+	 */
+	public class soundOnButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+		}
+	}
+	
+	/**
+	 * This action listener listens for a Sound Off Options button click and handles that
+	 * action.
+	 */
+	public class soundOffButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+		}
+	}
 }
