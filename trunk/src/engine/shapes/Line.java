@@ -37,7 +37,7 @@
  */
 package engine.shapes;
 
-import engine.vector.ROVector2f;
+import engine.vector.Vector;
 import engine.vector.Vector;
 
 /**
@@ -49,9 +49,9 @@ import engine.vector.Vector;
  */
 public strictfp class Line extends AbstractShape {
 	/** The start point of the line */
-	private ROVector2f start;
+	private Vector start;
 	/** The end point of the line */
-	private ROVector2f end;
+	private Vector end;
 	/** The vector between the two points */
 	private Vector vec;
 	/** The length of the line squared */
@@ -119,26 +119,8 @@ public strictfp class Line extends AbstractShape {
 	 * @param start The start point
 	 * @param end The end point
 	 */
-	public Line(ROVector2f start, ROVector2f end) {
+	public Line(Vector start, Vector end) {
 		super();
-		
-//		float width = Math.abs(end.getX()-start.getX());
-//		float height = Math.abs(end.getY()-start.getY());
-//		float xoffset = width/2;
-//		float yoffset = height/2;
-//		if (width < 10) {
-//			width = 10;
-//		}
-//		if (height < 10) {
-//			height = 50;
-//		}
-//		if (end.getY() < start.getY()) {
-//			yoffset = -yoffset;
-//		}
-//		if (end.getX() < start.getX()) {
-//			xoffset = -xoffset;
-//		}
-		//TODO: do this properly!
 		float radius = Math.max(start.length(), end.length());
 		bounds = new AABox(0,0,radius*2,radius*2);
 		
@@ -186,7 +168,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The start point of the line
 	 */
-	public ROVector2f getStart() {
+	public Vector getStart() {
 		return start;
 	}
 
@@ -195,7 +177,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The end point of the line
 	 */
-	public ROVector2f getEnd() {
+	public Vector getEnd() {
 		return end;
 	}
 	
@@ -223,7 +205,7 @@ public strictfp class Line extends AbstractShape {
 	 * @param start The start point of the line
 	 * @param end The end point of the line
 	 */
-	public void set(ROVector2f start, ROVector2f end) {
+	public void set(Vector start, Vector end) {
 		this.start = start;
 		this.end = end;
 		
@@ -239,7 +221,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The x direction of this line
 	 */
-	public float getDX() {
+	public float getXDirection() {
 		return end.getX() - start.getX();
 	}
 
@@ -248,7 +230,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The y direction of this line
 	 */
-	public float getDY() {
+	public float getYDirection() {
 		return end.getY() - start.getY();
 	}
 	
@@ -257,7 +239,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The x coordinate of the start point
 	 */
-	public float getX1() {
+	public float getXStart() {
 		return start.getX();
 	}
 
@@ -266,7 +248,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The y coordinate of the start point
 	 */
-	public float getY1() {
+	public float getYStart() {
 		return start.getY();
 	}
 
@@ -275,7 +257,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The x coordinate of the end point
 	 */
-	public float getX2() {
+	public float getXEnd() {
 		return end.getX();
 	}
 
@@ -284,7 +266,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @return The y coordinate of the end point
 	 */
-	public float getY2() {
+	public float getYEnd() {
 		return end.getY();
 	}
 	
@@ -294,7 +276,7 @@ public strictfp class Line extends AbstractShape {
 	 * @param point The point from which we want the distance
 	 * @return The distance from the line to the point
 	 */
-	public float distance(ROVector2f point) {
+	public float distance(Vector point) {
 		return (float) Math.sqrt(distanceSquared(point));
 	}
 	
@@ -304,7 +286,7 @@ public strictfp class Line extends AbstractShape {
 	 * @param point The point from which we want the distance
 	 * @return The distance squared from the line to the point
 	 */
-	public float distanceSquared(ROVector2f point) {
+	public float distanceSquared(Vector point) {
 		getClosestPoint(point, closest);
 		closest.sub(point);
 		
@@ -319,7 +301,7 @@ public strictfp class Line extends AbstractShape {
 	 * @param point The point which we want to project
 	 * @param result The point on the line closest to the given point
 	 */
-	public void getClosestPoint(ROVector2f point, Vector result) {
+	public void getClosestPoint(Vector point, Vector result) {
 		loc.set(point);
 		loc.sub(start);
 		
@@ -361,7 +343,7 @@ public strictfp class Line extends AbstractShape {
 	 * @param rotation The rotation of the line in radians
 	 * @return The newly created line
 	 */
-	public Line getPositionedLine(ROVector2f displacement, float rotation) {
+	public Line getPositionedLine(Vector displacement, float rotation) {
 		Vector[] verts = getVertices(displacement, rotation);
 		Line line = new Line(verts[0], verts[1]);
 		
@@ -375,18 +357,18 @@ public strictfp class Line extends AbstractShape {
 	 * @param rotation The rotation of the line in radians
 	 * @return The two endpoints of this line
 	 */
-	public Vector[] getVertices(ROVector2f displacement, float rotation) {
+	public Vector[] getVertices(Vector displacement, float rotation) {
 		float cos = (float) Math.cos(rotation);
 		float sin = (float) Math.sin(rotation);
 		
 		Vector[] endPoints = new Vector[2];
 		endPoints[0] = new Vector(//getX1(), getY1());
-				getX1() * cos - getY1() * sin,
-				getY1() * cos + getX1() * sin);
+				getXStart() * cos - getYStart() * sin,
+				getYStart() * cos + getXStart() * sin);
 		endPoints[0].add(displacement);
 		endPoints[1] = new Vector(//getX2(), getY2());
-				getX2() * cos - getY2() * sin,
-				getY2() * cos + getX2() * sin);
+				getXEnd() * cos - getYEnd() * sin,
+				getYEnd() * cos + getXEnd() * sin);
 		endPoints[1].add(displacement);
 		
 		return endPoints;
@@ -397,7 +379,7 @@ public strictfp class Line extends AbstractShape {
 	 * 
 	 * @param v The amount to move the line
 	 */
-	public void move(ROVector2f v) {
+	public void move(Vector v) {
 		Vector temp = new Vector(start);
 		temp.add(v);
 		start = temp;

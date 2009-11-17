@@ -92,9 +92,9 @@ public strictfp class LineBoxCollider implements Collider {
 		Line line = (Line) bodyA.getShape();
 		Box box = (Box) bodyB.getShape();
 		
-		Vector lineVec = new Vector(line.getDX(), line.getDY());
+		Vector lineVec = new Vector(line.getXDirection(), line.getDY());
 		lineVec.normalise();	
-		Vector axis = new Vector(-line.getDY(), line.getDX());
+		Vector axis = new Vector(-line.getDY(), line.getXDirection());
 		axis.normalise();
 		
 		Vector res = new Vector();
@@ -116,7 +116,7 @@ public strictfp class LineBoxCollider implements Collider {
 			pts[i].projectOntoUnit(axis, res);
 			tangent[i] = getProp(res, axis);
 			pts[i].projectOntoUnit(lineVec, res);
-			proj[i] = getProp(res, new Vector(line.getDX(), line.getDY()));
+			proj[i] = getProp(res, new Vector(line.getXDirection(), line.getDY()));
 			
 			if ((proj[i] >= 1) || (proj[i] <= 0)) {
 				outOfRange++;
