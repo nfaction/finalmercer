@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 import engine.BodyList;
 import engine.shapes.Shape;
-import engine.vector.ROVector2f;
 import engine.vector.Vector;
 
 
 /**
- * A single body within the physics model
+ * A body in the physics model
  * 
- * @author Kevin Glass
+ * @author Jeffery D. Ahern
  */
 public strictfp class Body {
 	/** The next ID to be assigned */
@@ -774,7 +773,7 @@ public strictfp class Body {
 	 * 
 	 * @return The position of this body
 	 */
-	public ROVector2f getPosition() {
+	public Vector getPosition() {
 		return position;
 	}
 	
@@ -783,7 +782,7 @@ public strictfp class Body {
 	 * 
 	 * @return The last position of this body
 	 */
-	public ROVector2f getLastPosition() {
+	public Vector getLastPosition() {
 		return lastPosition;
 	}
 	
@@ -792,7 +791,7 @@ public strictfp class Body {
 	 * 
 	 * @return The change in position in the last update 
 	 */
-	public ROVector2f getPositionDelta() {
+	public Vector getPositionDelta() {
 		Vector vec = new Vector(getPosition());
 		vec.sub(getLastPosition());
 		
@@ -805,7 +804,7 @@ public strictfp class Body {
 	 * 
 	 * @return The last velocity
 	 */
-	public ROVector2f getLastVelocity() {
+	public Vector getLastVelocity() {
 		return lastVelocity;
 	}
 
@@ -814,7 +813,7 @@ public strictfp class Body {
 	 * 
 	 * @return The change in velocity in the last update 
 	 */
-	public ROVector2f getVelocityDelta() {
+	public Vector getVelocityDelta() {
 		Vector vec = new Vector(getVelocity());
 		vec.sub(getLastVelocity());
 		
@@ -866,7 +865,7 @@ public strictfp class Body {
 	 * @param delta The amount to change the position by
 	 * @param scale The amount to scale the delta by
 	 */
-	public void adjustPosition(ROVector2f delta, float scale) {
+	public void adjustPosition(Vector delta, float scale) {
 		lastPosition.set(position);
 		position.x += delta.getX() * scale;
 		position.y += delta.getY() * scale;
@@ -917,7 +916,7 @@ public strictfp class Body {
 	 * 
 	 * @return The velocity of this body
 	 */
-	public ROVector2f getVelocity() {
+	public Vector getVelocity() {
 		return velocity;
 	}
 	
@@ -972,7 +971,7 @@ public strictfp class Body {
 	 * 
 	 * @return The force applied to this body
 	 */
-	public ROVector2f getForce() {
+	public Vector getForce() {
 		return force;
 	}
 
@@ -1033,7 +1032,7 @@ public strictfp class Body {
 	 * 
 	 * @return The bias velocity of this body
 	 */
-	public ROVector2f getBiasedVelocity() {
+	public Vector getBiasedVelocity() {
 		return biasedVelocity;
 	}
 	

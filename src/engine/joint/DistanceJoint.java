@@ -42,7 +42,7 @@ package engine.joint;
 
 import engine.body.Body;
 import engine.vector.MathUtil;
-import engine.vector.Matrix2f;
+import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
@@ -68,7 +68,7 @@ public class DistanceJoint implements Joint {
 	/** Distance Vector*/
 	protected Vector dp;
 	/** The matrix for applying impulse */
-	protected Matrix2f M;
+	protected Vector2D M;
 	/** The rotation of the first body */
 	protected Vector r1;
 	/** The rotation of the second body */
@@ -162,30 +162,30 @@ public class DistanceJoint implements Joint {
 	 * @see engine.joint.Joint#preStep(float)
 	 */
 	public void preStep(float invDT) {
-		Matrix2f rot1 = new Matrix2f(body1.getRotation());
-		Matrix2f rot2 = new Matrix2f(body2.getRotation());
+		Vector2D rot1 = new Vector2D(body1.getRotation());
+		Vector2D rot2 = new Vector2D(body2.getRotation());
 		r1 = MathUtil.mul(rot1, anchor1);
 		r2 = MathUtil.mul(rot2, anchor2);
 
-		Matrix2f K1 = new Matrix2f();
+		Vector2D K1 = new Vector2D();
 		K1.col1.x = body1.getInvMass() + body2.getInvMass();
 		K1.col2.x = 0.0f;
 		K1.col1.y = 0.0f;
 		K1.col2.y = body1.getInvMass() + body2.getInvMass();
 
-		Matrix2f K2 = new Matrix2f();
+		Vector2D K2 = new Vector2D();
 		K2.col1.x = body1.getInvI() * r1.y * r1.y;
 		K2.col2.x = -body1.getInvI() * r1.x * r1.y;
 		K2.col1.y = -body1.getInvI() * r1.x * r1.y;
 		K2.col2.y = body1.getInvI() * r1.x * r1.x;
 
-		Matrix2f K3 = new Matrix2f();
+		Vector2D K3 = new Vector2D();
 		K3.col1.x = body2.getInvI() * r2.y * r2.y;
 		K3.col2.x = -body2.getInvI() * r2.x * r2.y;
 		K3.col1.y = -body2.getInvI() * r2.x * r2.y;
 		K3.col2.y = body2.getInvI() * r2.x * r2.x;
 
-		Matrix2f K = MathUtil.add(MathUtil.add(K1, K2), K3);
+		Vector2D K = MathUtil.add(MathUtil.add(K1, K2), K3);
 
 		Vector p1 = new Vector(body1.getPosition());
 		p1.add(r1);

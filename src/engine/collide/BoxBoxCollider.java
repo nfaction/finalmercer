@@ -44,8 +44,7 @@ import engine.Contact;
 import engine.body.Body;
 import engine.shapes.Box;
 import engine.vector.MathUtil;
-import engine.vector.Matrix2f;
-import engine.vector.ROVector2f;
+import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
@@ -189,12 +188,12 @@ public strictfp class BoxBoxCollider implements Collider {
 	 * @param normal
 	 */
 	private void computeIncidentEdge(ClipVertex[] c, 
-									ROVector2f h, 
-									ROVector2f pos,
-									Matrix2f rot, Vector normal) {
+									Vector h, 
+									Vector pos,
+									Vector2D rot, Vector normal) {
 		// The normal is from the reference box. Convert it
 		// to the incident boxe's frame and flip sign.
-		Matrix2f rotT = rot.transpose();
+		Vector2D rotT = rot.transpose();
 		Vector n = MathUtil.scale(MathUtil.mul(rotT,normal),-1);
 		Vector nAbs = MathUtil.abs(n);
 
@@ -276,14 +275,14 @@ public strictfp class BoxBoxCollider implements Collider {
 		//Vector2f hA = MathUtil.scale(bodyA.getSize(), 0.5f);
 		//Vector2f hB = MathUtil.scale(bodyB.getSize(), 0.5f);
 
-		ROVector2f posA = bodyA.getPosition();
-		ROVector2f posB = bodyB.getPosition();
+		Vector posA = bodyA.getPosition();
+		Vector posB = bodyB.getPosition();
 
-		Matrix2f rotA = new Matrix2f(bodyA.getRotation());
-		Matrix2f rotB = new Matrix2f(bodyB.getRotation());
+		Vector2D rotA = new Vector2D(bodyA.getRotation());
+		Vector2D rotB = new Vector2D(bodyB.getRotation());
 
-		Matrix2f RotAT = rotA.transpose();
-		Matrix2f RotBT = rotB.transpose();
+		Vector2D RotAT = rotA.transpose();
+		Vector2D RotBT = rotB.transpose();
 
 		// unused?
 //		Vector2f a1 = rotA.col1;
@@ -295,9 +294,9 @@ public strictfp class BoxBoxCollider implements Collider {
 		Vector dA = MathUtil.mul(RotAT,dp);
 		Vector dB = MathUtil.mul(RotBT,dp);
 
-		Matrix2f C = MathUtil.mul(RotAT,rotB);
-		Matrix2f absC = MathUtil.abs(C);
-		Matrix2f absCT = absC.transpose();
+		Vector2D C = MathUtil.mul(RotAT,rotB);
+		Vector2D absC = MathUtil.abs(C);
+		Vector2D absCT = absC.transpose();
 
 		// Box A faces
 		Vector faceA = MathUtil.abs(dA);

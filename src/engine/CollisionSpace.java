@@ -3,7 +3,7 @@ package engine;
 import java.util.ArrayList;
 
 import engine.body.Body;
-import engine.vector.ROVector2f;
+import engine.vector.Vector;
 
 
 /**
@@ -122,7 +122,7 @@ public class CollisionSpace implements CollisionContext {
 	 * @param normal The normal of collision
 	 * @param depth The penetration of of the contact
 	 */
-	private void notifyCollision(Body body1, Body body2, ROVector2f point, ROVector2f normal, float depth) {
+	private void notifyCollision(Body body1, Body body2, Vector point, Vector normal, float depth) {
 		if (listeners.size() == 0) {
 			return;
 		}

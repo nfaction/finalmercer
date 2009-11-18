@@ -29,8 +29,7 @@ import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.strategies.QuadSpaceStrategy;
 import engine.vector.MathUtil;
-import engine.vector.Matrix2f;
-import engine.vector.ROVector2f;
+import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 
@@ -342,14 +341,14 @@ public abstract class AbstractDemo {
 			Body b1 = joint.getBody1();
 			Body b2 = joint.getBody2();
 	
-			Matrix2f R1 = new Matrix2f(b1.getRotation());
-			Matrix2f R2 = new Matrix2f(b2.getRotation());
+			Vector2D R1 = new Vector2D(b1.getRotation());
+			Vector2D R2 = new Vector2D(b2.getRotation());
 	
-			ROVector2f x1 = b1.getPosition();
+			Vector x1 = b1.getPosition();
 			Vector p1 = MathUtil.mul(R1,joint.getAnchor1());
 			p1.add(x1);
 	
-			ROVector2f x2 = b2.getPosition();
+			Vector x2 = b2.getPosition();
 			Vector p2 = MathUtil.mul(R2,joint.getAnchor2());
 			p2.add(x2);
 			
@@ -374,14 +373,14 @@ public abstract class AbstractDemo {
 			Vector VA = new Vector((float) Math.cos(RA), (float) Math.sin(RA));
 			Vector VB = new Vector((float) Math.cos(RB), (float) Math.sin(RB));
 			
-			Matrix2f R1 = new Matrix2f(b1.getRotation());
-			Matrix2f R2 = new Matrix2f(b2.getRotation());
+			Vector2D R1 = new Vector2D(b1.getRotation());
+			Vector2D R2 = new Vector2D(b2.getRotation());
 			
-			ROVector2f x1 = b1.getPosition();
+			Vector x1 = b1.getPosition();
 			Vector p1 = MathUtil.mul(R1,angleJoint.getAnchor1());
 			p1.add(x1);
 	
-			ROVector2f x2 = b2.getPosition();
+			Vector x2 = b2.getPosition();
 			Vector p2 = MathUtil.mul(R2,angleJoint.getAnchor2());
 			p2.add(x2);
 			
@@ -395,14 +394,14 @@ public abstract class AbstractDemo {
 			Body b1 = joint.getBody1();
 			Body b2 = joint.getBody2();
 	
-			Matrix2f R1 = new Matrix2f(b1.getRotation());
-			Matrix2f R2 = new Matrix2f(b2.getRotation());
+			Vector2D R1 = new Vector2D(b1.getRotation());
+			Vector2D R2 = new Vector2D(b2.getRotation());
 	
-			ROVector2f x1 = b1.getPosition();
+			Vector x1 = b1.getPosition();
 			Vector p1 = MathUtil.mul(R1,joint.getLocalAnchor1());
 			p1.add(x1);
 	
-			ROVector2f x2 = b2.getPosition();
+			Vector x2 = b2.getPosition();
 			Vector p2 = MathUtil.mul(R2,joint.getLocalAnchor2());
 			p2.add(x2);
 	
@@ -418,14 +417,14 @@ public abstract class AbstractDemo {
 			Body b1 = joint.getBody1();
 			Body b2 = joint.getBody2();
 	
-			Matrix2f R1 = new Matrix2f(b1.getRotation());
-			Matrix2f R2 = new Matrix2f(b2.getRotation());
+			Vector2D R1 = new Vector2D(b1.getRotation());
+			Vector2D R2 = new Vector2D(b2.getRotation());
 	
-			ROVector2f x1 = b1.getPosition();
+			Vector x1 = b1.getPosition();
 			Vector p1 = MathUtil.mul(R1,joint.getAnchor1());
 			p1.add(x1);
 	
-			ROVector2f x2 = b2.getPosition();
+			Vector x2 = b2.getPosition();
 			Vector p2 = MathUtil.mul(R2,joint.getAnchor2());
 			p2.add(x2);
 			
@@ -438,14 +437,14 @@ public abstract class AbstractDemo {
 			Body b1 = joint.getBody1();
 			Body b2 = joint.getBody2();
 	
-			Matrix2f R1 = new Matrix2f(b1.getRotation());
-			Matrix2f R2 = new Matrix2f(b2.getRotation());
+			Vector2D R1 = new Vector2D(b1.getRotation());
+			Vector2D R2 = new Vector2D(b2.getRotation());
 	
-			ROVector2f x1 = b1.getPosition();
+			Vector x1 = b1.getPosition();
 			Vector p1 = MathUtil.mul(R1,joint.getLocalAnchor1());
 			p1.add(x1);
 	
-			ROVector2f x2 = b2.getPosition();
+			Vector x2 = b2.getPosition();
 			Vector p2 = MathUtil.mul(R2,joint.getLocalAnchor2());
 			p2.add(x2);
 			

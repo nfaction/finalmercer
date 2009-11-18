@@ -37,7 +37,6 @@
  */
 package engine.collide;
 
-import engine.vector.ROVector2f;
 import engine.vector.Vector;
 
 /**
@@ -125,7 +124,7 @@ public class EdgeSweep {
 	 * 
 	 * @param sweepDir The direction in which to sweep
 	 */
-	public EdgeSweep(ROVector2f sweepDir) {
+	public EdgeSweep(Vector sweepDir) {
 		this.sweepDir = new Vector(sweepDir);
 	}
 	
@@ -530,7 +529,7 @@ public class EdgeSweep {
 	 * 
 	 * @return the direction of this edgesweep
 	 */
-	public ROVector2f getSweepDir() {
+	public Vector getSweepDir() {
 		return sweepDir;
 	}
 }

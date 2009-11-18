@@ -42,7 +42,7 @@ package engine.joint;
 
 import engine.body.Body;
 import engine.vector.MathUtil;
-import engine.vector.Matrix2f;
+import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
@@ -96,8 +96,8 @@ public class FixedAngleJoint implements Joint {
 	 * @see engine.joint.Joint#applyImpulse()
 	 */
 	public void applyImpulse() {
-		Matrix2f rot1 = new Matrix2f(body1.getRotation());
-		Matrix2f rot2 = new Matrix2f(body2.getRotation());
+		Vector2D rot1 = new Vector2D(body1.getRotation());
+		Vector2D rot2 = new Vector2D(body2.getRotation());
 		Vector r1 = MathUtil.mul(rot1, anchor1);
 		Vector r2 = MathUtil.mul(rot2, anchor2);
 
@@ -167,8 +167,8 @@ public class FixedAngleJoint implements Joint {
 
 		Vector VA = new Vector((float) Math.cos(RA), (float) Math.sin(RA));
 
-		Matrix2f rot1 = new Matrix2f(body1.getRotation());
-		Matrix2f rot2 = new Matrix2f(body2.getRotation());
+		Vector2D rot1 = new Vector2D(body1.getRotation());
+		Vector2D rot2 = new Vector2D(body2.getRotation());
 		Vector r1 = MathUtil.mul(rot1, anchor1);
 		Vector r2 = MathUtil.mul(rot2, anchor2);
 

@@ -1,7 +1,5 @@
 package entities;
 
-import engine.World;
-
 
 
 public abstract class Ball extends Entities {
