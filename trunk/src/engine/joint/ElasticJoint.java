@@ -1,49 +1,8 @@
-/*
- * Phys2D - a 2D physics engine based on the work of Erin Catto. The
- * original source remains:
- * 
- * Copyright (c) 2006 Erin Catto http://www.gphysics.com
- * 
- * This source is provided under the terms of the BSD License.
- * 
- * Copyright (c) 2006, Phys2D
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or 
- * without modification, are permitted provided that the following 
- * conditions are met:
- * 
- *  * Redistributions of source code must retain the above 
- *    copyright notice, this list of conditions and the 
- *    following disclaimer.
- *  * Redistributions in binary form must reproduce the above 
- *    copyright notice, this list of conditions and the following 
- *    disclaimer in the documentation and/or other materials provided 
- *    with the distribution.
- *  * Neither the name of the Phys2D/New Dawn Software nor the names of 
- *    its contributors may be used to endorse or promote products 
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
- * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- */
 package engine.joint;
 
 import engine.body.Body;
 import engine.vector.MathUtil;
-import engine.vector.Matrix2f;
-import engine.vector.ROVector2f;
+import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
@@ -65,7 +24,7 @@ public strictfp class ElasticJoint implements Joint {
 	private Body body2;
 
 	/** The matrix describing the connection between two bodies */
-	private Matrix2f M = new Matrix2f();
+	private Vector2D M = new Vector2D();
 	/** The local anchor for the first body */
 	private Vector localAnchor1 = new Vector();
 	/** The local anchor for the second body */
@@ -113,7 +72,7 @@ public strictfp class ElasticJoint implements Joint {
 	 * 
 	 * @return The anchor for the first body
 	 */
-	public ROVector2f getLocalAnchor1() {
+	public Vector getLocalAnchor1() {
 		return localAnchor1;
 	}
 
@@ -122,7 +81,7 @@ public strictfp class ElasticJoint implements Joint {
 	 * 
 	 * @return The anchor for the second body
 	 */
-	public ROVector2f getLocalAnchor2() {
+	public Vector getLocalAnchor2() {
 		return localAnchor2;
 	}
 	
@@ -154,10 +113,10 @@ public strictfp class ElasticJoint implements Joint {
 		body1 = b1;
 		body2 = b2;
 
-		Matrix2f rot1 = new Matrix2f(body1.getRotation());
-		Matrix2f rot2 = new Matrix2f(body2.getRotation());
-		Matrix2f rot1T = rot1.transpose();
-		Matrix2f rot2T = rot2.transpose();
+		Vector2D rot1 = new Vector2D(body1.getRotation());
+		Vector2D rot2 = new Vector2D(body2.getRotation());
+		Vector2D rot1T = rot1.transpose();
+		Vector2D rot2T = rot2.transpose();
 
 		Vector a1 = new Vector(body2.getPosition());
 		a1.sub(body1.getPosition());
@@ -178,8 +137,8 @@ public strictfp class ElasticJoint implements Joint {
 	 */
 	public void preStep(float invDT) {
 		// Pre-compute anchors, mass matrix, and bias.
-		Matrix2f rot1 = new Matrix2f(body1.getRotation());
-		Matrix2f rot2 = new Matrix2f(body2.getRotation());
+		Vector2D rot1 = new Vector2D(body1.getRotation());
+		Vector2D rot2 = new Vector2D(body2.getRotation());
 
 		r1 = MathUtil.mul(rot1,localAnchor1);
 		r2 = MathUtil.mul(rot2,localAnchor2);
@@ -188,19 +147,19 @@ public strictfp class ElasticJoint implements Joint {
 		// invM = [(1/m1 + 1/m2) * eye(2) - skew(r1) * invI1 * skew(r1) - skew(r2) * invI2 * skew(r2)]
 		//      = [1/m1+1/m2     0    ] + invI1 * [r1.y*r1.y -r1.x*r1.y] + invI2 * [r1.y*r1.y -r1.x*r1.y]
 		//        [    0     1/m1+1/m2]           [-r1.x*r1.y r1.x*r1.x]           [-r1.x*r1.y r1.x*r1.x]
-		Matrix2f K1 = new Matrix2f();
+		Vector2D K1 = new Vector2D();
 		K1.col1.x = body1.getInvMass() + body2.getInvMass();	K1.col2.x = 0.0f;
 		K1.col1.y = 0.0f;								K1.col2.y = body1.getInvMass() + body2.getInvMass();
 
-		Matrix2f K2 = new Matrix2f();
+		Vector2D K2 = new Vector2D();
 		K2.col1.x =  body1.getInvI() * r1.y * r1.y;		K2.col2.x = -body1.getInvI() * r1.x * r1.y;
 		K2.col1.y = -body1.getInvI() * r1.x * r1.y;		K2.col2.y =  body1.getInvI() * r1.x * r1.x;
 
-		Matrix2f K3 = new Matrix2f();
+		Vector2D K3 = new Vector2D();
 		K3.col1.x =  body2.getInvI() * r2.y * r2.y;		K3.col2.x = -body2.getInvI() * r2.x * r2.y;
 		K3.col1.y = -body2.getInvI() * r2.x * r2.y;		K3.col2.y =  body2.getInvI() * r2.x * r2.x;
 
-		Matrix2f K = MathUtil.add(MathUtil.add(K1,K2),K3);
+		Vector2D K = MathUtil.add(MathUtil.add(K1,K2),K3);
 		M = K.invert();
 
 		Vector p1 = new Vector(body1.getPosition());

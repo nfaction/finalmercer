@@ -59,7 +59,7 @@ public final strictfp class MathUtil {
 	 * @param scale The amount to scale the vector by
 	 * @return A newly created vector - a scaled version of the new vector
 	 */
-	public static Vector scale(ROVector2f a, float scale) {
+	public static Vector scale(Vector a, float scale) {
 		Vector temp = new Vector(a);
 		temp.scale(scale);
 		
@@ -73,7 +73,7 @@ public final strictfp class MathUtil {
 	 * @param b The vector to subtract
 	 * @return A newly created containing the result
 	 */
-	public static Vector sub(ROVector2f a,ROVector2f b) {
+	public static Vector sub(Vector a,Vector b) {
 		Vector temp = new Vector(a);
 		temp.sub(b);
 		
@@ -98,7 +98,7 @@ public final strictfp class MathUtil {
 	 * @param v The vector to multiple by
 	 * @return A newly created vector containing the resultant vector
 	 */
-	public static Vector mul(Matrix2f A, ROVector2f v)
+	public static Vector mul(Vector2D A, Vector v)
 	{
 		return new Vector(A.col1.x * v.getX() + A.col2.x * v.getY(), A.col1.y * v.getX() + A.col2.y * v.getY());
 	}
@@ -110,9 +110,9 @@ public final strictfp class MathUtil {
 	 * @param B The second matrix
 	 * @return A newly created matrix containing the result
 	 */
-	public static Matrix2f mul(Matrix2f A, Matrix2f B) 
+	public static Vector2D mul(Vector2D A, Vector2D B) 
 	{
-		return new Matrix2f(mul(A,B.col1), mul(A,B.col2));
+		return new Vector2D(mul(A,B.col1), mul(A,B.col2));
 	}
 	
 	/**
@@ -121,8 +121,8 @@ public final strictfp class MathUtil {
 	 * @param A The matrix to make absolute
 	 * @return A newly created absolute matrix
 	 */
-	public static Matrix2f abs(Matrix2f A) {
-		return new Matrix2f(abs(A.col1), abs(A.col2));
+	public static Vector2D abs(Vector2D A) {
+		return new Vector2D(abs(A.col1), abs(A.col2));
 	}
 
 	/**
@@ -143,14 +143,14 @@ public final strictfp class MathUtil {
 	 * @param B The second matrix
 	 * @return A newly created matrix containing the result
 	 */
-	public static Matrix2f add(Matrix2f A, Matrix2f B)
+	public static Vector2D add(Vector2D A, Vector2D B)
 	{
 		Vector temp1 = new Vector(A.col1);
 		temp1.add(B.col1);
 		Vector temp2 = new Vector(A.col2);
 		temp2.add(B.col2);
 		
-		return new Matrix2f(temp1,temp2);
+		return new Vector2D(temp1,temp2);
 	}
 	
 	/**
@@ -214,7 +214,7 @@ public final strictfp class MathUtil {
 	 * @param y endpoint of the line
 	 * @return a (normalised) normal
 	 */
-	public static Vector getNormal(ROVector2f x, ROVector2f y) {
+	public static Vector getNormal(Vector x, Vector y) {
 		Vector normal = new Vector(y);
 		normal.sub(x);
 		

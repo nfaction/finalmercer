@@ -1,7 +1,7 @@
 package engine;
 
 import engine.body.Body;
-import engine.vector.ROVector2f;
+import engine.vector.Vector;
 
 /**
  * An event describing a collision between two bodies
@@ -16,9 +16,9 @@ public class CollisionEvent {
 	/** The second body in the collision */
 	private Body body2;
 	/** The point of the collision */
-	private ROVector2f point;
+	private Vector point;
 	/** The normal at the collision */
-	private ROVector2f normal;
+	private Vector normal;
 	/** The penetration caused by the collision */
 	private float depth;
 	
@@ -32,7 +32,7 @@ public class CollisionEvent {
 	 * @param normal The normal of collision
 	 * @param depth The penetration of of the contact
 	 */
-	public CollisionEvent(float time, Body body1, Body body2, ROVector2f point, ROVector2f normal, float depth) {
+	public CollisionEvent(float time, Body body1, Body body2, Vector point, Vector normal, float depth) {
 		this.time = time;
 		this.body1 = body1;
 		this.body2 = body2;
@@ -73,7 +73,7 @@ public class CollisionEvent {
 	 * 
 	 * @return The normal at the collision point
 	 */
-	public ROVector2f getNormal() {
+	public Vector getNormal() {
 		return normal;
 	}
 	
@@ -82,7 +82,7 @@ public class CollisionEvent {
 	 * 
 	 * @return The point where the collision occured
 	 */
-	public ROVector2f getPoint() {
+	public Vector getPoint() {
 		return point;
 	}
 	

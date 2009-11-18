@@ -6,7 +6,7 @@ import engine.joint.DistanceJoint;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.vector.MathUtil;
-import engine.vector.Matrix2f;
+import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
@@ -42,12 +42,12 @@ public class JointTest extends AbstractDemo {
 		final int N = chains;
 
 		final Vector p1 = new Vector(body1.getPosition());
-		p1.add(MathUtil.mul(new Matrix2f(body1.getRotation()), anchor1));
+		p1.add(MathUtil.mul(new Vector2D(body1.getRotation()), anchor1));
 
 		Vector p2 = null;
 		if (body2 != null) {
 			p2 = new Vector(body2.getPosition());
-			p2.add(MathUtil.mul(new Matrix2f(body2.getRotation()), anchor2));
+			p2.add(MathUtil.mul(new Vector2D(body2.getRotation()), anchor2));
 		} else {
 			p2 = new Vector(p1);
 			p2.add(new Vector(chains * 20, 0));

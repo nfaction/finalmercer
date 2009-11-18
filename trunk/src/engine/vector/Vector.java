@@ -45,7 +45,7 @@ package engine.vector;
  * 
  * @author Kevin Glass
  */
-public strictfp class Vector implements ROVector2f {
+public strictfp class Vector {
 	/** The x component of this vector */
 	public float x;
 	/** The y component of this vector */
@@ -58,14 +58,14 @@ public strictfp class Vector implements ROVector2f {
 	}
 	
 	/**
-	 * @see engine.vector.ROVector2f#getX()
+	 * @see engine.vector.Vector#getX()
 	 */
 	public float getX() {
 		return x;
 	}
 	
 	/**
-	 * @see engine.vector.ROVector2f#getY()
+	 * @see engine.vector.Vector#getY()
 	 */
 	public float getY() {
 		return y;
@@ -76,7 +76,7 @@ public strictfp class Vector implements ROVector2f {
 	 * 
 	 * @param other The other vector to copy into this one
 	 */
-	public Vector(ROVector2f other) {
+	public Vector(Vector other) {
 		this(other.getX(),other.getY());
 	}
 	
@@ -96,14 +96,14 @@ public strictfp class Vector implements ROVector2f {
 	 * 
 	 * @param other The values to set into the vector
 	 */
-	public void set(ROVector2f other) {
+	public void set(Vector other) {
 		set(other.getX(),other.getY());
 	}
 	
 	/**
-	 * @see engine.vector.ROVector2f#dot(engine.vector.ROVector2f)
+	 * @see engine.vector.Vector#dot(engine.vector.Vector)
 	 */
-	public float dot(ROVector2f other) {
+	public float dot(Vector other) {
 		return (x * other.getX()) + (y * other.getY());
 	}
 	
@@ -132,7 +132,7 @@ public strictfp class Vector implements ROVector2f {
 	 * 
 	 * @param v The vector to add
 	 */
-	public void add(ROVector2f v)
+	public void add(Vector v)
 	{
 		x += v.getX(); 
 		y += v.getY();
@@ -143,7 +143,7 @@ public strictfp class Vector implements ROVector2f {
 	 * 
 	 * @param v The vector subtract
 	 */
-	public void sub(ROVector2f v)
+	public void sub(Vector v)
 	{
 		x -= v.getX(); 
 		y -= v.getY();
@@ -184,7 +184,7 @@ public strictfp class Vector implements ROVector2f {
 	}
 	
 	/**
-	 * @see engine.vector.ROVector2f#length()
+	 * @see engine.vector.Vector#length()
 	 */
 	public float length() 
 	{
@@ -197,7 +197,7 @@ public strictfp class Vector implements ROVector2f {
 	 * @param b The vector to project onto
 	 * @param result The projected vector
 	 */
-	public void projectOntoUnit(ROVector2f b, Vector result) {
+	public void projectOntoUnit(Vector b, Vector result) {
 		float dp = b.dot(this);
 		
 		result.x = dp * b.getX();
@@ -217,7 +217,7 @@ public strictfp class Vector implements ROVector2f {
 	 * @param other The other point we're measuring to
 	 * @return The distance to the other point
 	 */
-	public float distance(ROVector2f other) {
+	public float distance(Vector other) {
 		return (float) Math.sqrt(distanceSquared(other));
 	}
 
@@ -227,7 +227,7 @@ public strictfp class Vector implements ROVector2f {
 	 * @param other The other point we're measuring to
 	 * @return The distance to the other point
 	 */
-	public float distanceSquared(ROVector2f other) {
+	public float distanceSquared(Vector other) {
 		float dx = other.getX() - getX();
 		float dy = other.getY() - getY();
 		
@@ -244,7 +244,7 @@ public strictfp class Vector implements ROVector2f {
 	 * @param delta The allowed error
 	 * @return True iff this vector is equal to other, with a tolerance defined by delta
 	 */
-	public boolean equalsDelta(ROVector2f other, float delta) {
+	public boolean equalsDelta(Vector other, float delta) {
 		return (other.getX() - delta < x &&
 				other.getX() + delta > x &&
 				other.getY() - delta < y &&

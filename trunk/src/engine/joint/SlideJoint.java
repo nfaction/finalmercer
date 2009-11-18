@@ -42,7 +42,7 @@ package engine.joint;
 
 import engine.body.Body;
 import engine.vector.MathUtil;
-import engine.vector.Matrix2f;
+import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
@@ -176,8 +176,8 @@ public class SlideJoint implements Joint {
 	public void preStep(float invDT) {
 		float biasFactor=0.01f;
 		float biasImpulse=0.0f;
-		Matrix2f rot1 = new Matrix2f(body1.getRotation());
-		Matrix2f rot2 = new Matrix2f(body2.getRotation());
+		Vector2D rot1 = new Vector2D(body1.getRotation());
+		Vector2D rot2 = new Vector2D(body2.getRotation());
 
 		 r1 = MathUtil.mul(rot1,anchor1);
 		 r2 = MathUtil.mul(rot2,anchor2);
