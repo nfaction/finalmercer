@@ -97,10 +97,10 @@ public class MainGUI extends JFrame{
 		setupSandbox();
 		
 		// First panel added
-		//master.add(main);
+		master.add(main);
 		//master.add(scenario);
 		//master.add(options);
-		master.add(sandbox);
+		//master.add(sandbox);
 		cp.add(master);
 	}
 	
