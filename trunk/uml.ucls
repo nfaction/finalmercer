@@ -1,177 +1,947 @@
 <class-diagram version="0.9.86" automaticImage="JPEG" icons="true" always-add-relationships="true" 
   generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.body.Body" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/body/Body.java" binary="false">    
-    <position x="329" y="-205" width="271" height="681"/>    
-    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.body.Body" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/body/Body.java" binary="false">    
+    <position x="750" y="687" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.BodyList" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/BodyList.java" binary="false">    
-    <position x="98" y="-207" width="220" height="255"/>    
-    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <interface corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Shape" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false">    
-    <position x="672" y="613" width="140" height="99"/>    
+  <interface corner="BOTTOM_RIGHT" language="java" name="engine.joint.Joint" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false">    
+    <position x="971" y="301" width="865" height="173"/>    
     <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </interface>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.StaticBody" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/StaticBody.java" binary="false">    
-    <position x="744" y="287" width="-1" height="-1"/>    
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.joint.FixedAngleJoint" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/joint/FixedAngleJoint.java" binary="false">    
+    <position x="1210" y="-144" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.AbstractShape" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false">    
-    <position x="512" y="662" width="-1" height="-1"/>    
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.joint.FixedJoint" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/joint/FixedJoint.java" binary="false">    
+    <position x="1642" y="-231" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Box" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/shapes/Box.java" binary="false">    
-    <position x="-143" y="623" width="233" height="135"/>    
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.joint.ConstrainingJoint" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/joint/ConstrainingJoint.java" binary="false">    
+    <position x="1436" y="-228" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.joint.BasicJoint" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/joint/BasicJoint.java" binary="false">    
+    <position x="984" y="-134" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.joint.AngleJoint" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/joint/AngleJoint.java" binary="false">    
+    <position x="1868" y="-202" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.AbstractShape" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/shapes/AbstractShape.java" binary="false">    
+    <position x="963" y="713" width="875" height="115"/>    
     <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Circle" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/shapes/Circle.java" binary="false">    
-    <position x="-26" y="545" width="-1" height="-1"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.ConvexPolygon" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/shapes/ConvexPolygon.java" binary="false">    
-    <position x="-308" y="308" width="-1" height="-1"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Line" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/shapes/Line.java" binary="false">    
-    <position x="-144" y="762" width="231" height="693"/>    
+  <interface corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Shape" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/shapes/Shape.java" binary="false">    
+    <position x="962" y="887" width="876" height="83"/>    
     <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Polygon" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/shapes/Polygon.java" binary="false">    
-    <position x="-27" y="305" width="-1" height="-1"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <interface corner="BOTTOM_RIGHT" language="java" name="engine.joint.Joint" project="JefferyAhernFinal" 
-    file="/JefferyAhernFinal/src/engine/joint/Joint.java" binary="false">    
-    <position x="912" y="670" width="-1" height="-1"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Line" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/shapes/Line.java" binary="false">    
+    <position x="1950" y="832" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Circle" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/shapes/Circle.java" binary="false">    
+    <position x="1100" y="579" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.shapes.Box" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/shapes/Box.java" binary="false">    
+    <position x="1377" y="573" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.World" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/World.java" binary="false">    
+    <position x="1836" y="1808" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.BodyList" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/BodyList.java" binary="false">    
+    <position x="1017" y="1227" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="engine.JointList" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/engine/JointList.java" binary="false">    
+    <position x="1276" y="1194" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.mainMenuSandboxButtonListener" 
+    project="KeithKowalskiFinal" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="791" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.startButtonListener" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="1036" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="1849" y="2628" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.soundOnButtonListener" 
+    project="KeithKowalskiFinal" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="1738" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.s1ButtonListener" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="1504" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.scenarioButtonListener" 
+    project="KeithKowalskiFinal" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="1270" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.submitButtonListener" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="1972" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.mainMenuScenarioButtonListener" 
+    project="KeithKowalskiFinal" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="2217" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.mainMenuOptionsButtonListener" 
+    project="KeithKowalskiFinal" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="2471" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.soundOffButtonListener" 
+    project="KeithKowalskiFinal" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="2947" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.MainGUI.optionButtonListener" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false">    
+    <position x="2713" y="3047" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="graphics.SandboxPanel" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/graphics/SandboxPanel.java" binary="false">    
+    <position x="1497" y="2605" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="model.Model" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/model/Model.java" binary="false">    
+    <position x="2232" y="1729" width="177" height="131"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Ramp" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Ramp.java" binary="false">    
+    <position x="2406" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.BowlingBall" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/BowlingBall.java" binary="false">    
+    <position x="4809" y="2297" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.PowerSuppliers" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/PowerSuppliers.java" binary="false">    
+    <position x="2820" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Gear" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Gear.java" binary="false">    
+    <position x="2613" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.PowerGenerator" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/PowerGenerator.java" binary="false">    
+    <position x="2730" y="2297" width="140" height="67"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Ball" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Ball.java" binary="false">    
+    <position x="4890" y="2142" width="84" height="67"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Balloon" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Balloon.java" binary="false">    
+    <position x="3027" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.BasketBall" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/BasketBall.java" binary="false">    
+    <position x="5016" y="2297" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Belt" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Belt.java" binary="false">    
+    <position x="3234" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Bucket" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Bucket.java" binary="false">    
+    <position x="3441" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Candle" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Candle.java" binary="false">    
+    <position x="3648" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.ConveyorBelt" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/ConveyorBelt.java" binary="false">    
+    <position x="3855" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Wall" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Wall.java" binary="false">    
+    <position x="4062" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.OutletSwitch" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/OutletSwitch.java" binary="false">    
+    <position x="4476" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Light" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Light.java" binary="false">    
+    <position x="4269" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Motor" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Motor.java" binary="false">    
+    <position x="2910" y="2297" width="86" height="67"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Domino" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Domino.java" binary="false">    
+    <position x="4683" y="2142" width="167" height="115"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="entities.Entities" project="KeithKowalskiFinal" 
+    file="/KeithKowalskiFinal/src/entities/Entities.java" binary="false">    
+    <position x="3745" y="1603" width="192" height="499"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.AngleJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/AngleJoint.java" binary="false" navigable="false">      
+      <attribute name="body2"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <dependency>    
-    <bendpoint x="858" y="135"/>    
-    <source project="JefferyAhernFinal" name="engine.joint.Joint" file="/JefferyAhernFinal/src/engine/joint/Joint.java" 
+    <source project="KeithKowalskiFinal" name="entities.Belt" file="/KeithKowalskiFinal/src/entities/Belt.java" 
       binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false" navigable="false">      
+      <attribute name="joints"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.JointList" file="/KeithKowalskiFinal/src/engine/JointList.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.OutletSwitch" 
+      file="/KeithKowalskiFinal/src/entities/OutletSwitch.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
       binary="false"/>  
   </dependency>  
   <generalization>    
-    <bendpoint x="174" y="661"/>    
-    <source project="JefferyAhernFinal" name="engine.shapes.Box" file="/JefferyAhernFinal/src/engine/shapes/Box.java" 
+    <source project="KeithKowalskiFinal" name="entities.Candle" file="/KeithKowalskiFinal/src/entities/Candle.java" 
       binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
-      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Motor" file="/KeithKowalskiFinal/src/entities/Motor.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.PowerSuppliers" 
+      file="/KeithKowalskiFinal/src/entities/PowerSuppliers.java" binary="false"/>  
   </generalization>  
   <generalization>    
-    <bendpoint x="173" y="687"/>    
-    <source project="JefferyAhernFinal" name="engine.shapes.Line" file="/JefferyAhernFinal/src/engine/shapes/Line.java" 
+    <source project="KeithKowalskiFinal" name="entities.Belt" file="/KeithKowalskiFinal/src/entities/Belt.java" 
       binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
-      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Light" file="/KeithKowalskiFinal/src/entities/Light.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Ramp" file="/KeithKowalskiFinal/src/entities/Ramp.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.ConstrainingJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/ConstrainingJoint.java" binary="false" navigable="false">      
+      <attribute name="realJoint"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.joint.BasicJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/BasicJoint.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Ramp" file="/KeithKowalskiFinal/src/entities/Ramp.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.PowerGenerator" 
+      file="/KeithKowalskiFinal/src/entities/PowerGenerator.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.PowerSuppliers" 
+      file="/KeithKowalskiFinal/src/entities/PowerSuppliers.java" binary="false"/>  
   </generalization>  
   <association>    
-    <source project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+    <source project="KeithKowalskiFinal" name="engine.joint.BasicJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/BasicJoint.java" binary="false" navigable="false">      
+      <attribute name="body2"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.BasketBall" 
+      file="/KeithKowalskiFinal/src/entities/BasketBall.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Bucket" file="/KeithKowalskiFinal/src/entities/Bucket.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <realization>    
+    <source project="KeithKowalskiFinal" name="engine.joint.ConstrainingJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/ConstrainingJoint.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>  
+  </realization>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.submitButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Gear" file="/KeithKowalskiFinal/src/entities/Gear.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.BasicJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/BasicJoint.java" binary="false" navigable="false">      
+      <attribute name="body1"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization>    
+    <source project="KeithKowalskiFinal" name="engine.shapes.AbstractShape" 
+      file="/KeithKowalskiFinal/src/engine/shapes/AbstractShape.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.shapes.Shape" 
+      file="/KeithKowalskiFinal/src/engine/shapes/Shape.java" binary="false"/>  
+  </realization>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.BasketBall" 
+      file="/KeithKowalskiFinal/src/entities/BasketBall.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Ball" file="/KeithKowalskiFinal/src/entities/Ball.java" 
+      binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.PowerSuppliers" 
+      file="/KeithKowalskiFinal/src/entities/PowerSuppliers.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Light" file="/KeithKowalskiFinal/src/entities/Light.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="engine.shapes.Circle" 
+      file="/KeithKowalskiFinal/src/engine/shapes/Circle.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.shapes.AbstractShape" 
+      file="/KeithKowalskiFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.ConstrainingJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/ConstrainingJoint.java" binary="false" navigable="false">      
+      <attribute name="body1"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Wall" file="/KeithKowalskiFinal/src/entities/Wall.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.BasketBall" 
+      file="/KeithKowalskiFinal/src/entities/BasketBall.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.shapes.Circle" 
+      file="/KeithKowalskiFinal/src/engine/shapes/Circle.java" binary="false"/>  
+  </dependency>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Domino" file="/KeithKowalskiFinal/src/entities/Domino.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
       binary="false" navigable="false">      
       <attribute name="excluded"/>      
       <multiplicity minimum="0" maximum="1"/>    
     </source>    
-    <target project="JefferyAhernFinal" name="engine.BodyList" file="/JefferyAhernFinal/src/engine/BodyList.java" 
+    <target project="KeithKowalskiFinal" name="engine.BodyList" file="/KeithKowalskiFinal/src/engine/BodyList.java" 
       binary="false" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.BowlingBall" 
+      file="/KeithKowalskiFinal/src/entities/BowlingBall.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
   <association>    
-    <source project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
-      binary="false" navigable="false">      
-      <attribute name="touching"/>      
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedJoint.java" binary="false" navigable="false">      
+      <attribute name="body2"/>      
       <multiplicity minimum="0" maximum="1"/>    
     </source>    
-    <target project="JefferyAhernFinal" name="engine.BodyList" file="/JefferyAhernFinal/src/engine/BodyList.java" 
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
       binary="false" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization>    
-    <bendpoint x="173" y="641"/>    
-    <source project="JefferyAhernFinal" name="engine.shapes.Circle" 
-      file="/JefferyAhernFinal/src/engine/shapes/Circle.java" binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
-      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+    <source project="KeithKowalskiFinal" name="entities.BowlingBall" 
+      file="/KeithKowalskiFinal/src/entities/BowlingBall.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Ball" file="/KeithKowalskiFinal/src/entities/Ball.java" 
+      binary="false"/>  
   </generalization>  
-  <realization>    
-    <source project="JefferyAhernFinal" name="engine.shapes.AbstractShape" 
-      file="/JefferyAhernFinal/src/engine/shapes/AbstractShape.java" binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.shapes.Shape" 
-      file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false"/>  
-  </realization>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.mainMenuScenarioButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
   <association>    
-    <bendpoint x="463" y="521"/>    
-    <bendpoint x="741" y="521"/>    
-    <source project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedAngleJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedAngleJoint.java" binary="false" navigable="false">      
+      <attribute name="body2"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.startButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedJoint.java" binary="false" navigable="false">      
+      <attribute name="joint2"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.joint.BasicJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/BasicJoint.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>  
+  </dependency>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedJoint.java" binary="false" navigable="false">      
+      <attribute name="body1"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="model.Model" file="/KeithKowalskiFinal/src/model/Model.java" 
+      binary="false" navigable="false">      
+      <attribute name="world"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Candle" file="/KeithKowalskiFinal/src/entities/Candle.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedAngleJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedAngleJoint.java" binary="false" navigable="false">      
+      <attribute name="body1"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="engine.shapes.Box" file="/KeithKowalskiFinal/src/engine/shapes/Box.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.shapes.AbstractShape" 
+      file="/KeithKowalskiFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
       binary="false" navigable="false">      
       <attribute name="shape"/>      
       <multiplicity minimum="0" maximum="1"/>    
     </source>    
-    <target project="JefferyAhernFinal" name="engine.shapes.Shape" 
-      file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false" navigable="true"/>    
+    <target project="KeithKowalskiFinal" name="engine.shapes.Shape" 
+      file="/KeithKowalskiFinal/src/engine/shapes/Shape.java" binary="false" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization>    
-    <source project="JefferyAhernFinal" name="engine.StaticBody" file="/JefferyAhernFinal/src/engine/StaticBody.java" 
+    <source project="KeithKowalskiFinal" name="engine.shapes.Line" 
+      file="/KeithKowalskiFinal/src/engine/shapes/Line.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.shapes.AbstractShape" 
+      file="/KeithKowalskiFinal/src/engine/shapes/AbstractShape.java" binary="false"/>  
+  </generalization>  
+  <realization>    
+    <source project="KeithKowalskiFinal" name="engine.joint.AngleJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/AngleJoint.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>  
+  </realization>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false" navigable="false">      
+      <attribute name="sandboxPanel"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="graphics.SandboxPanel" 
+      file="/KeithKowalskiFinal/src/graphics/SandboxPanel.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Balloon" file="/KeithKowalskiFinal/src/entities/Balloon.java" 
       binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Bucket" file="/KeithKowalskiFinal/src/entities/Bucket.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
       binary="false"/>  
   </generalization>  
   <dependency>    
-    <source project="JefferyAhernFinal" name="engine.StaticBody" file="/JefferyAhernFinal/src/engine/StaticBody.java" 
-      binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.shapes.Shape" 
-      file="/JefferyAhernFinal/src/engine/shapes/Shape.java" binary="false"/>  
+    <source project="KeithKowalskiFinal" name="entities.BowlingBall" 
+      file="/KeithKowalskiFinal/src/entities/BowlingBall.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.shapes.Circle" 
+      file="/KeithKowalskiFinal/src/engine/shapes/Circle.java" binary="false"/>  
   </dependency>  
   <dependency>    
-    <source project="JefferyAhernFinal" name="engine.BodyList" file="/JefferyAhernFinal/src/engine/BodyList.java" 
-      binary="false"/>    
-    <target project="JefferyAhernFinal" name="engine.body.Body" file="/JefferyAhernFinal/src/engine/body/Body.java" 
+    <source project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
       binary="false"/>  
   </dependency>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Domino" file="/KeithKowalskiFinal/src/entities/Domino.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <realization>    
+    <source project="KeithKowalskiFinal" name="engine.joint.BasicJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/BasicJoint.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>  
+  </realization>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false"/>  
+  </dependency>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="false">      
+      <attribute name="touching"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.BodyList" file="/KeithKowalskiFinal/src/engine/BodyList.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.soundOnButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="model.Model" file="/KeithKowalskiFinal/src/model/Model.java" 
+      binary="false" navigable="false">      
+      <attribute name="objList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="entities.BasketBall" 
+      file="/KeithKowalskiFinal/src/entities/BasketBall.java" binary="false" navigable="false">      
+      <attribute name="bBall"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.AngleJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/AngleJoint.java" binary="false" navigable="false">      
+      <attribute name="body1"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedJoint.java" binary="false" navigable="false">      
+      <attribute name="joint1"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.joint.BasicJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/BasicJoint.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.ConveyorBelt" 
+      file="/KeithKowalskiFinal/src/entities/ConveyorBelt.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.BodyList" file="/KeithKowalskiFinal/src/engine/BodyList.java" 
+      binary="false"/>  
+  </dependency>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.ConveyorBelt" 
+      file="/KeithKowalskiFinal/src/entities/ConveyorBelt.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.OutletSwitch" 
+      file="/KeithKowalskiFinal/src/entities/OutletSwitch.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.s1ButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.Balloon" file="/KeithKowalskiFinal/src/entities/Balloon.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Wall" file="/KeithKowalskiFinal/src/entities/Wall.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <realization>    
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedAngleJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedAngleJoint.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>  
+  </realization>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="model.Model" file="/KeithKowalskiFinal/src/model/Model.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.BasketBall" 
+      file="/KeithKowalskiFinal/src/entities/BasketBall.java" binary="false"/>  
+  </dependency>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Ball" file="/KeithKowalskiFinal/src/entities/Ball.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="entities.PowerSuppliers" 
+      file="/KeithKowalskiFinal/src/entities/PowerSuppliers.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.World" file="/KeithKowalskiFinal/src/engine/World.java" 
+      binary="false"/>  
+  </dependency>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.mainMenuSandboxButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.scenarioButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.optionButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="engine.joint.ConstrainingJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/ConstrainingJoint.java" binary="false" navigable="false">      
+      <attribute name="body2"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <source project="KeithKowalskiFinal" name="engine.JointList" file="/KeithKowalskiFinal/src/engine/JointList.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>  
+  </dependency>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.soundOffButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <realization>    
+    <source project="KeithKowalskiFinal" name="engine.joint.FixedJoint" 
+      file="/KeithKowalskiFinal/src/engine/joint/FixedJoint.java" binary="false"/>    
+    <target project="KeithKowalskiFinal" name="engine.joint.Joint" 
+      file="/KeithKowalskiFinal/src/engine/joint/Joint.java" binary="false"/>  
+  </realization>  
+  <nesting>    
+    <source project="KeithKowalskiFinal" name="graphics.MainGUI" file="/KeithKowalskiFinal/src/graphics/MainGUI.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="graphics.MainGUI.mainMenuOptionsButtonListener" 
+      file="/KeithKowalskiFinal/src/graphics/MainGUI.java" binary="false"/>  
+  </nesting>  
+  <generalization>    
+    <source project="KeithKowalskiFinal" name="entities.Gear" file="/KeithKowalskiFinal/src/entities/Gear.java" 
+      binary="false"/>    
+    <target project="KeithKowalskiFinal" name="entities.Entities" file="/KeithKowalskiFinal/src/entities/Entities.java" 
+      binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="KeithKowalskiFinal" name="entities.BowlingBall" 
+      file="/KeithKowalskiFinal/src/entities/BowlingBall.java" binary="false" navigable="false">      
+      <attribute name="bowlBall"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="KeithKowalskiFinal" name="engine.body.Body" file="/KeithKowalskiFinal/src/engine/body/Body.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true"/>    
     <operations public="true" package="true" protected="true" private="true"/>  
