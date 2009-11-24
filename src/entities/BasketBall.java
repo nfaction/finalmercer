@@ -11,19 +11,17 @@ public class BasketBall extends Ball {
 	public BasketBall() {
 		
 		super("");
-		bBall = new Body("BasketBall", new Circle(20.0f), 1);
+		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
 		bBall.setRestitution(1.0f);
 		bBall.setDamping(.001f);
 		
 		setImagePath("Images/bball.jpg");
-		
-
 	}
 	
 	@Override
 	public float getX() {
-		return bBall.getPosition().getX();
 		
+		return bBall.getPosition().getX();
 	}
 
 	@Override
@@ -34,6 +32,7 @@ public class BasketBall extends Ball {
 
 	@Override
 	public void addObj(World world, float x, float y) {
+		
 		bBall.setPosition(x, y);
 		this.setImageLocations(x, y);
 		world.add(bBall);  		
