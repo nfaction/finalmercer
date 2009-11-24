@@ -52,6 +52,7 @@ import engine.shapes.Shape;
  * @author Gideon Smeding
  *
  */
+@SuppressWarnings("serial")
 public class ColliderUnavailableException extends Exception {
 	
 	/**

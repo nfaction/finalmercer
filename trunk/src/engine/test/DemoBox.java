@@ -18,7 +18,7 @@ import engine.World;
  */
 public class DemoBox extends AbstractDemo {
 	/** The list of demos */
-	private ArrayList demos = new ArrayList();
+	private ArrayList<AbstractDemo> demos = new ArrayList<AbstractDemo>();
 	/** The demo currently being played */
 	private AbstractDemo currentDemo;
 	/** The index of the current demo */
@@ -81,7 +81,7 @@ public class DemoBox extends AbstractDemo {
 			System.exit(0);
 		}
 		
-		currentDemo = (AbstractDemo) demos.get(current);
+		currentDemo = demos.get(current);
 		currentDemo.init(world);
 	}
 
