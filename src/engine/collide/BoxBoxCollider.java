@@ -1,43 +1,3 @@
-/*
- * Phys2D - a 2D physics engine based on the work of Erin Catto. The
- * original source remains:
- * 
- * Copyright (c) 2006 Erin Catto http://www.gphysics.com
- * 
- * This source is provided under the terms of the BSD License.
- * 
- * Copyright (c) 2006, Phys2D
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or 
- * without modification, are permitted provided that the following 
- * conditions are met:
- * 
- *  * Redistributions of source code must retain the above 
- *    copyright notice, this list of conditions and the 
- *    following disclaimer.
- *  * Redistributions in binary form must reproduce the above 
- *    copyright notice, this list of conditions and the following 
- *    disclaimer in the documentation and/or other materials provided 
- *    with the distribution.
- *  * Neither the name of the Phys2D/New Dawn Software nor the names of 
- *    its contributors may be used to endorse or promote products 
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
- * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- */
 package engine.collide;
 
 import engine.Contact;
@@ -54,7 +14,7 @@ import engine.vector.Vector;
  * Currently the collider is stateless so a single instance is 
  * returned each time.
  * 
- * @author Kevin Glass
+ * @author Jeffery D. Ahern
  */
 public strictfp class BoxBoxCollider implements Collider {
 
@@ -99,7 +59,7 @@ public strictfp class BoxBoxCollider implements Collider {
 	 * A simple structure describe a vertex against which the
 	 * shape should be clipped
 	 * 
-	 * @author Kevin Glass
+	 * @author Jeffery D. Ahern
 	 */
 	private class ClipVertex {
 		/** The vertex */
@@ -179,7 +139,7 @@ public strictfp class BoxBoxCollider implements Collider {
 	}
 
 	/**
-	 * ??
+	 * 
 	 * 
 	 * @param c
 	 * @param h
@@ -268,12 +228,8 @@ public strictfp class BoxBoxCollider implements Collider {
 		// Setup
 		hA.set(((Box) bodyA.getShape()).getSize());
 		hA.scale(0.5f);
-		//Vector2f hA = MathUtil.scale(((Box) bodyA.getShape()).getSize(), 0.5f);
 		hB.set(((Box) bodyB.getShape()).getSize());
 		hB.scale(0.5f);
-		//Vector2f hB = MathUtil.scale(((Box) bodyB.getShape()).getSize(), 0.5f);
-		//Vector2f hA = MathUtil.scale(bodyA.getSize(), 0.5f);
-		//Vector2f hB = MathUtil.scale(bodyB.getSize(), 0.5f);
 
 		Vector posA = bodyA.getPosition();
 		Vector posB = bodyB.getPosition();
@@ -283,12 +239,6 @@ public strictfp class BoxBoxCollider implements Collider {
 
 		Vector2D RotAT = rotA.transpose();
 		Vector2D RotBT = rotB.transpose();
-
-		// unused?
-//		Vector2f a1 = rotA.col1;
-//		Vector2f a2 = rotA.col2;
-//		Vector2f b1 = rotB.col1;
-//		Vector2f b2 = rotB.col2;
 
 		Vector dp = MathUtil.sub(posB,posA);
 		Vector dA = MathUtil.mul(RotAT,dp);
@@ -311,7 +261,6 @@ public strictfp class BoxBoxCollider implements Collider {
 		Vector faceB = MathUtil.abs(dB);
 		faceB.sub(MathUtil.mul(absCT,hA));
 		faceB.sub(hB);
-		//MathUtil.sub(MathUtil.sub(MathUtil.abs(dB),MathUtil.mul(absCT,hA)),hB);
 		if (faceB.x > 0.0f || faceB.y > 0.0f) {
 			return 0;
 		}
