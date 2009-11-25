@@ -75,7 +75,9 @@ public class Demo {
 		float yield = 10000f;
 		float damping = 0.1f;
 
+		@SuppressWarnings("unused")
 		long renderTime = 0;
+		@SuppressWarnings("unused")
 		long logicTime = 0;
 
 		while (running) {
