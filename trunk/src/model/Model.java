@@ -3,7 +3,9 @@ package model;
 import java.util.ArrayList;
 
 
+import engine.StaticBody;
 import engine.World;
+import engine.body.Body;
 import engine.forcesource.ForceSource;
 import engine.shapes.*;
 import engine.strategies.QuadSpaceStrategy;
@@ -31,10 +33,10 @@ public class Model {
 		this.maxX = maxX;
 		this.maxY = maxY;
 		
-		Body ground = new StaticBody("Ground1", new Box(400.0f, 20.0f));
-		ground.setPosition(250.0f, 400);
+		Body ground = new StaticBody("Ground1", new Box(maxX, 5.0f));
+		ground.setPosition(maxX/2, maxY);
 		ground.setRestitution(1.0f);
-		ground.setRotation(.4f);
+		
 		world.add(ground);
 
 	}
