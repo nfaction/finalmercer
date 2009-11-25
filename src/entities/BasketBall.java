@@ -44,4 +44,10 @@ public class BasketBall extends Ball {
 
 	}
 
+	@Override
+	public void upDate() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -33,4 +33,10 @@ public class Candle extends Entities {
 
 	}
 
+	@Override
+	public void upDate() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

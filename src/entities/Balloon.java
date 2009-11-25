@@ -2,6 +2,8 @@ package entities;
 
 import engine.World;
 import engine.shapes.Body;
+import engine.shapes.Circle;
+import engine.vector.Vector;
 
 public class Balloon extends Entities {
 
@@ -9,31 +11,40 @@ public class Balloon extends Entities {
 
 	public Balloon(String objType) {
 		super(objType);
-		// TODO Auto-generated constructor stub
+		balloon = new Body("Balloon", new Circle(15.0f), .5f);
+		balloon.setPosition(200.0f, 300.0f);
+		balloon.setGravityEffected(false);
+		//balloon.setForce(0.0f, -1000.0f);
 	}
 
 	@Override
 	public void addObj(World world, float x, float y) {
-		// TODO Auto-generated method stub
-
+		
+		balloon.setPosition(x, y);
+		world.add(balloon);
 	}
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return balloon.getPosition().getX();
 	}
 
 	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return balloon.getPosition().getY();
 	}
 
 	@Override
 	public void removeObj(World world) {
 		world.remove(balloon);
 
+	}
+
+	@Override
+	public void upDate() {
+		balloon.adjustVelocity(new Vector(0.0f, -1.0f));
 	}
 
 }

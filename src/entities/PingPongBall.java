@@ -12,8 +12,8 @@ public class PingPongBall extends Ball{
 		
 		super("");
 		ppBall = new Body("Ping-Pong Ball", new Circle(5.0f), .006f);
-		ppBall.setRestitution(1.7f);
-		ppBall.setDamping(.00002f);
+		ppBall.setRestitution(1.0f);
+		ppBall.setDamping(.00001f);
 		ppBall.setCanRest(true);
 		ppBall.configureRestingBodyDetection(1f, 1f, 1f);
 	}
@@ -40,6 +40,12 @@ public class PingPongBall extends Ball{
 	@Override
 	public void removeObj(World world) {
 		world.remove(ppBall);
+		
+	}
+
+	@Override
+	public void upDate() {
+		// TODO Auto-generated method stub
 		
 	}
 }
