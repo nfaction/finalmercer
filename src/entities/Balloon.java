@@ -3,8 +3,8 @@ package entities;
 import engine.World;
 import engine.shapes.Body;
 
-public class Balloon extends Entities{
-	
+public class Balloon extends Entities {
+
 	private Body balloon;
 
 	public Balloon(String objType) {
@@ -15,7 +15,7 @@ public class Balloon extends Entities{
 	@Override
 	public void addObj(World world, float x, float y) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Balloon extends Entities{
 	@Override
 	public void removeObj(World world) {
 		world.remove(balloon);
-		
+
 	}
 
 }

@@ -1,9 +1,7 @@
 package entities;
 
 import engine.World;
-//import engine.shapes.Body;
-import engine.body.Body;
-import engine.shapes.Circle;
+import engine.shapes.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +21,8 @@ public strictfp class BowlingBall extends Ball {
 		bowlBall.setCanRest(true);
 
 		try {
-			bowlingBallimgs = ImageIO.read(new File("Images/bowlingBallSpriteSheet.gif"));
+			bowlingBallimgs = ImageIO.read(new File(
+					"Images/bowlingBallSpriteSheet.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -41,15 +40,14 @@ public strictfp class BowlingBall extends Ball {
 
 		// Need to select which row / col to use based on direction and state of
 		// the bowling ball
-		 int row = 0;//getRow(i.getDirection());
-		 int col = 0;//getCol(i.getState());
+		int row = 0;// getRow(i.getDirection());
+		int col = 0;// getCol(i.getState());
 
 		// The size of 1 bowling ball is 46 x 46
 		// The call to getSubimage has the following parameters: startX, startY,
 		// width, height
-		 BufferedImage thisBowlBall = bowlingBallimgs.getSubimage(46 * col, 46
-		 * row,
-		 46, 46);
+		BufferedImage thisBowlBall = bowlingBallimgs.getSubimage(46 * col,
+				46 * row, 46, 46);
 
 		return thisBowlBall;
 	}
@@ -118,7 +116,7 @@ public strictfp class BowlingBall extends Ball {
 	@Override
 	public void removeObj(World world) {
 		world.remove(bowlBall);
-		
+
 	}
 
 }

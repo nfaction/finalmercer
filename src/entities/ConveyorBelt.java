@@ -2,7 +2,7 @@ package entities;
 
 import engine.World;
 
-public class ConveyorBelt extends Entities{
+public class ConveyorBelt extends Entities {
 
 	public ConveyorBelt(String objType) {
 		super(objType);
@@ -12,7 +12,7 @@ public class ConveyorBelt extends Entities{
 	@Override
 	public void addObj(World world, float x, float y) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class ConveyorBelt extends Entities{
 	@Override
 	public void removeObj(World world) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
