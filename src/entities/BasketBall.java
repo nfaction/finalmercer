@@ -8,10 +8,10 @@ public class BasketBall extends Ball {
 
 	private Body bBall;
 
-	public BasketBall() {
+	public BasketBall(String BasketBall) {
 		
-		super("");
-		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
+		super(BasketBall);
+		bBall = new Body(BasketBall, new Circle(20.0f), 2.0f);
 		bBall.setRestitution(1.0f);
 		bBall.setDamping(.001f);
 		
