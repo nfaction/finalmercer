@@ -3,9 +3,7 @@ package model;
 import java.util.ArrayList;
 
 
-import engine.StaticBody;
 import engine.World;
-import engine.body.Body;
 import engine.forcesource.ForceSource;
 import engine.shapes.*;
 import engine.strategies.QuadSpaceStrategy;
