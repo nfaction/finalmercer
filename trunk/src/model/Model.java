@@ -46,67 +46,123 @@ public class Model {
 			BasketBall newEntity = new BasketBall("BasketBall");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("Balloon")){
 			Balloon newEntity = new Balloon("Baloon");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("BowlingBall")){
 			BowlingBall newEntity = new BowlingBall();
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("Bucket")){
 			Bucket newEntity = new Bucket("Bucket");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("Candle")){
 			Candle newEntity = new Candle("Candle");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("Domino")){
 			Domino newEntity = new Domino("Domino");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("PingPongBall")){
 			PingPongBall newEntity = new PingPongBall("PingPongBall");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("RightRamp")){
 			RightRamp newEntity = new RightRamp("RightRamp");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("LeftRamp")){
 			LeftRamp newEntity = new LeftRamp("LeftRamp");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		if (objType.equals("Light")){
 			Light newEntity = new Light("Light");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
+			
+			//if it will not fit on board remove it from array and world
+			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
+				objList.remove(objList.size());
+				newEntity.removeObj(world);
+				return false;
+			}
 		}
 		
-		
-		
-		
-		// if it will fit on the board then don't remove
-		Entities thisEntitie;
-		int objListSize= objList.size();
-		thisEntitie = objList.get(objListSize);
-		if (thisEntitie.getLowerX() < 0 || thisEntitie.getLowerY() < 0 || thisEntitie.getUpperX() > maxX || thisEntitie.getUpperY() > maxY){
-			objList.remove(objListSize);
-			return false;
-		}
 
-		//ForceSource body = null;
-		//world.add(body);
 		return true;
 
 	}
