@@ -1,16 +1,13 @@
 package engine.collide;
 
 import engine.Contact;
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.shapes.Circle;
 import engine.vector.MathUtil;
 import engine.vector.Vector;
 
 /**
- * A collider for circles hitting boxes, Circle = BodyA, Box = BodyB
- * 
- * The create() method is used as a factory incase this class should
- * ever become stateful.
+ * A collider for circles hitting boxes
  * 
  * @author Jeffery D. Ahern
  */
@@ -25,7 +22,7 @@ public strictfp class CircleBoxCollider extends BoxCircleCollider {
 	}
 	
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.shapes.Body, engine.shapes.Body)
 	 */
 	public int collide(Contact[] contacts, Body circleBody, Body boxBody) {
 		int count = super.collide(contacts, boxBody, circleBody);

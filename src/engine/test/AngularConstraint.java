@@ -1,9 +1,9 @@
 package engine.test;
 
 import engine.World;
-import engine.body.Body;
 import engine.joint.AngleJoint;
-import engine.joint.DistanceJoint;
+import engine.joint.RopeJoint;
+import engine.shapes.Body;
 import engine.shapes.Circle;
 import engine.vector.Vector;
 
@@ -49,7 +49,7 @@ public class AngularConstraint extends AbstractDemo {
 		
 		final AngleJoint aj1 = new AngleJoint(b1,bodies[0],new Vector(),new Vector(),-(float)Math.PI/9.0f,-0.0f);
 		//AngleJoint aj1 = new AngleJoint(b1,bodies[0],new Vector2f(),new Vector2f(),0.0f,-0.0f);
-		final DistanceJoint dj1 = new DistanceJoint(b1,bodies[0],new Vector(),new Vector(),30);
+		final RopeJoint dj1 = new RopeJoint(b1,bodies[0],new Vector(),new Vector(),30);
 		final AngleJoint aja2 = new AngleJoint(bodies[0],b1,new Vector(),new Vector(),-(float)Math.PI/9.0f+(float)Math.PI,(float)Math.PI);
 		world.add(aja2);
 		world.add(dj1);
@@ -61,7 +61,7 @@ public class AngularConstraint extends AbstractDemo {
 			final AngleJoint aj2 = new AngleJoint(bodies[i],bodies[i-1],new Vector(),new Vector(),-(float)Math.PI/9.0f+(float)(Math.PI+Math.sin(i/10.0f)),(float)(Math.PI+Math.sin(i/10.0f)));
 			world.add(aj2);
 			
-			final DistanceJoint dj = new DistanceJoint(bodies[i-1],bodies[i],new Vector(),new Vector(),30);
+			final RopeJoint dj = new RopeJoint(bodies[i-1],bodies[i],new Vector(),new Vector(),30);
 			world.add(dj);
 		}
 	}

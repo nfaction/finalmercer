@@ -1,4 +1,7 @@
-package engine;
+package engine.strategies;
+
+import engine.BodyList;
+import engine.CollisionContext;
 
 /**
  * A description of any strategy for determining which bodies should
@@ -8,7 +11,7 @@ package engine;
  * spatially partition the bodies into areas and only resolve collisions
  * between those in the same area.
  * 
- * @author Kevin Glass
+ * @author Jeffery D> AHern
  */
 public interface BroadCollisionStrategy {
 

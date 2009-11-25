@@ -1,22 +1,21 @@
 package engine.collide;
 
 import engine.Contact;
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.shapes.Circle;
 import engine.shapes.Line;
-import engine.vector.Vector;
 import engine.vector.Vector;
 
 /**
  * Collision routines betwene a circle and a line. The create method is
  * provided in case this collider becomes stateful at some point.
  * 
- * @author Kevin Glass
+ * @author Jeffery D. AHern
  */
 public strictfp class LineCircleCollider implements Collider {
 
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.shapes.Body, engine.shapes.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		Line line = (Line) bodyA.getShape();
@@ -32,15 +31,7 @@ public strictfp class LineCircleCollider implements Collider {
 		Vector endB = new Vector(endA);
 		endB.sub(startA);
 		endB.set(endB.y, -endB.x);
-//		endB.add(startB);// TODO: inline endB into equations below, this last operation will be useless..
-		
-		//TODO: reuse mathutil.intersect
-//		float d = (endB.y - startB.getY()) * (endA.x - startA.x);
-//		d -= (endB.x - startB.getX()) * (endA.y - startA.y);
-//		
-//		float uA = (endB.x - startB.getX()) * (startA.y - startB.getY());
-//		uA -= (endB.y - startB.getY()) * (startA.x - startB.getX());
-//		uA /= d;
+
 		float d = endB.y * (endA.x - startA.x);
 		d -= endB.x * (endA.y - startA.y);
 		

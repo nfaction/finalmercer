@@ -42,9 +42,10 @@ package engine;
 
 import java.util.ArrayList;
 
-import engine.body.Body;
 import engine.forcesource.ForceSource;
 import engine.joint.Joint;
+import engine.shapes.Body;
+import engine.strategies.BroadCollisionStrategy;
 import engine.strategies.BruteCollisionStrategy;
 import engine.vector.Vector;
 
@@ -456,7 +457,7 @@ public strictfp class World extends CollisionSpace {
 	}
 
 	/**
-	 * @see engine.CollisionSpace#add(engine.body.Body)
+	 * @see engine.CollisionSpace#add(engine.shapes.Body)
 	 */
 	public void add(Body body) {                         
 		body.configureRestingBodyDetection(hitTolerance, rotationTolerance, positionTolerance);

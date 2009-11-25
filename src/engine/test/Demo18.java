@@ -1,10 +1,10 @@
 package engine.test;
 
-import engine.StaticBody;
 import engine.World;
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.shapes.Line;
+import engine.shapes.StaticBody;
 
 /**
  * Lines terrain testing extensive

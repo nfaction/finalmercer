@@ -1,6 +1,6 @@
 package engine.joint;
 
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.vector.MathUtil;
 import engine.vector.Vector2D;
 import engine.vector.Vector;
@@ -12,35 +12,21 @@ import engine.vector.Vector;
  * Behaviour is undefined - it does something and it's definitely odd. Might
  * be useful for something
  * 
- * @author Kevin Glass
+ * @author Jeffery D. Ahern
  */
 public strictfp class ElasticJoint implements Joint {
-	/** The next ID to be used */
 	public static int NEXT_ID = 0;
 	
-	/** The first body attached to the joint */
 	private Body body1;
-	/** The second body attached to the joint */
 	private Body body2;
-
-	/** The matrix describing the connection between two bodies */
 	private Vector2D M = new Vector2D();
-	/** The local anchor for the first body */
 	private Vector localAnchor1 = new Vector();
-	/** The local anchor for the second body */
 	private Vector localAnchor2 = new Vector();
-	/** The rotation of the anchor of the first body */
 	private Vector r1 = new Vector();
-	/** The rotation of the anchor of the second body */
 	private Vector r2 = new Vector();
-	/** ? */
 	private Vector bias = new Vector();
-	/** The impulse to be applied throught the joint */
 	private Vector accumulatedImpulse = new Vector();
-	/** How much slip there is in the joint */
 	private float relaxation;
-
-	/** The ID of this joint */
 	private int id;
 	
 	/**
@@ -58,8 +44,7 @@ public strictfp class ElasticJoint implements Joint {
 	}
 
 	/**
-	 * Set the relaxtion value on this joint. This value determines
-	 * how loose the joint will be
+	 * Set the relaxtion value on this joint. 
 	 * 
 	 * @param relaxation The relaxation value
 	 */
@@ -143,10 +128,6 @@ public strictfp class ElasticJoint implements Joint {
 		r1 = MathUtil.mul(rot1,localAnchor1);
 		r2 = MathUtil.mul(rot2,localAnchor2);
 
-		// deltaV = deltaV0 + K * impulse
-		// invM = [(1/m1 + 1/m2) * eye(2) - skew(r1) * invI1 * skew(r1) - skew(r2) * invI2 * skew(r2)]
-		//      = [1/m1+1/m2     0    ] + invI1 * [r1.y*r1.y -r1.x*r1.y] + invI2 * [r1.y*r1.y -r1.x*r1.y]
-		//        [    0     1/m1+1/m2]           [-r1.x*r1.y r1.x*r1.x]           [-r1.x*r1.y r1.x*r1.x]
 		Vector2D K1 = new Vector2D();
 		K1.col1.x = body1.getInvMass() + body2.getInvMass();	K1.col2.x = 0.0f;
 		K1.col1.y = 0.0f;								K1.col2.y = body1.getInvMass() + body2.getInvMass();

@@ -1,12 +1,12 @@
 package engine.test;
 
-import engine.StaticBody;
 import engine.World;
-import engine.body.Body;
 import engine.joint.FixedJoint;
 import engine.joint.Joint;
+import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
+import engine.shapes.StaticBody;
 
 /**
  * Rejoing test

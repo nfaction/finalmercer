@@ -42,7 +42,7 @@ package engine;
 
 import java.util.ArrayList;
 
-import engine.body.Body;
+import engine.shapes.Body;
 
 
 /**

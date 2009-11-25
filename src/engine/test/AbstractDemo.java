@@ -16,21 +16,10 @@ import engine.BodyList;
 import engine.Contact;
 import engine.JointList;
 import engine.World;
-import engine.body.Body;
-import engine.joint.AngleJoint;
-import engine.joint.BasicJoint;
-import engine.joint.DistanceJoint;
-import engine.joint.FixedJoint;
-import engine.joint.Joint;
-import engine.joint.SlideJoint;
-import engine.joint.SpringJoint;
-import engine.shapes.Box;
-import engine.shapes.Circle;
-import engine.shapes.Line;
+import engine.joint.*;
+import engine.shapes.*;
 import engine.strategies.QuadSpaceStrategy;
-import engine.vector.MathUtil;
-import engine.vector.Vector2D;
-import engine.vector.Vector;
+import engine.vector.*;
 
 
 /**
@@ -411,8 +400,8 @@ public abstract class AbstractDemo {
 			g.drawLine((int) x2.getX(), (int) x2.getY(), (int) p2.x, (int) p2.y);
 			g.drawLine((int) p2.x, (int) p2.y, (int) x1.getX(), (int) x1.getY());
 		}
-		if(j instanceof DistanceJoint){
-			DistanceJoint joint = (DistanceJoint) j;
+		if(j instanceof RopeJoint){
+			RopeJoint joint = (RopeJoint) j;
 			
 			Body b1 = joint.getBody1();
 			Body b2 = joint.getBody2();
@@ -431,28 +420,7 @@ public abstract class AbstractDemo {
 			g.setColor(Color.red);
 			g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.x, (int) p2.y);
 		}
-		if (j instanceof SpringJoint) {
-			SpringJoint joint = (SpringJoint) j;
-			
-			Body b1 = joint.getBody1();
-			Body b2 = joint.getBody2();
-	
-			Vector2D R1 = new Vector2D(b1.getRotation());
-			Vector2D R2 = new Vector2D(b2.getRotation());
-	
-			Vector x1 = b1.getPosition();
-			Vector p1 = MathUtil.mul(R1,joint.getLocalAnchor1());
-			p1.add(x1);
-	
-			Vector x2 = b2.getPosition();
-			Vector p2 = MathUtil.mul(R2,joint.getLocalAnchor2());
-			p2.add(x2);
-			
-			g.setColor(Color.red);
-			g.drawLine((int) x1.getX(), (int) x1.getY(), (int) p1.x, (int) p1.y);
-			g.drawLine((int) p1.x, (int) p1.y, (int) p2.getX(), (int) p2.getY());
-			g.drawLine((int) p2.getX(), (int) p2.getY(), (int) x2.getX(), (int) x2.getY());
-		}
+		
 	}
 	
 	/**

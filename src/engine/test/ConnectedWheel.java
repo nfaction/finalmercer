@@ -1,11 +1,11 @@
 package engine.test;
 
-import engine.StaticBody;
 import engine.World;
-import engine.body.Body;
-import engine.joint.DistanceJoint;
+import engine.joint.RopeJoint;
 import engine.joint.FixedAngleJoint;
+import engine.shapes.Body;
 import engine.shapes.Circle;
+import engine.shapes.StaticBody;
 import engine.vector.Vector;
 
 /**
@@ -50,7 +50,7 @@ public class ConnectedWheel extends AbstractDemo {
 		FixedAngleJoint angle = new FixedAngleJoint(leftAxis,socket,new Vector(),new Vector(),0);
 		world.add(angle);
 		
-		DistanceJoint dist = new DistanceJoint(socket,wheel,new Vector(),new Vector(65,0),165);
+		RopeJoint dist = new RopeJoint(socket,wheel,new Vector(),new Vector(65,0),165);
 		world.add(dist);
 	}
 	

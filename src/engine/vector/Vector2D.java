@@ -5,24 +5,22 @@ import engine.vector.Vector;
 /**
  * A two dimensional vector
  * 
- * @author Kevin Glass
+ * @author Jeffery D. AHern
  */
 public strictfp class Vector2D {
-	/** The first column of the matrix */
 	public Vector col1 = new Vector();
-	/** The second column of the matrix */
 	public Vector col2 = new Vector();
 	
 	/**
-	 * Create an empty matrix
+	 * Create an empty 2dVecotor
 	 */
 	public Vector2D() {
 	}
 	
 	/**
-	 * Create a matrix with a rotation
+	 * Create a 2dVecotor with a rotation
 	 * 
-	 * @param angle The angle of the rotation decribed by the matrix
+	 * @param angle The angle of the rotation decribed by the 2dVecotor
 	 */
 	public Vector2D(float angle)
 	{
@@ -33,7 +31,7 @@ public strictfp class Vector2D {
 	}
 
 	/**
-	 * Create a matrix
+	 * Create a 2dVecotor
 	 * 
 	 * @param col1 The first column
 	 * @param col2 The second column
@@ -44,9 +42,9 @@ public strictfp class Vector2D {
 	}
 
 	/**
-	 * Transpose the matrix
+	 * Transpose the 2dVecotor
 	 * 
-	 * @return A newly created matrix containing the transpose of this matrix
+	 * @return A newly created matrix containing the transpose of this 2dVecotor
 	 */
 	public Vector2D transpose() 
 	{
@@ -57,7 +55,7 @@ public strictfp class Vector2D {
 	/**
 	 * Transpose the invert
 	 * 
-	 * @return A newly created matrix containing the invert of this matrix
+	 * @return A newly created 2dVecotor containing the invert of this 2dVecotor
 	 */
 	public Vector2D invert() 
 	{

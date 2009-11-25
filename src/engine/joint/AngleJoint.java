@@ -1,83 +1,99 @@
 package engine.joint;
 
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.vector.MathUtil;
 import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
- * A joint that constrains the angle two bodies can be at in relation to each other.
+ * A joint that constrains the angle two bodies can be at in relation to each
+ * other.
  * 
- * @author guRuQu
+ * @author Jeffery D. Ahern
  */
 public class AngleJoint implements Joint {
-	/**The higher angle bound in the angle constraint*/
+	/** The higher angle bound in the angle constraint */
 	private float rotateA;
-	/**The lower angle bound in the angle constraint*/
+	/** The lower angle bound in the angle constraint */
 	private float rotateB;
-	/**The first body in the constraint*/
 	private Body body1;
-	/**The second body in the constraint*/
 	private Body body2;
-	/** Anchor point for first body, on which impulse is going to apply*/
 	private Vector anchor1;
-	/** Anchor point for second body, on which impulse is going to apply*/
 	private Vector anchor2;
-	/** The cached impulse through the calculation to yield correct impulse faster */
+	/**
+	 * The cached impulse through the calculation to yield correct impulse
+	 * faster
+	 */
 	private float accumulateImpulse;
-	/** The target angular velocity after bounce on either side*/
+	/** The target angular velocity after bounce on either side */
 	private float restituteAngular;
-	/** Indication on which side the constraint is violated*/
+	/** Indication on which side the constraint is violated */
 	private int bounceSide;
-	/** The squared distance of two body*/
+	/** The squared distance of two body */
 	private float dlength2;
-	/** Used to calculate the relation ship between impulse and velocity change between body*/
+	/**
+	 * Used to calculate the relation ship between impulse and velocity change
+	 * between body
+	 */
 	private float K;
-	/** Normalised distance vector*/
+	/** Normalised distance vector */
 	private Vector ndp;
-	/** Distance Vector*/
+	/** Distance Vector */
 	private Vector dp;
-	/** The normal vector of the impulse direction*/
+	/** The normal vector of the impulse direction */
 	private Vector n;
-	/** for bounceSide to indicate bounce on lower side*/
+	/** for bounceSide to indicate bounce on lower side */
 	private final int BOUNCE_LOWER = -1;
-	/** for bounceSide to indicate bounce on no side*/
+	/** for bounceSide to indicate bounce on no side */
 	private final int BOUNCE_NONE = 0;
-	/** for bounceSide to indicate bounce on higher side*/
+	/** for bounceSide to indicate bounce on higher side */
 	private final int BOUNCE_HIGHER = 1;
-	/** The restitution constant when angle bounce on either side*/
+	/** The restitution constant when angle bounce on either side */
 	float restitution;
 	/** R = r1 + d */
 	private Vector R;
 
 	/**
-	 * Create a new angle joint 
+	 * Create a new angle joint
 	 * 
-	 * @param body1	The first body that is attached on the constraint
-	 * @param body2 The second body that is attached on the constraint
-	 * @param anchor1 The anchor point on first body
-	 * @param anchor2 The anchor point on second body
-	 * @param rotateA The higher angle bound for constraint
-	 * @param rotateB The lower angle bound for constraint
+	 * @param body1
+	 *            The first body that is attached on the constraint
+	 * @param body2
+	 *            The second body that is attached on the constraint
+	 * @param anchor1
+	 *            The anchor point on first body
+	 * @param anchor2
+	 *            The anchor point on second body
+	 * @param rotateA
+	 *            The higher angle bound for constraint
+	 * @param rotateB
+	 *            The lower angle bound for constraint
 	 */
-	public AngleJoint(Body body1, Body body2, Vector anchor1,
-			Vector anchor2, float rotateA, float rotateB) {
+	public AngleJoint(Body body1, Body body2, Vector anchor1, Vector anchor2,
+			float rotateA, float rotateB) {
 		this(body1, body2, anchor1, anchor2, rotateA, rotateB, 0);
 	}
 
 	/**
-	 * Create a new angle joint 
+	 * Create a new angle joint
 	 * 
-	 * @param body1	The first body that is attached on the constraint
-	 * @param body2 The second body that is attached on the constraint
-	 * @param anchor1 The anchor point on first body
-	 * @param anchor2 The anchor point on second body
-	 * @param rotateA The higher angle bound for constraint
-	 * @param rotateB The lower angle bound for constraint
-	 * @param restitution The restitution when body bounce on either side
+	 * @param body1
+	 *            The first body that is attached on the constraint
+	 * @param body2
+	 *            The second body that is attached on the constraint
+	 * @param anchor1
+	 *            The anchor point on first body
+	 * @param anchor2
+	 *            The anchor point on second body
+	 * @param rotateA
+	 *            The higher angle bound for constraint
+	 * @param rotateB
+	 *            The lower angle bound for constraint
+	 * @param restitution
+	 *            The restitution when body bounce on either side
 	 */
-	public AngleJoint(Body body1, Body body2, Vector anchor1,
-			Vector anchor2, float rotateA, float rotateB, float restitution) {
+	public AngleJoint(Body body1, Body body2, Vector anchor1, Vector anchor2,
+			float rotateA, float rotateB, float restitution) {
 		this.body1 = body1;
 		this.body2 = body2;
 		this.rotateA = rotateA;
@@ -260,7 +276,7 @@ public class AngleJoint implements Joint {
 	public void setRelaxation(float relaxation) {
 	}
 
-	/** 
+	/**
 	 * Get the upper angle bound
 	 * 
 	 * @return The upper angle bound
@@ -269,7 +285,7 @@ public class AngleJoint implements Joint {
 		return rotateA;
 	}
 
-	/** 
+	/**
 	 * Get the lower angle bound
 	 * 
 	 * @return The lower angle bound
@@ -295,6 +311,5 @@ public class AngleJoint implements Joint {
 	public Vector getAnchor2() {
 		return anchor2;
 	}
-
 
 }

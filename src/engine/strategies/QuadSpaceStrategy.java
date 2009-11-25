@@ -1,61 +1,23 @@
-/*
- * Phys2D - a 2D physics engine based on the work of Erin Catto.
- * 
- * This source is provided under the terms of the BSD License.
- * 
- * Copyright (c) 2006, Phys2D
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or 
- * without modification, are permitted provided that the following 
- * conditions are met:
- * 
- *  * Redistributions of source code must retain the above 
- *    copyright notice, this list of conditions and the 
- *    following disclaimer.
- *  * Redistributions in binary form must reproduce the above 
- *    copyright notice, this list of conditions and the following 
- *    disclaimer in the documentation and/or other materials provided 
- *    with the distribution.
- *  * Neither the name of the Phys2D/New Dawn Software nor the names of 
- *    its contributors may be used to endorse or promote products 
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
- * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- */
 package engine.strategies;
 
 import java.util.ArrayList;
 
 import engine.BodyList;
-import engine.BroadCollisionStrategy;
 import engine.CollisionContext;
-import engine.body.Body;
 import engine.shapes.AABox;
+import engine.shapes.Body;
 
 
 /**
  * A strategy that divides the space into 4 repeatedly until either
  * the target number of bodies is reached or the a given level of
- * subdivisions is reached.
+ * subdivisions is reached. (fast)
  * 
- * @author Kevin Glass
+ * @author Jeffery D. AHern
  */
 public class QuadSpaceStrategy implements BroadCollisionStrategy {
 	/** The spaces dervied */
-	private ArrayList spaces = new ArrayList();
+	private ArrayList<Space> spaces = new ArrayList<Space>();
 	/** The number of sub divisions allows */
 	private int maxLevels;
 	/** The maximum number of bodies in a given space acceptable */
@@ -73,7 +35,7 @@ public class QuadSpaceStrategy implements BroadCollisionStrategy {
 	}
 	
 	/**
-	 * @see engine.BroadCollisionStrategy#collideBodies(engine.CollisionContext, engine.BodyList, float)
+	 * @see engine.strategies.BroadCollisionStrategy#collideBodies(engine.CollisionContext, engine.BodyList, float)
 	 */
 	public void collideBodies(CollisionContext context, BodyList bodies, float dt) {
 		spaces.clear();
@@ -92,7 +54,7 @@ public class QuadSpaceStrategy implements BroadCollisionStrategy {
 		splitSpace(space, 0, maxInSpace, spaces);
 		
 		for (int i=0;i<spaces.size();i++) {
-			context.resolve((Space) spaces.get(i), dt);
+			context.resolve(spaces.get(i), dt);
 		}
 	}
 
@@ -101,7 +63,7 @@ public class QuadSpaceStrategy implements BroadCollisionStrategy {
 	 * 
 	 * @return The list of spaces dervied (QuadSpaceStrategy.Space)
 	 */
-	public ArrayList getSpaces() {
+	public ArrayList<Space> getSpaces() {
 		return spaces;
 	}
 	
@@ -114,7 +76,7 @@ public class QuadSpaceStrategy implements BroadCollisionStrategy {
 	 * @param spaceList The list of spaces to populate
 	 * @return True if the target has found
 	 */
-	private boolean splitSpace(Space space, int level, int target, ArrayList spaceList) {
+	private boolean splitSpace(Space space, int level, int target, ArrayList<Space> spaceList) {
 		if (space.size() <= target) {
 			spaceList.add(space);
 			return true;

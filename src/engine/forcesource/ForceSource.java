@@ -1,11 +1,11 @@
 package engine.forcesource;
 
-import engine.body.Body;
+import engine.shapes.Body;
 
 /**
  * A source of force that can potentially be applied to every body every frame
  * 
- * @author kevin
+ * @author Jeffery D. AHern
  */
 public interface ForceSource {
 	/**
