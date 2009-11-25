@@ -36,7 +36,6 @@ public class Model {
 		Body ground = new StaticBody("Ground1", new Box(maxX, 5.0f));
 		ground.setPosition(maxX/2, maxY);
 		ground.setRestitution(1.0f);
-		
 		world.add(ground);
 
 	}
