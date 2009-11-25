@@ -35,11 +35,10 @@ public class Demo {
 	private boolean running = true;
 	private BufferStrategy strategy;
 	protected boolean needsReset;
-	private Body box;
-	Balloon newBalloon;
+	private Balloon newBalloon;
 
 	/**
-	 * Makes the program run
+	 * Main
 	 * 
 	 * @param argv
 	 *            Nothing
@@ -49,9 +48,6 @@ public class Demo {
 		demo.start();
 	}
 
-	/**
-	 * Create the demo
-	 */
 	public Demo() {
 		this.title = "Demo";
 	}
@@ -108,14 +104,6 @@ public class Demo {
 			}
 			logicTime = System.currentTimeMillis() - beforeLogic;
 
-			if (needsReset) {
-				world.clear();
-				initDemo();
-				needsReset = false;
-				frameAverage = target;
-				yield = 10000f;
-			}
-
 			update();
 		}
 	}
@@ -161,17 +149,6 @@ public class Demo {
 
 		newBalloon = new Balloon("Balloon");
 		newBalloon.addObj(world, 270, 450);
-		
-		// box = new Body("Faller", new Box(50, 50), 1);
-		// box.setPosition(200, 50);
-		// world.add(box);
-	}
-
-	/**
-	 * Initialize the demo - clear the world
-	 */
-	public final void initDemo() {
-
 	}
 
 	/**
@@ -183,24 +160,20 @@ public class Demo {
 		frame.setIgnoreRepaint(true);
 		frame.setSize(500, 500);
 		frame.setLocation(200, 200);
+		frame.setVisible(true);
+		frame.createBufferStrategy(2);
+		strategy = frame.getBufferStrategy();
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				running = false;
 				System.exit(0);
 			}
 		});
-		frame.setVisible(true);
-		frame.createBufferStrategy(2);
-		strategy = frame.getBufferStrategy();
 	}
 
 	/**
 	 * Draw a body
 	 * 
-	 * @param g
-	 *            The graphics contact on which to draw
-	 * @param body
-	 *            The body to be drawn
 	 */
 	protected void drawBody(Graphics2D g, Body body) {
 		if (body.getShape() instanceof Box) {
@@ -216,13 +189,6 @@ public class Demo {
 
 	/**
 	 * Draw a line into the demo
-	 * 
-	 * @param g
-	 *            The graphics to draw the line onto
-	 * @param body
-	 *            The body describing the line's position
-	 * @param line
-	 *            The line to be drawn
 	 */
 	protected void drawLineBody(Graphics2D g, Body body, Line line) {
 		g.setColor(Color.black);
@@ -236,21 +202,12 @@ public class Demo {
 	/**
 	 * Draw a circle in the world
 	 * 
-	 * @param g
-	 *            The graphics contact on which to draw
-	 * @param body
-	 *            The body to be drawn
-	 * @param circle
-	 *            The shape to be drawn
 	 */
 	protected void drawCircleBody(Graphics2D g, Body body, Circle circle) {
 		g.setColor(Color.black);
 		float x = body.getPosition().getX();
 		float y = body.getPosition().getY();
 		float r = circle.getRadius();
-		float rot = body.getRotation();
-		float xo = (float) (Math.cos(rot) * r);
-		float yo = (float) (Math.sin(rot) * r);
 
 		g.drawOval((int) (x - r), (int) (y - r), (int) (r * 2), (int) (r * 2));
 	}
@@ -258,12 +215,6 @@ public class Demo {
 	/**
 	 * Draw a box in the world
 	 * 
-	 * @param g
-	 *            The graphics contact on which to draw
-	 * @param body
-	 *            The body to be drawn
-	 * @param box
-	 *            The shape to be drawn
 	 */
 	protected void drawBoxBody(Graphics2D g, Body body, Box box) {
 		Vector[] pts = box.getPoints(body.getPosition(), body.getRotation());
@@ -282,9 +233,6 @@ public class Demo {
 
 	/**
 	 * Draw the whole simulation
-	 * 
-	 * @param g
-	 *            The graphics context on which to draw
 	 */
 	protected void draw(Graphics2D g) {
 		BodyList bodies = world.getBodies();
@@ -298,16 +246,14 @@ public class Demo {
 	}
 
 	/**
-	 * Retrieve the title of the demo
-	 * 
-	 * @return The title of the demo
+	 * Title of the demo
 	 */
 	public String getTitle() {
 		return title;
 	}
 
 	protected void update() {
-		newBalloon.upDate();
+		//newBalloon.upDate();
 	}
 
 	protected void renderGUI(Graphics2D g) {
