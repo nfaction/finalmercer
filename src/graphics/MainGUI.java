@@ -268,7 +268,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class startButtonListener implements ActionListener {
-		@Override
+
 		public void actionPerformed(ActionEvent arg0) {
 			master.removeAll();
 			master.add(sandbox);
@@ -282,7 +282,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class scenarioButtonListener implements ActionListener {
-		@Override
+
 		public void actionPerformed(ActionEvent arg0) {
 			master.removeAll();
 			master.add(scenario);
@@ -296,7 +296,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class optionButtonListener implements ActionListener {
-		@Override
+	
 		public void actionPerformed(ActionEvent arg0) {
 			master.removeAll();
 			master.add(options);
@@ -311,7 +311,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class mainMenuSandboxButtonListener implements ActionListener {
-		@Override
+
 		public void actionPerformed(ActionEvent arg0) {
 			master.removeAll();
 			master.add(main);
@@ -326,7 +326,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class mainMenuScenarioButtonListener implements ActionListener {
-		@Override
+
 		public void actionPerformed(ActionEvent arg0) {
 			master.removeAll();
 			master.add(main);
@@ -340,7 +340,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class s1ButtonListener implements ActionListener {
-		@Override
+	
 		public void actionPerformed(ActionEvent arg0) {
 			
 		}
@@ -352,7 +352,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class mainMenuOptionsButtonListener implements ActionListener {
-		@Override
+	
 		public void actionPerformed(ActionEvent arg0) {
 			master.removeAll();
 			master.add(main);
@@ -366,7 +366,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class submitButtonListener implements ActionListener {
-		@Override
+
 		public void actionPerformed(ActionEvent arg0) {
 			
 		}
@@ -377,7 +377,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class soundOnButtonListener implements ActionListener {
-		@Override
+	
 		public void actionPerformed(ActionEvent arg0) {
 			
 		}
@@ -388,7 +388,7 @@ public class MainGUI extends JFrame{
 	 * action.
 	 */
 	public class soundOffButtonListener implements ActionListener {
-		@Override
+	
 		public void actionPerformed(ActionEvent arg0) {
 			
 		}
