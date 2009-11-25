@@ -6,7 +6,6 @@ import engine.StaticBody;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.test.AbstractDemo;
-import engine.vector.Vector;
 
 /**
  * A simple demo with so flat blocks falling
