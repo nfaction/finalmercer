@@ -17,6 +17,8 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import model.Model;
+
 public class SandboxPanel extends JPanel implements Observer, MouseMotionListener, MouseListener {
 	private Image basketball;
 	private Image bowlingball;
@@ -28,6 +30,8 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private int newXi = 0, newYi = 0;
 	private boolean bbmoved;
 	private boolean bwmoved;
+	private Model model = new Model(500, 500);
+	
 	
 	public SandboxPanel(){
 		this.setLayout(null);
@@ -129,10 +133,12 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		System.out.println("Clicked");
 		if(bbmoved){
 			bbmoved = false;
+			model.addObjToBoard("BasketBall",newXi, newYi);
 			//send click to model
 		}
 		else if(bwmoved){
 			bbmoved = false;
+			System.out.println(model.addObjToBoard("BowlingBall",newXi, newYi));
 			//send click to model
 		}
 		
