@@ -13,7 +13,7 @@ public class BasketBall extends Ball {
 		bBall = new Body(BasketBall, new Circle(20.0f), 2.0f);
 		bBall.setRestitution(1.0f);
 		bBall.setDamping(.001f);
-		
+		bBall.setCanRest(true);
 		setImagePath("Images/bball.jpg");
 	}
 	
