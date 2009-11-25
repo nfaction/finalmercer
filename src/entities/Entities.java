@@ -3,6 +3,7 @@ package entities;
 import java.util.Observable;
 
 import engine.World;
+import engine.body.Body;
 
 public abstract class Entities extends Observable {
 	/** Upper X coordinate */
@@ -160,5 +161,8 @@ public abstract class Entities extends Observable {
 	}
 
 	public abstract void addObj(World world, float x, float y);
+	
+	public abstract void removeObj(World world);
+
 
 }

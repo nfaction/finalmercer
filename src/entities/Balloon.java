@@ -1,8 +1,11 @@
 package entities;
 
 import engine.World;
+import engine.body.Body;
 
 public class Balloon extends Entities{
+	
+	private Body balloon;
 
 	public Balloon(String objType) {
 		super(objType);
@@ -25,6 +28,12 @@ public class Balloon extends Entities{
 	public float getY() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void removeObj(World world) {
+		world.remove(balloon);
+		
 	}
 
 }

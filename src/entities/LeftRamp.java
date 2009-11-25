@@ -27,5 +27,11 @@ public class LeftRamp extends Entities{
 		return 0;
 	}
 
+	@Override
+	public void removeObj(World world) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
