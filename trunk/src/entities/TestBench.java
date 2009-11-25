@@ -1,7 +1,9 @@
 package entities;
 
+import engine.StaticBody;
 import engine.World;
 
+import engine.body.Body;
 import engine.shapes.*;
 import engine.test.AbstractDemo;
 
@@ -25,6 +27,11 @@ public class TestBench extends AbstractDemo {
 	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
+		
+		Body ground1 = new StaticBody("Ground1", new Box(500, 1.0f));
+		ground1.setPosition(250.0f, 500);
+		ground1.setRestitution(1.0f);
+		world.add(ground1);
 		
 		Body ground = new StaticBody("Ground1", new Box(400.0f, 20.0f));
 		ground.setPosition(250.0f, 400);
