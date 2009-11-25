@@ -16,7 +16,6 @@ import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.shapes.StaticBody;
 import engine.strategies.QuadSpaceStrategy;
-import engine.test.AbstractDemo;
 import engine.vector.Vector;
 
 /**
@@ -39,13 +38,8 @@ public class Demo {
 	private boolean running = true;
 	/** The rendering strategy */
 	private BufferStrategy strategy;
-
 	/** True if we should reset the demo on the next loop */
 	protected boolean needsReset;
-	/** True if we should render normals */
-	private boolean normals = true;
-	/** True if we should render contact points */
-	private boolean contacts = true;
 
 	/** The box falling into the simulation */
 	private Body box;

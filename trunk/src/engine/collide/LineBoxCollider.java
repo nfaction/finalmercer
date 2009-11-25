@@ -1,6 +1,5 @@
 package engine.collide;
 
-import engine.Contact;
 import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.shapes.Line;
@@ -48,7 +47,7 @@ public strictfp class LineBoxCollider implements Collider {
 	}
 
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.shapes.Body,
+	 * @see engine.collide.Collider#collide(engine.collide.Contact[], engine.shapes.Body,
 	 *      engine.shapes.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {

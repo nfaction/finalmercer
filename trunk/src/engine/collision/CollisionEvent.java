@@ -1,4 +1,4 @@
-package engine;
+package engine.collision;
 
 import engine.shapes.Body;
 import engine.vector.Vector;
@@ -6,7 +6,7 @@ import engine.vector.Vector;
 /**
  * An event describing a collision between two bodies
  * 
- * @author Kevin Glass
+ * @author Jeffery D. AHern
  */
 public class CollisionEvent {
 	/** The time of the collision detection */

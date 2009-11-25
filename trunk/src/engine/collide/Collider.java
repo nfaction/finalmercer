@@ -1,6 +1,5 @@
 package engine.collide;
 
-import engine.Contact;
 import engine.shapes.Body;
 
 /**

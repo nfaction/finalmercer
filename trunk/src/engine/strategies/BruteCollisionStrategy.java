@@ -1,7 +1,7 @@
 package engine.strategies;
 
 import engine.BodyList;
-import engine.CollisionContext;
+import engine.collision.CollisionContext;
 
 /**
  * Brute force collision. Compare every body against every other (slow)
@@ -11,7 +11,7 @@ import engine.CollisionContext;
 public class BruteCollisionStrategy implements BroadCollisionStrategy {
 
 	/**
-	 * @see engine.strategies.BroadCollisionStrategy#collideBodies(engine.CollisionContext, engine.BodyList, float)
+	 * @see engine.strategies.BroadCollisionStrategy#collideBodies(engine.collision.CollisionContext, engine.BodyList, float)
 	 */
 	public void collideBodies(CollisionContext context, BodyList bodies, float dt) {
 		context.resolve(bodies, dt);

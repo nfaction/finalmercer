@@ -1,47 +1,10 @@
-/*
- * Phys2D - a 2D physics engine based on the work of Erin Catto. The
- * original source remains:
- * 
- * Copyright (c) 2006 Erin Catto http://www.gphysics.com
- * 
- * This source is provided under the terms of the BSD License.
- * 
- * Copyright (c) 2006, Phys2D
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or 
- * without modification, are permitted provided that the following 
- * conditions are met:
- * 
- *  * Redistributions of source code must retain the above 
- *    copyright notice, this list of conditions and the 
- *    following disclaimer.
- *  * Redistributions in binary form must reproduce the above 
- *    copyright notice, this list of conditions and the following 
- *    disclaimer in the documentation and/or other materials provided 
- *    with the distribution.
- *  * Neither the name of the Phys2D/New Dawn Software nor the names of 
- *    its contributors may be used to endorse or promote products 
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
- * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- */
 package engine;
 
 import java.util.ArrayList;
 
+import engine.collide.Contact;
+import engine.collision.CollisionEvent;
+import engine.collision.CollisionSpace;
 import engine.forcesource.ForceSource;
 import engine.joint.Joint;
 import engine.shapes.Body;
@@ -51,10 +14,9 @@ import engine.vector.Vector;
 
 
 /**
- * The physics model in which the bodies exist. The world is "stepped"
- * which causes the bodies to be moved and resulting forces be resolved.
+ * The physics model in which the bodies exist. 
  * 
- * @author Kevin Glass
+ * @author Jeffery D. Ahern
  */
 public strictfp class World extends CollisionSpace {
 	/** The joints contained in the world */
@@ -74,7 +36,7 @@ public strictfp class World extends CollisionSpace {
 	/** The amoutn a body has to move for it to be considered non-resting */
 	private float positionTolerance; 
 	/** The force sources in the world */
-	private ArrayList sources = new ArrayList();
+	private ArrayList<ForceSource> sources = new ArrayList<ForceSource>();
 	
 	/**
 	 * Create a new physics model World
@@ -275,7 +237,7 @@ public strictfp class World extends CollisionSpace {
 		for (int i = 0; i < bodies.size(); ++i)
 		{
 			for (int j=0;j<sources.size();j++) {
-				((ForceSource) sources.get(j)).apply(bodies.get(i), dt);
+				sources.get(j).apply(bodies.get(i), dt);
 			}
 		}
 		
@@ -423,7 +385,7 @@ public strictfp class World extends CollisionSpace {
 	 * @return The list of collision events describing the current contacts
 	 */
 	public CollisionEvent[] getContacts(Body body) {
-		ArrayList collisions = new ArrayList();
+		ArrayList<CollisionEvent> collisions = new ArrayList<CollisionEvent>();
 		
 		for (int i=0;i<arbiters.size();i++) {
 			Arbiter arb = arbiters.get(i);
@@ -438,7 +400,7 @@ public strictfp class World extends CollisionSpace {
 			}
 		}
 		
-		return (CollisionEvent[]) collisions.toArray(new CollisionEvent[0]);
+		return collisions.toArray(new CollisionEvent[0]);
 	}
 	
 	/**
@@ -457,7 +419,7 @@ public strictfp class World extends CollisionSpace {
 	}
 
 	/**
-	 * @see engine.CollisionSpace#add(engine.shapes.Body)
+	 * @see engine.collision.CollisionSpace#add(engine.shapes.Body)
 	 */
 	public void add(Body body) {                         
 		body.configureRestingBodyDetection(hitTolerance, rotationTolerance, positionTolerance);

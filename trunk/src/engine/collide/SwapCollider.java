@@ -1,6 +1,5 @@
 package engine.collide;
 
-import engine.Contact;
 import engine.shapes.Body;
 import engine.vector.MathUtil;
 import engine.vector.Vector;
@@ -27,7 +26,7 @@ public class SwapCollider implements Collider {
 	}
 
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.shapes.Body, engine.shapes.Body)
+	 * @see engine.collide.Collider#collide(engine.collide.Contact[], engine.shapes.Body, engine.shapes.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		int count = collider.collide(contacts, bodyB, bodyA);

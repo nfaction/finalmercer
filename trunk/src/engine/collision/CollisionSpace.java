@@ -1,7 +1,11 @@
-package engine;
+package engine.collision;
 
 import java.util.ArrayList;
 
+import engine.Arbiter;
+import engine.ArbiterList;
+import engine.BodyList;
+import engine.collide.Contact;
 import engine.shapes.Body;
 import engine.strategies.BroadCollisionStrategy;
 import engine.vector.Vector;
@@ -11,7 +15,7 @@ import engine.vector.Vector;
  * A space that will resolve collisions and report them to registered 
  * listeners.
  * 
- * @author Kevin Glass
+ * @author Jeffery D. AHern
  */
 public class CollisionSpace implements CollisionContext {
 	/** The bodies contained in the world */
@@ -21,7 +25,7 @@ public class CollisionSpace implements CollisionContext {
 	/** The broad phase collision strategy we're using */
 	protected BroadCollisionStrategy collisionStrategy;
 	/** The list of listeners that should be notified of collisions */
-	protected ArrayList listeners = new ArrayList();
+	protected ArrayList<CollisionListener> listeners = new ArrayList<CollisionListener>();
 	/** The total time passed */
 	protected float totalTime;
 	/** The bitmask that determine which bits are used for collision detection */
@@ -131,12 +135,12 @@ public class CollisionSpace implements CollisionContext {
 		CollisionEvent event = new CollisionEvent(totalTime,body1,body2,point,normal,depth);
 	
 		for (int i=0;i<listeners.size();i++) {
-			((CollisionListener) listeners.get(i)).collisionOccured(event);
+			listeners.get(i).collisionOccured(event);
 		}
 	}
 	
 	/**
-	 * @see engine.CollisionContext#resolve(engine.BodyList, float)
+	 * @see engine.collision.CollisionContext#resolve(engine.BodyList, float)
 	 */
 	public void resolve(BodyList bodyList, float dt) {
 		for (int i = 0; i < bodyList.size(); ++i)
