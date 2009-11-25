@@ -1,7 +1,8 @@
 package entities;
 
 import engine.World;
-import engine.shapes.Body;
+//import engine.shapes.Body;
+import engine.body.Body;
 import engine.shapes.Circle;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -116,7 +117,7 @@ public strictfp class BowlingBall extends Ball {
 
 	@Override
 	public void removeObj(World world) {
-		// TODO Auto-generated method stub
+		world.remove(bowlBall);
 		
 	}
 
