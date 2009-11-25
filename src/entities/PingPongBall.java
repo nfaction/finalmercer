@@ -1,7 +1,8 @@
 package entities;
 
 import engine.World;
-import engine.shapes.Body;
+
+import engine.body.Body;
 import engine.shapes.Circle;
 
 public class PingPongBall extends Ball{
@@ -38,7 +39,7 @@ public class PingPongBall extends Ball{
 
 	@Override
 	public void removeObj(World world) {
-		// TODO Auto-generated method stub
+		world.remove(ppBall);
 		
 	}
 }
