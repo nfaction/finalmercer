@@ -3,7 +3,8 @@ package entities;
 import java.util.Observable;
 
 import engine.World;
-import engine.body.Body;
+import engine.shapes.*;
+
 
 public abstract class Entities extends Observable {
 	/** Upper X coordinate */

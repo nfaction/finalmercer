@@ -1,10 +1,8 @@
 package entities;
 
 import engine.World;
-import engine.body.Body;
-import engine.StaticBody;
-import engine.shapes.Box;
-import engine.shapes.Circle;
+
+import engine.shapes.*;
 import engine.test.AbstractDemo;
 
 /**
