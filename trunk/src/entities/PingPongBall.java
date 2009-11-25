@@ -35,4 +35,10 @@ public class PingPongBall extends Ball{
 	public float getY() {
 		return ppBall.getPosition().getY();
 	}
+
+	@Override
+	public void removeObj(World world) {
+		// TODO Auto-generated method stub
+		
+	}
 }

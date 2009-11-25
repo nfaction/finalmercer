@@ -35,6 +35,17 @@ public class BasketBall extends Ball {
 		
 		bBall.setPosition(x, y);
 		this.setImageLocations(x, y);
-		world.add(bBall);  		
+		world.add(bBall);
+
 	}
+
+	@Override
+	public void removeObj(World world) {
+		world.remove(bBall);
+		
+	}
+	
+	
+	
+	
 }
