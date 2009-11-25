@@ -33,8 +33,8 @@ public class TestBench extends AbstractDemo {
 		ground1.setRestitution(1.0f);
 		world.add(ground1);
 		
-		Body ground = new StaticBody("Ground1", new Box(400.0f, 20.0f));
-		ground.setPosition(250.0f, 400);
+		Body ground = new StaticBody("Ground1", new Box(300.0f, 5.0f));
+		ground.setPosition(200.0f, 400);
 		ground.setRestitution(1.0f);
 		ground.setRotation(.4f);
 		world.add(ground);
@@ -61,12 +61,12 @@ public class TestBench extends AbstractDemo {
 		 */
 
 		// Balloon
-		// Body balloon = new Body("Balloon", new Circle(15.0f), .5f);
-		// balloon.setPosition(200.0f, 300.0f);
-		// balloon.setGravityEffected(false);
-		// balloon.setForce(0.0f, -1000.0f);
-		// balloon.setRestitution(.1f);
-		// world.add(balloon);
+		 Body balloon = new Body("Balloon", new Circle(15.0f), .5f);
+		 balloon.setPosition(200.0f, 300.0f);
+		 balloon.setGravityEffected(false);
+		 balloon.setForce(0.0f, -1000.0f);
+		 balloon.setRestitution(.1f);
+		 world.add(balloon);
 
 	}
 
