@@ -51,7 +51,7 @@ public class Model {
 			newEntity.addObj(world, x, y);
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
