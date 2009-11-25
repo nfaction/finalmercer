@@ -1,6 +1,5 @@
-package engine;
+package engine.collide;
 
-import engine.collide.FeaturePair;
 import engine.vector.Vector;
 
 /**
@@ -9,30 +8,29 @@ import engine.vector.Vector;
  * @author Jeffery D. Ahern
  */
 public strictfp class Contact {
-	// TODO: the positions are absolute, right? if not make them so
 	/** The position of the contact */
-	Vector position = new Vector();
+	public Vector position = new Vector();
 	/** The normal at the contact point which, for convex bodies,
 	 * points away from the first body. */
-	Vector normal = new Vector();
+	public Vector normal = new Vector();
 	/** ? */
-	float separation;
+	public float separation;
 	/** The impulse accumlated in the direction of the normal */
-	float accumulatedNormalImpulse;
+	public float accumulatedNormalImpulse;
 	/** The impulse accumlated in the direction of the tangent */
-	float accumulatedTangentImpulse;
+	public float accumulatedTangentImpulse;
 	/** The mass applied throught the normal at this contact point */
-	float massNormal;
+	public float massNormal;
 	/** The mass applied through the tangent at this contact point */
-	float massTangent;
+	public float massTangent;
 	/** The correction factor penetration */
-	float bias;
+	public float bias;
 	/** The pair of edges this contact is between */
-	FeaturePair feature = new FeaturePair();
+	public FeaturePair feature = new FeaturePair();
 	/** The restitution at this point of contact */
-	float restitution;
+	public float restitution;
 	/** The bias impulse accumulated */
-	float biasImpulse;
+	public float biasImpulse;
 	
 	/**
 	 * Create a new contact point
@@ -56,7 +54,7 @@ public strictfp class Contact {
 	 * 
 	 * @param contact The contact information
 	 */
-	void set(Contact contact) {
+	public void set(Contact contact) {
 		position.set(contact.position);
 		normal.set(contact.normal);
 		separation = contact.separation;

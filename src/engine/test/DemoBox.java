@@ -6,9 +6,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-
-
-import engine.Demo;
 import engine.World;
 
 

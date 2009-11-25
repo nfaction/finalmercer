@@ -1,7 +1,7 @@
 package engine.strategies;
 
 import engine.BodyList;
-import engine.CollisionContext;
+import engine.collision.CollisionContext;
 
 /**
  * A description of any strategy for determining which bodies should

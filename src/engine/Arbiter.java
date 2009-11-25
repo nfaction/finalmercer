@@ -1,5 +1,7 @@
 package engine;
 
+import engine.collide.Collide;
+import engine.collide.Contact;
 import engine.shapes.Body;
 import engine.shapes.StaticBody;
 import engine.vector.MathUtil;
@@ -25,7 +27,7 @@ public strictfp class Arbiter {
 	 * @param b1 The first body in contact
 	 * @param b2 The second body in contact
 	 */
-	Arbiter(Body b1, Body b2) {
+	public Arbiter(Body b1, Body b2) {
 		for (int i=0;i<MAX_POINTS;i++) {
 			contacts[i] = new Contact();
 		}
@@ -68,7 +70,7 @@ public strictfp class Arbiter {
 	 * @param index The index of the contact to retrieve
 	 * @return The contact or null if no contact has been detected 
 	 */
-	Contact getContact(int index) {
+	public Contact getContact(int index) {
 		return contacts[index];
 	}
 	
@@ -127,7 +129,7 @@ public strictfp class Arbiter {
 	 * @param newContacts The new contacts that have been found
 	 * @param numNewContacts The number of new contacts discovered
 	 */
-	void update(Contact[] newContacts, int numNewContacts) {
+	public void update(Contact[] newContacts, int numNewContacts) {
 		Contact[] mergedContacts = new Contact[MAX_POINTS];
 		for (int i=0;i<mergedContacts.length;i++) {
 			mergedContacts[i] = new Contact();

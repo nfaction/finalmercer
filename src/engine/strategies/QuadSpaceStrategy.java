@@ -3,7 +3,7 @@ package engine.strategies;
 import java.util.ArrayList;
 
 import engine.BodyList;
-import engine.CollisionContext;
+import engine.collision.CollisionContext;
 import engine.shapes.AABox;
 import engine.shapes.Body;
 
@@ -35,7 +35,7 @@ public class QuadSpaceStrategy implements BroadCollisionStrategy {
 	}
 	
 	/**
-	 * @see engine.strategies.BroadCollisionStrategy#collideBodies(engine.CollisionContext, engine.BodyList, float)
+	 * @see engine.strategies.BroadCollisionStrategy#collideBodies(engine.collision.CollisionContext, engine.BodyList, float)
 	 */
 	public void collideBodies(CollisionContext context, BodyList bodies, float dt) {
 		spaces.clear();

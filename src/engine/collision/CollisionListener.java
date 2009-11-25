@@ -1,10 +1,11 @@
-package engine;
+package engine.collision;
+
 
 /**
  * A description of class that can recieve notifications of collisions
  * within a <code>CollisionSpace</code>
  * 
- * @author Kevin Glass
+ * @author Jeffery D> AHern
  */
 public interface CollisionListener {
 	/**
