@@ -1,7 +1,7 @@
 package entities;
 
 import engine.World;
-import engine.body.Body;
+import engine.shapes.Body;
 
 public class Balloon extends Entities{
 	

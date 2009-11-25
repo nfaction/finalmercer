@@ -1,7 +1,7 @@
 package entities;
 
 import engine.World;
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.shapes.Circle;
 import java.awt.image.BufferedImage;
 import java.io.File;
