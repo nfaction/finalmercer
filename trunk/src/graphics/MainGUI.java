@@ -79,15 +79,15 @@ public class MainGUI extends JFrame{
 	 * Sets up the JFrame and master panel
 	 */
 	public void setupJFrameModel(){
-		this.setSize(950, 550);
+		this.setSize(950, 630);
+		this.setLayout(null);
 		this.setLocation(500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
 		Container cp = this.getContentPane();
 		
 		// Sets master panel specifications
 		master.setLayout(null);
-		master.setSize(950, 550);
+		master.setSize(950, 600);
 		master.setLocation(0,0);
 		
 		// Sets up all individual frames
@@ -97,10 +97,10 @@ public class MainGUI extends JFrame{
 		setupSandbox();
 		
 		// First panel added
-		master.add(main);
+		//master.add(main);
 		//master.add(scenario);
 		//master.add(options);
-		//master.add(sandbox);
+		master.add(sandbox);
 		cp.add(master);
 	}
 	
@@ -145,7 +145,7 @@ public class MainGUI extends JFrame{
 	
 	public void setupSandbox(){
 		sandbox.setLayout(null);
-		sandbox.setSize(950, 500);
+		sandbox.setSize(950, 600);
 		sandbox.setLocation(0,0);
 		
 		mainMenuSandbox.setSize(125,30);

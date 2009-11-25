@@ -20,6 +20,9 @@ import javax.swing.JPanel;
 public class SandboxPanel extends JPanel implements Observer, MouseMotionListener, MouseListener {
 	private Image basketball;
 	private Image bowlingball;
+	private Image toolbox;
+	private Image sandbox;
+	
 	private SpriteSheet cardImages;
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
@@ -27,12 +30,14 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private boolean bwmoved;
 	
 	public SandboxPanel(){
-		this.setLayout(new BorderLayout());
-		this.setSize(950, 550);
+		this.setLayout(null);
+		this.setSize(950, 600);
 		this.setLocation(0, 50);
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.BLACK);
 		registerListeners();
 		try {
+			toolbox = ImageIO.read(new File("Images/ToolBox.gif"));
+			sandbox = ImageIO.read(new File("Images/SandBox.gif"));
 			basketball = ImageIO.read(new File("Images/basketball.gif"));
 			bowlingball = ImageIO.read(new File("Images/bowling ball.gif"));
 		} catch (IOException e) {
@@ -51,13 +56,20 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D o = (Graphics2D) g;
-		o.drawImage(basketball, newXi, newYi, this);
-		o.drawImage(bowlingball, newXi, newYi + 50, this);
+		o.drawImage(toolbox, 10, 10, this);
+		o.drawImage(sandbox, 350, 10, this);
+		o.drawImage(basketball, 60, 40, this);
+		o.drawImage(bowlingball, 60, 120, this);
+		if(bbmoved){
+			o.drawImage(basketball, newXi, newYi, this);
+		}
+		if(bwmoved){
+			o.drawImage(bowlingball, newXi, newYi, this);
+		}
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		paintImmediately(0,0,1000,1000);
 		repaint();
 	}
 
@@ -78,7 +90,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			newYi = newY;
 			repaint();
 		}
-		else if(bwmoved){
+		if(bwmoved){
 			newXi = newX;
 			newYi = newY;
 			repaint();
@@ -90,16 +102,12 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	public void mouseClicked(MouseEvent arg0) {
 		newX = arg0.getX();
 		newY = arg0.getY();
-		if((newX > 0 && newX < 50) && (newY > 0 && newY < 50)){
+		if((newX > 60 && newX < 110) && (newY > 40 && newY < 90)){
 			bbmoved = true;
 
 		}
-		else if((newX > 0 && newX < 50) && (newY > 50 && newY < 100)){
+		else if((newX > 60 && newX < 110) && (newY > 120 && newY < 170)){
 			bwmoved = true;
-		}
-		else{
-			bbmoved = false;
-			bwmoved = false;
 		}
 		
 	}
@@ -118,7 +126,15 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		System.out.println("Clicked");
+		if(bbmoved){
+			bbmoved = false;
+			//send click to model
+		}
+		else if(bwmoved){
+			bbmoved = false;
+			//send click to model
+		}
 		
 	}
 
