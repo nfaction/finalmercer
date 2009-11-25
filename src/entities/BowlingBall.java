@@ -19,10 +19,10 @@ public strictfp class BowlingBall extends Ball {
 		bowlBall = new Body("BowlingBall", new Circle(15.0f), 16.0f);
 		bowlBall.setRestitution(.5f);
 		bowlBall.setDamping(.01f);
+		bowlBall.setCanRest(true);
 
 		try {
-			bowlingBallimgs = ImageIO.read(new File(
-					"bowlingBallSpriteSheet.gif"));
+			bowlingBallimgs = ImageIO.read(new File("Images/bowlingBallSpriteSheet.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

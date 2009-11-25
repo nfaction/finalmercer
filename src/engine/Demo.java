@@ -17,6 +17,8 @@ import engine.shapes.Line;
 import engine.shapes.StaticBody;
 import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
+import entities.BasketBall;
+import entities.BowlingBall;
 
 /**
  * Lines terrain testing extensive
@@ -127,24 +129,48 @@ public class Demo {
 	protected void init(World world) {
 		Body land = new StaticBody("Line1", new Line(100, 50));
 		land.setPosition(150, 150);
+		land.setRestitution(1f);
 		world.add(land);
 		land = new StaticBody("Line2", new Line(150, -75));
 		land.setPosition(250, 300);
+		land.setRestitution(1f);
 		world.add(land);
-		land = new StaticBody("Line2", new Line(150, 75));
+		land = new StaticBody("Line3", new Line(150, 75));
 		land.setPosition(100, 350);
+		land.setRestitution(1f);
 		world.add(land);
-		land = new StaticBody("Line2", new Line(150, 0));
+		land = new StaticBody("Line4", new Line(150, 0));
 		land.setPosition(300, 450);
+		land.setRestitution(1f);
 		world.add(land);
+		land = new StaticBody("Floor", new Line(494, 0));
+		land.setPosition(5, 475);
+		land.setRestitution(1f);
+		world.add(land);
+		land = new StaticBody("LWall", new Line(0, -475));
+		land.setPosition(5, 475);
+		land.setRestitution(1f);
+		world.add(land);
+		land = new StaticBody("RWall", new Line(0, -475));
+		land.setPosition(495, 475);
+		land.setRestitution(1f);
+		world.add(land);
+		
+		BasketBall newEntity = new BasketBall("BasketBall");
+		newEntity.addObj(world, 200, 50);
+		
+		BowlingBall newEntity1 = new BowlingBall();
+		newEntity1.addObj(world, 200,55 );
+		
+		
 
-		box = new Body("Faller", new Box(50, 50), 1);
-		box.setPosition(200, 50);
-		world.add(box);
+//		box = new Body("Faller", new Box(50, 50), 1);
+//		box.setPosition(200, 50);
+//		world.add(box);
 	}
 
 	/**
-	 * Initialise the demo - clear the world
+	 * Initialize the demo - clear the world
 	 */
 	public final void initDemo() {
 		world.clear();
@@ -153,7 +179,7 @@ public class Demo {
 	}
 
 	/**
-	 * Initialise the GUI
+	 * Initialize the GUI
 	 */
 	private void initGUI() {
 		frame = new Frame(title);
@@ -251,7 +277,6 @@ public class Demo {
 		float yo = (float) (Math.sin(rot) * r);
 
 		g.drawOval((int) (x - r), (int) (y - r), (int) (r * 2), (int) (r * 2));
-		g.drawLine((int) x, (int) y, (int) (x + xo), (int) (y + yo));
 	}
 
 	/**
