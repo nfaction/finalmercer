@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
+import engine.Demo;
 import engine.World;
 
 
@@ -123,7 +124,6 @@ public class DemoBox extends AbstractDemo {
 		box.add(new Demo15());
 		box.add(new Demo16());
 		box.add(new Demo17());
-		box.add(new Demo18());
 		box.add(new Demo19());
 		box.add(new Demo20());
 		box.add(new AllShapesDemo());
