@@ -38,7 +38,12 @@ public class Model {
 		world.add(ground);
 
 	}
-
+	
+	// Added to give you integers instead of floats from my end.
+	public boolean addObjToBoard(String objType,int x, int y){
+		return addObjToBoard(objType,new Float(x),new Float(y));
+	}
+	
 	public boolean addObjToBoard(String objType,float x, float y) {
 		//add object first then look for collisions and off the board
 		if (objType.equals("BasketBall")){

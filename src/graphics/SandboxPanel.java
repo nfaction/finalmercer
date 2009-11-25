@@ -28,8 +28,15 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private SpriteSheet cardImages;
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
-	private boolean bbmoved;
-	private boolean bwmoved;
+	private boolean basketballmoved;
+	private boolean bowlingballmoved;
+	private boolean bucketmoved;
+	private boolean candlemoved;
+	private boolean dominomoved;
+	private boolean pingpongballmoved;
+	private boolean rightrampmoved;
+	private boolean leftrampmoved;
+	private boolean lightmoved;
 	private Model model = new Model(500, 500);
 	
 	
@@ -64,10 +71,11 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		o.drawImage(sandbox, 350, 10, this);
 		o.drawImage(basketball, 60, 40, this);
 		o.drawImage(bowlingball, 60, 120, this);
-		if(bbmoved){
+		// get objects from model here
+		if(basketballmoved){
 			o.drawImage(basketball, newXi, newYi, this);
 		}
-		if(bwmoved){
+		if(bowlingballmoved){
 			o.drawImage(bowlingball, newXi, newYi, this);
 		}
 	}
@@ -89,12 +97,12 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		newX = arg0.getX();
 		newY = arg0.getY();
 		
-		if(bbmoved){
+		if(basketballmoved){
 			newXi = newX;
 			newYi = newY;
 			repaint();
 		}
-		if(bwmoved){
+		if(bowlingballmoved){
 			newXi = newX;
 			newYi = newY;
 			repaint();
@@ -107,11 +115,14 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		newX = arg0.getX();
 		newY = arg0.getY();
 		if((newX > 60 && newX < 110) && (newY > 40 && newY < 90)){
-			bbmoved = true;
+			basketballmoved = true;
 
 		}
 		else if((newX > 60 && newX < 110) && (newY > 120 && newY < 170)){
-			bwmoved = true;
+			bowlingballmoved = true;
+		}
+		else if((newX > 350 && newX < 850) && (newY > 10 && newY < 510)){
+			//may be needed.
 		}
 		
 	}
@@ -131,13 +142,13 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		System.out.println("Clicked");
-		if(bbmoved){
-			bbmoved = false;
-			model.addObjToBoard("BasketBall",newXi, newYi);
+		if(basketballmoved){
+			basketballmoved = false;
+			System.out.println(model.addObjToBoard("BasketBall",newXi, newYi));
 			//send click to model
 		}
-		else if(bwmoved){
-			bbmoved = false;
+		else if(bowlingballmoved){
+			basketballmoved = false;
 			System.out.println(model.addObjToBoard("BowlingBall",newXi, newYi));
 			//send click to model
 		}
