@@ -19,6 +19,7 @@ import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 import entities.BasketBall;
 import entities.BowlingBall;
+import entities.PingPongBall;
 
 /**
  * Lines terrain testing extensive
@@ -29,28 +30,20 @@ import entities.BowlingBall;
  * @author Kevin Mcomber
  */
 public class Demo {
-	/** The frame displaying the demo */
 	protected Frame frame;
-	/** The title of the current demo */
 	protected String title;
-	/** The world containing the physics model */
 	protected World world = new World(new Vector(0.0f, 10.0f), 10,
 			new QuadSpaceStrategy(20, 5));
-	/** True if the simulation is running */
 	private boolean running = true;
-	/** The rendering strategy */
 	private BufferStrategy strategy;
-	/** True if we should reset the demo on the next loop */
 	protected boolean needsReset;
-
-	/** The box falling into the simulation */
 	private Body box;
 
 	/**
-	 * Entry point for tetsing
+	 * Makes the program run
 	 * 
 	 * @param argv
-	 *            The arguments to the test
+	 *            Nothing
 	 */
 	public static void main(String[] argv) {
 		Demo demo = new Demo();
@@ -68,8 +61,10 @@ public class Demo {
 	 * Start the simulation running
 	 */
 	public void start() {
-		initGUI();
-		initDemo();
+		miniGUI();
+		world.clear();
+		world.setGravity(0, 10);
+		init(world);
 
 		float target = 1000 / 60.0f;
 		float frameAverage = target;
@@ -155,66 +150,45 @@ public class Demo {
 		land.setPosition(495, 475);
 		land.setRestitution(1f);
 		world.add(land);
-		
+
 		BasketBall newEntity = new BasketBall("BasketBall");
 		newEntity.addObj(world, 200, 50);
-		
-		BowlingBall newEntity1 = new BowlingBall();
-		newEntity1.addObj(world, 200,55 );
-		
-		
 
-//		box = new Body("Faller", new Box(50, 50), 1);
-//		box.setPosition(200, 50);
-//		world.add(box);
+		BowlingBall newEntity1 = new BowlingBall();
+		newEntity1.addObj(world, 200, 55);
+
+		PingPongBall newPPB = new PingPongBall(" ");
+		newPPB.addObj(world, 250, 57);
+
+		// box = new Body("Faller", new Box(50, 50), 1);
+		// box.setPosition(200, 50);
+		// world.add(box);
 	}
 
 	/**
 	 * Initialize the demo - clear the world
 	 */
 	public final void initDemo() {
-		world.clear();
-		world.setGravity(0, 10);
-		init(world);
+
 	}
 
 	/**
-	 * Initialize the GUI
+	 * Initialize the mini GUI
 	 */
-	private void initGUI() {
+	private void miniGUI() {
 		frame = new Frame(title);
 		frame.setResizable(false);
 		frame.setIgnoreRepaint(true);
 		frame.setSize(500, 500);
-
-		int x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 500) / 2;
-		int y = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 500) / 2;
-
-		frame.setLocation(x, y);
-
+		frame.setLocation(200, 200);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				running = false;
 				System.exit(0);
 			}
 		});
-		
-		frame.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				// keyHit(e.getKeyChar());
-			}
-
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == 27) {
-					System.exit(0);
-				}
-			}
-
-		});
-
 		frame.setVisible(true);
 		frame.createBufferStrategy(2);
-
 		strategy = frame.getBufferStrategy();
 	}
 
