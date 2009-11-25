@@ -1,7 +1,7 @@
 package engine.collide;
 
 import engine.Contact;
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.shapes.Circle;
 import engine.vector.MathUtil;
 import engine.vector.Vector;
@@ -9,14 +9,11 @@ import engine.vector.Vector;
 /**
  * A collider for circle 2 circle collisions
  * 
- * The create() method is used as a factory just in case this 
- * class becomes stateful eventually.
- * 
  * @author Jeffery D. Ahern
  */
 public strictfp class CircleCircleCollider implements Collider {	
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.shapes.Body, engine.shapes.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		float x1 = bodyA.getPosition().getX();

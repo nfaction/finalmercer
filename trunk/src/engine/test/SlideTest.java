@@ -1,10 +1,10 @@
 package engine.test;
 
-import engine.StaticBody;
 import engine.World;
-import engine.body.Body;
 import engine.joint.SlideJoint;
+import engine.shapes.Body;
 import engine.shapes.Circle;
+import engine.shapes.StaticBody;
 import engine.vector.Vector;
 
 /**

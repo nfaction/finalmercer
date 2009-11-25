@@ -1,6 +1,6 @@
 package engine;
 
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.vector.Vector;
 
 /**

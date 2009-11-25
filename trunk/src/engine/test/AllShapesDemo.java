@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-import engine.StaticBody;
 import engine.World;
-import engine.body.Body;
 import engine.shapes.*;
 
 

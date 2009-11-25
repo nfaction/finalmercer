@@ -1,13 +1,11 @@
 package engine.shapes;
 
-import engine.vector.MathUtil;
-import engine.vector.Vector2D;
-import engine.vector.Vector;
+import engine.vector.*;
 
 /**
  * A simple box in the engine - defined by a width and height
  * 
- * @author Kevin Glass
+ * @author Jeffery D. Ahern
  */
 public strictfp class Box extends AbstractShape {
 	/** The size of the box */

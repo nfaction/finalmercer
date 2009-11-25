@@ -1,7 +1,7 @@
 package engine.collide;
 
 import engine.Contact;
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.vector.MathUtil;
 import engine.vector.Vector2D;
@@ -17,18 +17,6 @@ import engine.vector.Vector;
  * @author Jeffery D. Ahern
  */
 public strictfp class BoxBoxCollider implements Collider {
-
-//	 Box vertex and edge numbering:
-	//
-//	        ^ y
-//	        |
-//	        e1
-//	   v2 ------ v1
-//	    |        |
-//	 e2 |        | e4  --> x
-//	    |        |
-//	   v3 ------ v4
-//	        e3
 
 	/** The identifier for the x coordinate of the first face */
 	public static final int FACE_A_X = 1;
@@ -50,9 +38,7 @@ public strictfp class BoxBoxCollider implements Collider {
 	/** The identifier indicating the forth edge collides */
 	public static final int EDGE4 = 4;
 
-	/** Temp vector */
 	private static Vector hA = new Vector();
-	/** Temp vector */
 	private static Vector hB = new Vector();
 	
 	/**
@@ -72,7 +58,7 @@ public strictfp class BoxBoxCollider implements Collider {
 		 */
 		public ClipVertex() { 
 		}
-	};
+	}
 
 	/** 
 	 * Swap the two body edges within a feature pair over
@@ -212,7 +198,7 @@ public strictfp class BoxBoxCollider implements Collider {
 	}
 	
 	/**
-	 * @see engine.collide.Collider#collide(engine.Contact[], engine.body.Body, engine.body.Body)
+	 * @see engine.collide.Collider#collide(engine.Contact[], engine.shapes.Body, engine.shapes.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		float x1 = bodyA.getPosition().getX();

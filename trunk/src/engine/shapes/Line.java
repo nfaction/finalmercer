@@ -7,7 +7,7 @@ import engine.vector.Vector;
  * that lines can't be used as dynamic shapes right now - also collision 
  * with the end of a line is undefined.
  * 
- * @author Kevin Glass
+ * @author Jeffery D. Ahern
  */
 public strictfp class Line extends AbstractShape {
 	/** The start point of the line */

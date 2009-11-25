@@ -1,12 +1,12 @@
 package engine.forcesource;
 
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.vector.Vector;
 
 /**
  * A source to apply wind to all bodies in a given direction
  * 
- * @author kevin
+ * @author Jeffery D. AHern
  */
 public class WindSource implements ForceSource {
 	/** The force to be applied */
@@ -25,7 +25,7 @@ public class WindSource implements ForceSource {
 	}
 	
 	/**
-	 * @see engine.forcesource.ForceSource#apply(engine.body.Body, float)
+	 * @see engine.forcesource.ForceSource#apply(engine.shapes.Body, float)
 	 */
 	public void apply(Body body, float delta) {
 		body.addForce(force);

@@ -2,7 +2,8 @@ package engine;
 
 import java.util.ArrayList;
 
-import engine.body.Body;
+import engine.shapes.Body;
+import engine.strategies.BroadCollisionStrategy;
 import engine.vector.Vector;
 
 

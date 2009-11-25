@@ -1,13 +1,12 @@
 package engine.joint;
 
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.vector.MathUtil;
 import engine.vector.Vector2D;
 import engine.vector.Vector;
 
 /**
- * A joint between two bodies. The joint affects the impulses applied to 
- * each body each step constraining the movement.
+ * A joint between two bodies. 
  * 
  * @author Jeffery D. Ahern
  */
@@ -15,29 +14,16 @@ public strictfp class BasicJoint implements Joint {
 	/** The next ID to be used */
 	private static int NEXT_ID = 0;
 	
-	/** The first body attached to the joint */
 	private Body body1;
-	/** The second body attached to the joint */
 	private Body body2;
-
-	/** The matrix describing the connection between two bodies */
 	private Vector2D M = new Vector2D();
-	/** The local anchor for the first body */
 	private Vector localAnchor1 = new Vector();
-	/** The local anchor for the second body */
 	private Vector localAnchor2 = new Vector();
-	/** The rotation of the anchor of the first body */
 	private Vector r1 = new Vector();
-	/** The rotation of the anchor of the second body */
 	private Vector r2 = new Vector();
-	/** ? */
 	private Vector bias = new Vector();
-	/** The impulse to be applied throught the joint */
 	private Vector accumulatedImpulse = new Vector();
-	/** How much slip there is in the joint */
 	private float relaxation;
-
-	/** The ID of this joint */
 	private int id;
 	
 	/**
@@ -143,10 +129,6 @@ public strictfp class BasicJoint implements Joint {
 		r1 = MathUtil.mul(rot1,localAnchor1);
 		r2 = MathUtil.mul(rot2,localAnchor2);
 
-		// deltaV = deltaV0 + K * impulse
-		// invM = [(1/m1 + 1/m2) * eye(2) - skew(r1) * invI1 * skew(r1) - skew(r2) * invI2 * skew(r2)]
-		//      = [1/m1+1/m2     0    ] + invI1 * [r1.y*r1.y -r1.x*r1.y] + invI2 * [r1.y*r1.y -r1.x*r1.y]
-		//        [    0     1/m1+1/m2]           [-r1.x*r1.y r1.x*r1.x]           [-r1.x*r1.y r1.x*r1.x]
 		Vector2D K1 = new Vector2D();
 		K1.col1.x = body1.getInvMass() + body2.getInvMass();	K1.col2.x = 0.0f;
 		K1.col1.y = 0.0f;								K1.col2.y = body1.getInvMass() + body2.getInvMass();
@@ -200,7 +182,7 @@ public strictfp class BasicJoint implements Joint {
 		dv.sub(body1.getVelocity());
 		dv.sub(MathUtil.cross(body1.getAngularVelocity(),r1));
 	    dv.scale(-1);
-	    dv.add(bias); // TODO: is this baumgarte stabilization?
+	    dv.add(bias);
 	    
 	    if (dv.lengthSquared() == 0) {
 	    	return;

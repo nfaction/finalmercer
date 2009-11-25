@@ -1,8 +1,8 @@
 package engine.test;
 
 import engine.World;
-import engine.body.Body;
-import engine.joint.DistanceJoint;
+import engine.joint.RopeJoint;
+import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.vector.MathUtil;
@@ -74,27 +74,17 @@ public class JointTest extends AbstractDemo {
 		}
 
 		for (int i = 1; i < N; i++) {
-			final DistanceJoint dj = new DistanceJoint(bodies[i - 1],
+			final RopeJoint dj = new RopeJoint(bodies[i - 1],
 					bodies[i], new Vector(7, 0), new Vector(-7, 0), 6);
-/*			Vector2f v1,v2;
-			v1 = new Vector2f(bodies[i-1].getPosition());v1.x+=7;
-			v2 = new Vector2f(bodies[i].getPosition());v2.x-=7;
-			SpringJoint dj = new SpringJoint(bodies[i - 1],
-					bodies[i], v1, v2);
-			dj.setMinSpringSize(4);
-			dj.setSpringSize(1);
-			dj.setStretchedSpringConst(100);
-			dj.setCompressedSpringConst(100);
-			dj.setMaxSpringSize(6);*/
 			world.add(dj);
 		}
 		{
-			final DistanceJoint dj = new DistanceJoint(body1, bodies[0],
+			final RopeJoint dj = new RopeJoint(body1, bodies[0],
 					anchor1, new Vector(-7, 0), 10);
 			world.add(dj);
 		}
 		if (body2 != null) {
-			final DistanceJoint dj = new DistanceJoint(body2, bodies[N - 1],
+			final RopeJoint dj = new RopeJoint(body2, bodies[N - 1],
 					anchor2, new Vector(7, 0), 10);
 			world.add(dj);
 		}

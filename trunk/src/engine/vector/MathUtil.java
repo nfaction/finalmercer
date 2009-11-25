@@ -1,43 +1,3 @@
-/*
- * Phys2D - a 2D physics engine based on the work of Erin Catto. The
- * original source remains:
- * 
- * Copyright (c) 2006 Erin Catto http://www.gphysics.com
- * 
- * This source is provided under the terms of the BSD License.
- * 
- * Copyright (c) 2006, Phys2D
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or 
- * without modification, are permitted provided that the following 
- * conditions are met:
- * 
- *  * Redistributions of source code must retain the above 
- *    copyright notice, this list of conditions and the 
- *    following disclaimer.
- *  * Redistributions in binary form must reproduce the above 
- *    copyright notice, this list of conditions and the following 
- *    disclaimer in the documentation and/or other materials provided 
- *    with the distribution.
- *  * Neither the name of the Phys2D/New Dawn Software nor the names of 
- *    its contributors may be used to endorse or promote products 
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
- * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- */
 package engine.vector;
 
 import engine.vector.Vector;
@@ -46,7 +6,7 @@ import engine.vector.Vector;
  * Simple utility wrapping up a bunch of math operations so that 
  * the rest of the code doesn't have to look so cluttered.
  * 
- * @author Kevin Glass
+ * @author Jeffery D. AHern
  */
 public final strictfp class MathUtil {
 	/** Prevent construction */
@@ -92,7 +52,7 @@ public final strictfp class MathUtil {
 	}
 	
 	/**
-	 * Multiply a matrix by a vector
+	 * Multiply a 2dVecotor  by a vector
 	 * 
 	 * @param A The matrix to be multiplied
 	 * @param v The vector to multiple by
@@ -104,7 +64,7 @@ public final strictfp class MathUtil {
 	}
 	
 	/**
-	 * Multiple two matricies
+	 * Multiple two 2dVecotor
 	 * 
 	 * @param A The first matrix
 	 * @param B The second matrix
@@ -116,10 +76,10 @@ public final strictfp class MathUtil {
 	}
 	
 	/**
-	 * Create the absolute version of a matrix
+	 * Create the absolute version of a 2dVecotor
 	 * 
-	 * @param A The matrix to make absolute
-	 * @return A newly created absolute matrix
+	 * @param A The 2dVecotor to make absolute
+	 * @return A newly created absolute 2dVecotor
 	 */
 	public static Vector2D abs(Vector2D A) {
 		return new Vector2D(abs(A.col1), abs(A.col2));
@@ -137,11 +97,11 @@ public final strictfp class MathUtil {
 	}
 
 	/**
-	 * Add two matricies
+	 * Add two 2dVecotor
 	 * 
-	 * @param A The first matrix
-	 * @param B The second matrix
-	 * @return A newly created matrix containing the result
+	 * @param A The first 2dVecotor
+	 * @param B The second 2dVecotor
+	 * @return A newly created 2dVecotor containing the result
 	 */
 	public static Vector2D add(Vector2D A, Vector2D B)
 	{
@@ -207,9 +167,7 @@ public final strictfp class MathUtil {
 	 * Get the normal of a line x y (or edge). 
 	 * When standing on x facing y, the normal will point
 	 * to the left.
-	 * 
-	 * TODO: move this function somewhere else?
-	 * 
+	 *
 	 * @param x startingpoint of the line
 	 * @param y endpoint of the line
 	 * @return a (normalised) normal
@@ -223,25 +181,5 @@ public final strictfp class MathUtil {
 		
 		return normal;
 	}
-	
-//	public static Vector2f intersect(Vector2f startA, Vector2f endA, Vector2f startB, Vector2f endB) {				
-//		float d = (endB.y - startB.y) * (endA.x - startA.x) - (endB.x - startB.x) * (endA.y - startA.y);
-//		
-//		if ( d == 0 ) // parallel lines
-//			return null;
-//		
-//		float uA = (endB.x - startB.x) * (startA.y - startB.y) - (endB.y - startB.y) * (startA.x - startB.x);
-//		uA /= d;
-//		float uB = (endA.x - startA.x) * (startA.y - startB.y) - (endA.y - startA.y) * (startA.x - startB.x);
-//		uB /= d;
-//		
-//		if ( uA < 0 || uA > 1 || uB < 0 || uB > 1 ) 
-//			return null; // intersection point isn't between the start and endpoints
-//		
-//		return new Vector2f(
-//				startA.x + uA * (endA.x - startA.x),
-//				startA.y + uA * (endA.y - startA.y));
-//	}
-	
 	
 }

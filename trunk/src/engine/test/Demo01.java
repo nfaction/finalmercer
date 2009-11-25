@@ -1,9 +1,9 @@
 package engine.test;
 
-import engine.StaticBody;
 import engine.World;
-import engine.body.Body;
+import engine.shapes.Body;
 import engine.shapes.Box;
+import engine.shapes.StaticBody;
 
 /**
  * A simple demo with so flat blocks falling

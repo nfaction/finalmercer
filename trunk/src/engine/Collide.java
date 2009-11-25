@@ -40,10 +40,10 @@
  */
 package engine;
 
-import engine.body.Body;
 import engine.collide.Collider;
 import engine.collide.ColliderFactory;
 import engine.collide.ColliderUnavailableException;
+import engine.shapes.Body;
 
 /**
  * A static utility for resolve the collision between shapes

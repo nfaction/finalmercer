@@ -13,7 +13,7 @@ public interface Shape {
 	 * @return The bounds of the shape
 	 */
 	public AABox getBounds();
-	
+
 	/**
 	 * Some factor based on the edges length of the shape
 	 * 

@@ -1,12 +1,12 @@
 package engine.joint;
 
-import engine.body.Body;
+import engine.shapes.Body;
 
 
 /**
  * A joint connecting two bodies
  * 
- * @author Kevin Glass
+ * @author Jeffery D. AHern
  */
 public interface Joint {
 	

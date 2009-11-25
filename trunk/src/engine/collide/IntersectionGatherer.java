@@ -1,40 +1,3 @@
-/*
- * Phys2D - a 2D physics engine based on the work of Erin Catto.
- * 
- * This source is provided under the terms of the BSD License.
- * 
- * Copyright (c) 2006, Phys2D
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or 
- * without modification, are permitted provided that the following 
- * conditions are met:
- * 
- *  * Redistributions of source code must retain the above 
- *    copyright notice, this list of conditions and the 
- *    following disclaimer.
- *  * Redistributions in binary form must reproduce the above 
- *    copyright notice, this list of conditions and the following 
- *    disclaimer in the documentation and/or other materials provided 
- *    with the distribution.
- *  * Neither the name of the Phys2D/New Dawn Software nor the names of 
- *    its contributors may be used to endorse or promote products 
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
- * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
- * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- */
 package engine.collide;
 
 import java.util.Arrays;
@@ -160,10 +123,7 @@ import engine.vector.Vector;
  * <p>The heuristic is based on the idea that we are more likely to be pushed
  * from A into the direction where the largest part of B is. For the example
  * this would not work, but for many examples in practice it will.</p>
- * 
- * TODO: When we're stacking a lot of triangles the heuristic fails occationaly.
- * The triangles will sometimes jump in directions they shouldn't.
- * 
+ *
  * <h5>Problems</h5>
  * 
  * <p>If we manage to get all intersections between polygons, we should always 
@@ -188,10 +148,9 @@ import engine.vector.Vector;
  * this should be fixed some time.</p>
  * 
  * 
- * TODO: This class could use some specialized data structures in stead of the
- * countless arrays which clutter the code with modulo indices.
+ * TODO:Is this needed? and clean up
  * 
- * @author Gideon Smeding
+ * @author Jeffery D. Ahern
  *
  */
 public class IntersectionGatherer {
@@ -241,7 +200,6 @@ public class IntersectionGatherer {
 		Vector endA = vertsA[(a+1) % vertsA.length ];
 		Vector startB = vertsB[b];
 		Vector endB = vertsB[(b+1) % vertsB.length ];
-		//TODO: reuse mathutil.intersect
 		float d = (endB.y - startB.y) * (endA.x - startA.x) - (endB.x - startB.x) * (endA.y - startA.y);
 		
 		if ( d == 0 ) // parallel lines
@@ -327,7 +285,7 @@ public class IntersectionGatherer {
 		int first = intersections[0].isIngoing ? 0 : 1;
 		
 		// now copy our results to a new array
-		LinkedList outIntersections = new LinkedList();
+		LinkedList<Intersection[]> outIntersections = new LinkedList<Intersection[]>();
 		for ( int i = first; i < noIntersections + first; ) {
 			SortableIntersection in = intersections[i % noIntersections];
 			SortableIntersection out = intersections[(i+1) % noIntersections];
@@ -353,7 +311,7 @@ public class IntersectionGatherer {
 			i += 1;
 		}
 
- 		return (Intersection[][]) outIntersections.toArray(new Intersection[outIntersections.size()][]);
+ 		return outIntersections.toArray(new Intersection[outIntersections.size()][]);
 	}
 	
 	/**
@@ -362,8 +320,7 @@ public class IntersectionGatherer {
 	 * class documentation.
 	 * 
 	 * @param pointers An array of pointers which are the indices of the
-	 * intersections array. The list should be sorted with the order defined by
-	 * {@link PointerTableComparator}.
+	 * intersections array. The list should be sorted with the order defined by PointerTableComparator.
 	 * @return The reference pointer which is an outgoing intersection. 
 	 */
 	private int getReferencePointer(Integer[] pointers) {
@@ -472,7 +429,7 @@ public class IntersectionGatherer {
 	
 	/** Comparator used to sort intersections by their distance from A's first
 	 * vertex. */
-	class IntersectionComparator implements Comparator {
+	class IntersectionComparator implements Comparator<Object> {
 
 		/** Compares two intersections. Note that this function will/should never
 		 * return 0 because no two intersections can have the same distance from
@@ -502,7 +459,7 @@ public class IntersectionGatherer {
 	 * vertex. This sorts an array of pointers which are the indices of the
 	 * intersections array. So the actual intersections are retrieved via an
 	 * indirection. */
-	class PointerTableComparator implements Comparator {
+	class PointerTableComparator implements Comparator<Object> {
 
 		/** Compares two intersections. Note that this function will/should never
 		 * return 0 because no two intersections can have the same distance from
