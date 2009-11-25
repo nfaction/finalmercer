@@ -1,9 +1,7 @@
 package entities;
 
-import engine.StaticBody;
 import engine.World;
 
-import engine.body.Body;
 import engine.shapes.*;
 import engine.test.AbstractDemo;
 
@@ -27,7 +25,7 @@ public class TestBench extends AbstractDemo {
 	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
 	protected void init(World world) {
-		
+
 		Body ground1 = new StaticBody("Ground1", new Box(500, 1.0f));
 		ground1.setPosition(250.0f, 500);
 		ground1.setRestitution(1.0f);
@@ -52,7 +50,7 @@ public class TestBench extends AbstractDemo {
 		bowlingBall.setRestitution(.5f);
 		bowlingBall.setDamping(.01f);
 		world.add(bowlingBall);
-		
+
 		// Ping-Pong Ball
 		/*
 		 * Body ppBall = new Body("Ping-Pong Ball", new Circle(5.0f), .006f);

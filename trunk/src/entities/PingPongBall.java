@@ -2,8 +2,7 @@ package entities;
 
 import engine.World;
 
-import engine.body.Body;
-import engine.shapes.Circle;
+import engine.shapes.*;
 
 public class PingPongBall extends Ball{
 
@@ -13,9 +12,10 @@ public class PingPongBall extends Ball{
 		
 		super("");
 		ppBall = new Body("Ping-Pong Ball", new Circle(5.0f), .006f);
-		ppBall.setRestitution(.000007f);
+		ppBall.setRestitution(1.7f);
 		ppBall.setDamping(.00002f);
-		ppBall.setPosition(200.0f, 200);
+		ppBall.setCanRest(true);
+		ppBall.configureRestingBodyDetection(1f, 1f, 1f);
 	}
 
 	@Override
