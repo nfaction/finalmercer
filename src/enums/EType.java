@@ -1,6 +1,6 @@
 package enums;
 
-public enum Entities {
+public enum EType {
 
 	basketball, bowlingball;
 }
