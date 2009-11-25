@@ -3,9 +3,6 @@ package engine;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
@@ -17,6 +14,7 @@ import engine.shapes.Line;
 import engine.shapes.StaticBody;
 import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
+import entities.Balloon;
 import entities.BasketBall;
 import entities.BowlingBall;
 import entities.PingPongBall;
@@ -38,6 +36,7 @@ public class Demo {
 	private BufferStrategy strategy;
 	protected boolean needsReset;
 	private Body box;
+	Balloon newBalloon;
 
 	/**
 	 * Makes the program run
@@ -157,9 +156,12 @@ public class Demo {
 		BowlingBall newEntity1 = new BowlingBall();
 		newEntity1.addObj(world, 200, 55);
 
-		PingPongBall newPPB = new PingPongBall(" ");
+		PingPongBall newPPB = new PingPongBall("PingPongBall");
 		newPPB.addObj(world, 250, 57);
 
+		newBalloon = new Balloon("Balloon");
+		newBalloon.addObj(world, 270, 450);
+		
 		// box = new Body("Faller", new Box(50, 50), 1);
 		// box.setPosition(200, 50);
 		// world.add(box);
@@ -305,6 +307,7 @@ public class Demo {
 	}
 
 	protected void update() {
+		newBalloon.upDate();
 	}
 
 	protected void renderGUI(Graphics2D g) {
