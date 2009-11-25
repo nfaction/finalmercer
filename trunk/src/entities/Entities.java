@@ -5,7 +5,6 @@ import java.util.Observable;
 import engine.World;
 
 public abstract class Entities extends Observable {
-
 	/** Upper X coordinate */
 	private float upperX;
 	/** Lower X coordinate */
