@@ -11,11 +11,17 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import entities.Entities;
+import enums.EType;
 
 import model.Model;
 
@@ -24,7 +30,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private Image bowlingball;
 	private Image toolbox;
 	private Image sandbox;
-	
+	private ArrayList<Entities> temp = new ArrayList<Entities>();
 	private SpriteSheet cardImages;
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
@@ -71,12 +77,19 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		o.drawImage(sandbox, 350, 10, this);
 		o.drawImage(basketball, 60, 40, this);
 		o.drawImage(bowlingball, 60, 120, this);
-		// get objects from model here
+		temp = model.getObjList();
+		// Allows objects to be drag-able
 		if(basketballmoved){
 			o.drawImage(basketball, newXi, newYi, this);
 		}
 		if(bowlingballmoved){
 			o.drawImage(bowlingball, newXi, newYi, this);
+		}
+		// Painting the objects from the list
+		Iterator<Entities> entitiesIter = temp.iterator();
+		while(entitiesIter.hasNext()){
+			Entities ent = entitiesIter.next();
+			ent.getUpperX();
 		}
 	}
 
@@ -114,6 +127,9 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	public void mouseClicked(MouseEvent arg0) {
 		newX = arg0.getX();
 		newY = arg0.getY();
+		System.out.println("x = " + newXi);
+		System.out.println("y = " + newYi);
+		// Code for each type of object in toolbox
 		if((newX > 60 && newX < 110) && (newY > 40 && newY < 90)){
 			basketballmoved = true;
 
@@ -121,9 +137,26 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		else if((newX > 60 && newX < 110) && (newY > 120 && newY < 170)){
 			bowlingballmoved = true;
 		}
+		// Code for objects being placed into the sandbox
 		else if((newX > 350 && newX < 850) && (newY > 10 && newY < 510)){
-			//may be needed.
+			newXi -= 352;
+			newXi -= 14;
+			System.out.println("after adjustment x = " + newXi);
+			System.out.println("after adjustment y = " + newYi);
+			if(basketballmoved){
+				basketballmoved = false;
+				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - 700, newYi - 10));
+				//send click to model
+			}
+			else if(bowlingballmoved){
+				basketballmoved = false;
+				System.out.println(newXi);
+				System.out.println(newYi);
+				System.out.println("BowlingBall = " + model.addObjToBoard(EType.bowlingball,newXi - 350, newYi - 10));
+				//send click to model
+			}
 		}
+		
 		
 	}
 
@@ -141,19 +174,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		System.out.println("Clicked");
-		if(basketballmoved){
-			basketballmoved = false;
-			System.out.println(newXi);
-			System.out.println(newYi);
-			System.out.println(model.addObjToBoard("BasketBall",newXi - 700, newYi - 10));
-			//send click to model
-		}
-		else if(bowlingballmoved){
-			basketballmoved = false;
-			System.out.println(model.addObjToBoard("BowlingBall",newXi - 350, newYi - 10));
-			//send click to model
-		}
+		
 		
 	}
 
