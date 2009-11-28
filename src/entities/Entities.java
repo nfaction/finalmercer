@@ -15,6 +15,10 @@ public abstract class Entities extends Observable {
 	/** Lower Y coordinate */
 	private float lowerY;
 
+	private int imageX;
+	private int imageY;
+	
+	
 	/** Object's state */
 	private int state;
 	/** Object's length */
@@ -55,7 +59,35 @@ public abstract class Entities extends Observable {
 	 * @return the y
 	 */
 	public abstract float getY();
+	
+	/**
+	 * @return the x
+	 */
+	public void setImageX(int x){
+		this.imageX = x;
+	}
 
+	/**
+	 * @return the y
+	 */
+	public void setImageY(int y){
+		this.imageY = y;
+	}
+
+	/**
+	 * @return the x
+	 */
+	public int getImageX(){
+		return imageX;
+	}
+
+	/**
+	 * @return the y
+	 */
+	public int getImageY(){
+		return imageY;
+	}
+	
 	/**
 	 * @return the upperX
 	 */
@@ -151,7 +183,7 @@ public abstract class Entities extends Observable {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-
+	
 	/**
 	 * @return the image
 	 */
