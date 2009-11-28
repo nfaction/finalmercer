@@ -31,6 +31,10 @@ public strictfp class BowlingBall extends Ball {
 		}
 	}
 
+	public BowlingBall(float x, float y) {
+		super("");
+	}
+
 	/**
 	 * This method will get the subimage which represents the state of the
 	 * bowlingball.

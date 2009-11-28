@@ -17,6 +17,10 @@ public class BasketBall extends Ball {
 		setImagePath("Images/bball.jpg");
 	}
 
+	public BasketBall(float x, float y) {
+		super("");
+	}
+
 	@Override
 	public float getX() {
 

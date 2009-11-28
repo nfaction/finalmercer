@@ -17,6 +17,10 @@ public class Balloon extends Entities {
 		//balloon.setForce(0.0f, -1000.0f);
 	}
 
+	public Balloon(float x, float y) {
+		super("");
+	}
+
 	@Override
 	public void addObj(World world, float x, float y) {
 		
