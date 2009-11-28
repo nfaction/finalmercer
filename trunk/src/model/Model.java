@@ -39,7 +39,6 @@ public class Model extends Observable {
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
 			newEntity = new BasketBall();
-			newEntity.addObj(world, x, y);
 
 //		} else if (objType.equals(EType.balloon)) {
 //			newEntity = new Balloon();
@@ -71,9 +70,12 @@ public class Model extends Observable {
 		if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0
 				|| newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY) {
 			notifyObservers();
+			System.out.println(objList);
 			return false;
 		} else {
+			newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
+			System.out.println(objList);
 			notifyObservers();
 			return true;
 		}

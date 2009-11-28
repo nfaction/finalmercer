@@ -16,6 +16,9 @@ public class BasketBall extends Ball {
 		bBall.setDamping(.001f);
 		bBall.setCanRest(true);
 		setImagePath("Images/bball.jpg");
+		setImageX(46/2);
+		setImageY(46/2);
+		
 	}
 
 	@Override
@@ -31,7 +34,7 @@ public class BasketBall extends Ball {
 	@Override
 	public void addObj(World world, float x, float y) {
 		bBall.setPosition(x, y);
-		this.setImageLocations(x-25, y-25);
+		this.setImageLocations(x, y);
 		world.add(bBall);
 
 	}
@@ -45,4 +48,7 @@ public class BasketBall extends Ball {
 	public void upDate() {
 	}
 
+	public String toString(){
+		return "basketball";
+	}
 }
