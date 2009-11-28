@@ -87,9 +87,16 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		}
 		// Painting the objects from the list
 		Iterator<Entities> entitiesIter = temp.iterator();
+		if(entitiesIter.hasNext()){
+			System.out.println("Got here");
 		while(entitiesIter.hasNext()){
 			Entities ent = entitiesIter.next();
-			ent.getUpperX();
+			int upperx = (int) ent.getUpperX();
+			int uppery = (int) ent.getUpperY();
+			o.drawImage(basketball, upperx, uppery, this);
+			System.out.println("upper x = " + upperx);
+			System.out.println("upper y = " + uppery);
+		}
 		}
 	}
 
