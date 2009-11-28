@@ -102,7 +102,8 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		repaint();
+		//repaint();
+		paintImmediately(0, 0, 950, 650);
 	}
 
 	@Override

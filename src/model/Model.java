@@ -39,6 +39,7 @@ public class Model extends Observable {
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
 			newEntity = new BasketBall();
+			newEntity.addObj(world, x, y);
 
 //		} else if (objType.equals(EType.balloon)) {
 //			newEntity = new Balloon();

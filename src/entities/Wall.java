@@ -1,11 +1,12 @@
 package entities;
 
 import engine.World;
+import enums.EType;
 
 public class Wall extends Entities {
 
 	public Wall(String objType) {
-		super(objType);
+		super(EType.wall);
 		// TODO Auto-generated constructor stub
 	}
 

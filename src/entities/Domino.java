@@ -1,11 +1,12 @@
 package entities;
 
 import engine.World;
+import enums.EType;
 
 public class Domino extends Entities {
 
 	public Domino(String objType) {
-		super(objType);
+		super(EType.domino);
 		// TODO Auto-generated constructor stub
 	}
 

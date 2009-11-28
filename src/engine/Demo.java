@@ -137,8 +137,12 @@ public class Demo {
 		land.setPosition(495, 475);
 		land.setRestitution(1f);
 		world.add(land);
+		land = new StaticBody("Roof", new Line(494, 0));
+		land.setPosition(5, 25);
+		land.setRestitution(1f);
+		world.add(land);
 
-		BasketBall newEntity = new BasketBall("BasketBall");
+		BasketBall newEntity = new BasketBall();
 		newEntity.addObj(world, 200, 50);
 
 		BowlingBall newEntity1 = new BowlingBall();
@@ -253,7 +257,7 @@ public class Demo {
 	}
 
 	protected void update() {
-		//newBalloon.upDate();
+		newBalloon.upDate();
 	}
 
 	protected void renderGUI(Graphics2D g) {

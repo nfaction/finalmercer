@@ -3,6 +3,7 @@ package entities;
 import engine.World;
 
 import engine.shapes.*;
+import enums.EType;
 
 public class PingPongBall extends Ball{
 
@@ -10,10 +11,10 @@ public class PingPongBall extends Ball{
 
 	public PingPongBall(String objType) {
 		
-		super("");
-		ppBall = new Body("Ping-Pong Ball", new Circle(5.0f), .006f);
-		ppBall.setRestitution(1.0f);
-		ppBall.setDamping(.00001f);
+		super(EType.pingPongBall);
+		ppBall = new Body("Ping-Pong Ball", new Circle(5.0f), 2.72f);
+		ppBall.setRestitution(.8f);
+		ppBall.setDamping(.00009f);
 		ppBall.setCanRest(true);
 		ppBall.configureRestingBodyDetection(1f, 1f, 1f);
 	}

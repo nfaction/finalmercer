@@ -1,11 +1,11 @@
-package entities;
+/*package entities;
 
 import engine.World;
 
 public class ConveyorBelt extends Entities {
 
 	public ConveyorBelt(String objType) {
-		super(objType);
+		super(eType);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -40,3 +40,4 @@ public class ConveyorBelt extends Entities {
 	}
 
 }
+*/

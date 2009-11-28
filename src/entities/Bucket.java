@@ -1,11 +1,12 @@
 package entities;
 
 import engine.World;
+import enums.EType;
 
 public class Bucket extends Entities {
 
 	public Bucket(String objType) {
-		super(objType);
+		super(EType.bucket);
 		// TODO Auto-generated constructor stub
 	}
 
