@@ -38,33 +38,33 @@ public class Model extends Observable {
 		Entities newEntity = null;
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
-			newEntity = new BasketBall(x, y);
+			newEntity = new BasketBall();
 
-		} else if (objType.equals(EType.balloon)) {
-			newEntity = new Balloon(x, y);
+//		} else if (objType.equals(EType.balloon)) {
+//			newEntity = new Balloon();
 
 		} else if (objType.equals(EType.bowlingball)) {
-			newEntity = new BowlingBall(x, y);
+			newEntity = new BowlingBall();
 
 //		} else if (objType.equals(EType.bucket)) {
-//			newEntity = new Bucket(x, y);
+//			newEntity = new Bucket();
 //		} else if (objType.equals(EType.candle)) {
-//			newEntity = new Candle(x, y);
+//			newEntity = new Candle();
 //
 //		} else if (objType.equals(EType.domino)) {
-//			newEntity = new Domino(x, y);
+//			newEntity = new Domino();
 //
 //		} else if (objType.equals(EType.pingPongBall)) {
-//			newEntity = new PingPongBall(x, y);
+//			newEntity = new PingPongBall();
 //
 //		} else if (objType.equals(EType.rightRamp)) {
-//			newEntity = new RightRamp(x, y);
+//			newEntity = new RightRamp();
 //
 //		} else if (objType.equals(EType.leftRamp)) {
-//			newEntity = new LeftRamp(x, y);
+//			newEntity = new LeftRamp();
 //
 //		} else {// objType.equals(EType.light)
-//			newEntity = new Light(x, y);
+//			newEntity = new Light();
 		}
 		// if it will not fit on board remove it from array and world
 		if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0
