@@ -8,6 +8,7 @@ public class BasketBall extends Ball {
 
 	private Body bBall;
 
+
 	public BasketBall() {
 		super(EType.basketball);
 		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
@@ -30,7 +31,7 @@ public class BasketBall extends Ball {
 	@Override
 	public void addObj(World world, float x, float y) {
 		bBall.setPosition(x, y);
-		this.setImageLocations(x, y);
+		this.setImageLocations(x-25, y-25);
 		world.add(bBall);
 
 	}

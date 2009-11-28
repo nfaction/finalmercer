@@ -4,21 +4,18 @@ import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Circle;
 import engine.vector.Vector;
+import enums.EType;
 
 public class Balloon extends Entities {
 
 	private Body balloon;
 
 	public Balloon(String objType) {
-		super(objType);
+		super(EType.balloon);
 		balloon = new Body("Balloon", new Circle(15.0f), .5f);
 		balloon.setPosition(200.0f, 300.0f);
 		balloon.setGravityEffected(false);
 		//balloon.setForce(0.0f, -1000.0f);
-	}
-
-	public Balloon(float x, float y) {
-		super("");
 	}
 
 	@Override

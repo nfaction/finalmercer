@@ -1,11 +1,11 @@
-package entities;
+/*package entities;
 
 import engine.World;
 
 public class Gear extends Entities {
 
 	public Gear(String objType) {
-		super(objType);
+		super(eType.g);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -40,3 +40,4 @@ public class Gear extends Entities {
 	}
 
 }
+*/

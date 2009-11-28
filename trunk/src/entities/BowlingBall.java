@@ -5,6 +5,8 @@ import engine.World;
 import engine.shapes.Body;
 
 import engine.shapes.Circle;
+import enums.EType;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +19,8 @@ public strictfp class BowlingBall extends Ball {
 
 	public BowlingBall() {
 
-		super("");
-		bowlBall = new Body("BowlingBall", new Circle(15.0f), 16.0f);
+		super(EType.bowlingball);
+		bowlBall = new Body("BowlingBall", new Circle(15.0f), 7257.0f);
 		bowlBall.setRestitution(.5f);
 		bowlBall.setDamping(.01f);
 		bowlBall.setCanRest(true);
@@ -29,10 +31,6 @@ public strictfp class BowlingBall extends Ball {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public BowlingBall(float x, float y) {
-		super("");
 	}
 
 	/**

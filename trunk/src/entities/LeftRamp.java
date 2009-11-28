@@ -1,11 +1,12 @@
 package entities;
 
 import engine.World;
+import enums.EType;
 
 public class LeftRamp extends Entities {
 
 	public LeftRamp(String objType) {
-		super(objType);
+		super(EType.leftRamp);
 		// TODO Auto-generated constructor stub
 	}
 
