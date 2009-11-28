@@ -4,21 +4,11 @@ import java.util.ArrayList;
 
 
 import engine.World;
-import engine.forcesource.ForceSource;
 import engine.shapes.*;
 import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
-import entities.Balloon;
-import entities.BasketBall;
-import entities.BowlingBall;
-import entities.Bucket;
-import entities.Candle;
-import entities.Domino;
-import entities.Entities;
-import entities.LeftRamp;
-import entities.Light;
-import entities.PingPongBall;
-import entities.RightRamp;
+import entities.*;
+import enums.EType;
 
 public class Model {
 	/** The world containing the physics model */
@@ -35,6 +25,7 @@ public class Model {
 		ground.setPosition(maxX/2, maxY);
 		ground.setRestitution(1.0f);
 		world.add(ground);
+		
 
 	}
 	
@@ -45,7 +36,7 @@ public class Model {
 	
 	public boolean addObjToBoard(String objType,float x, float y) {
 		//add object first then look for collisions and off the board
-		if (objType.equals("BasketBall")){
+		if (objType.equals(EType.basketball)){
 			BasketBall newEntity = new BasketBall("BasketBall");
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
@@ -63,19 +54,19 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
 		}
-		if (objType.equals("BowlingBall")){
+		if (objType.equals(EType.bowlingball)){
 			BowlingBall newEntity = new BowlingBall();
 			this.objList.add(newEntity);
 			newEntity.addObj(world, x, y);
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -87,7 +78,7 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -99,7 +90,7 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -111,7 +102,7 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -123,7 +114,7 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -135,7 +126,7 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -147,7 +138,7 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -159,7 +150,7 @@ public class Model {
 			
 			//if it will not fit on board remove it from array and world
 			if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0 || newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY){
-				objList.remove(objList.size());
+				objList.remove(objList.size()-1);
 				newEntity.removeObj(world);
 				return false;
 			}
@@ -169,5 +160,17 @@ public class Model {
 		return true;
 
 	}
+	
+	public void start(){
+		world.step();
+	}
+	
+	public void stop(){
+		objList.clear();
+	}
+	
+	public ArrayList<Entities> getObjList(){
+		return this.objList;
+		}
 
 }
