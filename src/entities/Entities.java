@@ -3,7 +3,7 @@ package entities;
 import java.util.Observable;
 
 import engine.World;
-import engine.shapes.*;
+import enums.EType;
 
 public abstract class Entities extends Observable {
 	/** Upper X coordinate */
@@ -17,30 +17,29 @@ public abstract class Entities extends Observable {
 
 	/** Object's state */
 	private int state;
-
-	/** Object's length and width */
-	private int length, height;
-
+	/** Object's length */
+	private int length;
+	/** Object's height */
+	private int height;
 	/** Object name / type */
-	private String objType;
-
+	private EType objType;
 	/** Image for specific object type */
 	private String imagePath;
 
 	// ///// METHODS /////////////////////////////////////////////////
 
-	public Entities(String objType) {
+	public Entities(EType objType) {
+		this.objType=objType;
 		state = 0;
 	}
-
+	
 	/**
+	 * Sets the location for the image to be printed. Based on x and
+	 *            y coordinates in the center of the object.
 	 * @param x
 	 * @param y
-	 *            Sets the location for the image to be printed. Based on x and
-	 *            y coordinates in the center of the object.
 	 */
-	public void setImageLocations(float x, float y) {
-
+	protected void setImageLocations(float x, float y) {
 		this.upperX = this.getX() - (getLength() / 2);
 		this.upperY = this.getY() - (getHeight() / 2);
 		this.lowerX = this.getX() + (getLength() / 2);
@@ -133,7 +132,7 @@ public abstract class Entities extends Observable {
 	/**
 	 * @return the objType
 	 */
-	public String getObjType() {
+	public EType getObjType() {
 		return objType;
 	}
 
@@ -141,7 +140,7 @@ public abstract class Entities extends Observable {
 	 * @param objType
 	 *            the objType to set
 	 */
-	public void setObjType(String objType) {
+	public void setObjType(EType objType) {
 		this.objType = objType;
 	}
 
