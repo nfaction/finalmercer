@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -18,18 +20,20 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import entities.BasketBall;
 import entities.Entities;
 import enums.EType;
+import graphics.MainGUI.mainMenuScenarioButtonListener;
 
 import model.Model;
 
 public class SandboxPanel extends JPanel implements Observer, MouseMotionListener, MouseListener {
 	private int imageShiftX = 365;
 	private int imageShiftY = 0;
-	
+	private boolean running = true;
 	private Image basketball;
 	private Image bowlingball;
 	private Image toolbox;
@@ -48,6 +52,14 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private boolean leftrampmoved;
 	private boolean lightmoved;
 	
+	JButton start = new JButton("Start");
+	
+	// Adjustments for Images of all the Entities
+	private int basketballX = 46/2;
+	private int basketballY = 46/2;
+	private int bowlingballX;
+	private int bowlingballY;
+	
 	private Model model = new Model(500, 500);
 	
 	
@@ -57,6 +69,9 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		this.setSize(950, 600);
 		this.setLocation(0, 50);
 		this.setBackground(Color.BLACK);
+		start.setSize(125, 30);
+		start.setLocation(800, 10);
+		this.add(start);
 		registerListeners();
 		try {
 			toolbox = ImageIO.read(new File("Images/ToolBox.gif"));
@@ -74,6 +89,41 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private void registerListeners() {
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
+		start.addActionListener(new startButtonListener());
+	}
+	
+	public void startEngine(){
+		float target = 1000 / 60.0f;
+		float frameAverage = target;
+		long lastFrame = System.currentTimeMillis();
+		float yield = 10000f;
+		float damping = 0.1f;
+
+		@SuppressWarnings("unused")
+		long renderTime = 0;
+		@SuppressWarnings("unused")
+		long logicTime = 0;
+
+		while (running) {
+			// adaptive timing loop from Master Onyx
+			long timeNow = System.currentTimeMillis();
+			frameAverage = (frameAverage * 10 + (timeNow - lastFrame)) / 11;
+			lastFrame = timeNow;
+
+			yield += yield * ((target / frameAverage) - 1) * damping + 0.05f;
+
+			for (int i = 0; i < yield; i++) {
+				Thread.yield();
+			}
+			repaint();
+			// update data model
+			long beforeLogic = System.currentTimeMillis();
+			for (int i = 0; i < 5; i++) {
+				model.step();
+			}
+			logicTime = System.currentTimeMillis() - beforeLogic;
+			paintImmediately(0, 0, 950, 650);
+		}
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -86,14 +136,14 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if(basketballmoved){
-			int bx = new BasketBall().getImageX();
-			int by = new BasketBall().getImageY();
-			o.drawImage(basketball, newXi - bx, newYi - by, this);
+			o.drawImage(basketball, newXi - basketballX, newYi - basketballY, this);
 		}
 		if(bowlingballmoved){
 			o.drawImage(bowlingball, newXi, newYi, this);
 		}
 		// Painting the objects from the list
+		
+		
 		Iterator<Entities> entitiesIter = temp.iterator();
 		if(entitiesIter.hasNext()){
 			System.out.println("Got here");
@@ -210,7 +260,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			System.out.println("after adjustment y = " + newYi);
 			if(basketballmoved){
 				basketballmoved = false;
-				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi, newYi));
+				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - basketballX, newYi - basketballY));
 				//send click to model
 			}
 			else if(bowlingballmoved){
@@ -229,5 +279,17 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/**
+	 * This action listener listens for a Main Menu Options button click and handles that
+	 * action.
+	 */
+	public class startButtonListener implements ActionListener {
+	
+		public void actionPerformed(ActionEvent arg0) {
+			startEngine();
+			
+		}
 	}
 }

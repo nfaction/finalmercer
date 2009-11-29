@@ -30,7 +30,7 @@ import entities.PingPongBall;
 public class Demo {
 	protected Frame frame;
 	protected String title;
-	protected World world = new World(new Vector(0.0f, 10.0f), 10,
+	protected World world = World.createWorld(new Vector(0.0f, 10.0f), 10,
 			new QuadSpaceStrategy(20, 5));
 	private boolean running = true;
 	private BufferStrategy strategy;

@@ -12,7 +12,7 @@ import enums.EType;
 
 public class Model extends Observable {
 	/** The world containing the physics model */
-	protected World world = new World(new Vector(0.0f, 10.0f), 10,
+	protected World world = World.createWorld(new Vector(0.0f, 10.0f), 10,
 			new QuadSpaceStrategy(1, 5));
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private int maxY;
@@ -83,6 +83,11 @@ public class Model extends Observable {
 
 	public void step() {
 		world.step();
+		System.out.println(this.objList.get(0).getY());
+		for(int i = 0; i < this.objList.size(); i++){
+		this.objList.get(i).upDate();
+		this.notifyObservers();
+		}
 	}
 
 	public void stop() {

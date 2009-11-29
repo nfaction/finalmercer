@@ -49,6 +49,10 @@ public abstract class Entities extends Observable {
 		this.lowerX = this.getX() + (getLength() / 2);
 		this.lowerY = this.getY() + (getHeight() / 2);
 	}
+	
+	protected void setImageLocations() {
+		setImageLocations(0,0);
+	}
 
 	/**
 	 * @return the x

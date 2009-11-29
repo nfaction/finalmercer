@@ -37,6 +37,18 @@ public strictfp class World extends CollisionSpace {
 	private float positionTolerance; 
 	/** The force sources in the world */
 	private ArrayList<ForceSource> sources = new ArrayList<ForceSource>();
+	private static World world;
+	
+	public static World createWorld(Vector gravity, int iterations){
+		world = new World(gravity,iterations);
+		return world;
+	}
+	
+	public static World createWorld(Vector gravity, int iterations, BroadCollisionStrategy strategy){
+		world = new World(gravity,iterations,strategy);
+		return world;
+	}
+	
 	
 	/**
 	 * Create a new physics model World
@@ -45,7 +57,7 @@ public strictfp class World extends CollisionSpace {
 	 * @param iterations The number of iterations to run each step. More iteration
 	 * is more accurate but slower
 	 */
-	public World(Vector gravity, int iterations) {
+	private World(Vector gravity, int iterations) {
 		this(gravity, iterations, new BruteCollisionStrategy());
 	}
 
@@ -58,7 +70,7 @@ public strictfp class World extends CollisionSpace {
 	 * @param strategy The strategy used to determine which bodies to check detailed
 	 * collision on
 	 */
-	public World(Vector gravity, int iterations, BroadCollisionStrategy strategy) {
+	private World(Vector gravity, int iterations, BroadCollisionStrategy strategy) {
 		super(strategy);
 		
 		this.gravity = gravity;
