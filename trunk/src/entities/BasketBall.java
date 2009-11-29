@@ -2,6 +2,7 @@ package entities;
 
 import engine.World;
 import engine.shapes.*;
+import engine.vector.Vector;
 import enums.EType;
 
 public class BasketBall extends Ball {
@@ -46,6 +47,7 @@ public class BasketBall extends Ball {
 
 	@Override
 	public void upDate() {
+		setImageLocations();
 	}
 
 	public String toString(){
