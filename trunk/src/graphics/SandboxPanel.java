@@ -30,7 +30,7 @@ import graphics.MainGUI.mainMenuScenarioButtonListener;
 
 import model.Model;
 
-public class SandboxPanel extends JPanel implements Observer, MouseMotionListener, MouseListener {
+public class SandboxPanel extends JPanel implements Observer, MouseMotionListener, MouseListener, Runnable {
 	private int imageShiftX = 365;
 	private int imageShiftY = 0;
 	private boolean running = true;
@@ -52,7 +52,9 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private boolean leftrampmoved;
 	private boolean lightmoved;
 	
+	Thread run;
 	JButton start = new JButton("Start");
+	JButton stop = new JButton("Stop");
 	
 	// Adjustments for Images of all the Entities
 	private int basketballX = 46/2;
@@ -71,7 +73,10 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		this.setBackground(Color.BLACK);
 		start.setSize(125, 30);
 		start.setLocation(800, 10);
+		stop.setSize(125, 30);
+		stop.setLocation(800, 50);
 		this.add(start);
+		this.add(stop);
 		registerListeners();
 		try {
 			toolbox = ImageIO.read(new File("Images/ToolBox.gif"));
@@ -90,40 +95,14 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 		start.addActionListener(new startButtonListener());
+		stop.addActionListener(new stopButtonListener());
 	}
 	
 	public void startEngine(){
-		float target = 1000 / 60.0f;
-		float frameAverage = target;
-		long lastFrame = System.currentTimeMillis();
-		float yield = 10000f;
-		float damping = 0.1f;
-
-		@SuppressWarnings("unused")
-		long renderTime = 0;
-		@SuppressWarnings("unused")
-		long logicTime = 0;
-
-		while (running) {
-			// adaptive timing loop from Master Onyx
-			long timeNow = System.currentTimeMillis();
-			frameAverage = (frameAverage * 10 + (timeNow - lastFrame)) / 11;
-			lastFrame = timeNow;
-
-			yield += yield * ((target / frameAverage) - 1) * damping + 0.05f;
-
-			for (int i = 0; i < yield; i++) {
-				Thread.yield();
-			}
-			repaint();
-			// update data model
-			long beforeLogic = System.currentTimeMillis();
-			for (int i = 0; i < 5; i++) {
-				model.step();
-			}
-			logicTime = System.currentTimeMillis() - beforeLogic;
-			paintImmediately(0, 0, 950, 650);
-		}
+		run = new Thread(this, "GUI Engine");
+		run.start();
+		
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -290,6 +269,57 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		public void actionPerformed(ActionEvent arg0) {
 			startEngine();
 			
+		}
+	}
+	
+	/**
+	 * This action listener listens for a Main Menu Options button click and handles that
+	 * action.
+	 */
+	public class stopButtonListener implements ActionListener {
+	
+		public void actionPerformed(ActionEvent arg0) {
+			model.stop();
+			//pause();
+			//running = false;
+		}
+	}
+
+	public void pause() {
+		run.stop();
+	}
+	
+	@Override
+	public void run() {
+		float target = 1000 / 60.0f;
+		float frameAverage = target;
+		long lastFrame = System.currentTimeMillis();
+		float yield = 10000f;
+		float damping = 0.1f;
+		@SuppressWarnings("unused")
+		long renderTime = 0;
+		@SuppressWarnings("unused")
+		long logicTime = 0;
+
+		while (running) {
+			// adaptive timing loop from Master Onyx
+			long timeNow = System.currentTimeMillis();
+			frameAverage = (frameAverage * 10 + (timeNow - lastFrame)) / 11;
+			lastFrame = timeNow;
+
+			yield += yield * ((target / frameAverage) - 1) * damping + 0.05f;
+
+			for (int i = 0; i < yield; i++) {
+				Thread.yield();
+			}
+			repaint();
+			// update data model
+			long beforeLogic = System.currentTimeMillis();
+			for (int i = 0; i < 5; i++) {
+				model.step();
+			}
+			logicTime = System.currentTimeMillis() - beforeLogic;
+			paintImmediately(0, 0, 950, 650);
 		}
 	}
 }
