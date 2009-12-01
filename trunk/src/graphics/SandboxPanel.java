@@ -236,7 +236,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			System.out.println("after adjustment y = " + newYi);
 			if(basketballmoved){
 				basketballmoved = false;
-				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - basketballX, newYi - basketballY));
+				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - model.getBasketballX(), newYi - model.getBasketballY()));
 				//send click to model
 			}
 			else if(bowlingballmoved){
