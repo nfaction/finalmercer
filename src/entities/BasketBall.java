@@ -17,8 +17,9 @@ public class BasketBall extends Ball {
 		bBall.setDamping(.001f);
 		bBall.setCanRest(true);
 		setImagePath("Images/bball.jpg");
-		setImageX(46/2);
-		setImageY(46/2);
+		//create these in the model now.
+		//setImageX(46/2);
+		//setImageY(46/2);
 		
 	}
 
