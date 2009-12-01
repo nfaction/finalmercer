@@ -1041,6 +1041,10 @@ public strictfp class Body {
 				+ " vel: " + velocity + " (" + angularVelocity + ")]";
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	/**
 	 * @see java.lang.Object#hashCode()
 	 */
