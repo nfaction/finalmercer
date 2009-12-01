@@ -56,11 +56,8 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	JButton start = new JButton("Start");
 	JButton stop = new JButton("Stop");
 	
-	// Adjustments for Images of all the Entities
-	private int basketballX = 46/2;
-	private int basketballY = 46/2;
-	private int bowlingballX;
-	private int bowlingballY;
+	// Adjustments for Images of all the Entities now in Model.
+
 	
 	private Model model = new Model(500, 500);
 	
@@ -115,7 +112,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if(basketballmoved){
-			o.drawImage(basketball, newXi - basketballX, newYi - basketballY, this);
+			o.drawImage(basketball, newXi - model.getBasketballX(), newYi - model.getBasketballY(), this);
 		}
 		if(bowlingballmoved){
 			o.drawImage(bowlingball, newXi, newYi, this);
