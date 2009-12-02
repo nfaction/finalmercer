@@ -134,19 +134,19 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		}
 	}
 
-	@Override
+
 	public void update(Observable arg0, Object arg1) {
 		//repaint();
 		paintImmediately(0, 0, 950, 650);
 	}
 
-	@Override
+
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+
 	public void mouseMoved(MouseEvent arg0) {
 		
 		newX = arg0.getX();
@@ -165,7 +165,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		
 	}
 
-	@Override
+
 	public void mouseClicked(MouseEvent arg0) {
 //		newX = arg0.getX();
 //		newY = arg0.getY();
@@ -202,19 +202,19 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 //		
 	}
 
-	@Override
+
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+
 	public void mousePressed(MouseEvent arg0) {
 		newX = arg0.getX();
 		newY = arg0.getY();
@@ -251,7 +251,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		
 	}
 
-	@Override
+
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
@@ -286,7 +286,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		run.stop();
 	}
 	
-	@Override
+
 	public void run() {
 		float target = 1000 / 60.0f;
 		float frameAverage = target;
