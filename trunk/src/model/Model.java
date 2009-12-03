@@ -76,13 +76,11 @@ public class Model extends Observable {
 		// if it will not fit on board remove it from array and world
 		if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0
 				|| newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY) {
-			notifyObservers();
-			System.out.println(objList);
+			notifyObservers();;
 			return false;
-		} else {
+		} else {			
 			newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
-			System.out.println(objList);
 			notifyObservers();
 			return true;
 		}
