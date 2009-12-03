@@ -2,14 +2,16 @@ package entities;
 
 import engine.World;
 import engine.shapes.*;
-import engine.vector.Vector;
 import enums.EType;
 
 public class BasketBall extends Ball {
 
 	private Body bBall;
 
+	public static final int Y_LENGHT = 23;
+	public static final int X_LENGHT = 23;
 
+	
 	public BasketBall() {
 		super(EType.basketball);
 		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
@@ -35,10 +37,11 @@ public class BasketBall extends Ball {
 
 	@Override
 	public void addObj(World world, float x, float y) {
+		
+
 		bBall.setPosition(x, y);
 		this.setImageLocations(x, y);
 		world.add(bBall);
-
 	}
 
 	@Override
@@ -49,6 +52,7 @@ public class BasketBall extends Ball {
 	@Override
 	public void upDate() {
 		setImageLocations();
+		
 	}
 
 	public String toString(){
