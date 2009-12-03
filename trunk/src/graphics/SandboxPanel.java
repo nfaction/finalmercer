@@ -112,7 +112,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if(basketballmoved){
-			o.drawImage(basketball, newXi - model.getBasketballX(), newYi - model.getBasketballY(), this);
+			o.drawImage(basketball, newXi - BasketBall.X_LENGHT , newYi - BasketBall.X_LENGHT, this);
 		}
 		if(bowlingballmoved){
 			o.drawImage(bowlingball, newXi, newYi, this);
@@ -236,7 +236,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			System.out.println("after adjustment y = " + newYi);
 			if(basketballmoved){
 				basketballmoved = false;
-				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - model.getBasketballX(), newYi - model.getBasketballY()));
+				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - BasketBall.X_LENGHT, newYi -BasketBall.Y_LENGHT ));
 				//send click to model
 			}
 			else if(bowlingballmoved){
