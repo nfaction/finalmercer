@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import playSounds.CollisionListenerImpl;
+
 import engine.World;
 import engine.shapes.*;
 import engine.strategies.QuadSpaceStrategy;
@@ -19,11 +21,14 @@ public class Model extends Observable {
 	private boolean save;
 	private int maxY;
 	private int maxX;
+	private CollisionListenerImpl collisionListenerImpl = new CollisionListenerImpl();
+	
 
 	public Model(int maxX, int maxY) {
 		this.maxX = maxX;
 		this.maxY = maxY;
 		initWorld();
+		world.addListener(collisionListenerImpl);
 	}
 
 	private void initWorld() {
