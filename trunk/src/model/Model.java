@@ -92,7 +92,8 @@ public class Model extends Observable {
 		  newEntity.getUpperY() > this.objList.get(i).getUpperY() &
 		  newEntity.getUpperY() < this.objList.get(i).getLowerY()){
 		  
-		  notifyObservers(); return false;
+		  notifyObservers(); 
+		  return false;
 		  
 		  } }
 		 
