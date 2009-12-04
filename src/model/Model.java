@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import playSounds.CollisionListenerImpl;
+import playSounds.PlaySound;
 
 import engine.World;
 import engine.shapes.*;
@@ -21,6 +22,7 @@ public class Model extends Observable {
 	private boolean save;
 	private int maxY;
 	private int maxX;
+	private boolean playedBaloonSound = false;
 	private CollisionListenerImpl collisionListenerImpl = new CollisionListenerImpl();
 	
 
@@ -92,6 +94,15 @@ public class Model extends Observable {
 	}
 
 	public void step() {
+		/*for (int i = 0; i < objList.size(); i++) {
+			if(this.objList.get(i).toString().equalsIgnoreCase("basketball") & playedBaloonSound == false){
+				PlaySound mySoundPlayer = new PlaySound();
+				String baseDir = System.getProperty("user.dir")	+ "/sounds/";
+				mySoundPlayer.play(baseDir + "BaloonUp.wav");
+				playedBaloonSound = true;
+			}
+		}
+		*/
 		world.step();
 
 		// updates all the objects
