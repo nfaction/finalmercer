@@ -82,14 +82,14 @@ public class Model extends Observable {
 		// Code to not allow overlaps on all objects already in world
 		
 		 for (int i = 0; i < objList.size(); i++) { if(newEntity.getLowerX() >
-		 this.objList.get(i).getUpperX() & newEntity.getLowerX() <
-		 this.objList.get(i).getLowerX() & newEntity.getUpperX() >
-		  this.objList.get(i).getUpperX() & newEntity.getUpperX() <
-		  this.objList.get(i).getLowerX() &
+		 this.objList.get(i).getUpperX() && newEntity.getLowerX() <
+		 this.objList.get(i).getLowerX() && newEntity.getUpperX() >
+		  this.objList.get(i).getUpperX() && newEntity.getUpperX() <
+		  this.objList.get(i).getLowerX() &&
 		  
-		  newEntity.getLowerY() > this.objList.get(i).getUpperY() &
-		  newEntity.getLowerY() < this.objList.get(i).getLowerY() &
-		  newEntity.getUpperY() > this.objList.get(i).getUpperY() &
+		  newEntity.getLowerY() > this.objList.get(i).getUpperY() &&
+		  newEntity.getLowerY() < this.objList.get(i).getLowerY() &&
+		  newEntity.getUpperY() > this.objList.get(i).getUpperY() &&
 		  newEntity.getUpperY() < this.objList.get(i).getLowerY()){
 		  
 		  notifyObservers(); 
@@ -113,8 +113,7 @@ public class Model extends Observable {
 
 	public void step() {
 		for (int i = 0; i < objList.size(); i++) {
-			if (this.objList.get(i).toString().equalsIgnoreCase("basketball")
-					& playedBaloonSound == false) {
+			if (this.objList.get(i).toString().equalsIgnoreCase("Balloon") && playedBaloonSound == false) {
 				PlaySound mySoundPlayer = new PlaySound();
 				String baseDir = System.getProperty("user.dir") + "/sounds/";
 				mySoundPlayer.play(baseDir + "BaloonUp.wav");

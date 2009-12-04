@@ -12,8 +12,6 @@ public class CollisionListenerImpl implements CollisionListener{
 	public void collisionOccured(CollisionEvent event) {
 		String baseDir = System.getProperty("user.dir")	+ "/sounds/";
 		
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
 		
 		if (event.getBodyA().getName().equals("BasketBall") || 
 			event.getBodyB().getName().equals("BasketBall"))
@@ -30,6 +28,16 @@ public class CollisionListenerImpl implements CollisionListener{
 		if (event.getBodyA().getName().equals("PingPongBall") || 
 				event.getBodyB().getName().equals("PingPongBall"))
 			mySoundPlayer.play(baseDir + "Tink.wav");
+		
+		if (event.getBodyA().getName().equals("Balloon") && 
+				event.getBodyB().getName().equals("Pin"))
+			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
+		
+		if (event.getBodyA().getName().equals("Pin") && 
+				event.getBodyB().getName().equals("Balloon"))
+			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
+		
+		
 		
 		
 		
