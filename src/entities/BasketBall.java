@@ -57,5 +57,6 @@ public class BasketBall extends Ball {
 
 	public String toString(){
 		return "basketball";
+		//should we use bBall.getName() instead for consistency ?????
 	}
 }
