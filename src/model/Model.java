@@ -94,7 +94,7 @@ public class Model extends Observable {
 	}
 
 	public void step() {
-		/*for (int i = 0; i < objList.size(); i++) {
+		for (int i = 0; i < objList.size(); i++) {
 			if(this.objList.get(i).toString().equalsIgnoreCase("basketball") & playedBaloonSound == false){
 				PlaySound mySoundPlayer = new PlaySound();
 				String baseDir = System.getProperty("user.dir")	+ "/sounds/";
@@ -102,7 +102,7 @@ public class Model extends Observable {
 				playedBaloonSound = true;
 			}
 		}
-		*/
+		
 		world.step();
 
 		// updates all the objects
