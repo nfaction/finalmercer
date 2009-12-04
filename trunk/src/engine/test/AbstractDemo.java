@@ -36,7 +36,7 @@ public abstract class AbstractDemo {
 	/** The title of the current demo */
 	protected String title;
 	/** The world containing the physics model */
-	protected World world = new World(new Vector(0.0f, 10.0f), 10, new QuadSpaceStrategy(20,5));
+	public World world = World.createWorld(new Vector(0.0f, 10.0f), 10, new QuadSpaceStrategy(20,5));
 	/** True if the simulation is running */
 	private boolean running = true;
 	/** The rendering strategy */
