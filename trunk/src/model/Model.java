@@ -80,10 +80,32 @@ public class Model extends Observable {
 			// } else {// objType.equals(EType.light)
 			// newEntity = new Light();
 		}
+		//Code to not allow overlaps on all objects already in world
+		
+/*		for (int i = 0; i < objList.size(); i++) {
+			if(newEntity.getLowerX() > this.objList.get(i).getUpperX() & 
+			newEntity.getLowerX() < this.objList.get(i).getLowerX() &
+			newEntity.getUpperX() > this.objList.get(i).getUpperX() &
+			newEntity.getUpperX() < this.objList.get(i).getLowerX() &
+			
+			newEntity.getLowerY() > this.objList.get(i).getUpperY() & 
+			newEntity.getLowerY() < this.objList.get(i).getLowerY() &
+			newEntity.getUpperY() > this.objList.get(i).getUpperY() &
+			newEntity.getUpperY() < this.objList.get(i).getLowerY()){
+				
+			notifyObservers();
+			return false;	
+				
+			}
+		}*/
+		
+		
+		
+		
 		// if it will not fit on board remove it from array and world
 		if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0
 				|| newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY) {
-			notifyObservers();;
+			notifyObservers();
 			return false;
 		} else {			
 			newEntity.addObj(world, x, y);
