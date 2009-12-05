@@ -26,6 +26,14 @@ public class BasketBall extends Entities {
 		bBall.setDamping(.001f);
 		bBall.setCanRest(true);
 	}
+	
+	public int getXLength(){
+		return X_LENGTH;
+	}
+	
+	public int getYLength(){
+		return Y_LENGTH;
+	}
 
 	/**
 	 * @return width of basketball
