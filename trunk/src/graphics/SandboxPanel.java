@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 
 import entities.BasketBall;
 import entities.Entities;
+import entities.LeftRamp;
 import enums.EType;
 import graphics.MainGUI.mainMenuScenarioButtonListener;
 
@@ -127,8 +128,8 @@ public class SandboxPanel extends JPanel implements Observer,
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if (basketballmoved) {
-			o.drawImage(basketball, newXi - BasketBall.X_LENGHT, newYi
-					- BasketBall.X_LENGHT, this);
+			o.drawImage(basketball, newXi - BasketBall.X_LENGTH, newYi
+					- BasketBall.X_LENGTH, this);
 		}
 		if (bowlingballmoved) {
 			o.drawImage(bowlingball, newXi, newYi, this);
@@ -172,7 +173,7 @@ public class SandboxPanel extends JPanel implements Observer,
 			newXi -= imageShiftY;
 			if (basketballmoved) {
 				if (model.addObjToBoard(EType.basketball, newXi
-						- BasketBall.X_LENGHT, newYi - BasketBall.Y_LENGHT)) {
+						- BasketBall.X_LENGTH, newYi - BasketBall.Y_LENGTH)) {
 					basketballmoved = false;
 					System.out.println("BasketBall = ");
 				}
@@ -283,6 +284,7 @@ public class SandboxPanel extends JPanel implements Observer,
 	 * This method runs the physics and drawing on the separate thread. This
 	 * also includes timers to slow down the physics to look more realistic.
 	 */
+
 	public void run() {
 		float target = 1000 / 60.0f;
 		float frameAverage = target;
