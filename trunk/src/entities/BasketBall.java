@@ -4,7 +4,7 @@ import engine.World;
 import engine.shapes.*;
 import enums.EType;
 
-public class BasketBall extends Ball {
+public class BasketBall extends Entities {
 
 	private Body bBall;
 

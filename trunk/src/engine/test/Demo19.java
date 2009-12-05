@@ -27,7 +27,7 @@ public class Demo19 extends AbstractDemo {
 	/**
 	 * @see engine.test.AbstractDemo#init(engine.World)
 	 */
-	protected void init(World world) {
+	public void init(World world) {
 		Body body1 = new StaticBody("Ground1", new Box(400.0f, 20.0f));
 		body1.setPosition(250.0f, 300);
 		world.add(body1);

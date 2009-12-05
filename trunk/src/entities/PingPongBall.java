@@ -5,7 +5,7 @@ import engine.World;
 import engine.shapes.*;
 import enums.EType;
 
-public class PingPongBall extends Ball{
+public class PingPongBall extends Entities{
 
 	private Body ppBall;
 
