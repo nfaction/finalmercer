@@ -144,7 +144,7 @@ public class Demo {
 
 		BasketBall newEntity = new BasketBall();
 		newEntity.addObj(world, 200, 50);
-
+		
 		BowlingBall newEntity1 = new BowlingBall();
 		newEntity1.addObj(world, 200, 55);
 
