@@ -13,7 +13,7 @@ public class LeftRamp extends Entities {
 	public LeftRamp() {
 		super(EType.leftRamp);
 
-		ground = new StaticBody("Ground1", new Box(225.0f, 5.0f));
+		ground = new StaticBody("Ground1", new Box(225.0f, 25.0f));
 		ground.setPosition(350.0f, 300);
 		ground.setRestitution(1.0f);
 		ground.setRotation(-.4f);

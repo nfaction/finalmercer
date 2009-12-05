@@ -48,6 +48,7 @@ public class Model extends Observable {
 
 	public boolean addObjToBoard(EType objType, float x, float y) {
 		Entities newEntity = null;
+				
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
 			newEntity = new BasketBall();

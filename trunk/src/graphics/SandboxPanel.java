@@ -34,6 +34,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private int imageShiftX = 365;
 	private int imageShiftY = 0;
 	private boolean running = true;
+	private Image leftRamp;
 	private Image basketball;
 	private Image bowlingball;
 	private Image balloon;
@@ -84,6 +85,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			bowlingball = ImageIO.read(new File("Images/bowling ball.gif"));
 			balloon = ImageIO.read(new File("Images/Balloon.gif"));
 			PingPongBall = ImageIO.read(new File("Images/PingPongBall.gif"));
+			leftRamp = ImageIO.read(new File("Images/BrickWall.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -115,6 +117,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		o.drawImage(bowlingball, 60, 120, this);
 		o.drawImage(balloon, 60, 180, this);		// Add here! /////////////////////
 		o.drawImage(PingPongBall, 75, 250, this);
+		o.drawImage(leftRamp, 15, 270, this);
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if(basketballmoved){

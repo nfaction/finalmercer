@@ -111,56 +111,56 @@ public class Demo {
 	}
 
 	protected void init(World world) {
-		Body land = new StaticBody("Line1", new Line(100, 50));
-		land.setPosition(150, 150);
-		land.setRestitution(1f);
-		world.add(land);
-		land = new StaticBody("Line2", new Line(150, -75));
-		land.setPosition(250, 300);
-		land.setRestitution(1f);
-		world.add(land);
-		land = new StaticBody("Line3", new Line(150, 75));
-		land.setPosition(100, 350);
-		land.setRestitution(1f);
-		world.add(land);
-		land = new StaticBody("Line4", new Line(150, 0));
-		land.setPosition(300, 450);
-		land.setRestitution(1f);
-		world.add(land);
-		land = new StaticBody("Floor", new Line(494, 0));
-		land.setPosition(5, 475);
-		land.setRestitution(1f);
-		world.add(land);
-		land = new StaticBody("LWall", new Line(0, -475));
-		land.setPosition(5, 475);
-		land.setRestitution(1f);
-		world.add(land);
-		land = new StaticBody("RWall", new Line(0, -475));
-		land.setPosition(495, 475);
-		land.setRestitution(1f);
-		world.add(land);
-		land = new StaticBody("Roof", new Line(494, 0));
-		land.setPosition(5, 25);
-		land.setRestitution(1f);
-		world.add(land);
+//		Body land = new StaticBody("Line1", new Line(100, 50));
+//		land.setPosition(150, 150);
+//		land.setRestitution(1f);
+//		world.add(land);
+//		land = new StaticBody("Line2", new Line(150, -75));
+//		land.setPosition(250, 300);
+//		land.setRestitution(1f);
+//		world.add(land);
+//		land = new StaticBody("Line3", new Line(150, 75));
+//		land.setPosition(100, 350);
+//		land.setRestitution(1f);
+//		world.add(land);
+//		land = new StaticBody("Line4", new Line(150, 0));
+//		land.setPosition(300, 450);
+//		land.setRestitution(1f);
+//		world.add(land);
+//		land = new StaticBody("Floor", new Line(494, 0));
+//		land.setPosition(5, 475);
+//		land.setRestitution(1f);
+//		world.add(land);
+//		land = new StaticBody("LWall", new Line(0, -475));
+//		land.setPosition(5, 475);
+//		land.setRestitution(1f);
+//		world.add(land);
+//		land = new StaticBody("RWall", new Line(0, -475));
+//		land.setPosition(495, 475);
+//		land.setRestitution(1f);
+//		world.add(land);
+//		land = new StaticBody("Roof", new Line(494, 0));
+//		land.setPosition(5, 25);
+//		land.setRestitution(1f);
+//		world.add(land);
 
 		LeftRamp newGround1 = new LeftRamp();
-		newGround1.addObj(world, 130, 50);
+		newGround1.addObj(world, 300, 200);
 		
 		RightRamp newGround2 = new RightRamp();
 		newGround2.addObj(world, 80, 50);
 		
-		BasketBall newEntity = new BasketBall();
-		newEntity.addObj(world, 200, 50);
-		
-		BowlingBall newEntity1 = new BowlingBall();
-		newEntity1.addObj(world, 200, 55);
+//		BasketBall newEntity = new BasketBall();
+//		newEntity.addObj(world, 200, 50);
+//		
+//		BowlingBall newEntity1 = new BowlingBall();
+//		newEntity1.addObj(world, 200, 55);
+//
+//		PingPongBall newPPB = new PingPongBall();
+//		newPPB.addObj(world, 250, 57);
 
-		PingPongBall newPPB = new PingPongBall();
-		newPPB.addObj(world, 250, 57);
-
-		newBalloon = new Balloon();
-		newBalloon.addObj(world, 270, 450);
+//		newBalloon = new Balloon();
+//		newBalloon.addObj(world, 270, 450);
 	}
 
 	/**

@@ -17,7 +17,7 @@ public class BasketBall extends Entities {
 	public static int bbX = 0;
 	public static int bbY = 0;
 	public int state = 0;
-	//////////////////////////////////////////////////
+	///////////////////////////////////////////////////
 
 	public BasketBall() {
 		super(EType.basketball);
@@ -116,7 +116,7 @@ public class BasketBall extends Entities {
 
 	@Override
 	public void upDate() {
-		//setImageLocations();
+		setImageLocations();
 
 	}
 
