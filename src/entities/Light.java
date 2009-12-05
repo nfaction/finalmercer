@@ -52,4 +52,10 @@ public class Light extends Entities {
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+
+		return "light";
+	}
+
 }

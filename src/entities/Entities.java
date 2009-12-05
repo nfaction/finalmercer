@@ -225,6 +225,8 @@ public abstract class Entities extends Observable {
 		return imagePath;
 	}
 	
+	public abstract String toString();
+	
 	public abstract void upDate();
 
 	public abstract void addObj(World world, float x, float y);

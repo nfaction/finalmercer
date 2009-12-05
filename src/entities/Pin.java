@@ -52,4 +52,10 @@ public class Pin extends Entities {
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+
+		return "pin";
+	}
+
 }

@@ -62,4 +62,10 @@ public class Balloon extends Entities {
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+
+		return "balloon";
+	}
+
 }

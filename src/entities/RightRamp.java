@@ -8,23 +8,25 @@ import enums.EType;
 
 public class RightRamp extends Entities {
 
-	private Body ground;
+	private Body rRamp;
+	
+	public static final int Y_LENGTH = 58;
+	public static final int X_LENGTH = 100;
 	
 	public RightRamp() {
 		super(EType.rightRamp);
-
-		ground = new StaticBody("Ground1", new Box(225.0f, 25.0f));
-		ground.setPosition(350.0f, 300);
-		ground.setRestitution(1.0f);
-		ground.setRotation(.4f);
+		rRamp = new StaticBody("Right Ramp", new Box(225.0f, 25.0f));
+		rRamp.setPosition(350.0f, 300);
+		rRamp.setRestitution(1.0f);
+		rRamp.setRotation(.4f);
 	}
 
 	@Override
 	public void addObj(World world, float x, float y) {
 
-		ground.setPosition(x, y);
+		rRamp.setPosition(x, y);
 		this.setImageLocations(x, y);
-		world.add(ground);
+		world.add(rRamp);
 	}
 
 	@Override
@@ -41,14 +43,14 @@ public class RightRamp extends Entities {
 
 	@Override
 	public void removeObj(World world) {
-		// TODO Auto-generated method stub
 
+		world.remove(rRamp);
 	}
 
 	@Override
 	public void upDate() {
-		// TODO Auto-generated method stub
-		
+
+		setImageLocations();
 	}
 
 	@Override
@@ -62,5 +64,13 @@ public class RightRamp extends Entities {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public String toString() {
+
+		return "rightramp";
+	}
+	
+	
 
 }

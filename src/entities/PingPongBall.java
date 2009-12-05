@@ -64,4 +64,10 @@ public class PingPongBall extends Entities{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public String toString() {
+
+		return "pingpongball";
+	}
 }

@@ -15,7 +15,7 @@ public class LeftRamp extends Entities {
 	
 	public LeftRamp() {
 		super(EType.leftRamp);
-		lRamp = new StaticBody("Ground1", new Box(225.0f, 25.0f));
+		lRamp = new StaticBody("Left Ramp", new Box(225.0f, 25.0f));
 		lRamp.setPosition(350.0f, 300);
 		lRamp.setRestitution(1.0f);
 		lRamp.setRotation(-.4f);
@@ -67,6 +67,5 @@ public class LeftRamp extends Entities {
 
 	public String toString() {
 		return "leftramp";
-		// should we use bBall.getName() instead for consistency ?????
 	}
 }
