@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import entities.Entities;
 import enums.EType;
 
 public class SpriteSheet {
-	private BufferedImage sprite = null;
+	private BufferedImage sprite;
 	private BufferedImage basketballSprite;
 	private BufferedImage bowlingballSprite;
 	private BufferedImage pingpongSprite;
@@ -22,7 +23,7 @@ public class SpriteSheet {
 		// Use ImageIO to read in the card sheet
 		try
 		{
-			basketballSprite = ImageIO.read(new File("BasketBallSpriteSheet.gif"));
+			basketballSprite = ImageIO.read(new File("Images/BasketBallSpriteSheet.gif"));
 			//Add other objects to read in.
 		} catch (IOException e)
 		{
@@ -39,16 +40,12 @@ public class SpriteSheet {
 	 */
 	public BufferedImage getStateImage(Entities e)
 	{
-		int row = 0;// = getRow();
-		int col = 0;// = getCol();
 
-		// The size of 1 cad is 79 x 123
-		// The call to getSubimage has the following parameters: startX, startY,
-		// width, height
-		if(e.equals(EType.basketball))
-			sprite = basketballSprite.getSubimage(0, 0,
-				BasketBall.X_LENGHT, BasketBall.Y_LENGHT);
-
+		if(e.toString().equalsIgnoreCase("Basketball")){
+			System.out.println("Sprite image will be set");
+			sprite = basketballSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
+				BasketBall.X_LENGHT*2, BasketBall.Y_LENGHT*2);
+		}
 		return sprite;
 	}
 }
