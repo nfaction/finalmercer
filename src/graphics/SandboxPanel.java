@@ -186,6 +186,7 @@ public class SandboxPanel extends JPanel implements Observer,
 				// model.addObjToBoard(EType.bowlingball,newXi, newYi));
 				// send click to model
 			} else if (leftrampmoved) {
+
 				if (model.addObjToBoard(EType.leftRamp, newXi  - LeftRamp.X_LENGTH, newYi  - LeftRamp.Y_LENGTH)) {
 					leftrampmoved = false;
 					System.out.println("Left Ramp = ");

@@ -116,6 +116,7 @@ public class BasketBall extends Entities {
 
 	@Override
 	public void upDate() {
+		
 		setImageLocations();
 
 	}
