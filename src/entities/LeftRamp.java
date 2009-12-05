@@ -65,4 +65,8 @@ public class LeftRamp extends Entities {
 		return 0;
 	}
 
+	public String toString() {
+		return "leftramp";
+		// should we use bBall.getName() instead for consistency ?????
+	}
 }
