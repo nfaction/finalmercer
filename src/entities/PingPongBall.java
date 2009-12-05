@@ -9,7 +9,7 @@ public class PingPongBall extends Entities{
 
 	private Body ppBall;
 
-	public PingPongBall(String objType) {
+	public PingPongBall() {
 		
 		super(EType.pingPongBall);
 		ppBall = new Body("Ping-Pong Ball", new Circle(7.0f), 2.50f);

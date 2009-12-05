@@ -1,19 +1,30 @@
 package entities;
 
 import engine.World;
+import engine.shapes.Body;
+import engine.shapes.Box;
+import engine.shapes.StaticBody;
 import enums.EType;
 
 public class LeftRamp extends Entities {
 
-	public LeftRamp(String objType) {
+	private Body ground;
+	
+	public LeftRamp() {
 		super(EType.leftRamp);
-		// TODO Auto-generated constructor stub
+
+		ground = new StaticBody("Ground1", new Box(225.0f, 5.0f));
+		ground.setPosition(350.0f, 300);
+		ground.setRestitution(1.0f);
+		ground.setRotation(-.4f);
 	}
 
 	@Override
 	public void addObj(World world, float x, float y) {
-		// TODO Auto-generated method stub
 
+		ground.setPosition(x, y);
+		this.setImageLocations(x, y);
+		world.add(ground);
 	}
 
 	@Override
