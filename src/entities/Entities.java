@@ -6,7 +6,11 @@ import engine.World;
 import enums.EType;
 
 public abstract class Entities extends Observable {
-	/** Upper X coordinate */
+	/**  X coordinate */
+	private float x;
+	/** Y coordinate */
+	private float y;
+	/** Previous Upper X coordinate */
 	private float prevUpperX;
 	/** Upper X coordinate */
 	private float upperX;
@@ -59,6 +63,10 @@ public abstract class Entities extends Observable {
 	 * @param y
 	 */
 	protected void setImageLocations(float x, float y) {
+		//this.x = x;
+		//this.y = y;
+		
+		//System.out.println("AAAAAAAAAAAAAAAAAAAAAA "+ this.getX() + "BBBBBBBBBBBBBBBBBBBBBB");
 		this.prevUpperX = upperX;
 		this.upperX = this.getX() - (getLength() / 2);
 		this.upperY = this.getY() - (getHeight() / 2);
