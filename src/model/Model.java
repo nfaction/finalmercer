@@ -15,7 +15,9 @@ import enums.EType;
 
 public class Model extends Observable {
 	/** The world containing the physics model */
-	protected World world = World.createWorld(new Vector(0.0f, 10.0f), 10,
+
+	private float gravity = 10.00f;
+	protected World world = World.createWorld(new Vector(0.0f, gravity), 10,
 			new QuadSpaceStrategy(1, 5));
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
@@ -40,11 +42,10 @@ public class Model extends Observable {
 		world.add(ground);
 		world.enableRestingBodyDetection(1f, 1f, 1f);
 	}
+	
 
-	// Added to give you integers instead of floats from my end.
-	public boolean addObjToBoard(EType objType, int x, int y) {
-		return addObjToBoard(objType, new Float(x), new Float(y));
-	}
+		
+
 
 	public boolean addObjToBoard(EType objType, float x, float y) {
 		Entities newEntity = null;
@@ -158,5 +159,21 @@ public class Model extends Observable {
 	public ArrayList<Entities> getObjList() {
 		return this.objList;
 	}
+
+	/**
+	 * @return the gravity
+	 */
+	public float getGravity() {
+		return gravity;
+	}
+
+	/**
+	 * @param gravity the gravity to set
+	 */
+	public void setGravity(float gravity) {
+		this.gravity = gravity;
+	}
+	
+	
 
 }
