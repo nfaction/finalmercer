@@ -11,13 +11,84 @@ public class BasketBall extends Entities {
 	public static final int Y_LENGHT = 23;
 	public static final int X_LENGHT = 23;
 
-	
+	// ///////Info for sprite sheet////////////////////
+	public static final int basketBallWidth = 45;
+	public static final int basketBallHeight = 45;
+	public static int bbX = 0;
+	public static int bbY = 0;
+	public int state = 0;
+
+	// ///////////////////////////////////////////////
+
 	public BasketBall() {
 		super(EType.basketball);
 		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
 		bBall.setRestitution(1.0f);
 		bBall.setDamping(.001f);
 		bBall.setCanRest(true);
+	}
+
+	/**
+	 * @return width of basketball
+	 */
+	public int getSpriteWidth() {
+
+		return basketBallWidth;
+	}
+
+	/**
+	 * @return height of basketball
+	 */
+	public int getSpriteHeight() {
+
+		return basketBallHeight;
+	}
+
+	/**
+	 * @return starting X point for sprite state
+	 */
+	public int getSpriteX() {
+
+		return bbX;
+	}
+
+	/**
+	 * @return starting Y point for sprite state
+	 */
+	public int getSpriteY() {
+
+		return bbY;
+	}
+
+	public void setSprite() {
+
+		switch (getState()) {
+
+		case 1:
+			bbX = 45;
+			bbY = 45;
+			break;
+		case 2:
+			bbX = 90;
+			bbY = 90;
+			break;
+		case 3:
+			bbX = 135;
+			bbY = 135;
+			break;
+		case 4:
+			bbX = 180;
+			bbY = 180;
+			break;
+		case 5:
+			bbX = 225;
+			bbY = 225;
+			break;
+		case 6:
+			bbX = 270;
+			bbY = 270;
+			break;
+		}
 	}
 
 	@Override
@@ -32,12 +103,11 @@ public class BasketBall extends Entities {
 
 	@Override
 	public void addObj(World world, float x, float y) {
-		
+
 		bBall.setPosition(x, y);
 		this.setImageLocations(x, y);
 		world.add(bBall);
-		
-		
+
 	}
 
 	@Override
@@ -48,12 +118,11 @@ public class BasketBall extends Entities {
 	@Override
 	public void upDate() {
 		setImageLocations();
-		
-		
+
 	}
 
-	public String toString(){
+	public String toString() {
 		return "basketball";
-		//should we use bBall.getName() instead for consistency ?????
+		// should we use bBall.getName() instead for consistency ?????
 	}
 }

@@ -357,7 +357,6 @@ public class MainGUI extends JFrame{
 			master.removeAll();
 			master.add(main);
 			master.updateUI();
-			
 		}
 	}
 	
