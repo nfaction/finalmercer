@@ -8,48 +8,49 @@ import enums.EType;
 
 public class LeftRamp extends Entities {
 
-	private Body ground;
+	private Body lRamp;
 	
 	public static final int Y_LENGTH = 58;
 	public static final int X_LENGTH = 100;
 	
 	public LeftRamp() {
 		super(EType.leftRamp);
-		ground = new StaticBody("Ground1", new Box(225.0f, 25.0f));
-		ground.setPosition(350.0f, 300);
-		ground.setRestitution(1.0f);
-		ground.setRotation(-.4f);
+		lRamp = new StaticBody("Ground1", new Box(225.0f, 25.0f));
+		lRamp.setPosition(350.0f, 300);
+		lRamp.setRestitution(1.0f);
+		lRamp.setRotation(-.4f);
 	}
 
 	@Override
 	public void addObj(World world, float x, float y) {
 
-		ground.setPosition(x, y);
-		world.add(ground);
+		lRamp.setPosition(x, y);
+		this.setImageLocations(x, y);
+		world.add(lRamp);
 	}
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return lRamp.getPosition().getX();
 	}
 
 	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return lRamp.getPosition().getY();
 	}
 
 	@Override
 	public void removeObj(World world) {
-		// TODO Auto-generated method stub
 
+		world.remove(lRamp);
 	}
 
 	@Override
 	public void upDate() {
 
-		
+		setImageLocations();
 	}
 
 	@Override

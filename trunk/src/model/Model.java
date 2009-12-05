@@ -48,7 +48,7 @@ public class Model extends Observable {
 
 	public boolean addObjToBoard(EType objType, float x, float y) {
 		Entities newEntity = null;
-				
+
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
 			newEntity = new BasketBall();
@@ -56,10 +56,22 @@ public class Model extends Observable {
 			newEntity = new Balloon();
 		} else if (objType.equals(EType.bowlingball)) {
 			newEntity = new BowlingBall();
-			// } else if (objType.equals(EType.bucket)) {
-			// newEntity = new Bucket();
-			// } else if (objType.equals(EType.candle)) {
-			// newEntity = new Candle();
+//			 } else if (objType.equals(EType.bucket)) {
+//			 newEntity = new Bucket();
+//			 } else if (objType.equals(EType.candle)) {
+//			 newEntity = new Candle();
+//			
+//			 } else if (objType.equals(EType.domino)) {
+//			 newEntity = new Domino();
+//			
+//			 } else if (objType.equals(EType.pingPongBall)) {
+//			 newEntity = new PingPongBall();
+//			
+//			 } else if (objType.equals(EType.rightRamp)) {
+//			 newEntity = new RightRamp();
+//			
+		} else if (objType.equals(EType.leftRamp)) {
+			newEntity = new LeftRamp();
 			//
 			// } else if (objType.equals(EType.domino)) {
 			// newEntity = new Domino();
@@ -69,9 +81,6 @@ public class Model extends Observable {
 			//
 			// } else if (objType.equals(EType.rightRamp)) {
 			// newEntity = new RightRamp();
-			//
-			 } else if (objType.equals(EType.leftRamp)) {
-			 newEntity = new LeftRamp();
 			//
 			// } else {// objType.equals(EType.light)
 			// newEntity = new Light();
