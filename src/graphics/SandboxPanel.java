@@ -45,15 +45,21 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private SpriteSheet sprites = new SpriteSheet();
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
+	// Moved Gif booleans for Entities
+	private boolean balloonmoved;
 	private boolean basketballmoved;
+	private boolean beltmoved;
 	private boolean bowlingballmoved;
 	private boolean bucketmoved;
 	private boolean candlemoved;
+	private boolean conveyorbeltmoved;
 	private boolean dominomoved;
-	private boolean pingpongballmoved;
-	private boolean rightrampmoved;
+	private boolean gearmoved;
 	private boolean leftrampmoved;
 	private boolean lightmoved;
+	private boolean pinmoved;
+	private boolean pingpongballmoved;
+	private boolean rightrampmoved;
 	
 	Thread run;
 	JButton start = new JButton("Start");
@@ -101,6 +107,10 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		stop.addActionListener(new stopButtonListener());
 	}
 	
+	/**
+	 * This method creates a thread for the physics world to 
+	 * run on.
+	 */
 	public void startEngine(){
 		run = new Thread(this, "GUI Engine");
 		run.start();
@@ -108,6 +118,9 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		
 	}
 	
+	/**
+	 * This method paints all objects onto this panel.
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D o = (Graphics2D) g;
@@ -126,6 +139,10 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		if(bowlingballmoved){
 			o.drawImage(bowlingball, newXi, newYi, this);
 		}
+		if(leftrampmoved){
+			o.drawImage(leftRamp, newXi, newYi, this);
+		}
+		
 		// Painting the objects from the list
 		
 		
@@ -143,25 +160,41 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		}
 	}
 
-
+	/**
+	 * This method repaints the whole panel when 
+	 * observers are notified.
+	 */
 	public void update(Observable arg0, Object arg1) {
-		//repaint();
 		paintImmediately(0, 0, 950, 650);
 	}
 
-
+	/**
+	 * Not needed.
+	 */
 	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
-
+	/**
+	 * This method gets the position of the mouse
+	 * and allows for select-ability of objects, including
+	 * dragging and dropping.
+	 */
 	public void mouseMoved(MouseEvent arg0) {
 		
 		newX = arg0.getX();
 		newY = arg0.getY();
 		
+		if(balloonmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
 		if(basketballmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(beltmoved){
 			newXi = newX;
 			newYi = newY;
 			repaint();
@@ -171,78 +204,92 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			newYi = newY;
 			repaint();
 		}
-		
+		if(bucketmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(candlemoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(conveyorbeltmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(dominomoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(gearmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(leftrampmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(pinmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(pingpongballmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if(rightrampmoved){
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
 	}
 
-
-	public void mouseClicked(MouseEvent arg0) {
-//		newX = arg0.getX();
-//		newY = arg0.getY();
-//		System.out.println("x = " + newXi);
-//		System.out.println("y = " + newYi);
-//		// Code for each type of object in toolbox
-//		if((newX > 60 && newX < 110) && (newY > 40 && newY < 90)){
-//			basketballmoved = true;
-//
-//		}
-//		else if((newX > 60 && newX < 110) && (newY > 120 && newY < 170)){
-//			bowlingballmoved = true;
-//		}
-//		// Code for objects being placed into the sandbox
-//		else if((newX > 350 && newX < 850) && (newY > 10 && newY < 510)){
-//			newXi -= 352;
-//			newXi -= 14;
-//			System.out.println("after adjustment x = " + newXi);
-//			System.out.println("after adjustment y = " + newYi);
-//			if(basketballmoved){
-//				basketballmoved = false;
-//				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi, newYi));
-//				//send click to model
-//			}
-//			else if(bowlingballmoved){
-//				basketballmoved = false;
-//				System.out.println(newXi);
-//				System.out.println(newYi);
-//				System.out.println("BowlingBall = " + model.addObjToBoard(EType.bowlingball,newXi, newYi));
-//				//send click to model
-//			}
-//		}
-//		
-//		
+	/**
+	 * Not needed.
+	 */
+	public void mouseClicked(MouseEvent arg0) {	
 	}
 
-
+	/**
+	 * Not needed.
+	 */
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
-
+	/**
+	 * Not needed.
+	 */
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
-
+	/**
+	 * This method handles all the clicks from the
+	 * toolbox and the sandbox.
+	 */
 	public void mousePressed(MouseEvent arg0) {
 		newX = arg0.getX();
 		newY = arg0.getY();
-		System.out.println("x = " + newXi);
-		System.out.println("y = " + newYi);
 		// Code for each type of object in toolbox
 		if((newX > 60 && newX < 110) && (newY > 40 && newY < 90)){
 			basketballmoved = true;
-
 		}
 		else if((newX > 60 && newX < 110) && (newY > 120 && newY < 170)){
 			bowlingballmoved = true;
+		}
+		else if((newX > 60 && newX < 110) && (newY > 270 && newY < 300)){
+			leftrampmoved = true;
 		}
 		// Code for objects being placed into the sandbox
 		else if((newX > 350 && newX < 850) && (newY > 10 && newY < 510)){
 			newXi -= imageShiftX;
 			newXi -= imageShiftY;
-			System.out.println("after adjustment x = " + newXi);
-			System.out.println("after adjustment y = " + newYi);
 			if(basketballmoved){
 				basketballmoved = false;
 				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - BasketBall.X_LENGHT, newYi -BasketBall.Y_LENGHT ));
@@ -250,9 +297,12 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			}
 			else if(bowlingballmoved){
 				basketballmoved = false;
-				System.out.println(newXi);
-				System.out.println(newYi);
 				System.out.println("BowlingBall = " + model.addObjToBoard(EType.bowlingball,newXi, newYi));
+				//send click to model
+			}
+			else if(leftrampmoved){
+				leftrampmoved = false;
+				System.out.println("Left Ramp = " + model.addObjToBoard(EType.leftRamp,newXi, newYi));
 				//send click to model
 			}
 		}
@@ -260,10 +310,10 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		
 	}
 
-
+	/**
+	 * Not needed.
+	 */
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
@@ -290,12 +340,12 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			running = false;
 		}
 	}
-
-	public void pause() {
-		run.stop();
-	}
 	
-
+	/**
+	 * This method runs the physics and drawing on the
+	 * separate thread.  This also includes timers to
+	 * slow down the physics to look more realistic.
+	 */
 	public void run() {
 		float target = 1000 / 60.0f;
 		float frameAverage = target;

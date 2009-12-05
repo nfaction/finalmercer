@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import model.Model;
 
 import java.awt.Container;
 import java.awt.Font;
@@ -55,7 +55,7 @@ public class MainGUI extends JFrame{
 	JPanel sandbox = new JPanel();
 	SandboxPanel sandboxPanel = new SandboxPanel();
 	JButton mainMenuSandbox = new JButton("Main Menu");
-	
+
 	/**
 	 * Main method creates a GUI
 	 * 
@@ -115,6 +115,7 @@ public class MainGUI extends JFrame{
 		submit.addActionListener(new submitButtonListener());
 		soundon.addActionListener(new soundOnButtonListener());
 		soundoff.addActionListener(new soundOffButtonListener());
+		submit.addActionListener(new submitButtonListener());
 		//Scenario
 		mainMenuScenario.addActionListener(new mainMenuScenarioButtonListener());
 	}
@@ -234,6 +235,8 @@ public class MainGUI extends JFrame{
 		
 		gravityText.setSize(150, 30);
 		gravityText.setLocation(275, 130);
+		//Set the text from the model;
+		//gravityText.setText(model.)
 		
 		submit.setSize(100, 30);
 		submit.setLocation(435, 130);
@@ -253,9 +256,9 @@ public class MainGUI extends JFrame{
 		options.add(gravityL);
 		options.add(gravityText);
 		options.add(submit);
-		options.add(soundL);
-		options.add(soundon);
-		options.add(soundoff);
+		//options.add(soundL);
+		//options.add(soundon);
+		//options.add(soundoff);
 	}
 	
 	
@@ -389,6 +392,8 @@ public class MainGUI extends JFrame{
 	public class soundOffButtonListener implements ActionListener {
 	
 		public void actionPerformed(ActionEvent arg0) {
+			String temp = gravityText.getText();
+			//model.setGravity(Double.parseDouble(temp));
 			
 		}
 	}
