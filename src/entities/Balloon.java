@@ -10,8 +10,8 @@ public class Balloon extends Entities {
 
 	private Body balloon;
 
-	public static final int Y_LENGTH = 50;
-	public static final int X_LENGTH = 50;
+	public static final int Y_LENGTH = 25;
+	public static final int X_LENGTH = 25;
 	
 	public Balloon() {
 		super(EType.balloon);

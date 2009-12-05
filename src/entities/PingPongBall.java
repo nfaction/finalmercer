@@ -9,8 +9,8 @@ public class PingPongBall extends Entities{
 
 	private Body ppBall;
 
-	public static final int Y_LENGTH = 16;
-	public static final int X_LENGTH = 16;
+	public static final int Y_LENGTH = 8;
+	public static final int X_LENGTH = 8;
 	
 	public PingPongBall() {
 		

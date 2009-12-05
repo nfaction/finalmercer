@@ -10,8 +10,8 @@ public class LeftRamp extends Entities {
 
 	private Body lRamp;
 	
-	public static final int Y_LENGTH = 115;
-	public static final int X_LENGTH = 200;
+	public static final int Y_LENGTH = 58;
+	public static final int X_LENGTH = 100;
 	
 	public LeftRamp() {
 		super(EType.leftRamp);
