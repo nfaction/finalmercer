@@ -151,7 +151,7 @@ public class Demo {
 		PingPongBall newPPB = new PingPongBall("PingPongBall");
 		newPPB.addObj(world, 250, 57);
 
-		newBalloon = new Balloon("Balloon");
+		newBalloon = new Balloon();
 		newBalloon.addObj(world, 270, 450);
 	}
 

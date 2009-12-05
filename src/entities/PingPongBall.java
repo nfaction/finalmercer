@@ -12,7 +12,7 @@ public class PingPongBall extends Ball{
 	public PingPongBall(String objType) {
 		
 		super(EType.pingPongBall);
-		ppBall = new Body("Ping-Pong Ball", new Circle(5.0f), 2.72f);
+		ppBall = new Body("Ping-Pong Ball", new Circle(7.0f), 2.50f);
 		ppBall.setRestitution(.8f);
 		ppBall.setDamping(.00009f);
 		ppBall.setCanRest(true);

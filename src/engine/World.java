@@ -70,7 +70,7 @@ public strictfp class World extends CollisionSpace {
 	 * @param strategy The strategy used to determine which bodies to check detailed
 	 * collision on
 	 */
-	private World(Vector gravity, int iterations, BroadCollisionStrategy strategy) {
+	public World(Vector gravity, int iterations, BroadCollisionStrategy strategy) {
 		super(strategy);
 		
 		this.gravity = gravity;

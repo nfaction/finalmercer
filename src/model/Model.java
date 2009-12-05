@@ -19,7 +19,6 @@ public class Model extends Observable {
 			new QuadSpaceStrategy(1, 5));
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
-	private boolean save;
 	private int maxY;
 	private int maxX;
 	private boolean playedBaloonSound = false;
@@ -33,13 +32,13 @@ public class Model extends Observable {
 	}
 
 	private void initWorld() {
-		this.save = true;
 		world.clear();
 		world.setGravity(0, 10);
 		Body ground = new StaticBody("Ground", new Box(maxX, 5.0f));
 		ground.setPosition(maxX / 2, maxY);
 		ground.setRestitution(1.0f);
 		world.add(ground);
+		world.enableRestingBodyDetection(1f, 1f, 1f);
 	}
 
 	// Added to give you integers instead of floats from my end.
@@ -52,13 +51,10 @@ public class Model extends Observable {
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
 			newEntity = new BasketBall();
-
-			// } else if (objType.equals(EType.balloon)) {
-			// newEntity = new Balloon();
-
+		} else if (objType.equals(EType.balloon)) {
+			newEntity = new Balloon();
 		} else if (objType.equals(EType.bowlingball)) {
 			newEntity = new BowlingBall();
-
 			// } else if (objType.equals(EType.bucket)) {
 			// newEntity = new Bucket();
 			// } else if (objType.equals(EType.candle)) {
@@ -79,24 +75,26 @@ public class Model extends Observable {
 			// } else {// objType.equals(EType.light)
 			// newEntity = new Light();
 		}
+
 		// Code to not allow overlaps on all objects already in world
-		
-		 for (int i = 0; i < objList.size(); i++) { if(newEntity.getLowerX() >
-		 this.objList.get(i).getUpperX() && newEntity.getLowerX() <
-		 this.objList.get(i).getLowerX() && newEntity.getUpperX() >
-		  this.objList.get(i).getUpperX() && newEntity.getUpperX() <
-		  this.objList.get(i).getLowerX() &&
-		  
-		  newEntity.getLowerY() > this.objList.get(i).getUpperY() &&
-		  newEntity.getLowerY() < this.objList.get(i).getLowerY() &&
-		  newEntity.getUpperY() > this.objList.get(i).getUpperY() &&
-		  newEntity.getUpperY() < this.objList.get(i).getLowerY()){
-		  
-		  notifyObservers(); 
-		  return false;
-		  
-		  } }
-		 
+
+		for (int i = 0; i < objList.size(); i++) {
+			if (newEntity.getLowerX() > this.objList.get(i).getUpperX()
+					&& newEntity.getLowerX() < this.objList.get(i).getLowerX()
+					&& newEntity.getUpperX() > this.objList.get(i).getUpperX()
+					&& newEntity.getUpperX() < this.objList.get(i).getLowerX()
+					&&
+
+					newEntity.getLowerY() > this.objList.get(i).getUpperY()
+					&& newEntity.getLowerY() < this.objList.get(i).getLowerY()
+					&& newEntity.getUpperY() > this.objList.get(i).getUpperY()
+					&& newEntity.getUpperY() < this.objList.get(i).getLowerY()) {
+
+				notifyObservers();
+				return false;
+
+			}
+		}
 
 		// if it will not fit on board remove it from array and world
 		if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0
@@ -113,7 +111,8 @@ public class Model extends Observable {
 
 	public void step() {
 		for (int i = 0; i < objList.size(); i++) {
-			if (this.objList.get(i).toString().equalsIgnoreCase("Balloon") && playedBaloonSound == false) {
+			if (this.objList.get(i).toString().equalsIgnoreCase("Balloon")
+					&& playedBaloonSound == false) {
 				PlaySound mySoundPlayer = new PlaySound();
 				String baseDir = System.getProperty("user.dir") + "/sounds/";
 				mySoundPlayer.play(baseDir + "BaloonUp.wav");
@@ -149,4 +148,5 @@ public class Model extends Observable {
 	public ArrayList<Entities> getObjList() {
 		return this.objList;
 	}
+
 }
