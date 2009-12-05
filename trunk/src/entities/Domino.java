@@ -52,4 +52,10 @@ public class Domino extends Entities {
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+
+		return "domino";
+	}
+
 }

@@ -69,33 +69,21 @@ public class BasketBall extends Entities {
 
 	public void setSprite() {
 
-		switch (this.getState()) {
+		int dir = rollDirection();
+		int curState = 0;
+		
+		if(curState == 6 && dir == 1)
+			curState = 1;
+		else if(curState == 0 && dir == -1)
+			curState = 6;
+		else if(dir == 1)
+			curState++;
+		else if(dir == -1)
+			curState--;
+		
 
-		case 1:
-			bbX = 45;
-			bbY = 45;
-			break;
-		case 2:
-			bbX = 90;
-			bbY = 90;
-			break;
-		case 3:
-			bbX = 135;
-			bbY = 135;
-			break;
-		case 4:
-			bbX = 180;
-			bbY = 180;
-			break;
-		case 5:
-			bbX = 225;
-			bbY = 225;
-			break;
-		case 6:
-			bbX = 270;
-			bbY = 270;
-			break;
-		}
+		bbX = curState * 45;
+		bbY = curState * 45;
 	}
 
 	@Override

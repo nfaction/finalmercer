@@ -113,4 +113,10 @@ public strictfp class BowlingBall extends Entities {
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+
+		return "bowlingball";
+	}
+
 }
