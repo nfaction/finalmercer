@@ -172,6 +172,10 @@ public abstract class Entities extends Observable {
 		return objType;
 	}
 
+	public abstract int getSpriteX();
+	
+	public abstract int getSpriteY();
+	
 	/**
 	 * @param objType
 	 *            the objType to set

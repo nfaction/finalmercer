@@ -49,4 +49,16 @@ public class PingPongBall extends Entities{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getSpriteX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSpriteY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

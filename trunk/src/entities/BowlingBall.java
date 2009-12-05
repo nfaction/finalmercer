@@ -130,4 +130,16 @@ public strictfp class BowlingBall extends Entities {
 		
 	}
 
+	@Override
+	public int getSpriteX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSpriteY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
