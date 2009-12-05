@@ -41,7 +41,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private Image sandbox;
 	private Image PingPongBall;
 	private ArrayList<Entities> temp = new ArrayList<Entities>();
-	private SpriteSheet sprites;
+	private SpriteSheet sprites = new SpriteSheet();
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
 	private boolean basketballmoved;
@@ -134,8 +134,8 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			int upperx = (int) ent.getUpperX() + imageShiftX;
 			int uppery = (int) ent.getUpperY() + imageShiftY;
 			o.drawImage(sprites.getStateImage(ent), upperx, uppery, this);
-			System.out.println("upper x = " + upperx + "Sprite was drawn");
-			System.out.println("upper y = " + uppery);
+			//System.out.println("upper x = " + upperx + "Sprite was drawn");
+			//System.out.println("upper y = " + uppery);
 		}
 		}
 	}
