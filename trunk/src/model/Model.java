@@ -70,8 +70,8 @@ public class Model extends Observable {
 			// } else if (objType.equals(EType.rightRamp)) {
 			// newEntity = new RightRamp();
 			//
-			// } else if (objType.equals(EType.leftRamp)) {
-			// newEntity = new LeftRamp();
+			 } else if (objType.equals(EType.leftRamp)) {
+			 newEntity = new LeftRamp();
 			//
 			// } else {// objType.equals(EType.light)
 			// newEntity = new Light();

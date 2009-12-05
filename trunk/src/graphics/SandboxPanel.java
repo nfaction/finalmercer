@@ -26,7 +26,6 @@ import entities.BasketBall;
 import entities.Entities;
 import entities.LeftRamp;
 import enums.EType;
-import graphics.MainGUI.mainMenuScenarioButtonListener;
 
 import model.Model;
 
@@ -128,14 +127,13 @@ public class SandboxPanel extends JPanel implements Observer,
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if (basketballmoved) {
-			o.drawImage(basketball, newXi - BasketBall.X_LENGTH, newYi
-					- BasketBall.X_LENGTH, this);
+			o.drawImage(basketball, newXi - BasketBall.X_LENGTH, newYi - BasketBall.X_LENGTH, this);
 		}
 		if (bowlingballmoved) {
 			o.drawImage(bowlingball, newXi, newYi, this);
 		}
 		if (leftrampmoved) {
-			o.drawImage(leftRamp, newXi, newYi, this);
+			o.drawImage(leftRamp, newXi  - LeftRamp.X_LENGTH, newYi - LeftRamp.Y_LENGTH, this);
 		}
 
 		// Painting the objects from the list
@@ -188,12 +186,14 @@ public class SandboxPanel extends JPanel implements Observer,
 				// model.addObjToBoard(EType.bowlingball,newXi, newYi));
 				// send click to model
 			} else if (leftrampmoved) {
-				if (model.addObjToBoard(EType.leftRamp, newXi, newYi)) {
+				if (model.addObjToBoard(EType.leftRamp, newXi  - LeftRamp.X_LENGTH, newYi  - LeftRamp.Y_LENGTH)) {
 					leftrampmoved = false;
 					System.out.println("Left Ramp = ");
 				}
+				else{
 				System.out.println("Left Ramp was not added!!!!!!!");
 				// send click to model
+				}
 			}
 		}
 
