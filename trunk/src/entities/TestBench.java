@@ -26,23 +26,23 @@ public class TestBench extends AbstractDemo {
 	 */
 	protected void init(World world) {
 
-		Body ground1 = new StaticBody("Ground1", new Box(500, 1.0f));
-		ground1.setPosition(250.0f, 500);
-		ground1.setRestitution(1.0f);
-		world.add(ground1);
+//		Body ground1 = new StaticBody("Ground1", new Box(500, 1.0f));
+//		ground1.setPosition(250.0f, 500);
+//		ground1.setRestitution(1.0f);
+//		world.add(ground1);
 
-		Body ground = new StaticBody("Ground1", new Box(300.0f, 5.0f));
-		ground.setPosition(200.0f, 400);
+		Body ground = new StaticBody("Ground1", new Box(225.0f, 5.0f));
+		ground.setPosition(350.0f, 300);
 		ground.setRestitution(1.0f);
 		ground.setRotation(.4f);
 		world.add(ground);
 
 		// Blockade
-		Body blockade = new StaticBody("blockade", new Box(300.0f, 20.0f));
-		blockade.setPosition(100.0f, 100.0f);
-		blockade.setRotation(-.4f);
-		blockade.setRestitution(3.0f);
-		world.add(blockade);
+//		Body blockade = new StaticBody("blockade", new Box(300.0f, 20.0f));
+//		blockade.setPosition(100.0f, 100.0f);
+//		blockade.setRotation(-.4f);
+//		blockade.setRestitution(3.0f);
+//		world.add(blockade);
 
 		// Bowling Ball
 		// Body bowlingBall = new Body("Bowling Ball", new Circle(15.0f),
@@ -60,12 +60,12 @@ public class TestBench extends AbstractDemo {
 		 */
 
 		// Balloon
-		Body balloon = new Body("Balloon", new Circle(15.0f), .5f);
-		balloon.setPosition(200.0f, 300.0f);
-		balloon.setGravityEffected(false);
-		balloon.setForce(0.0f, -1000.0f);
+//		Body balloon = new Body("Balloon", new Circle(15.0f), .5f);
+//		balloon.setPosition(200.0f, 300.0f);
+//		balloon.setGravityEffected(false);
+//		balloon.setForce(0.0f, -1000.0f);
 	//	balloon.setRestitution(.1f);
-		world.add(balloon);
+//		world.add(balloon);
 
 	}
 

@@ -17,7 +17,9 @@ import engine.vector.Vector;
 import entities.Balloon;
 import entities.BasketBall;
 import entities.BowlingBall;
+import entities.LeftRamp;
 import entities.PingPongBall;
+import entities.RightRamp;
 
 /**
  * Lines terrain testing extensive
@@ -142,13 +144,19 @@ public class Demo {
 		land.setRestitution(1f);
 		world.add(land);
 
+		LeftRamp newGround1 = new LeftRamp();
+		newGround1.addObj(world, 130, 50);
+		
+		RightRamp newGround2 = new RightRamp();
+		newGround2.addObj(world, 80, 50);
+		
 		BasketBall newEntity = new BasketBall();
 		newEntity.addObj(world, 200, 50);
 		
 		BowlingBall newEntity1 = new BowlingBall();
 		newEntity1.addObj(world, 200, 55);
 
-		PingPongBall newPPB = new PingPongBall("PingPongBall");
+		PingPongBall newPPB = new PingPongBall();
 		newPPB.addObj(world, 250, 57);
 
 		newBalloon = new Balloon();
