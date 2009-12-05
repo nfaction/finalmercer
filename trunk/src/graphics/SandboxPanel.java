@@ -1,6 +1,5 @@
 package graphics;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,8 +28,10 @@ import enums.EType;
 import graphics.MainGUI.mainMenuScenarioButtonListener;
 
 import model.Model;
+
 // Start, clear, reset
-public class SandboxPanel extends JPanel implements Observer, MouseMotionListener, MouseListener, Runnable {
+public class SandboxPanel extends JPanel implements Observer,
+		MouseMotionListener, MouseListener, Runnable {
 	private int imageShiftX = 365;
 	private int imageShiftY = 0;
 	private boolean running = true;
@@ -60,19 +61,14 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	private boolean pinmoved;
 	private boolean pingpongballmoved;
 	private boolean rightrampmoved;
-	
+
 	Thread run;
 	JButton start = new JButton("Start");
 	JButton stop = new JButton("Stop");
-	
-	// Adjustments for Images of all the Entities now in Model.
 
-	
 	private Model model = new Model(500, 500);
-	
-	
-	public SandboxPanel(){
-		
+
+	public SandboxPanel() {
 		this.setLayout(null);
 		this.setSize(950, 600);
 		this.setLocation(0, 50);
@@ -96,7 +92,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * This method registers all the listeners.
 	 */
@@ -106,18 +102,15 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		start.addActionListener(new startButtonListener());
 		stop.addActionListener(new stopButtonListener());
 	}
-	
+
 	/**
-	 * This method creates a thread for the physics world to 
-	 * run on.
+	 * This method creates a thread for the physics world to run on.
 	 */
-	public void startEngine(){
+	public void startEngine() {
 		run = new Thread(this, "GUI Engine");
 		run.start();
-		
-		
 	}
-	
+
 	/**
 	 * This method paints all objects onto this panel.
 	 */
@@ -128,44 +121,224 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		o.drawImage(sandbox, 350, 10, this);
 		o.drawImage(basketball, 60, 40, this);
 		o.drawImage(bowlingball, 60, 120, this);
-		o.drawImage(balloon, 60, 180, this);		// Add here! /////////////////////
+		o.drawImage(balloon, 60, 180, this); // Add here! /////////////////////
 		o.drawImage(PingPongBall, 75, 250, this);
 		o.drawImage(leftRamp, 15, 270, this);
 		temp = model.getObjList();
 		// Allows objects to be drag-able
-		if(basketballmoved){
-			o.drawImage(basketball, newXi - BasketBall.X_LENGHT , newYi - BasketBall.X_LENGHT, this);
+		if (basketballmoved) {
+			o.drawImage(basketball, newXi - BasketBall.X_LENGHT, newYi
+					- BasketBall.X_LENGHT, this);
 		}
-		if(bowlingballmoved){
+		if (bowlingballmoved) {
 			o.drawImage(bowlingball, newXi, newYi, this);
 		}
-		if(leftrampmoved){
+		if (leftrampmoved) {
 			o.drawImage(leftRamp, newXi, newYi, this);
 		}
-		
+
 		// Painting the objects from the list
-		
-		
+
 		Iterator<Entities> entitiesIter = temp.iterator();
-		if(entitiesIter.hasNext()){
-			System.out.println("Got here");
-		while(entitiesIter.hasNext()){
-			Entities ent = entitiesIter.next();
-			int upperx = (int) ent.getUpperX() + imageShiftX;
-			int uppery = (int) ent.getUpperY() + imageShiftY;
-			o.drawImage(sprites.getStateImage(ent), upperx, uppery, this);
-			System.out.println("upper x = " + upperx + "Sprite was drawn");
-			System.out.println("upper y = " + uppery);
-		}
+		if (entitiesIter.hasNext()) {
+			while (entitiesIter.hasNext()) {
+				Entities ent = entitiesIter.next();
+				int upperx = (int) ent.getUpperX() + imageShiftX;
+				int uppery = (int) ent.getUpperY() + imageShiftY;
+				o.drawImage(sprites.getStateImage(ent), upperx, uppery, this);
+				System.out.println("upper x = " + upperx + "Sprite was drawn");
+				System.out.println("upper y = " + uppery);
+			}
 		}
 	}
 
 	/**
-	 * This method repaints the whole panel when 
-	 * observers are notified.
+	 * This method handles all the clicks from the toolbox and the sandbox.
+	 */
+	public void mousePressed(MouseEvent arg0) {
+		newX = arg0.getX();
+		newY = arg0.getY();
+		// Code for each type of object in toolbox
+		if ((newX > 60 && newX < 110) && (newY > 40 && newY < 90)) {
+			basketballmoved = true;
+		} else if ((newX > 60 && newX < 110) && (newY > 120 && newY < 170)) {
+			bowlingballmoved = true;
+		} else if ((newX > 60 && newX < 110) && (newY > 270 && newY < 300)) {
+			leftrampmoved = true;
+		}
+		// Code for objects being placed into the sandbox
+		else if ((newX > 350 && newX < 850) && (newY > 10 && newY < 510)) {
+			newXi -= imageShiftX;
+			newXi -= imageShiftY;
+			if (basketballmoved) {
+				if (model.addObjToBoard(EType.basketball, newXi
+						- BasketBall.X_LENGHT, newYi - BasketBall.Y_LENGHT)) {
+					basketballmoved = false;
+					System.out.println("BasketBall = ");
+				}
+				// send click to model
+			} else if (bowlingballmoved) {
+				if (model.addObjToBoard(EType.bowlingball, newXi, newYi)) {
+					basketballmoved = false;
+					System.out.println("BowlingBall = ");
+				}
+
+				// System.out.println("BowlingBall = " +
+				// model.addObjToBoard(EType.bowlingball,newXi, newYi));
+				// send click to model
+			} else if (leftrampmoved) {
+				if (model.addObjToBoard(EType.leftRamp, newXi, newYi)) {
+					leftrampmoved = false;
+					System.out.println("Left Ramp = ");
+				}
+				System.out.println("Left Ramp was not added!!!!!!!");
+				// send click to model
+			}
+		}
+
+	}
+
+	/**
+	 * This method gets the position of the mouse and allows for select-ability
+	 * of objects, including dragging and dropping.
+	 */
+	public void mouseMoved(MouseEvent arg0) {
+		newX = arg0.getX();
+		newY = arg0.getY();
+		if (balloonmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (basketballmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (beltmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (bowlingballmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (bucketmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (candlemoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (conveyorbeltmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (dominomoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (gearmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (leftrampmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (pinmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (pingpongballmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+		if (rightrampmoved) {
+			newXi = newX;
+			newYi = newY;
+			repaint();
+		}
+	}
+
+	/**
+	 * This method repaints the whole panel when observers are notified.
 	 */
 	public void update(Observable arg0, Object arg1) {
 		paintImmediately(0, 0, 950, 650);
+	}
+
+	/**
+	 * This method runs the physics and drawing on the separate thread. This
+	 * also includes timers to slow down the physics to look more realistic.
+	 */
+	public void run() {
+		float target = 1000 / 60.0f;
+		float frameAverage = target;
+		long lastFrame = System.currentTimeMillis();
+		float yield = 10000f;
+		float damping = 0.1f;
+		@SuppressWarnings("unused")
+		long renderTime = 0;
+		@SuppressWarnings("unused")
+		long logicTime = 0;
+		while (running) {
+			// adaptive timing loop from Master Onyx
+			long timeNow = System.currentTimeMillis();
+			frameAverage = (frameAverage * 10 + (timeNow - lastFrame)) / 11;
+			lastFrame = timeNow;
+			yield += yield * ((target / frameAverage) - 1) * damping + 0.05f;
+			for (int i = 0; i < yield; i++) {
+				Thread.yield();
+			}
+			repaint();
+			// update data model
+			long beforeLogic = System.currentTimeMillis();
+			for (int i = 0; i < 5; i++) {
+				model.step();
+			}
+			logicTime = System.currentTimeMillis() - beforeLogic;
+			paintImmediately(0, 0, 950, 650);
+		}
+	}
+
+	/**
+	 * This action listener listens for a Main Menu Options button click and
+	 * handles that action.
+	 */
+	public class startButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			startEngine();
+		}
+	}
+
+	/**
+	 * This action listener listens for a Main Menu Options button click and
+	 * handles that action.
+	 */
+	public class stopButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			model.stop();
+			// pause();
+			running = false;
+		}
+	}
+
+	/**
+	 * Not needed.
+	 */
+	public void mouseReleased(MouseEvent arg0) {
 	}
 
 	/**
@@ -175,86 +348,9 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	}
 
 	/**
-	 * This method gets the position of the mouse
-	 * and allows for select-ability of objects, including
-	 * dragging and dropping.
-	 */
-	public void mouseMoved(MouseEvent arg0) {
-		
-		newX = arg0.getX();
-		newY = arg0.getY();
-		
-		if(balloonmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(basketballmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(beltmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(bowlingballmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(bucketmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(candlemoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(conveyorbeltmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(dominomoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(gearmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(leftrampmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(pinmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(pingpongballmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-		if(rightrampmoved){
-			newXi = newX;
-			newYi = newY;
-			repaint();
-		}
-	}
-
-	/**
 	 * Not needed.
 	 */
-	public void mouseClicked(MouseEvent arg0) {	
+	public void mouseClicked(MouseEvent arg0) {
 	}
 
 	/**
@@ -269,113 +365,4 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 	public void mouseExited(MouseEvent arg0) {
 	}
 
-	/**
-	 * This method handles all the clicks from the
-	 * toolbox and the sandbox.
-	 */
-	public void mousePressed(MouseEvent arg0) {
-		newX = arg0.getX();
-		newY = arg0.getY();
-		// Code for each type of object in toolbox
-		if((newX > 60 && newX < 110) && (newY > 40 && newY < 90)){
-			basketballmoved = true;
-		}
-		else if((newX > 60 && newX < 110) && (newY > 120 && newY < 170)){
-			bowlingballmoved = true;
-		}
-		else if((newX > 60 && newX < 110) && (newY > 270 && newY < 300)){
-			leftrampmoved = true;
-		}
-		// Code for objects being placed into the sandbox
-		else if((newX > 350 && newX < 850) && (newY > 10 && newY < 510)){
-			newXi -= imageShiftX;
-			newXi -= imageShiftY;
-			if(basketballmoved){
-				basketballmoved = false;
-				System.out.println("BasketBall = " + model.addObjToBoard(EType.basketball,newXi - BasketBall.X_LENGHT, newYi -BasketBall.Y_LENGHT ));
-				//send click to model
-			}
-			else if(bowlingballmoved){
-				basketballmoved = false;
-				System.out.println("BowlingBall = " + model.addObjToBoard(EType.bowlingball,newXi, newYi));
-				//send click to model
-			}
-			else if(leftrampmoved){
-				leftrampmoved = false;
-				System.out.println("Left Ramp = " + model.addObjToBoard(EType.leftRamp,newXi, newYi));
-				//send click to model
-			}
-		}
-		
-		
-	}
-
-	/**
-	 * Not needed.
-	 */
-	public void mouseReleased(MouseEvent arg0) {
-	}
-	
-	/**
-	 * This action listener listens for a Main Menu Options button click and handles that
-	 * action.
-	 */
-	public class startButtonListener implements ActionListener {
-	
-		public void actionPerformed(ActionEvent arg0) {
-			startEngine();
-			
-		}
-	}
-	
-	/**
-	 * This action listener listens for a Main Menu Options button click and handles that
-	 * action.
-	 */
-	public class stopButtonListener implements ActionListener {
-	
-		public void actionPerformed(ActionEvent arg0) {
-			model.stop();
-			//pause();
-			running = false;
-		}
-	}
-	
-	/**
-	 * This method runs the physics and drawing on the
-	 * separate thread.  This also includes timers to
-	 * slow down the physics to look more realistic.
-	 */
-	public void run() {
-		float target = 1000 / 60.0f;
-		float frameAverage = target;
-		long lastFrame = System.currentTimeMillis();
-		float yield = 10000f;
-		float damping = 0.1f;
-		@SuppressWarnings("unused")
-		long renderTime = 0;
-		@SuppressWarnings("unused")
-		long logicTime = 0;
-
-		while (running) {
-			// adaptive timing loop from Master Onyx
-			long timeNow = System.currentTimeMillis();
-			frameAverage = (frameAverage * 10 + (timeNow - lastFrame)) / 11;
-			lastFrame = timeNow;
-
-			yield += yield * ((target / frameAverage) - 1) * damping + 0.05f;
-
-			for (int i = 0; i < yield; i++) {
-				Thread.yield();
-			}
-			repaint();
-			// update data model
-			long beforeLogic = System.currentTimeMillis();
-			for (int i = 0; i < 5; i++) {
-				model.step();
-			}
-			logicTime = System.currentTimeMillis() - beforeLogic;
-			paintImmediately(0, 0, 950, 650);
-		}
-	}
 }
