@@ -10,9 +10,11 @@ public class LeftRamp extends Entities {
 
 	private Body ground;
 	
+	public static final int Y_LENGTH = 58;
+	public static final int X_LENGTH = 100;
+	
 	public LeftRamp() {
 		super(EType.leftRamp);
-
 		ground = new StaticBody("Ground1", new Box(225.0f, 25.0f));
 		ground.setPosition(350.0f, 300);
 		ground.setRestitution(1.0f);
@@ -23,7 +25,6 @@ public class LeftRamp extends Entities {
 	public void addObj(World world, float x, float y) {
 
 		ground.setPosition(x, y);
-		this.setImageLocations(x, y);
 		world.add(ground);
 	}
 
@@ -47,7 +48,7 @@ public class LeftRamp extends Entities {
 
 	@Override
 	public void upDate() {
-		// TODO Auto-generated method stub
+
 		
 	}
 

@@ -44,7 +44,7 @@ public class SpriteSheet {
 		if(e.toString().equalsIgnoreCase("Basketball")){
 			System.out.println("Sprite image will be set");
 			sprite = basketballSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
-				BasketBall.X_LENGHT*2, BasketBall.Y_LENGHT*2);
+				BasketBall.X_LENGTH*2, BasketBall.Y_LENGTH*2);
 		}
 		return sprite;
 	}

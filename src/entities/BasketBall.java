@@ -8,8 +8,8 @@ public class BasketBall extends Entities {
 
 	private Body bBall;
 
-	public static final int Y_LENGHT = 23;
-	public static final int X_LENGHT = 23;
+	public static final int Y_LENGTH = 23;
+	public static final int X_LENGTH = 23;
 
 	// ///////Info for sprite sheet////////////////////
 	public static final int basketBallWidth = 45;
@@ -61,7 +61,7 @@ public class BasketBall extends Entities {
 
 	public void setSprite() {
 
-		switch (getState()) {
+		switch (this.getState()) {
 
 		case 1:
 			bbX = 45;
