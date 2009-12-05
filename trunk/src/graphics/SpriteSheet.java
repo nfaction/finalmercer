@@ -7,15 +7,27 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import entities.BasketBall;
+import entities.LeftRamp;
 import entities.Entities;
 import enums.EType;
 
 public class SpriteSheet {
 	private BufferedImage sprite;
+	private BufferedImage balloonSprite;
 	private BufferedImage basketballSprite;
+	private BufferedImage beltSprite;
 	private BufferedImage bowlingballSprite;
-	private BufferedImage pingpongSprite;
-	private BufferedImage ballonSprite;
+	private BufferedImage bucketSprite;
+	private BufferedImage candleSprite;
+	private BufferedImage conveyorbeltSprite;
+	private BufferedImage dominoSprite;
+	private BufferedImage gearSprite;
+	private BufferedImage leftrampSprite;
+	private BufferedImage lightSprite;
+	private BufferedImage pinSprite;
+	private BufferedImage pingpongballSprite;
+	private BufferedImage rightrampSprite;
+	
 	
 	
 	public SpriteSheet()
@@ -24,6 +36,7 @@ public class SpriteSheet {
 		try
 		{
 			basketballSprite = ImageIO.read(new File("Images/BasketBallSpriteSheet.gif"));
+			leftrampSprite = ImageIO.read(new File("Images/LeftRampSprite.gif"));
 			//Add other objects to read in.
 		} catch (IOException e)
 		{
@@ -44,7 +57,12 @@ public class SpriteSheet {
 		if(e.toString().equalsIgnoreCase("Basketball")){
 			System.out.println("Sprite image will be set");
 			sprite = basketballSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
-				BasketBall.X_LENGTH*2, BasketBall.Y_LENGTH*2);
+				BasketBall.X_LENGTH, BasketBall.Y_LENGTH);
+		}
+		else if(e.toString().equalsIgnoreCase("Leftramp")){
+			System.out.println("Sprite image will be set left RAMP");
+			sprite = leftrampSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
+				LeftRamp.X_LENGTH, LeftRamp.Y_LENGTH);
 		}
 		return sprite;
 	}

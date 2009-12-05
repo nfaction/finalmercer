@@ -145,8 +145,8 @@ public class SandboxPanel extends JPanel implements Observer,
 				int upperx = (int) ent.getUpperX() + imageShiftX;
 				int uppery = (int) ent.getUpperY() + imageShiftY;
 				o.drawImage(sprites.getStateImage(ent), upperx, uppery, this);
-				System.out.println("upper x = " + upperx + "Sprite was drawn");
-				System.out.println("upper y = " + uppery);
+				//System.out.println("upper x = " + upperx + " Sprite was drawn");
+				//System.out.println("upper y = " + uppery);
 			}
 		}
 	}
@@ -162,7 +162,7 @@ public class SandboxPanel extends JPanel implements Observer,
 			basketballmoved = true;
 		} else if ((newX > 60 && newX < 110) && (newY > 120 && newY < 170)) {
 			bowlingballmoved = true;
-		} else if ((newX > 60 && newX < 110) && (newY > 270 && newY < 300)) {
+		} else if ((newX > 60 && newX < 110) && (newY > 300 && newY < 375)) {
 			leftrampmoved = true;
 		}
 		// Code for objects being placed into the sandbox
@@ -173,13 +173,13 @@ public class SandboxPanel extends JPanel implements Observer,
 				if (model.addObjToBoard(EType.basketball, newXi
 						- BasketBall.X_LENGTH, newYi - BasketBall.Y_LENGTH)) {
 					basketballmoved = false;
-					System.out.println("BasketBall = ");
+					System.out.println("BasketBall = true");
 				}
-				// send click to model
+				// send click to model 
 			} else if (bowlingballmoved) {
 				if (model.addObjToBoard(EType.bowlingball, newXi, newYi)) {
 					basketballmoved = false;
-					System.out.println("BowlingBall = ");
+					System.out.println("BowlingBall = true");
 				}
 
 				// System.out.println("BowlingBall = " +
@@ -189,7 +189,7 @@ public class SandboxPanel extends JPanel implements Observer,
 
 				if (model.addObjToBoard(EType.leftRamp, newXi  - LeftRamp.X_LENGTH, newYi  - LeftRamp.Y_LENGTH)) {
 					leftrampmoved = false;
-					System.out.println("Left Ramp = ");
+					System.out.println("Left Ramp = true");
 				}
 				else{
 				System.out.println("Left Ramp was not added!!!!!!!");
