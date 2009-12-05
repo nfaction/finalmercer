@@ -7,6 +7,8 @@ import enums.EType;
 
 public abstract class Entities extends Observable {
 	/** Upper X coordinate */
+	private float prevUpperX;
+	/** Upper X coordinate */
 	private float upperX;
 	/** Lower X coordinate */
 	private float lowerX;
@@ -38,12 +40,26 @@ public abstract class Entities extends Observable {
 	}
 	
 	/**
+	 * @return 1 if rolling right -1 left
+	 */
+	public int rollDirection(){
+		if(upperX - prevUpperX > 0)
+			return 1;
+		else
+			return -1;
+		
+		
+		
+	}
+	
+	/**
 	 * Sets the location for the image to be printed. Based on x and
 	 *            y coordinates in the center of the object.
 	 * @param x
 	 * @param y
 	 */
 	protected void setImageLocations(float x, float y) {
+		this.prevUpperX = upperX;
 		this.upperX = this.getX() - (getLength() / 2);
 		this.upperY = this.getY() - (getHeight() / 2);
 		this.lowerX = this.getX() + (getLength() / 2);
