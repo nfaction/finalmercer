@@ -47,4 +47,16 @@ public class Balloon extends Entities {
 		balloon.adjustVelocity(new Vector(0.0f, -1.0f));
 	}
 
+	@Override
+	public int getSpriteX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSpriteY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
