@@ -10,12 +10,11 @@ public class Balloon extends Entities {
 
 	private Body balloon;
 
-	public Balloon(String objType) {
+	public Balloon() {
 		super(EType.balloon);
 		balloon = new Body("Balloon", new Circle(15.0f), .5f);
 		balloon.setPosition(200.0f, 300.0f);
-		balloon.setGravityEffected(false);
-		//balloon.setForce(0.0f, -1000.0f);
+		balloon.setGravityEffected(false);	
 	}
 
 	@Override

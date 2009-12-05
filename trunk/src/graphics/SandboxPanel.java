@@ -29,15 +29,17 @@ import enums.EType;
 import graphics.MainGUI.mainMenuScenarioButtonListener;
 
 import model.Model;
-
+// Start, clear, reset
 public class SandboxPanel extends JPanel implements Observer, MouseMotionListener, MouseListener, Runnable {
 	private int imageShiftX = 365;
 	private int imageShiftY = 0;
 	private boolean running = true;
 	private Image basketball;
 	private Image bowlingball;
+	private Image balloon;
 	private Image toolbox;
 	private Image sandbox;
+	private Image PingPongBall;
 	private ArrayList<Entities> temp = new ArrayList<Entities>();
 	private SpriteSheet cardImages;
 	private int newX, newY;
@@ -80,6 +82,8 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 			sandbox = ImageIO.read(new File("Images/SandBox.gif"));
 			basketball = ImageIO.read(new File("Images/basketball.gif"));
 			bowlingball = ImageIO.read(new File("Images/bowling ball.gif"));
+			balloon = ImageIO.read(new File("Images/Balloon.gif"));
+			PingPongBall = ImageIO.read(new File("Images/PingPongBall.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -109,6 +113,8 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		o.drawImage(sandbox, 350, 10, this);
 		o.drawImage(basketball, 60, 40, this);
 		o.drawImage(bowlingball, 60, 120, this);
+		o.drawImage(balloon, 60, 180, this);		// Add here! /////////////////////
+		o.drawImage(PingPongBall, 75, 250, this);
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if(basketballmoved){
@@ -278,7 +284,7 @@ public class SandboxPanel extends JPanel implements Observer, MouseMotionListene
 		public void actionPerformed(ActionEvent arg0) {
 			model.stop();
 			//pause();
-			//running = false;
+			running = false;
 		}
 	}
 
