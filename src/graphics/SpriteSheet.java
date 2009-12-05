@@ -57,12 +57,12 @@ public class SpriteSheet {
 		if(e.toString().equalsIgnoreCase("Basketball")){
 			System.out.println("Sprite image will be set");
 			sprite = basketballSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
-				BasketBall.X_LENGTH, BasketBall.Y_LENGTH);
+				BasketBall.X_LENGTH * 2, BasketBall.Y_LENGTH * 2);
 		}
 		else if(e.toString().equalsIgnoreCase("Leftramp")){
 			System.out.println("Sprite image will be set left RAMP");
 			sprite = leftrampSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
-				LeftRamp.X_LENGTH, LeftRamp.Y_LENGTH);
+				LeftRamp.X_LENGTH * 2, LeftRamp.Y_LENGTH * 2);
 		}
 		return sprite;
 	}
