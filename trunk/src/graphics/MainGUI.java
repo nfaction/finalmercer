@@ -80,7 +80,7 @@ public class MainGUI extends JFrame{
 	public void setupJFrameModel(){
 		this.setSize(950, 630);
 		this.setLayout(null);
-		this.setLocation(500, 300);
+		this.setLocation(150, 50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container cp = this.getContentPane();
 		
