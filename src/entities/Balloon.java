@@ -10,6 +10,9 @@ public class Balloon extends Entities {
 
 	private Body balloon;
 
+	public static final int Y_LENGTH = 50;
+	public static final int X_LENGTH = 50;
+	
 	public Balloon() {
 		super(EType.balloon);
 		balloon = new Body("Balloon", new Circle(15.0f), .5f);

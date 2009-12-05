@@ -16,8 +16,8 @@ public strictfp class BowlingBall extends Entities {
 
 	private Body bowlBall;
 	
-	public static final int Y_LENGTH = 23;
-	public static final int X_LENGTH = 23;
+	public static final int Y_LENGTH = 35;
+	public static final int X_LENGTH = 35;
 
 	public BowlingBall() {
 
@@ -26,7 +26,6 @@ public strictfp class BowlingBall extends Entities {
 		bowlBall.setRestitution(.5f);
 		bowlBall.setDamping(.01f);
 		bowlBall.setCanRest(true);
-
 	}
 
 	/**

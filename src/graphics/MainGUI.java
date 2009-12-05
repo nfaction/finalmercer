@@ -15,7 +15,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class MainGUI extends JFrame{
 	// Model Call goes here
 	static JFrame window = new JFrame();

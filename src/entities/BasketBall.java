@@ -8,8 +8,8 @@ public class BasketBall extends Entities {
 
 	private Body bBall;
 
-	public static final int Y_LENGTH = 23;
-	public static final int X_LENGTH = 23;
+	public static final int Y_LENGTH = 45;
+	public static final int X_LENGTH = 45;
 
 	// ///////Info for sprite sheet////////////////////
 	public static final int basketBallWidth = 45;
