@@ -133,4 +133,9 @@ public class BasketBall extends Entities {
 		return "basketball";
 		// should we use bBall.getName() instead for consistency ?????
 	}
+	
+	@Override
+	public int gettouchingBodies() {
+		return bBall.getTouchingCount();
+	}
 }
