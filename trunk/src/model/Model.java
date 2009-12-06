@@ -49,14 +49,23 @@ public class Model extends Observable {
 
 	public boolean addObjToBoard(EType objType, float x, float y) {
 		Entities newEntity = null;
+		int width = 0;
+		int height = 0;
+		
 
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
-			newEntity = new BasketBall();
+			width = BasketBall.X_LENGTH;
+			height = BasketBall.Y_LENGTH;
+			 newEntity = new BasketBall();
 		} else if (objType.equals(EType.balloon)) {
 			newEntity = new Balloon();
 		} else if (objType.equals(EType.bowlingball)) {
 			newEntity = new BowlingBall();
+			
+
+			
+			
 //			 } else if (objType.equals(EType.bucket)) {
 //			 newEntity = new Bucket();
 //			 } else if (objType.equals(EType.candle)) {
@@ -88,19 +97,35 @@ public class Model extends Observable {
 		}
 
 		// Code to not allow overlaps on all objects already in world
+		
+		int upperX = (int) x - width;
+		int upperY = (int) y - height;
+		int lowerX = (int) x + width;
+		int lowerY = (int) y + height;
+		
+		
+		
+		System.out.println("11111111111111111111111111111111 upperX "+ upperX);
+		System.out.println("22222222222222222222222222222222 upperY "+ upperY);
+		System.out.println("333333333333333333333333333333 lowerX "+ lowerX);
+		System.out.println("4444444444444444444444444444444444 lowerY "+ lowerY);
+		
+
+		
+		
 
 		for (int i = 0; i < objList.size(); i++) {
-			if (newEntity.getLowerX() > this.objList.get(i).getUpperX()
-					&& newEntity.getLowerX() < this.objList.get(i).getLowerX()
-					&& newEntity.getUpperX() > this.objList.get(i).getUpperX()
-					&& newEntity.getUpperX() < this.objList.get(i).getLowerX()
-					&&
-
-					newEntity.getLowerY() > this.objList.get(i).getUpperY()
-					&& newEntity.getLowerY() < this.objList.get(i).getLowerY()
-					&& newEntity.getUpperY() > this.objList.get(i).getUpperY()
-					&& newEntity.getUpperY() < this.objList.get(i).getLowerY()) {
-
+			int myint = (int) this.objList.get(i).getUpperX();
+			System.out.println(lowerX + " > "+ this.objList.get(i).getUpperX());
+			System.out.println(lowerX + " < "+ this.objList.get(i).getLowerX());
+			System.out.println(lowerY + " > "+ this.objList.get(i).getUpperY());
+			System.out.println(lowerY + " < "+ this.objList.get(i).getLowerY());
+			
+			//check for top left overlap
+			if (lowerX > this.objList.get(i).getUpperX() &&
+				lowerX < this.objList.get(i).getLowerX() &&
+				lowerY > this.objList.get(i).getUpperY() &&
+				lowerY < this.objList.get(i).getLowerY() ){
 				notifyObservers();
 				return false;
 
@@ -114,10 +139,14 @@ public class Model extends Observable {
 			return false;
 		} else {
 			newEntity.addObj(world, x, y);
+			world.step();
+				System.out.println("touching Count" + newEntity.gettouchingBodies());
 			this.objList.add(newEntity);
 			notifyObservers();
 			return true;
 		}
+		
+		
 	}
 
 	public void step() {
