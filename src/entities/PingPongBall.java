@@ -14,7 +14,7 @@ public class PingPongBall extends Entities{
 	
 	public PingPongBall() {
 		
-		super(EType.pingPongBall);
+		super(EType.pingpongball);
 		ppBall = new Body("Ping-Pong Ball", new Circle(7.0f), 2.50f);
 		ppBall.setRestitution(.8f);
 		ppBall.setDamping(.00009f);
@@ -69,5 +69,23 @@ public class PingPongBall extends Entities{
 	public String toString() {
 
 		return "pingpongball";
+	}
+
+	@Override
+	public int getXLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int gettouchingBodies() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

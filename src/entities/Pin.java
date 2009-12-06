@@ -58,4 +58,22 @@ public class Pin extends Entities {
 		return "pin";
 	}
 
+	@Override
+	public int getXLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int gettouchingBodies() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
