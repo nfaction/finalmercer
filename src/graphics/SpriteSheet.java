@@ -53,7 +53,7 @@ public class SpriteSheet {
 	 */
 	public BufferedImage getStateImage(Entities e)
 	{
-		if(count == 20){
+		if(count > 10){
 			count = 0;
 		}
 		if(e.toString().equalsIgnoreCase("Basketball")){
@@ -63,7 +63,7 @@ public class SpriteSheet {
 		}
 		else if(e.toString().equalsIgnoreCase("Leftramp")){
 			System.out.println("Sprite image will be set left RAMP");
-			sprite = leftrampSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
+			sprite = leftrampSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
 				LeftRamp.X_LENGTH * 2, LeftRamp.Y_LENGTH * 2);
 		}
 		count++;

@@ -11,13 +11,17 @@ public class BasketBall extends Entities {
 	public static final int Y_LENGTH = 24;
 	public static final int X_LENGTH = 24;
 
+	public int curState = 0;
+	public int dir = 0;
+
 	// ///////Info for sprite sheet////////////////////
 	public static final int basketBallWidth = 45;
 	public static final int basketBallHeight = 45;
 	public static int bbX = 0;
 	public static int bbY = 0;
 	public int state = 0;
-	///////////////////////////////////////////////////
+
+	// /////////////////////////////////////////////////
 
 	public BasketBall() {
 		super(EType.basketball);
@@ -26,12 +30,12 @@ public class BasketBall extends Entities {
 		bBall.setDamping(.001f);
 		bBall.setCanRest(true);
 	}
-	
-	public int getXLength(){
+
+	public int getXLength() {
 		return X_LENGTH;
 	}
-	
-	public int getYLength(){
+
+	public int getYLength() {
 		return Y_LENGTH;
 	}
 
@@ -54,8 +58,11 @@ public class BasketBall extends Entities {
 	/**
 	 * @return starting X point for sprite state
 	 */
-	public int getSpriteX() {
-		setSprite();
+	public int getSpriteX(int count) {
+				
+		if (count == 10)
+			setSprite();
+
 		return bbX;
 	}
 
@@ -68,23 +75,23 @@ public class BasketBall extends Entities {
 
 	public void setSprite() {
 
-		int dir = rollDirection();
-		int curState = 0;
+		dir = rollDirection();
 		
-		if(curState == 5 && dir == 1)
-			curState = 1;
-		else if(curState == 0 && dir == -1)
-			curState = 5;
-		else if(dir == 1)
-			curState++;
-		else if(dir == -1)
-			curState--;
-		else if(dir == 0)
-			curState = 0;
+		System.out.println("DIR = " + dir);
 
-		bbX = curState * 45;
-		bbY = 0;
+		if (curState == 4 && dir == 1)
+			curState = 1;
+		if (curState == 0 && dir == -1)
+			curState = 4;
+		if (dir == 1)
+			curState++;
+		if (dir == -1)
+			curState--;
+
+		bbX = ((curState * 46) + 5);
 	}
+
+	// }
 
 	@Override
 	public float getX() {
@@ -112,7 +119,7 @@ public class BasketBall extends Entities {
 
 	@Override
 	public void upDate() {
-		
+
 		setImageLocations();
 
 	}
