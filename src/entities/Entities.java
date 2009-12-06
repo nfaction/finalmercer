@@ -178,36 +178,7 @@ public abstract class Entities extends Observable {
 		this.state = state;
 	}
 
-	/**
-	 * @return the length
-	 */
-	public int getLength() {
-		return length;
-	}
-
-	/**
-	 * @param length
-	 *            the length to set
-	 */
-	public void setLength(int length) {
-		this.length = length;
-	}
-
-	/**
-	 * @return the width
-	 */
-	public int getHeight() {
-		return height;
-	}
-
-	/**
-	 * @param width
-	 *            the width to set
-	 */
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
+	
 	/**
 	 * @return the objType
 	 */
