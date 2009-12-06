@@ -34,7 +34,7 @@ public class TestBench extends AbstractDemo {
 		Body ground = new StaticBody("Ground1", new Box(225.0f, 5.0f));
 		ground.setPosition(350.0f, 300);
 		ground.setRestitution(1.0f);
-		ground.setRotation(.4f);
+	//	ground.setRotation(.4f);
 		world.add(ground);
 
 		// Blockade
