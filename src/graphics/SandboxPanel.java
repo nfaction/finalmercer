@@ -45,6 +45,8 @@ public class SandboxPanel extends JPanel implements Observer,
 	private Image toolbox;
 	private Image sandbox;
 	private Image balloon;
+	private Image rightRamp;
+	private Image straightRamp;
 	private Image basketball;
 	private Image belt;
 	private Image bowlingball;
@@ -116,6 +118,7 @@ public class SandboxPanel extends JPanel implements Observer,
 			leftRamp = ImageIO.read(new File("Images/BrickWall.gif"));
 			//light = ImageIO.read(new File("Images/BrickWall.gif"));
 			PingPongBall = ImageIO.read(new File("Images/PingPongBall.gif"));
+
 			//rightRamp = ImageIO.read(new File("Images/BrickWall.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();

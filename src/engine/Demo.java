@@ -11,15 +11,13 @@ import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
-import engine.shapes.StaticBody;
 import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 import entities.Balloon;
 import entities.BasketBall;
-import entities.BowlingBall;
 import entities.LeftRamp;
-import entities.PingPongBall;
 import entities.RightRamp;
+import entities.StraightRamp;
 
 /**
  * Lines terrain testing extensive
@@ -149,6 +147,9 @@ public class Demo {
 		
 		RightRamp newGround2 = new RightRamp();
 		newGround2.addObj(world, 80, 50);
+		
+		StraightRamp newGround3 = new StraightRamp();
+		newGround3.addObj(world, 150, 130);
 		
 		BasketBall newEntity = new BasketBall();
 		newEntity.addObj(world, 200, 50);
