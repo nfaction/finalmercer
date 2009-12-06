@@ -1,43 +1,158 @@
-/*package entities;
+package entities;
 
-import engine.World;
+import engine.*;
+import engine.shapes.Body;
+import engine.shapes.Box;
+import engine.shapes.Circle;
+import engine.shapes.StaticBody;
+import enums.EType;
 
 public class ConveyorBelt extends Entities {
 
-	public ConveyorBelt(String objType) {
-		super(eType);
-		// TODO Auto-generated constructor stub
+	private Body leftWheel;
+	private Body rightWheel;
+	private Body box;
+	private Body[] belt;
+
+	private float xPos;
+	private float yPos;
+
+	public static final int Y_LENGTH = 24;
+	public static final int X_LENGTH = 24;
+
+	public int curState = 0;
+	public int dir = 0;
+	public int count = 0;
+
+	public ConveyorBelt() {
+		super(EType.conveyorBelt);
+		initLeftWheel();
+		initRightWheel();
+		initbox();
+		initBelt();
+	}
+
+	private void initBelt() {
+		belt = new Body[20];
+		for (int i = 0; i < 10; i++) {
+			belt[i] = new Body(new Circle(1f), 2);
+		}
+
+	}
+
+	private void initbox() {
+		box = new StaticBody("Box", new Box(100f, 20f));
+		box.setDamping(.001f);
+		box.setCanRest(true);
+		box.setRestitution(1.0f);
+	}
+
+	private void initLeftWheel() {
+		leftWheel = new StaticBody("leftWheel", new Circle(10f));
+		leftWheel.setRestitution(1.0f);
+		leftWheel.setDamping(.001f);
+		leftWheel.setCanRest(true);
+	}
+
+	private void initRightWheel() {
+		rightWheel = new StaticBody("rightWheel", new Circle(10f));
+		rightWheel.setDamping(.001f);
+		rightWheel.setCanRest(true);
+		rightWheel.setRestitution(1.0f);
 	}
 
 	@Override
 	public void addObj(World world, float x, float y) {
-		// TODO Auto-generated method stub
+		this.xPos = x;
+		this.yPos = y;
 
+		leftWheel.setPosition(x - 50, y);
+		rightWheel.setPosition(x + 50, y);
+		box.setPosition(x, y);
+
+		for (int i = 0; i < 10; i++) {
+			belt[i].setPosition(x - 50 + 10 * i, y - 12);
+		}
+
+		world.add(rightWheel);
+		world.add(leftWheel);
+		world.add(box);
+
+		for (int i = 0; i < 10; i++) {
+			world.add(belt[i]);
+		}
+		this.setImageLocations(x, y);
 	}
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.xPos;
 	}
 
 	@Override
 	public float getY() {
+		return this.yPos;
+	}
+
+	@Override
+	public void removeObj(World world) {
+		world.remove(rightWheel);
+		world.remove(leftWheel);
+		world.remove(box);
+
+		for (int i = 0; i < 10; i++) {
+			world.remove(belt[i]);
+		}
+	}
+
+	@Override
+	public void upDate() {
+		for (int i = 0; i < 10; i++) {
+			belt[i].setForce(1, 0);
+			if (belt[i].getPosition().getX() > this.xPos + 55
+					|| belt[i].getPosition().getX() < this.xPos - 55
+					|| belt[i].getPosition().getY() > this.yPos - 10
+					|| belt[i].getPosition().getY() < this.yPos - 12) {
+				belt[i].setPosition(this.xPos - 45, this.yPos - 11);
+			}
+
+		}
+		setImageLocations();
+	}
+
+	@Override
+	public int getSpriteX(int count) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void removeObj(World world) {
+	public int getSpriteY() {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
-	public void upDate() {
+	public int getXLength() {
 		// TODO Auto-generated method stub
-		
+		return 0;
+	}
+
+	@Override
+	public int getYLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int gettouchingBodies() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String toString() {
+		return null;
 	}
 
 }
-*/
