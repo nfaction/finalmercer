@@ -27,7 +27,7 @@ public class SpriteSheet {
 	private BufferedImage pinSprite;
 	private BufferedImage pingpongballSprite;
 	private BufferedImage rightrampSprite;
-	
+	private int count = 0;
 	
 	
 	public SpriteSheet()
@@ -53,10 +53,12 @@ public class SpriteSheet {
 	 */
 	public BufferedImage getStateImage(Entities e)
 	{
-
+		if(count == 20){
+			count = 0;
+		}
 		if(e.toString().equalsIgnoreCase("Basketball")){
 			System.out.println("Sprite image will be set");
-			sprite = basketballSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
+			sprite = basketballSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
 				BasketBall.X_LENGTH * 2, BasketBall.Y_LENGTH * 2);
 		}
 		else if(e.toString().equalsIgnoreCase("Leftramp")){
@@ -64,6 +66,7 @@ public class SpriteSheet {
 			sprite = leftrampSprite.getSubimage(e.getSpriteX(), e.getSpriteY(),
 				LeftRamp.X_LENGTH * 2, LeftRamp.Y_LENGTH * 2);
 		}
+		count++;
 		return sprite;
 	}
 }

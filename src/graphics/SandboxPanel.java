@@ -20,6 +20,9 @@ import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import entities.BasketBall;
@@ -63,12 +66,15 @@ public class SandboxPanel extends JPanel implements Observer,
 	private boolean rightrampmoved;
 
 	Thread run;
+	private JMenu m_file;
+	private JMenuItem m_start;
 	JButton start = new JButton("Start");
 	JButton stop = new JButton("Stop");
+	private Model model;
+	
 
-	private Model model = new Model(500, 500);
-
-	public SandboxPanel() {
+	public SandboxPanel(Model m) {
+		this.model = m;
 		this.setLayout(null);
 		this.setSize(950, 600);
 		this.setLocation(0, 50);
@@ -79,6 +85,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		stop.setLocation(800, 50);
 		this.add(start);
 		this.add(stop);
+		this.add(new MyJMenuBar());
 		registerListeners();
 		try {
 			toolbox = ImageIO.read(new File("Images/ToolBox.gif"));
@@ -325,6 +332,8 @@ public class SandboxPanel extends JPanel implements Observer,
 			startEngine();
 		}
 	}
+	
+	
 
 	/**
 	 * This action listener listens for a Main Menu Options button click and
@@ -366,6 +375,34 @@ public class SandboxPanel extends JPanel implements Observer,
 	 * Not needed.
 	 */
 	public void mouseExited(MouseEvent arg0) {
+	}
+	
+	private class MyJMenuBar extends JMenuBar
+	{
+		private JMenu file;
+		private JMenuItem fileExit, fileReset;
+
+		public MyJMenuBar()
+		{
+			// We create a menu called 'File'
+			file = new JMenu("File");
+
+			// We then instantiate a menu item called 'Reset Deck' and add a
+			// listener for its actions. Finally we add this item to the menu
+			// 'File'.
+			fileReset = new JMenuItem("Start");
+			fileReset.addActionListener(new startButtonListener());
+			file.add(fileReset);
+
+			// Similarly, we create a menu item called 'Exit' and add a listener
+			// for its actions. Then we add this item to the menu 'File'.
+			fileExit = new JMenuItem("Stop");
+			fileExit.addActionListener(new stopButtonListener());
+			file.add(fileExit);
+
+			// We add the 'File' menu to the JMenuBar we are creating.
+			this.add(file);
+		}
 	}
 
 }
