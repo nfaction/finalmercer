@@ -79,16 +79,16 @@ public class BasketBall extends Entities {
 		
 		System.out.println("DIR = " + dir);
 
-		if (curState == 4 && dir == 1)
+		if (curState == 5 && dir == 1)
 			curState = 1;
 		if (curState == 0 && dir == -1)
-			curState = 4;
+			curState = 5;
 		if (dir == 1)
 			curState++;
 		if (dir == -1)
 			curState--;
 
-		bbX = ((curState * 46) + 5);
+		bbX = ((curState * 44));
 	}
 
 	// }
