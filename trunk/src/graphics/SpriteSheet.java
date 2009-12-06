@@ -35,7 +35,7 @@ public class SpriteSheet {
 		// Use ImageIO to read in the card sheet
 		try
 		{
-			basketballSprite = ImageIO.read(new File("Images/BasketBallSpriteSheet.gif"));
+			basketballSprite = ImageIO.read(new File("Images/BasketBallSprites.gif"));
 			leftrampSprite = ImageIO.read(new File("Images/LeftRampSprite.gif"));
 			//Add other objects to read in.
 		} catch (IOException e)
