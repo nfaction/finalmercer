@@ -13,6 +13,7 @@ public class BasketBall extends Entities {
 
 	public int curState = 0;
 	public int dir = 0;
+	public int count = 0;
 
 	// ///////Info for sprite sheet////////////////////
 	public static final int basketBallWidth = 45;
@@ -58,11 +59,15 @@ public class BasketBall extends Entities {
 	/**
 	 * @return starting X point for sprite state
 	 */
-	public int getSpriteX(int count) {
-				
+	public int getSpriteX(int c) {
+						
+		if(count > 10)
+			count = 0;
+		
 		if (count == 10)
 			setSprite();
-
+		
+		count++;
 		return bbX;
 	}
 
@@ -79,13 +84,13 @@ public class BasketBall extends Entities {
 		
 		System.out.println("DIR = " + dir);
 
-		if (curState == 5 && dir == 1)
+		if (curState == 4 && dir == 1)
 			curState = 1;
-		if (curState == 0 && dir == -1)
-			curState = 5;
-		if (dir == 1 && curState < 5)
+		else if (curState == 0 && dir == -1)
+			curState = 4;
+		else if (dir == 1)
 			curState++;
-		if (dir == -1 && curState > 0)
+		else if (dir == -1)
 			curState--;
 
 		bbX = ((curState * 50));
