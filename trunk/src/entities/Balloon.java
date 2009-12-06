@@ -51,7 +51,7 @@ public class Balloon extends Entities {
 	}
 
 	@Override
-	public int getSpriteX() {
+	public int getSpriteX(int count) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

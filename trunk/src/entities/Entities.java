@@ -198,7 +198,7 @@ public abstract class Entities extends Observable {
 		return objType;
 	}
 
-	public abstract int getSpriteX();
+	public abstract int getSpriteX(int count);
 	
 	public abstract int getSpriteY();
 	
