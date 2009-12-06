@@ -129,6 +129,10 @@ public strictfp class Body {
 	public boolean disabled() {
 		return !enabled;
 	}
+	
+	public int getTouchingCount() {
+		return this.touchingCount;
+	}
 
 	/**
 	 * Indicates whether this body should be active, collide, move/rotate
