@@ -58,4 +58,22 @@ public class Wall extends Entities {
 		return "wall";
 	}
 
+	@Override
+	public int getXLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int gettouchingBodies() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
