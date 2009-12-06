@@ -55,7 +55,7 @@ public class BasketBall extends Entities {
 	 * @return starting X point for sprite state
 	 */
 	public int getSpriteX() {
-
+		setSprite();
 		return bbX;
 	}
 
@@ -63,7 +63,6 @@ public class BasketBall extends Entities {
 	 * @return starting Y point for sprite state
 	 */
 	public int getSpriteY() {
-
 		return bbY;
 	}
 
@@ -72,18 +71,19 @@ public class BasketBall extends Entities {
 		int dir = rollDirection();
 		int curState = 0;
 		
-		if(curState == 6 && dir == 1)
+		if(curState == 5 && dir == 1)
 			curState = 1;
 		else if(curState == 0 && dir == -1)
-			curState = 6;
+			curState = 5;
 		else if(dir == 1)
 			curState++;
 		else if(dir == -1)
 			curState--;
-		
+		else if(dir == 0)
+			curState = 0;
 
 		bbX = curState * 45;
-		bbY = curState * 45;
+		bbY = 0;
 	}
 
 	@Override

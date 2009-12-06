@@ -6,6 +6,9 @@ package graphics;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import model.Model;
@@ -16,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainGUI extends JFrame{
+	Model model = new Model(500, 500);
 	// Model Call goes here
 	static JFrame window = new JFrame();
 	/** Master panel*/
@@ -45,16 +49,21 @@ public class MainGUI extends JFrame{
 	JLabel optionL = new JLabel("Options:");
 	JButton mainMenuOptions = new JButton("Main Menu");
 	JLabel gravityL = new JLabel("Gravity:");
-	JTextField gravityText = new JTextField();
+	JTextField gravityText = new JTextField("" + model.getGravity());
 	JButton submit = new JButton("Submit");
 	JLabel soundL = new JLabel("Sound:");
 	JButton soundon = new JButton("Sound ON");
 	JButton soundoff = new JButton("Sound OFF");
 	/** Sandbox Panel*/
 	JPanel sandbox = new JPanel();
-	SandboxPanel sandboxPanel = new SandboxPanel();
+	SandboxPanel sandboxPanel = new SandboxPanel(model);
 	JButton mainMenuSandbox = new JButton("Main Menu");
-
+	/** Menu Bar*/
+	private JMenuBar menuBar;
+	private JMenu m_file, m_diff, m_view;
+	private JMenuItem m_newGame, m_easy, m_hard, m_text, m_buttons;
+	
+	
 	/**
 	 * Main method creates a GUI
 	 * 
@@ -83,6 +92,8 @@ public class MainGUI extends JFrame{
 		this.setLocation(150, 50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container cp = this.getContentPane();
+		
+		//setJMenuBar(createMenuBar());
 		
 		// Sets master panel specifications
 		master.setLayout(null);
@@ -369,7 +380,8 @@ public class MainGUI extends JFrame{
 	public class submitButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
-			
+			String temp = gravityText.getText();
+			model.setGravity(Float.parseFloat(temp));
 		}
 	}
 	
@@ -391,9 +403,34 @@ public class MainGUI extends JFrame{
 	public class soundOffButtonListener implements ActionListener {
 	
 		public void actionPerformed(ActionEvent arg0) {
-			String temp = gravityText.getText();
-			//model.setGravity(Double.parseDouble(temp));
+			
 			
 		}
+	}
+	
+	public JMenuBar createMenuBar() {
+
+		menuBar = new JMenuBar();
+
+		m_file = new JMenu("File");
+		m_diff = new JMenu("Difficulty");
+		m_view = new JMenu("Change View");
+
+		m_newGame = new JMenuItem("New Game");
+		m_easy = new JMenuItem("EASY");
+		m_hard = new JMenuItem("HARD");
+		m_text = new JMenuItem("Text View");
+		m_buttons = new JMenuItem("Button View");
+
+		m_file.add(m_newGame);
+		m_file.add(m_view);
+		m_file.add(m_diff);
+		m_diff.add(m_easy);
+		m_diff.add(m_hard);
+		m_view.add(m_text);
+		m_view.add(m_buttons);
+		menuBar.add(m_file);
+
+		return menuBar;
 	}
 }
