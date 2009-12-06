@@ -83,12 +83,12 @@ public class BasketBall extends Entities {
 			curState = 1;
 		if (curState == 0 && dir == -1)
 			curState = 5;
-		if (dir == 1)
+		if (dir == 1 && curState < 5)
 			curState++;
-		if (dir == -1)
+		if (dir == -1 && curState > 0)
 			curState--;
 
-		bbX = ((curState * 44));
+		bbX = ((curState * 50));
 	}
 
 	// }
