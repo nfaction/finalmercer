@@ -119,4 +119,22 @@ public strictfp class BowlingBall extends Entities {
 		return "bowlingball";
 	}
 
+	@Override
+	public int getXLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int gettouchingBodies() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
