@@ -28,9 +28,9 @@ public abstract class Entities extends Observable {
 	/** Object's state */
 	private int state;
 	/** Object's length */
-	private int length;
+	//private int length;
 	/** Object's height */
-	private int height;
+	//private int height;
 	/** Object name / type */
 	private EType objType;
 	/** Image for specific object type */
@@ -68,17 +68,34 @@ public abstract class Entities extends Observable {
 		//this.x = x;
 		//this.y = y;
 		
-		//System.out.println("AAAAAAAAAAAAAAAAAAAAAA "+ this.getX() + "BBBBBBBBBBBBBBBBBBBBBB");
+		
 		this.prevUpperX = upperX;
-		this.upperX = this.getX() - (getLength() / 2);
-		this.upperY = this.getY() - (getHeight() / 2);
-		this.lowerX = this.getX() + (getLength() / 2);
-		this.lowerY = this.getY() + (getHeight() / 2);
+		this.upperX = (this.getX() - (getXLength() / 2));
+		this.upperY = (this.getY() - (getYLength() / 2));
+		this.lowerX = (this.getX() + (getXLength() / 2));
+		this.lowerY = (this.getY() + (getYLength() / 2));
+		
+		System.out.println("in Entities get X "+this.getX());
+		System.out.println("in Entities get y "+this.getY());
+		
+		System.out.println("in Entities X "+x);
+		System.out.println("in Entities y "+y);
+		
+		
+		
+		System.out.println("in Entities upperX "+upperX);
+		System.out.println("in Entities upperY "+upperY);
+		System.out.println("in Entities lowerX "+lowerX);
+		System.out.println("in Entities lowerY "+lowerY);
 	}
 	
 	protected void setImageLocations() {
 		setImageLocations(0,0);
 	}
+	
+	public abstract int getXLength();
+	
+	public abstract int getYLength();
 
 	/**
 	 * @return the x
@@ -232,5 +249,7 @@ public abstract class Entities extends Observable {
 	public abstract void addObj(World world, float x, float y);
 
 	public abstract void removeObj(World world);
+	
+	public abstract int gettouchingBodies();
 
 }
