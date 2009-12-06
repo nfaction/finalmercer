@@ -2,5 +2,6 @@ package enums;
 
 public enum EType {
 
-	basketball, bowlingball, balloon, bucket, belt, candle, domino, pingpongball, rightRamp, leftRamp, light, wall;
+	basketball, bowlingball, balloon, bucket, candle, domino, pingPongBall, rightRamp, leftRamp, light, straightRamp;
+
 }
