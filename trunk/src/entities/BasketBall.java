@@ -80,23 +80,38 @@ public class BasketBall extends Entities {
 
 	public void setSprite() {
 
-		dir = rollDirection();
-		
-		System.out.println("DIR = " + dir);
+		float rotation = bBall.getRotation();
+		rotation = rotation % (2f*(new Float(Math.PI)));
 
-		if (curState == 4 && dir == 1)
+		if (rotation >= 0f && rotation < 1.046f)
+			curState = 0;
+		else if (rotation >= 1.046f && rotation < 2.093)
 			curState = 1;
-		else if (curState == 0 && dir == -1)
-			curState = 4;
-		else if (dir == 1)
-			curState++;
-		else if (dir == -1)
-			curState--;
+		else if (rotation >= 2.093 && rotation < 3.14)
+			curState = 2;
+		else if (rotation >= 3.144 && rotation < 4.190)
+			curState = 3;
+		else if (rotation >= 4.190 && rotation < 5.236f)
+			curState = 2;
+		else if (rotation >= 5.236f && rotation < 6.3f)
+			curState = 3;
+		else if (rotation <= 0f && rotation > -1.046f)
+			curState = 3;
+		else if (rotation <= -1.046f && rotation > -2.093)
+			curState = 2;
+		else if (rotation <= -2.093 && rotation > -3.14)
+			curState = 1;
+		else if (rotation <= -3.144 && rotation > -4.190)
+			curState = 0;
+		else if (rotation <= -4.190 && rotation > -5.236f)
+			curState = 3;
+		else if (rotation <= -5.236f && rotation > -6.3f)
+			curState = 2;
+
+		System.out.println(rotation);
 
 		bbX = ((curState * 50));
 	}
-
-	// }
 
 	@Override
 	public float getX() {
@@ -133,7 +148,7 @@ public class BasketBall extends Entities {
 		return "basketball";
 		// should we use bBall.getName() instead for consistency ?????
 	}
-	
+
 	@Override
 	public int gettouchingBodies() {
 		return bBall.getTouchingCount();
