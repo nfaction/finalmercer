@@ -26,6 +26,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import entities.Balloon;
+import entities.PingPongBall;
 import entities.BasketBall;
 import entities.BowlingBall;
 import entities.Candle;
@@ -35,11 +36,27 @@ import enums.EType;
 
 import model.Model;
 
-// Start, clear, reset
 public class SandboxPanel extends JPanel implements Observer,
 		MouseMotionListener, MouseListener, Runnable {
-	private int imageShiftX = 365;
-	private int imageShiftY = 0;
+	private int sandboxShiftX = 365;
+	private int sandboxShiftY = 13;
+	private int toolboxShiftX = 19;
+	private int toolboxShiftY = 20;
+	private int xsize;
+	private int ysize;
+	
+	/** Variables for image spacing */
+	private int balloonimageX = 20 + toolboxShiftX;
+	private int balloonimageY = 20 + toolboxShiftY;
+	private int basketballimageX = 75 + toolboxShiftX;
+	private int basketballimageY = 20 + toolboxShiftY;
+	private int bowlingballimageX = 140 + toolboxShiftX;
+	private int bowlingballimageY = 30 + toolboxShiftY;
+	private int pingpongballimageX = 185 + toolboxShiftX;
+	private int pingpongballimageY = 40 + toolboxShiftY;
+	private int leftrampimageX = 20 + toolboxShiftX;
+	private int leftrampimageY = 270 + toolboxShiftY;
+
 	private boolean running = true;
 
 	private Image toolbox;
@@ -59,7 +76,6 @@ public class SandboxPanel extends JPanel implements Observer,
 	private Image PingPongBall;
 	private Image rightramp;
 
-	
 	private ArrayList<Entities> temp = new ArrayList<Entities>();
 	private SpriteSheet sprites = new SpriteSheet();
 	private int newX, newY;
@@ -81,26 +97,22 @@ public class SandboxPanel extends JPanel implements Observer,
 	private boolean rightrampmoved;
 
 	Thread run;
-	private JMenu m_file;
-	private JMenuItem m_start;
 	JButton start = new JButton("Start");
-	JButton stop = new JButton("Stop");
-	private Model model;
-	
 
-	public SandboxPanel(Model m) {
+	private Model model;
+
+	public SandboxPanel(Model m, int xsize, int ysize) {
 		this.model = m;
+		this.xsize = xsize;
+		this.ysize = ysize;
 		this.setLayout(null);
 		this.setSize(950, 600);
-		this.setLocation(0, 50);
+		this.setLocation(0, 0);
 		this.setBackground(Color.BLACK);
 		start.setSize(125, 30);
 		start.setLocation(800, 10);
-		stop.setSize(125, 30);
-		stop.setLocation(800, 50);
 		this.add(start);
-		this.add(stop);
-		this.add(new MyJMenuBar());
+		// this.add(stop);
 		registerListeners();
 		try {
 			// Static Background images
@@ -109,17 +121,17 @@ public class SandboxPanel extends JPanel implements Observer,
 			// Entities
 			balloon = ImageIO.read(new File("Images/Balloon.gif"));
 			basketball = ImageIO.read(new File("Images/basketball.gif"));
-			//belt = ImageIO.read(new File("Images/basketball.gif"));
-			bowlingball = ImageIO.read(new File("Images/bowling ball.gif"));
-			//bucket = ImageIO.read(new File("Images/basketball.gif"));
-			//candle = ImageIO.read(new File("Images/basketball.gif"));
-			//conveyorbelt = ImageIO.read(new File("Images/basketball.gif"));
-			//gear = ImageIO.read(new File("Images/basketball.gif"));
-			leftRamp = ImageIO.read(new File("Images/BrickWall.gif"));
-			//light = ImageIO.read(new File("Images/BrickWall.gif"));
+			// belt = ImageIO.read(new File("Images/basketball.gif"));
+			bowlingball = ImageIO.read(new File("Images/bowlingball.gif"));
+			// bucket = ImageIO.read(new File("Images/basketball.gif"));
+			// candle = ImageIO.read(new File("Images/basketball.gif"));
+			// conveyorbelt = ImageIO.read(new File("Images/basketball.gif"));
+			// gear = ImageIO.read(new File("Images/basketball.gif"));
+			leftRamp = ImageIO.read(new File("Images/LeftRamp.gif"));
+			// light = ImageIO.read(new File("Images/BrickWall.gif"));
 			PingPongBall = ImageIO.read(new File("Images/PingPongBall.gif"));
 
-			//rightRamp = ImageIO.read(new File("Images/BrickWall.gif"));
+			// rightRamp = ImageIO.read(new File("Images/BrickWall.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -132,7 +144,6 @@ public class SandboxPanel extends JPanel implements Observer,
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 		start.addActionListener(new startButtonListener());
-		stop.addActionListener(new stopButtonListener());
 	}
 
 	/**
@@ -153,72 +164,79 @@ public class SandboxPanel extends JPanel implements Observer,
 		o.drawImage(toolbox, 10, 10, this);
 		o.drawImage(sandbox, 350, 10, this);
 		// Entities
-		o.drawImage(balloon, 60, 180, this);
-		o.drawImage(basketball, 60, 40, this);
-		//o.drawImage(belt, 60, 40, this);
-		o.drawImage(bowlingball, 60, 120, this);
-		//o.drawImage(bucket, 60, 40, this);
-		//o.drawImage(candle, 60, 40, this);
-		//o.drawImage(conveyorbelt, 60, 40, this);
-		//o.drawImage(gear, 60, 40, this);
-		o.drawImage(leftRamp, 15, 270, this);
-		//o.drawImage(light, 60, 40, this);
-		o.drawImage(PingPongBall, 75, 250, this);
-		//o.drawImage(rightramp, 60, 40, this);
-		
+		o.drawImage(balloon, balloonimageX, balloonimageY, this);
+		o.drawImage(basketball, basketballimageX, basketballimageY, this);
+		o.drawImage(bowlingball, bowlingballimageX, bowlingballimageY, this);
+		// o.drawImage(belt, 60, 40, this);
+		// o.drawImage(bucket, 60, 40, this);
+		// o.drawImage(candle, 60, 40, this);
+		// o.drawImage(conveyorbelt, 60, 40, this);
+		// o.drawImage(gear, 60, 40, this);
+		o.drawImage(leftRamp, leftrampimageX, leftrampimageY, this);
+		// o.drawImage(light, 60, 40, this);
+		o.drawImage(PingPongBall, pingpongballimageX, pingpongballimageY, this);
+		// o.drawImage(rightramp, 60, 40, this);
+
 		temp = model.getObjList();
 		// Allows objects to be drag-able
 		if (balloonmoved) {
-			o.drawImage(balloon, newXi - Balloon.X_LENGTH, newYi - Balloon.X_LENGTH, this);
+			o.drawImage(balloon, newXi - Balloon.X_LENGTH, newYi
+					- Balloon.X_LENGTH, this);
+		} else if (basketballmoved) {
+			o.drawImage(basketball, newXi - BasketBall.X_LENGTH, newYi
+					- BasketBall.X_LENGTH, this);
+		} else if (beltmoved) {
+			// o.drawImage(, newXi - BasketBall.X_LENGTH, newYi -
+			// BasketBall.X_LENGTH, this);
+		} else if (bowlingballmoved) {
+			o.drawImage(bowlingball, newXi - BowlingBall.X_LENGTH, newYi
+					- BowlingBall.X_LENGTH, this);
+		} else if (bucketmoved) {
+			// o.drawImage(bucket, newXi - Bucket.X_LENGTH, newYi -
+			// Bucket.X_LENGTH, this);
+		} else if (candlemoved) {
+			// o.drawImage(candle, newXi - Candle.X_LENGTH, newYi -
+			// Candle.X_LENGTH, this);
+		} else if (conveyorbeltmoved) {
+			// o.drawImage(conveyorbelt, newXi - ConveyorBelt.X_LENGTH, newYi -
+			// ConveyorBelt.X_LENGTH, this);
+		} else if (gearmoved) {
+			// o.drawImage(gear, newXi - Gear.X_LENGTH, newYi - Gear.X_LENGTH,
+			// this);
+		} else if (leftrampmoved) {
+			o.drawImage(leftRamp, newXi - LeftRamp.X_LENGTH, newYi
+					- LeftRamp.Y_LENGTH, this);
+		} else if (lightmoved) {
+			// o.drawImage(light, newXi - Light.X_LENGTH, newYi -
+			// Light.X_LENGTH, this);
+		} else if (pingpongballmoved) {
+			// o.drawImage(pingpongball, newXi - PingPongBall.X_LENGTH, newYi -
+			// PingPongBall.X_LENGTH, this);
+		} else if (rightrampmoved) {
+			// o.drawImage(rightramp, newXi - RightRamp.X_LENGTH, newYi -
+			// RightRamp.X_LENGTH, this);
 		}
-		else if (basketballmoved) {
-			o.drawImage(basketball, newXi - BasketBall.X_LENGTH, newYi - BasketBall.X_LENGTH, this);
-		}
-		else if (beltmoved) {
-			//o.drawImage(, newXi - BasketBall.X_LENGTH, newYi - BasketBall.X_LENGTH, this);
-		}
-		else if (bowlingballmoved) {
-			o.drawImage(bowlingball, newXi - BowlingBall.X_LENGTH, newYi - BowlingBall.X_LENGTH, this);
-		}
-		else if (bucketmoved) {
-			//o.drawImage(bucket, newXi - Bucket.X_LENGTH, newYi - Bucket.X_LENGTH, this);
-		}
-		else if (candlemoved) {
-			//o.drawImage(candle, newXi - Candle.X_LENGTH, newYi - Candle.X_LENGTH, this);
-		}
-		else if (conveyorbeltmoved) {
-			//o.drawImage(conveyorbelt, newXi - ConveyorBelt.X_LENGTH, newYi - ConveyorBelt.X_LENGTH, this);
-		}
-		else if (gearmoved) {
-			//o.drawImage(gear, newXi - Gear.X_LENGTH, newYi - Gear.X_LENGTH, this);
-		}
-		else if (leftrampmoved) {
-			o.drawImage(leftRamp, newXi  - LeftRamp.X_LENGTH, newYi - LeftRamp.Y_LENGTH, this);
-		}
-		else if (lightmoved) {
-			//o.drawImage(light, newXi - Light.X_LENGTH, newYi - Light.X_LENGTH, this);
-		}
-		else if (pingpongballmoved) {
-			//o.drawImage(pingpongball, newXi - PingPongBall.X_LENGTH, newYi - PingPongBall.X_LENGTH, this);
-		}
-		else if (rightrampmoved) {
-			//o.drawImage(rightramp, newXi - RightRamp.X_LENGTH, newYi - RightRamp.X_LENGTH, this);
-		}
-
 		// Painting the objects from the list
 
 		Iterator<Entities> entitiesIter = temp.iterator();
 		if (entitiesIter.hasNext()) {
 			while (entitiesIter.hasNext()) {
 				Entities ent = entitiesIter.next();
-				int upperx = (int) ent.getUpperX() + imageShiftX;
-				int uppery = (int) ent.getUpperY() + imageShiftY;
+				int upperx = (int) ent.getUpperX() + sandboxShiftX;
+				int uppery = (int) ent.getUpperY() + sandboxShiftY;
 				o.drawImage(sprites.getStateImage(ent), upperx, uppery, this);
-				//System.out.println("upper x = " + upperx + " Sprite was drawn");
-				//System.out.println("upper y = " + uppery);
+				// System.out.println("upper x = " + upperx +
+				// " Sprite was drawn");
+				// System.out.println("upper y = " + uppery);
 			}
 		}
 	}
+
+	// private boolean withinRange(EType type, int x, int y){
+	// if(type.equals(basketball) ){
+	//			
+	// }
+	// }
 
 	/**
 	 * This method handles all the clicks from the toolbox and the sandbox.
@@ -226,39 +244,56 @@ public class SandboxPanel extends JPanel implements Observer,
 	public void mousePressed(MouseEvent arg0) {
 		newX = arg0.getX();
 		newY = arg0.getY();
-		// Code for each type of object in toolbox
-		if ((newX > 60 && newX < 110) && (newY > 40 && newY < 90)) {
+		/** Code for each type of object in toolbox */
+		if ((newX > basketballimageX && newX < (basketballimageX + BasketBall.X_LENGTH * 2))
+				&& (newY > basketballimageY && newY < (basketballimageY + BasketBall.Y_LENGTH * 2))) {
+			System.out.println("basketball selected");
 			basketballmoved = true;
-		} else if ((newX > 60 && newX < 110) && (newY > 120 && newY < 170)) {
+		} else if ((newX > balloonimageX && newX < (balloonimageX + Balloon.X_LENGTH * 2))
+				&& (newY > balloonimageY && newY < (balloonimageY + Balloon.Y_LENGTH * 2))) {
+			System.out.println("balloon selected");
+			balloonmoved = true;
+		} else if ((newX > bowlingballimageX && newX < (bowlingballimageX + BowlingBall.X_LENGTH * 2))
+				&& (newY > bowlingballimageY && newY < (bowlingballimageY + BowlingBall.Y_LENGTH * 2))) {
+			System.out.println("bowling selected");
 			bowlingballmoved = true;
-		} else if ((newX > 60 && newX < 110) && (newY > 300 && newY < 375)) {
+		}
+//		 else if ((newX > pingpongballimageX && newX < pingpongballimageX +
+//				 PingPongBall.X_LENGTH*2) && (newY > pingpongballimageY && newY <
+//		 pingpongballimageY + PingPongBall.Y_LENGTH*2)) {
+//		 pingpongballmoved = true;
+//		 }
+		else if ((newX > leftrampimageX && newX < leftrampimageX
+				+ LeftRamp.X_LENGTH * 2)
+				&& (newY > leftrampimageY && newY < leftrampimageY
+						+ LeftRamp.Y_LENGTH * 2)) {
+			System.out.println("lramp selected");
 			leftrampmoved = true;
 		}
-		// Code for objects being placed into the sandbox
-		else if ((newX > 350 && newX < 850) && (newY > 10 && newY < 510)) {
-			newXi -= imageShiftX;
-			newXi -= imageShiftY;
+		/** Code for objects being placed into the sandbox */
+		else if ((newX > sandboxShiftX && newX < (sandboxShiftX + xsize)) && (newY > sandboxShiftY && newY < (sandboxShiftY + ysize))) {
+			newXi -= sandboxShiftX;
+			newXi -= sandboxShiftY;
 			if (balloonmoved) {
-				if (model.addObjToBoard(EType.balloon, newXi
-						- Balloon.X_LENGTH, newYi - Balloon.Y_LENGTH)) {
+				if (model.addObjToBoard(EType.balloon,
+						newXi - Balloon.X_LENGTH, newYi - Balloon.Y_LENGTH)) {
 					balloonmoved = false;
 					System.out.println("Balloon = true");
-				} 
-			}
-			else if (basketballmoved) {
+				}
+			} else if (basketballmoved) {
 				if (model.addObjToBoard(EType.basketball, newXi
 						- BasketBall.X_LENGTH, newYi - BasketBall.Y_LENGTH)) {
 					basketballmoved = false;
 					System.out.println("BasketBall = true");
 				}
 			}
-//			else if (beltmoved) {
-//				if (model.addObjToBoard(EType.belt, newXi
-//						- Belt.X_LENGTH, newYi - Belt.Y_LENGTH)) {
-//					beltmoved = false;
-//					System.out.println("Belt = true");
-//				}
-//			}
+			// else if (beltmoved) {
+			// if (model.addObjToBoard(EType.belt, newXi
+			// - Belt.X_LENGTH, newYi - Belt.Y_LENGTH)) {
+			// beltmoved = false;
+			// System.out.println("Belt = true");
+			// }
+			// }
 			else if (bowlingballmoved) {
 				if (model.addObjToBoard(EType.bowlingball, newXi
 						- BowlingBall.X_LENGTH, newYi - BowlingBall.Y_LENGTH)) {
@@ -266,55 +301,58 @@ public class SandboxPanel extends JPanel implements Observer,
 					System.out.println("Bowlingball = true");
 				}
 			}
-//			else if (bucketmoved) {
-//				if (model.addObjToBoard(EType.bucket, newXi
-//						- Bucket.X_LENGTH, newYi - Bucket.Y_LENGTH)) {
-//					bucketmoved = false;
-//					System.out.println("Bucket = true");
-//				}
-//			}
-//			else if (conveyorbeltmoved) {
-//				if (model.addObjToBoard(EType.conveyorbelt, newXi
-//						- ConveyorBelt.X_LENGTH, newYi - ConveyorBelt.Y_LENGTH)) {
-//					beltmoved = false;
-//					System.out.println("Conveyor Belt = true");
-//				}
-//			}
-//			else if (gearmoved) {
-//				if (model.addObjToBoard(EType.gear, newXi
-//						- Gear.X_LENGTH, newYi - Gear.Y_LENGTH)) {
-//					gearmoved = false;
-//					System.out.println("Gear = true");
-//				}
-//			} 
+			// else if (bucketmoved) {
+			// if (model.addObjToBoard(EType.bucket, newXi
+			// - Bucket.X_LENGTH, newYi - Bucket.Y_LENGTH)) {
+			// bucketmoved = false;
+			// System.out.println("Bucket = true");
+			// }
+			// }
+			// else if (conveyorbeltmoved) {
+			// if (model.addObjToBoard(EType.conveyorbelt, newXi
+			// - ConveyorBelt.X_LENGTH, newYi - ConveyorBelt.Y_LENGTH)) {
+			// beltmoved = false;
+			// System.out.println("Conveyor Belt = true");
+			// }
+			// }
+			// else if (gearmoved) {
+			// if (model.addObjToBoard(EType.gear, newXi
+			// - Gear.X_LENGTH, newYi - Gear.Y_LENGTH)) {
+			// gearmoved = false;
+			// System.out.println("Gear = true");
+			// }
+			// }
 			else if (leftrampmoved) {
 
-				if (model.addObjToBoard(EType.leftRamp, newXi  - LeftRamp.X_LENGTH, newYi  - LeftRamp.Y_LENGTH)) {
+				// if (model.addObjToBoard(EType.leftRamp, newXi -
+				// LeftRamp.X_LENGTH, newYi - LeftRamp.Y_LENGTH)) {
+				if (model.addObjToBoard(EType.leftRamp, newXi
+						- LeftRamp.X_LENGTH, newYi - LeftRamp.Y_LENGTH)) {
 					leftrampmoved = false;
 					System.out.println("Left Ramp = true");
 				}
 			}
-//			else if (lightmoved) {
-//				if (model.addObjToBoard(EType.light, newXi
-//						- Light.X_LENGTH, newYi - Light.Y_LENGTH)) {
-//					lightmoved = false;
-//					System.out.println("Light = true");
-//				}
-//			}
-//			else if (pingpongballmoved) {
-//				if (model.addObjToBoard(EType.pingpongball, newXi
-//						- PingPongBall.X_LENGTH, newYi - PingPongBall.Y_LENGTH)) {
-//					beltmoved = false;
-//					System.out.println("Belt = true");
-//				}
-//			}
-//			else if (rightrampmoved) {
-//				if (model.addObjToBoard(EType.rightRamp, newXi
-//						- RightRamp.X_LENGTH, newYi - RightRamp.Y_LENGTH)) {
-//					rightrampmoved = false;
-//					System.out.println("Right Ramp = true");
-//				}
-//			}
+			// else if (lightmoved) {
+			// if (model.addObjToBoard(EType.light, newXi
+			// - Light.X_LENGTH, newYi - Light.Y_LENGTH)) {
+			// lightmoved = false;
+			// System.out.println("Light = true");
+			// }
+			// }
+			// else if (pingpongballmoved) {
+			// if (model.addObjToBoard(EType.pingpongball, newXi
+			// - PingPongBall.X_LENGTH, newYi - PingPongBall.Y_LENGTH)) {
+			// beltmoved = false;
+			// System.out.println("Belt = true");
+			// }
+			// }
+			// else if (rightrampmoved) {
+			// if (model.addObjToBoard(EType.rightRamp, newXi
+			// - RightRamp.X_LENGTH, newYi - RightRamp.Y_LENGTH)) {
+			// rightrampmoved = false;
+			// System.out.println("Right Ramp = true");
+			// }
+			// }
 		}
 
 	}
@@ -444,20 +482,18 @@ public class SandboxPanel extends JPanel implements Observer,
 			startEngine();
 		}
 	}
-	
-	
 
-	/**
-	 * This action listener listens for a Main Menu Options button click and
-	 * handles that action.
-	 */
-	public class stopButtonListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			model.stop();
-			// pause();
-			running = false;
-		}
-	}
+	// /**
+	// * This action listener listens for a Main Menu Options button click and
+	// * handles that action.
+	// */
+	// public class stopButtonListener implements ActionListener {
+	// public void actionPerformed(ActionEvent arg0) {
+	// model.stop();
+	// // pause();
+	// running = false;
+	// }
+	// }
 
 	/**
 	 * Not needed.
@@ -487,34 +523,6 @@ public class SandboxPanel extends JPanel implements Observer,
 	 * Not needed.
 	 */
 	public void mouseExited(MouseEvent arg0) {
-	}
-	
-	private class MyJMenuBar extends JMenuBar
-	{
-		private JMenu file;
-		private JMenuItem fileExit, fileReset;
-
-		public MyJMenuBar()
-		{
-			// We create a menu called 'File'
-			file = new JMenu("File");
-
-			// We then instantiate a menu item called 'Reset Deck' and add a
-			// listener for its actions. Finally we add this item to the menu
-			// 'File'.
-			fileReset = new JMenuItem("Start");
-			fileReset.addActionListener(new startButtonListener());
-			file.add(fileReset);
-
-			// Similarly, we create a menu item called 'Exit' and add a listener
-			// for its actions. Then we add this item to the menu 'File'.
-			fileExit = new JMenuItem("Stop");
-			fileExit.addActionListener(new stopButtonListener());
-			file.add(fileExit);
-
-			// We add the 'File' menu to the JMenuBar we are creating.
-			this.add(file);
-		}
 	}
 
 }

@@ -2,7 +2,8 @@
  * 
  */
 package graphics;
-
+//Start, clear, reset
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,16 +16,27 @@ import model.Model;
 
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class MainGUI extends JFrame{
 	Model model = new Model(500, 500);
 	// Model Call goes here
 	static JFrame window = new JFrame();
+	/** Menu Bar */
+	private JMenuBar menuBar;
+	private JMenu m_file, m_scenario, m_options;
+	private JMenuItem m_mainmenu, m_start, m_clear, m_reset, m_save, m_load, m_gravity;
 	/** Master panel*/
 	static JPanel master = new JPanel();
 	/** Main panel*/
+	static Image rubeG;
+	MainMenuPanel mmp = new MainMenuPanel();
 	JPanel main = new JPanel();
 	JLabel intro = new JLabel("Please select and option: ");
 	JButton startB = new JButton("Start");
@@ -47,7 +59,6 @@ public class MainGUI extends JFrame{
 	/** Options panel*/
 	JPanel options = new JPanel();
 	JLabel optionL = new JLabel("Options:");
-	JButton mainMenuOptions = new JButton("Main Menu");
 	JLabel gravityL = new JLabel("Gravity:");
 	JTextField gravityText = new JTextField("" + model.getGravity());
 	JButton submit = new JButton("Submit");
@@ -56,12 +67,9 @@ public class MainGUI extends JFrame{
 	JButton soundoff = new JButton("Sound OFF");
 	/** Sandbox Panel*/
 	JPanel sandbox = new JPanel();
-	SandboxPanel sandboxPanel = new SandboxPanel(model);
-	JButton mainMenuSandbox = new JButton("Main Menu");
-	/** Menu Bar*/
-	private JMenuBar menuBar;
-	private JMenu m_file, m_diff, m_view;
-	private JMenuItem m_newGame, m_easy, m_hard, m_text, m_buttons;
+	SandboxPanel sandboxPanel = new SandboxPanel(model, 500, 500);
+	//JButton mainMenuSandbox = new JButton("Main Menu");
+
 	
 	
 	/**
@@ -79,6 +87,13 @@ public class MainGUI extends JFrame{
 	 * Constructor to setup frame
 	 */
 	public MainGUI(){
+		try
+		{
+			rubeG = ImageIO.read(new File("Images/Rubenvent.gif"));
+			//Add other objects to read in.
+		} catch (IOException e)
+		{	
+		}
 		setupJFrameModel();
 		registerListeners();
 	}
@@ -93,7 +108,7 @@ public class MainGUI extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container cp = this.getContentPane();
 		
-		//setJMenuBar(createMenuBar());
+		setJMenuBar(createMenuBar());
 		
 		// Sets master panel specifications
 		master.setLayout(null);
@@ -102,6 +117,7 @@ public class MainGUI extends JFrame{
 		
 		// Sets up all individual frames
 		setupMain();
+		repaint();
 		setupOptions();
 		setupScenarios();
 		setupSandbox();
@@ -111,27 +127,71 @@ public class MainGUI extends JFrame{
 		//master.add(scenario);
 		//master.add(options);
 		master.add(sandbox);
+		//master.add(mmp);
 		cp.add(master);
 	}
 	
+	public JMenuBar createMenuBar() {
+		menuBar = new JMenuBar();
+
+		m_file = new JMenu("File");
+		m_scenario = new JMenu("Scenario");
+		m_options = new JMenu("Options");
+		//File menu
+		m_mainmenu = new JMenuItem("Main Menu");
+		m_start = new JMenuItem("Start");
+		m_clear = new JMenuItem("Clear Sandbox");
+		m_reset = new JMenuItem("Reset");
+		m_file.add(m_mainmenu);
+		m_file.add(m_start);
+		m_file.add(m_clear);
+		m_file.add(m_reset);
+		// Scenario menu
+		m_save = new JMenuItem("Save Scenario");
+		m_load = new JMenuItem("Load Scenario");
+		m_scenario.add(m_save);
+		m_scenario.add(m_load);
+		// Options
+		m_gravity = new JMenuItem("Change Gravity");
+		m_options.add(m_gravity);
+		// Menu Bar
+		menuBar.add(m_file);
+		menuBar.add(m_scenario);
+		menuBar.add(m_options);
+		return menuBar;
+	}
+	
 	public void registerListeners(){
+		// Menu options
+		m_mainmenu.addActionListener(new userChoice());
+		m_start.addActionListener(new userChoice());
+		m_clear.addActionListener(new userChoice());
+		m_reset.addActionListener(new userChoice());
+		m_save.addActionListener(new userChoice());
+		m_load.addActionListener(new userChoice());
+		m_gravity.addActionListener(new userChoice());
+		
 		startB.addActionListener(new startButtonListener());
 		scenarioB.addActionListener(new scenarioButtonListener());
 		optionB.addActionListener(new optionButtonListener());
 		//Sandbox
-		mainMenuSandbox.addActionListener(new mainMenuSandboxButtonListener());
+		
 		//Options
-		mainMenuOptions.addActionListener(new mainMenuOptionsButtonListener());
 		submit.addActionListener(new submitButtonListener());
-		soundon.addActionListener(new soundOnButtonListener());
-		soundoff.addActionListener(new soundOffButtonListener());
-		submit.addActionListener(new submitButtonListener());
+//		soundon.addActionListener(new soundOnButtonListener());
+//		soundoff.addActionListener(new soundOffButtonListener());
 		//Scenario
-		mainMenuScenario.addActionListener(new mainMenuScenarioButtonListener());
+//		mainMenuScenario.addActionListener(new mainMenuScenarioButtonListener());
 	}
 	
+	public void paintComponent(Graphics g) {
+		Graphics2D o = (Graphics2D) g;
+		// Static background images
+		o.drawImage(rubeG, 10, 10, main);
+	}
 	
 	public void setupMain(){
+		
 		main.setLayout(null);
 		main.setSize(950, 500);
 		main.setLocation(0,0);
@@ -159,10 +219,10 @@ public class MainGUI extends JFrame{
 		sandbox.setSize(950, 600);
 		sandbox.setLocation(0,0);
 		
-		mainMenuSandbox.setSize(125,30);
-		mainMenuSandbox.setLocation(50, 20);
+		//mainMenuSandbox.setSize(125,30);
+		//mainMenuSandbox.setLocation(50, 20);
 		
-		sandbox.add(mainMenuSandbox);
+		//sandbox.add(mainMenuSandbox);
 		sandbox.add(sandboxPanel);
 	}
 	
@@ -234,9 +294,6 @@ public class MainGUI extends JFrame{
 		optionL.setLocation(380, 50);
 		optionL.setFont(optionLf);
 		
-		mainMenuOptions.setSize(125,30);
-		mainMenuOptions.setLocation(50, 20);
-		
 		Font gravityLf = new Font("serif", Font.BOLD, 14);
 		
 		gravityL.setSize(250, 20);
@@ -262,7 +319,6 @@ public class MainGUI extends JFrame{
 		soundoff.setLocation(410, 200);
 		
 		options.add(optionL);
-		options.add(mainMenuOptions);
 		options.add(gravityL);
 		options.add(gravityText);
 		options.add(submit);
@@ -318,35 +374,21 @@ public class MainGUI extends JFrame{
 		}
 	}
 	
-	//All listeners for Sandbox window
-	/**
-	 * This action listener listens for a Main Menu Scenario button click and handles that
-	 * action.
-	 */
-	public class mainMenuSandboxButtonListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent arg0) {
-			master.removeAll();
-			master.add(main);
-			master.updateUI();
-			
-		}
-	}
 	
 	//All listeners for Scenario window
-	/**
-	 * This action listener listens for a Main Menu Scenario button click and handles that
-	 * action.
-	 */
-	public class mainMenuScenarioButtonListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent arg0) {
-			master.removeAll();
-			master.add(main);
-			master.updateUI();
-			
-		}
-	}
+//	/**
+//	 * This action listener listens for a Main Menu Scenario button click and handles that
+//	 * action.
+//	 */
+//	public class mainMenuScenarioButtonListener implements ActionListener {
+//
+//		public void actionPerformed(ActionEvent arg0) {
+//			master.removeAll();
+//			master.add(main);
+//			master.updateUI();
+//			
+//		}
+//	}
 	
 	/**
 	 * This action listener listens for a Scenario 1 button click and handles that
@@ -356,20 +398,6 @@ public class MainGUI extends JFrame{
 	
 		public void actionPerformed(ActionEvent arg0) {
 			
-		}
-	}
-	
-	//All listeners for Options window
-	/**
-	 * This action listener listens for a Main Menu Options button click and handles that
-	 * action.
-	 */
-	public class mainMenuOptionsButtonListener implements ActionListener {
-	
-		public void actionPerformed(ActionEvent arg0) {
-			master.removeAll();
-			master.add(main);
-			master.updateUI();
 		}
 	}
 	
@@ -385,52 +413,68 @@ public class MainGUI extends JFrame{
 		}
 	}
 	
-	/**
-	 * This action listener listens for a Sound On Options button click and handles that
-	 * action.
-	 */
-	public class soundOnButtonListener implements ActionListener {
+//	/**
+//	 * This action listener listens for a Sound On Options button click and handles that
+//	 * action.
+//	 */
+//	public class soundOnButtonListener implements ActionListener {
+//	
+//		public void actionPerformed(ActionEvent arg0) {
+//			
+//		}
+//	}
+//	
+//	/**
+//	 * This action listener listens for a Sound Off Options button click and handles that
+//	 * action.
+//	 */
+//	public class soundOffButtonListener implements ActionListener {
+//	
+//		public void actionPerformed(ActionEvent arg0) {
+//			
+//			
+//		}
+//	}
 	
-		public void actionPerformed(ActionEvent arg0) {
+
+	
+	public class userChoice implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == m_mainmenu) {
+				master.removeAll();
+				master.add(main);
+				master.updateUI();
+				main.repaint();
+			}
+			if (e.getSource() == m_start) {
+				master.removeAll();
+				master.add(sandbox);
+				master.updateUI();
+				repaint();
+			}
+
+			if (e.getSource() == m_clear) {
+				model.reset();
+			}
+
+			if (e.getSource() == m_reset) {
+				//model.getOriginalState();
+			}	
+			if (e.getSource() == m_save) {
+				
+			}
+			if (e.getSource() == m_load) {
+				
+			}
+			if (e.getSource() == m_gravity) {
+				master.removeAll();
+				master.add(options);
+				master.updateUI();
+				repaint();
+			}
 			
-		}
 	}
-	
-	/**
-	 * This action listener listens for a Sound Off Options button click and handles that
-	 * action.
-	 */
-	public class soundOffButtonListener implements ActionListener {
-	
-		public void actionPerformed(ActionEvent arg0) {
-			
-			
-		}
-	}
-	
-	public JMenuBar createMenuBar() {
-
-		menuBar = new JMenuBar();
-
-		m_file = new JMenu("File");
-		m_diff = new JMenu("Difficulty");
-		m_view = new JMenu("Change View");
-
-		m_newGame = new JMenuItem("New Game");
-		m_easy = new JMenuItem("EASY");
-		m_hard = new JMenuItem("HARD");
-		m_text = new JMenuItem("Text View");
-		m_buttons = new JMenuItem("Button View");
-
-		m_file.add(m_newGame);
-		m_file.add(m_view);
-		m_file.add(m_diff);
-		m_diff.add(m_easy);
-		m_diff.add(m_hard);
-		m_view.add(m_text);
-		m_view.add(m_buttons);
-		menuBar.add(m_file);
-
-		return menuBar;
 	}
 }
+
