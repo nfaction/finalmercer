@@ -23,6 +23,7 @@ public class ConveyorBelt extends Entities {
 	public int curState = 0;
 	public int dir = 0;
 	public int count = 0;
+	private float speed;
 
 	public ConveyorBelt() {
 		super(EType.conveyorBelt);
@@ -30,6 +31,16 @@ public class ConveyorBelt extends Entities {
 		initRightWheel();
 		initbox();
 		initBelt();
+		speed = 1f;
+	}
+	
+	public ConveyorBelt(float newSpeed) {
+		super(EType.conveyorBelt);
+		initLeftWheel();
+		initRightWheel();
+		initbox();
+		initBelt();
+		speed = newSpeed;
 	}
 
 	private void initBelt() {
@@ -108,7 +119,7 @@ public class ConveyorBelt extends Entities {
 	@Override
 	public void upDate() {
 		for (int i = 0; i < 10; i++) {
-			belt[i].setForce(1, 0);
+			belt[i].setForce(speed, 0);
 			if (belt[i].getPosition().getX() > this.xPos + 55
 					|| belt[i].getPosition().getX() < this.xPos - 55
 					|| belt[i].getPosition().getY() > this.yPos - 10
