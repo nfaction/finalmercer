@@ -7,8 +7,7 @@ import engine.collision.CollisionEvent;
 import engine.collision.CollisionSpace;
 import engine.joint.Joint;
 import engine.shapes.Body;
-import engine.strategies.BroadCollisionStrategy;
-import engine.strategies.BruteCollisionStrategy;
+import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 
 
@@ -36,12 +35,7 @@ public strictfp class World extends CollisionSpace {
 	private float positionTolerance; 
 	private static World world;
 	
-	public static World createWorld(Vector gravity, int iterations){
-		world = new World(gravity,iterations);
-		return world;
-	}
-	
-	public static World createWorld(Vector gravity, int iterations, BroadCollisionStrategy strategy){
+	public static World createWorld(Vector gravity, int iterations, QuadSpaceStrategy strategy){
 		world = new World(gravity,iterations,strategy);
 		return world;
 	}
@@ -53,21 +47,10 @@ public strictfp class World extends CollisionSpace {
 	 * @param gravity The direction and force of gravity
 	 * @param iterations The number of iterations to run each step. More iteration
 	 * is more accurate but slower
-	 */
-	private World(Vector gravity, int iterations) {
-		this(gravity, iterations, new BruteCollisionStrategy());
-	}
-
-	/**
-	 * Create a new physics model World
-	 * 
-	 * @param gravity The direction and force of gravity
-	 * @param iterations The number of iterations to run each step. More iteration
-	 * is more accurate but slower
 	 * @param strategy The strategy used to determine which bodies to check detailed
 	 * collision on
 	 */
-	public World(Vector gravity, int iterations, BroadCollisionStrategy strategy) {
+	public World(Vector gravity, int iterations, QuadSpaceStrategy strategy) {
 		super(strategy);
 		
 		this.gravity = gravity;

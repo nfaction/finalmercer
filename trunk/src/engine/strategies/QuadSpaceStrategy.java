@@ -15,7 +15,7 @@ import engine.shapes.Body;
  * 
  * @author Jeffery D. AHern
  */
-public class QuadSpaceStrategy implements BroadCollisionStrategy {
+public class QuadSpaceStrategy {
 	/** The spaces dervied */
 	private ArrayList<Space> spaces = new ArrayList<Space>();
 	/** The number of sub divisions allows */
