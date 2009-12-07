@@ -6,7 +6,10 @@ import engine.vector.Vector;
 /**
  * A joint between two bodies.
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class FixedJoint implements Joint {
 	public static int NEXT_ID = 0;

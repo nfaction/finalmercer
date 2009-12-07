@@ -5,7 +5,10 @@ import engine.shapes.Body;
 /**
  * A joint connecting two bodies
  * 
- * @author Jeffery D. AHern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public interface Joint {
 
