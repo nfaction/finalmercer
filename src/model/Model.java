@@ -35,7 +35,7 @@ public class Model extends Observable {
 
 	private void initWorld() {
 		world.clear();
-		world.setGravity(0, gravity);
+		world.setGravity(0, 0);
 		Body ground = new StaticBody("Ground", new Box(maxX, 5.0f));
 		ground.setPosition(maxX / 2, maxY);
 		ground.setRestitution(1.0f);
@@ -56,33 +56,17 @@ public class Model extends Observable {
 
 		} else if (objType.equals(EType.balloon)) {
 			newEntity = new Balloon();
-			newEntity.addObj(world, x, y);
+
 		} else if (objType.equals(EType.bowlingball)) {
-	
-//			 } else if (objType.equals(EType.bucket)) {
-//			 newEntity = new Bucket();
-//			 } else if (objType.equals(EType.candle)) {
-//			 newEntity = new Candle();
-//			
-//			 } else if (objType.equals(EType.domino)) {
-//			 newEntity = new Domino();
-//			
-//			 } else if (objType.equals(EType.pingPongBall)) {
-//			 newEntity = new PingPongBall();
-//			
-//			 } else if (objType.equals(EType.rightRamp)) {
-//			 newEntity = new RightRamp();
-//			
+			newEntity = new BowlingBall();
+			
+		} else if (objType.equals(EType.pingPongBall)) {
+			newEntity = new PingPongBall();
+			
 		} else if (objType.equals(EType.leftRamp)) {
 			newEntity = new LeftRamp();
 	
-			//
-			// } else if (objType.equals(EType.domino)) {
-			// newEntity = new Domino();
-			//
-			// } else if (objType.equals(EType.pingPongBall)) {
-			// newEntity = new PingPongBall();
-			//
+
 			// } else if (objType.equals(EType.rightRamp)) {
 			// newEntity = new RightRamp();
 			//
