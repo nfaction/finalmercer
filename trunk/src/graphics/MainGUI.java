@@ -126,8 +126,8 @@ public class MainGUI extends JFrame{
 		//master.add(main);
 		//master.add(scenario);
 		//master.add(options);
-		master.add(sandbox);
-		//master.add(mmp);
+		//master.add(sandbox);
+		master.add(mmp);
 		cp.add(master);
 	}
 	
@@ -443,7 +443,7 @@ public class MainGUI extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == m_mainmenu) {
 				master.removeAll();
-				master.add(main);
+				master.add(mmp);
 				master.updateUI();
 				main.repaint();
 			}
