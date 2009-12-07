@@ -53,11 +53,12 @@ public class Model extends Observable {
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
 			newEntity = new BasketBall();
-			newEntity.addObj(world, x, y);
+
 		} else if (objType.equals(EType.balloon)) {
 			newEntity = new Balloon();
+			newEntity.addObj(world, x, y);
 		} else if (objType.equals(EType.bowlingball)) {
-			newEntity = new BowlingBall();
+	
 //			 } else if (objType.equals(EType.bucket)) {
 //			 newEntity = new Bucket();
 //			 } else if (objType.equals(EType.candle)) {
@@ -74,6 +75,7 @@ public class Model extends Observable {
 //			
 		} else if (objType.equals(EType.leftRamp)) {
 			newEntity = new LeftRamp();
+	
 			//
 			// } else if (objType.equals(EType.domino)) {
 			// newEntity = new Domino();
@@ -107,8 +109,9 @@ public class Model extends Observable {
 
 			}
 		}*/
+		newEntity.addObj(world, x, y);
 		world.step();
-//prevent overlaping objects
+		//prevent overlaping objects
 		if(newEntity.gettouchingBodies() >0){
 			notifyObservers();
 			newEntity.removeObj(world);
@@ -123,7 +126,7 @@ public class Model extends Observable {
 			notifyObservers();
 			return false;
 		} else {
-			newEntity.addObj(world, x, y);
+			//newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
 			notifyObservers();
 			return true;
@@ -131,6 +134,8 @@ public class Model extends Observable {
 	}
 
 	public void step() {
+		world.setGravity(0, gravity);
+		
 		for (int i = 0; i < objList.size(); i++) {
 			if (this.objList.get(i).toString().equalsIgnoreCase("Balloon")
 					&& playedBaloonSound == false) {
