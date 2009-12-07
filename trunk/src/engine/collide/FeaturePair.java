@@ -6,7 +6,10 @@ package engine.collide;
  * An identifier for a pair of edges between two bodies. This identifies which
  * contact points we're using in any given situation
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public class FeaturePair {
 

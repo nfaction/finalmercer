@@ -5,7 +5,10 @@ import engine.shapes.Body;
 /**
  * Interface for collisions
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public interface Collider {
 

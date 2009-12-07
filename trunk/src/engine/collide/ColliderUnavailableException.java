@@ -6,7 +6,10 @@ import engine.shapes.Shape;
  * An exception that is thrown by the ColliderFactory when no suitable collider
  * has been found.
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  * 
  */
 @SuppressWarnings("serial")

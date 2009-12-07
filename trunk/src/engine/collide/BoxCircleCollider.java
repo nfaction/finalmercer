@@ -10,7 +10,10 @@ import engine.vector.Vector;
 /**
  * A collider for boxes hitting circles. Box = bodyA, Circle = bodyB
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class BoxCircleCollider implements Collider {
 	/**

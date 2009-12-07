@@ -10,7 +10,10 @@ import engine.vector.Vector;
  * The implementation of box to box collision. The create() method is used as a
  * factory to produce the collider instance.
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class BoxBoxCollider implements Collider {
 
@@ -319,7 +322,6 @@ public strictfp class BoxBoxCollider implements Collider {
 			throw new RuntimeException("Unknown face!");
 		}
 
-	
 		ClipVertex[] clipPoints1 = new ClipVertex[] { new ClipVertex(),
 				new ClipVertex() };
 		ClipVertex[] clipPoints2 = new ClipVertex[] { new ClipVertex(),

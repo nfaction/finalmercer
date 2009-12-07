@@ -5,7 +5,10 @@ import engine.vector.Vector;
 /**
  * A description of a single contact point between two bodies
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class Contact {
 	public Vector position = new Vector();
