@@ -5,7 +5,7 @@ import engine.shapes.*;
 /**
  * A collider factory to create colliders for bodies
  * 
- * @author Jeffery D. Ahern
+ * @author Jeffery D. AFhern
  * 
  */
 public class ColliderFactory {

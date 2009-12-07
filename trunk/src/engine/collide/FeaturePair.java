@@ -11,13 +11,9 @@ package engine.collide;
 public class FeaturePair {
 
 
-	/** The edge of the first polygon entering the second polygon */
 	int inEdge1;
-	/** The first edge in the collision */
 	int outEdge1;
-	/** The second edge in the collision */
 	int inEdge2;
-	/** The second edge in the collision */
 	int outEdge2;
 	
 	/** 

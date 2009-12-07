@@ -9,7 +9,6 @@ import engine.shapes.Body;
  */
 public strictfp class Collide {
 
-	/** The factory that provides us with colliders */
 	private static ColliderFactory collFactory = new ColliderFactory();
 
 	/**
