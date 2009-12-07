@@ -8,21 +8,22 @@ import engine.vector.Vector;
 /**
  * A body in the physics model
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class Body {
 	/** The next ID to be assigned */
 	private static int NEXT_ID = 0;
 	/** The maximum value indicating that body won't move */
 	public static final float INFINITE_MASS = Float.MAX_VALUE;
-
 	/** The current position of this body */
 	private Vector position = new Vector();
 	/** The position of this body in the last frame */
 	private Vector lastPosition = new Vector();
 	/** The current rotation of this body in radians */
 	private float rotation;
-
 	/** The velocity of this body */
 	private Vector velocity = new Vector();
 	/** The angular velocity of this body */
@@ -31,22 +32,16 @@ public strictfp class Body {
 	private Vector lastVelocity = new Vector();
 	/** The last angular velocity of this body (before last update) */
 	private float lastAngularVelocity;
-
 	/** The velocity of this body */
 	private Vector biasedVelocity = new Vector();
 	/** The angular velocity of this body */
 	private float biasedAngularVelocity;
-
 	/** The force being applied to this body - i.e. driving velocity */
 	private Vector force = new Vector();
-	/**
-	 * The angular force being applied this body - i.e. driving angular velocity
-	 */
+	/** The angular force being applied this body */
 	private float torque;
-
 	/** The shape representing this body */
 	private Shape shape;
-
 	/** The friction on the surface of this body */
 	private float surfaceFriction;
 	/** The damping caused by friction of the 'air' on this body. */
@@ -87,10 +82,7 @@ public strictfp class Body {
 	private int hitCount = 0;
 	/** True if resting body detection is turned on */
 	private boolean restingBodyDetection = false;
-	/**
-	 * The velocity a body hitting a resting body has to have to consider moving
-	 * it
-	 */
+	/** The velocity a body hitting a resting body has to consider moving it */
 	private float hitTolerance;
 	/** The amount a body has to rotate for it to be considered non-resting */
 	private float rotationTolerance;
@@ -104,17 +96,14 @@ public strictfp class Body {
 	private int touchingCount;
 	/** True if this body is capable of coming to a resting state */
 	private boolean canRest = true;
-
 	/** True if this body can rotate */
 	private boolean rotatable = true;
 	/** True if this body can move */
 	private boolean moveable = true;
 	/** True if this body is enabled */
 	private boolean enabled = true;
-
 	/** True if this body has been added to the simulation */
 	private boolean added = false;
-
 	/** The maximum velocity the the body can travel at on each axis */
 	private Vector maxVelocity;
 
@@ -195,7 +184,7 @@ public strictfp class Body {
 	}
 
 	/**
-	 * Attach an object to this Body. Any previously set userdata will be lost.
+	 * Attach an object to this Body.
 	 * 
 	 * @param o
 	 *            The (new) userdata.
@@ -240,13 +229,7 @@ public strictfp class Body {
 	}
 
 	/**
-	 * Indicate whether this body should be able to rotate. Use this feature at
-	 * you own risk - other bodies will react as tho this body has rotated when
-	 * hit so there may be artefacts involved with it's use.
-	 * 
-	 * Note also that this only prevents rotations caused by physics model
-	 * updates. It is still possible to explicitly set the rotation of the body
-	 * with #setRotation()
+	 * Indicate whether this body should be able to rotate.
 	 * 
 	 * The default value is true
 	 * 
@@ -258,15 +241,8 @@ public strictfp class Body {
 	}
 
 	/**
-	 * Indicate whether this body should be able to moe. Use this feature at you
-	 * own risk - other bodies will react as tho this body has moved when hit so
-	 * there may be artefacts involved with it's use.
-	 * 
-	 * Note also that this only prevents movement caused by physics model
-	 * updates. It is still possible to explicitly set the position of the body
-	 * with #setPosition()
-	 * 
-	 * The default value is true
+	 * Indicate whether this body should be able to move. The default value is
+	 * true
 	 * 
 	 * @param moveable
 	 *            True if this body is rotatable
@@ -298,8 +274,7 @@ public strictfp class Body {
 
 	/**
 	 * Indicate whether this body can come to a resting state. The default is
-	 * true, but it is sometimes useful for dynamic objects to prevent them
-	 * resting.
+	 * true.
 	 * 
 	 * @param canRest
 	 *            True if the body can come to a resting state
@@ -823,8 +798,7 @@ public strictfp class Body {
 	}
 
 	/**
-	 * Get the velocity before the last update. This is useful during collisions
-	 * to determine the change in velocity on impact
+	 * Get the velocity before the last update.
 	 * 
 	 * @return The last velocity
 	 */
@@ -882,8 +856,7 @@ public strictfp class Body {
 	}
 
 	/**
-	 * Adjust the position of this body. The previous position will be set to
-	 * the position before this function was called.
+	 * Adjust the position of this body.
 	 * 
 	 * @param delta
 	 *            The amount to change the position by
@@ -897,8 +870,7 @@ public strictfp class Body {
 	}
 
 	/**
-	 * Adjust the position of this body The previous position will be set to the
-	 * position before this function was called.
+	 * Adjust the position of this body .
 	 * 
 	 * @param delta
 	 *            The amount to change the position by

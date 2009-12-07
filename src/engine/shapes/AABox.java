@@ -3,16 +3,15 @@ package engine.shapes;
 /**
  * An axis oriented used for shape bounds
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class AABox {
-	/** The width of the box */
 	private float width;
-	/** The height of the box */
 	private float height;
-	/** The x offset to the body's position of the bounds */
 	private float offsetx;
-	/** The y offset to the body's position of the bounds */
 	private float offsety;
 	
 	/**
