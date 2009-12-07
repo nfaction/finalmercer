@@ -58,8 +58,6 @@ public strictfp class BoxCircleCollider implements Collider {
 			float dis = (float) Math.sqrt(closestDistance);
 			contacts[0].setSeparation(dis - circle.getRadius());
 
-			// this should really be where the edge and the line
-			// between the two elements cross?
 			Vector contactPoint = new Vector();
 			lines[closest].getClosestPoint(circleBody.getPosition(),
 					contactPoint);
