@@ -8,7 +8,10 @@ import engine.vector.Vector;
 /**
  * A joint that will maintain a fixed angle between two bodies
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public class FixedAngleJoint implements Joint {
 	private float rotateA;

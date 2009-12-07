@@ -8,7 +8,10 @@ import engine.vector.Vector;
 /**
  * A joint between two bodies.
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class BasicJoint implements Joint {
 	/** The next ID to be used */
