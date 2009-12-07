@@ -7,7 +7,7 @@ import engine.ArbiterList;
 import engine.BodyList;
 import engine.collide.Contact;
 import engine.shapes.Body;
-import engine.strategies.BroadCollisionStrategy;
+import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 
 
@@ -23,7 +23,7 @@ public class CollisionSpace implements CollisionContext {
 	/** The arbiters that have been required in the world */
 	protected ArbiterList arbiters = new ArbiterList(); 
 	/** The broad phase collision strategy we're using */
-	protected BroadCollisionStrategy collisionStrategy;
+	protected QuadSpaceStrategy collisionStrategy;
 	/** The list of listeners that should be notified of collisions */
 	protected ArrayList<CollisionListener> listeners = new ArrayList<CollisionListener>();
 	/** The total time passed */
@@ -37,7 +37,7 @@ public class CollisionSpace implements CollisionContext {
 	 * 
 	 * @param strategy The strategy to use to partion the collision space
 	 */
-	public CollisionSpace(BroadCollisionStrategy strategy) {
+	public CollisionSpace(QuadSpaceStrategy strategy) {
 		this.collisionStrategy = strategy;
 	}
 	
@@ -105,17 +105,6 @@ public class CollisionSpace implements CollisionContext {
 	 */
 	public BodyList getBodies() {
 		return bodies;
-	}
-	
-	/**
-	 * Set the strategy used to determine the bodies for collision in the
-	 * broad phase.
-	 * 
-	 * @param strategy The strategy used to determine which bodies to check detailed
-	 * collision on
-	 */
-	public void setCollisionStrategy(BroadCollisionStrategy strategy) {
-		this.collisionStrategy = strategy;
 	}
 	
 	/**
