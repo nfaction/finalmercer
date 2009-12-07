@@ -3,7 +3,10 @@ package engine.shapes;
 /**
  * A simple shape describing the area covered by a body
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public interface Shape {
 
