@@ -71,9 +71,6 @@ public strictfp class Body {
 	private BodyList excluded = new BodyList();
 	/** True if this body is effected by gravity */
 	private boolean gravity = true;
-
-	/** The collision group bitmask */
-	private long bitmask = 0; // 0xFFFFFFFFFFFFFFFFL;
 	/** A hook for the library's user's data */
 	private Object userData = null;
 	/** The old position */
@@ -129,7 +126,7 @@ public strictfp class Body {
 	public boolean disabled() {
 		return !enabled;
 	}
-	
+
 	public int getTouchingCount() {
 		return this.touchingCount;
 	}
@@ -1130,45 +1127,6 @@ public strictfp class Body {
 				* (getAngularVelocity() * getAngularVelocity());
 
 		return velEnergy + angEnergy;
-	}
-
-	/**
-	 * Get this shape's bitmask
-	 * 
-	 * @return This shape's bitmask
-	 */
-	public long getBitmask() {
-		return bitmask;
-	}
-
-	/**
-	 * Set the bismask for this shape.
-	 * 
-	 * @param bitmask
-	 *            The new bitmask for this shape
-	 */
-	public void setBitmask(long bitmask) {
-		this.bitmask = bitmask;
-	}
-
-	/**
-	 * Set one or more individual bits.
-	 * 
-	 * @param bitmask
-	 *            A bitmask with the bits that will be switched on.
-	 */
-	public void addBit(long bitmask) {
-		this.bitmask = this.bitmask | bitmask;
-	}
-
-	/**
-	 * Remove one or more individual bits. The set bits will be removed.
-	 * 
-	 * @param bitmask
-	 *            A bitmask with the bits that will be switched off.
-	 */
-	public void removeBit(long bitmask) {
-		this.bitmask -= bitmask & this.bitmask;
 	}
 
 	/**
