@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import engine.collide.Contact;
 import engine.collision.CollisionEvent;
 import engine.collision.CollisionSpace;
-import engine.forcesource.ForceSource;
 import engine.joint.Joint;
 import engine.shapes.Body;
 import engine.strategies.BroadCollisionStrategy;
@@ -35,8 +34,6 @@ public strictfp class World extends CollisionSpace {
 	private float rotationTolerance; 
 	/** The amoutn a body has to move for it to be considered non-resting */
 	private float positionTolerance; 
-	/** The force sources in the world */
-	private ArrayList<ForceSource> sources = new ArrayList<ForceSource>();
 	private static World world;
 	
 	public static World createWorld(Vector gravity, int iterations){
@@ -78,23 +75,7 @@ public strictfp class World extends CollisionSpace {
 
 	}
 	
-	/**
-	 * Add a source to affect bodies in this world
-	 * 
-	 * @param source The source to affect bodies in this world
-	 */
-	public void add(ForceSource source) {
-		sources.add(source);
-	}
-	
-	/**
-	 * Remove a force source from the world
-	 * 
-	 * @param source The source that should no longer affect the bodies in this world
-	 */
-	public void remove(ForceSource source) {
-		sources.remove(source);
-	}
+
 	
 	/**
 	 * Enable resting body detection.
@@ -245,14 +226,7 @@ public strictfp class World extends CollisionSpace {
 	 * 
 	 * @param dt The amount of time to step
 	 */
-	public void step(float dt) {
-		for (int i = 0; i < bodies.size(); ++i)
-		{
-			for (int j=0;j<sources.size();j++) {
-				sources.get(j).apply(bodies.get(i), dt);
-			}
-		}
-		
+	public void step(float dt) {		
 		BodyList bodies = getActiveBodies();
 		JointList joints = getActiveJoints();
 		
