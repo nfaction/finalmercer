@@ -6,9 +6,12 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import entities.Balloon;
 import entities.BasketBall;
+import entities.BowlingBall;
 import entities.LeftRamp;
 import entities.Entities;
+import entities.PingPongBall;
 import enums.EType;
 
 public class SpriteSheet {
@@ -62,6 +65,21 @@ public class SpriteSheet {
 			System.out.println("Sprite image will be set");
 			sprite = basketballSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
 				BasketBall.X_LENGTH * 2, BasketBall.Y_LENGTH * 2);
+		}
+		if(e.toString().equalsIgnoreCase("Balloon")){
+			System.out.println("Sprite image will be set");
+			sprite = balloonSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
+				Balloon.X_LENGTH * 2, Balloon.Y_LENGTH * 2);
+		}
+		if(e.toString().equalsIgnoreCase("BowlingBall")){
+			System.out.println("Sprite image will be set");
+			sprite = bowlingballSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
+				BowlingBall.X_LENGTH * 2, BowlingBall.Y_LENGTH * 2);
+		}
+		if(e.toString().equalsIgnoreCase("PingPongball")){
+			System.out.println("Sprite image will be set");
+			sprite = basketballSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
+				PingPongBall.X_LENGTH * 2, PingPongBall.Y_LENGTH * 2);
 		}
 		else if(e.toString().equalsIgnoreCase("Leftramp")){
 			System.out.println("Sprite image will be set left RAMP");
