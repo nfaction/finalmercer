@@ -6,20 +6,17 @@ import engine.vector.Vector;
 /**
  * An event describing a collision between two bodies
  * 
- * @author Jeffery D. AHern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public class CollisionEvent {
-	/** The time of the collision detection */
 	private float time;
-	/** The first body in the collision */
 	private Body body1;
-	/** The second body in the collision */
 	private Body body2;
-	/** The point of the collision */
 	private Vector point;
-	/** The normal at the collision */
 	private Vector normal;
-	/** The penetration caused by the collision */
 	private float depth;
 	
 	/**

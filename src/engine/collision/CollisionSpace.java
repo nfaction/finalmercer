@@ -15,22 +15,26 @@ import engine.vector.Vector;
  * A space that will resolve collisions and report them to registered 
  * listeners.
  * 
- * @author Jeffery D. AHern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public class CollisionSpace implements CollisionContext {
-	/** The bodies contained in the world */
 	protected BodyList bodies = new BodyList(); 
-	/** The arbiters that have been required in the world */
 	protected ArbiterList arbiters = new ArbiterList(); 
-	/** The broad phase collision strategy we're using */
 	protected QuadSpaceStrategy collisionStrategy;
-	/** The list of listeners that should be notified of collisions */
 	protected ArrayList<CollisionListener> listeners = new ArrayList<CollisionListener>();
-	/** The total time passed */
 	protected float totalTime;
-	/** The bitmask that determine which bits are used for collision detection */
-	private long bitmask = 0xFFFFFFFFFFFFFFFFL;
-	
+
+//	/**
+//	 * Remove a listener from the space
+//	 * 
+//	 * @param listener The listener to be removed
+//	 */
+//	public void removeListener(CollisionListener listener) {
+//		listeners.remove(listener);
+//	}
 	/**
 	 * Create a new collision space based on a given strategy for 
 	 * partioning the space
@@ -49,15 +53,7 @@ public class CollisionSpace implements CollisionContext {
 	public void addListener(CollisionListener listener) {
 		listeners.add(listener);
 	}
-	
-	/**
-	 * Remove a listener from the space
-	 * 
-	 * @param listener The listener to be removed
-	 */
-	public void removeListener(CollisionListener listener) {
-		listeners.remove(listener);
-	}
+
 	
 	/**
 	 * Cause collision to occur and be reported.
@@ -190,49 +186,5 @@ public class CollisionSpace implements CollisionContext {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Get the bitmask used to determine which
-	 * bits are allowed to collide.
-	 * 
-	 * @return The bitmask of bits that allow collisions
-	 */
-	public long getBitmask() {
-		return bitmask;
-	}
-
-	/**
-	 * Set the bitmask used to determine which
-	 * bits are allowed to collide.
-	 * 
-	 * @param bitmask The new bitmask of bits that allow collisions
-	 */
-	public void setBitmask(long bitmask) {
-		this.bitmask = bitmask;
-	}
-
-	/**
-	 * Set one or more individual bits of
-	 * the bitmask used to determine which
-	 * bits are allowed to collide.
-	 * 
-	 * @param bitmask A bitmask with the bits
-	 * that will be switched on.
-	 */
-	public void addBit(long bitmask) {
-		this.bitmask = this.bitmask | bitmask;
-	}
-
-	/**
-	 * Remove one or more individual bits of
-	 * the bitmask used to determine which
-	 * bits are allowed to collide.
-	 * 
-	 * @param bitmask A bitmask with the bits
-	 * that will be switched off.
-	 */
-	public void removeBit(long bitmask) {
-		this.bitmask -= bitmask & this.bitmask;
 	}
 }
