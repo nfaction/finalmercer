@@ -17,8 +17,8 @@ public class Model extends Observable {
 	/** The world containing the physics model */
 
 	private float gravity = 10.00f;
-	protected World world = World.createWorld(new Vector(0.0f, gravity), 10,
-			new QuadSpaceStrategy(1, 5));
+	protected World world = World.createWorld(new Vector(0.0f, gravity), 10, new QuadSpaceStrategy(1, 5));
+	protected World world2 = World.createWorld(new Vector(0.0f, 1), 10, new QuadSpaceStrategy(1, 5));
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
 	private int maxY;
@@ -35,7 +35,7 @@ public class Model extends Observable {
 
 	private void initWorld() {
 		world.clear();
-		world.setGravity(0, 10);
+		world.setGravity(0, gravity);
 		Body ground = new StaticBody("Ground", new Box(maxX, 5.0f));
 		ground.setPosition(maxX / 2, maxY);
 		ground.setRestitution(1.0f);
@@ -53,6 +53,7 @@ public class Model extends Observable {
 		// add object first then look for collisions and off the board
 		if (objType.equals(EType.basketball)) {
 			newEntity = new BasketBall();
+			newEntity.addObj(world, x, y);
 		} else if (objType.equals(EType.balloon)) {
 			newEntity = new Balloon();
 		} else if (objType.equals(EType.bowlingball)) {
@@ -89,7 +90,7 @@ public class Model extends Observable {
 
 		// Code to not allow overlaps on all objects already in world
 
-		for (int i = 0; i < objList.size(); i++) {
+/*		for (int i = 0; i < objList.size(); i++) {
 			if (newEntity.getLowerX() > this.objList.get(i).getUpperX()
 					&& newEntity.getLowerX() < this.objList.get(i).getLowerX()
 					&& newEntity.getUpperX() > this.objList.get(i).getUpperX()
@@ -105,11 +106,20 @@ public class Model extends Observable {
 				return false;
 
 			}
+		}*/
+		world.step();
+//prevent overlaping objects
+		if(newEntity.gettouchingBodies() >0){
+			notifyObservers();
+			newEntity.removeObj(world);
+			return false;	
+			
 		}
-
+		
 		// if it will not fit on board remove it from array and world
 		if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0
 				|| newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY) {
+			newEntity.removeObj(world);
 			notifyObservers();
 			return false;
 		} else {
