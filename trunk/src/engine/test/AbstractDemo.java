@@ -14,11 +14,11 @@ import engine.Arbiter;
 import engine.ArbiterList;
 import engine.BodyList;
 import engine.JointList;
+import engine.Strategy;
 import engine.World;
 import engine.collide.Contact;
 import engine.joint.*;
 import engine.shapes.*;
-import engine.strategies.QuadSpaceStrategy;
 import engine.vector.*;
 
 
@@ -37,7 +37,7 @@ public abstract class AbstractDemo {
 	protected String title;
 	/** The world containing the physics model */
 
-	public World world = World.createWorld(new Vector(0.0f, 10.0f), 10, new QuadSpaceStrategy(20,5));
+	public World world = World.createWorld(new Vector(0.0f, 10.0f), 10, new Strategy(20,5));
 	/** True if the simulation is running */
 	private boolean running = true;
 	/** The rendering strategy */

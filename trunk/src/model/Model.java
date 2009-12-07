@@ -6,9 +6,9 @@ import java.util.Observable;
 import playSounds.CollisionListenerImpl;
 import playSounds.PlaySound;
 
+import engine.Strategy;
 import engine.World;
 import engine.shapes.*;
-import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 import entities.*;
 import enums.EType;
@@ -17,8 +17,8 @@ public class Model extends Observable {
 	/** The world containing the physics model */
 
 	private float gravity = 10.00f;
-	protected World world = World.createWorld(new Vector(0.0f, gravity), 10, new QuadSpaceStrategy(1, 5));
-	protected World world2 = World.createWorld(new Vector(0.0f, 1), 10, new QuadSpaceStrategy(1, 5));
+	protected World world = World.createWorld(new Vector(0.0f, gravity), 10, new Strategy(1, 5));
+	protected World world2 = World.createWorld(new Vector(0.0f, 1), 10, new Strategy(1, 5));
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
 	private int maxY;

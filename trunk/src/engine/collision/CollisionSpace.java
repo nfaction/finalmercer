@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import engine.Arbiter;
 import engine.ArbiterList;
 import engine.BodyList;
+import engine.Strategy;
 import engine.collide.Contact;
 import engine.shapes.Body;
-import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 
 
@@ -23,7 +23,7 @@ import engine.vector.Vector;
 public class CollisionSpace implements CollisionContext {
 	protected BodyList bodies = new BodyList(); 
 	protected ArbiterList arbiters = new ArbiterList(); 
-	protected QuadSpaceStrategy collisionStrategy;
+	protected Strategy collisionStrategy;
 	protected ArrayList<CollisionListener> listeners = new ArrayList<CollisionListener>();
 	protected float totalTime;
 
@@ -41,7 +41,7 @@ public class CollisionSpace implements CollisionContext {
 	 * 
 	 * @param strategy The strategy to use to partion the collision space
 	 */
-	public CollisionSpace(QuadSpaceStrategy strategy) {
+	public CollisionSpace(Strategy strategy) {
 		this.collisionStrategy = strategy;
 	}
 	
