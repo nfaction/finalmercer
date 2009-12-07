@@ -5,7 +5,10 @@ import engine.shapes.Body;
 /**
  * A static utility for resolve the collision between shapes
  * 
- * @author Jeffery D. AHern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class Collide {
 

@@ -6,7 +6,10 @@ import engine.vector.Vector;
  * Implements a sweepline algorithm that facilitates collision detection between
  * two bodys
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  * 
  */
 public class EdgeSweep {

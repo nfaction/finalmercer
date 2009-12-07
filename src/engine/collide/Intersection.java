@@ -5,7 +5,10 @@ import engine.vector.Vector;
 /**
  * Class representing a single intersection.
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public class Intersection {
 	public int edgeA;

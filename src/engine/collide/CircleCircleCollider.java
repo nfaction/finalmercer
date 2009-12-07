@@ -8,7 +8,10 @@ import engine.vector.Vector;
 /**
  * A collider for circle 2 circle collisions
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class CircleCircleCollider implements Collider {
 	/**

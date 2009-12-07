@@ -8,7 +8,10 @@ import engine.vector.Vector;
 /**
  * A collider for circles hitting boxes
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class CircleBoxCollider extends BoxCircleCollider {
 

@@ -9,15 +9,16 @@ import engine.vector.Vector;
 /**
  * The logic for checking lines against boxes
  * 
- * @author Jeffery D. Ahern
+ * @author Jeff Ahern
+ * @author Matt DePortor
+ * @author Keith Kowalski
+ * @author Mcomber, Kevin
  */
 public strictfp class LineBoxCollider implements Collider {
-	/** The single instance of this class */
 	private static LineBoxCollider single = new LineBoxCollider();
 
 	/**
-	 * Create a new collider - place holder in case the collider becomes
-	 * stateful later.
+	 * Create a new collider -
 	 * 
 	 * @return The new collider
 	 */
@@ -47,8 +48,8 @@ public strictfp class LineBoxCollider implements Collider {
 	}
 
 	/**
-	 * @see engine.collide.Collider#collide(engine.collide.Contact[], engine.shapes.Body,
-	 *      engine.shapes.Body)
+	 * @see engine.collide.Collider#collide(engine.collide.Contact[],
+	 *      engine.shapes.Body, engine.shapes.Body)
 	 */
 	public int collide(Contact[] contacts, Body bodyA, Body bodyB) {
 		int numContacts = 0;
