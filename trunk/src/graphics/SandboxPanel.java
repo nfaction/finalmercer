@@ -122,7 +122,7 @@ public class SandboxPanel extends JPanel implements Observer,
 			balloon = ImageIO.read(new File("Images/Balloon.gif"));
 			basketball = ImageIO.read(new File("Images/basketball.gif"));
 			// belt = ImageIO.read(new File("Images/basketball.gif"));
-			bowlingball = ImageIO.read(new File("Images/bowlingball.gif"));
+			bowlingball = ImageIO.read(new File("Images/bowling ball.gif"));
 			// bucket = ImageIO.read(new File("Images/basketball.gif"));
 			// candle = ImageIO.read(new File("Images/basketball.gif"));
 			// conveyorbelt = ImageIO.read(new File("Images/basketball.gif"));
