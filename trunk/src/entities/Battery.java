@@ -10,12 +10,12 @@ public class Battery extends Entities{
 
 	private Body battery;
 	
-	public static final int Y_LENGTH = 0;
-	public static final int X_LENGTH = 0;
+	public static final int Y_LENGTH = 1;
+	public static final int X_LENGTH = 1;
 	
 	public Battery() {
 		super(EType.battery);
-		battery = new StaticBody("Battery", new Box(50.0f, 40.0f));
+		battery = new StaticBody("Battery", new Box(1.0f, 1.0f));
 		battery.setRestitution(1.0f);
 	}
 
