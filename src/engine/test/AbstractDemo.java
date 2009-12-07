@@ -325,59 +325,6 @@ public abstract class AbstractDemo {
 			
 			g.drawLine((int) x1,(int) y1,(int) x2,(int) y2);
 		}
-		if(j instanceof SlideJoint){
-			SlideJoint joint = (SlideJoint) j;
-			
-			Body b1 = joint.getBody1();
-			Body b2 = joint.getBody2();
-	
-			Vector2D R1 = new Vector2D(b1.getRotation());
-			Vector2D R2 = new Vector2D(b2.getRotation());
-	
-			Vector x1 = b1.getPosition();
-			Vector p1 = MathUtil.mul(R1,joint.getAnchor1());
-			p1.add(x1);
-	
-			Vector x2 = b2.getPosition();
-			Vector p2 = MathUtil.mul(R2,joint.getAnchor2());
-			p2.add(x2);
-			
-			Vector im = new Vector(p2);
-			im.sub(p1);
-			im.normalise();
-			
-			
-			
-			g.setColor(Color.red);
-			g.drawLine((int)p1.x,(int)p1.y,(int)(p1.x+im.x*joint.getMinDistance()),(int)(p1.y+im.y*joint.getMinDistance()));
-			g.setColor(Color.blue);
-			g.drawLine((int)(p1.x+im.x*joint.getMinDistance()),(int)(p1.y+im.y*joint.getMinDistance()),(int)(p1.x+im.x*joint.getMaxDistance()),(int)(p1.y+im.y*joint.getMaxDistance()));
-		}
-		if(j instanceof AngleJoint){
-			AngleJoint angleJoint = (AngleJoint)j;
-			Body b1 = angleJoint.getBody1();
-			Body b2 = angleJoint.getBody2();
-			float RA = j.getBody1().getRotation() + angleJoint.getRotateA();
-			float RB = j.getBody1().getRotation() + angleJoint.getRotateB();
-			
-			Vector VA = new Vector((float) Math.cos(RA), (float) Math.sin(RA));
-			Vector VB = new Vector((float) Math.cos(RB), (float) Math.sin(RB));
-			
-			Vector2D R1 = new Vector2D(b1.getRotation());
-			Vector2D R2 = new Vector2D(b2.getRotation());
-			
-			Vector x1 = b1.getPosition();
-			Vector p1 = MathUtil.mul(R1,angleJoint.getAnchor1());
-			p1.add(x1);
-	
-			Vector x2 = b2.getPosition();
-			Vector p2 = MathUtil.mul(R2,angleJoint.getAnchor2());
-			p2.add(x2);
-			
-			g.setColor(Color.red);
-			g.drawLine((int)p1.x,(int)p1.y,(int)(p1.x+VA.x*20),(int)(p1.y+VA.y*20));
-			g.drawLine((int)p1.x,(int)p1.y,(int)(p1.x+VB.x*20),(int)(p1.y+VB.y*20));
-		}
 		if (j instanceof BasicJoint) {
 			BasicJoint joint = (BasicJoint) j;
 			
@@ -400,29 +347,8 @@ public abstract class AbstractDemo {
 			g.drawLine((int) p1.x, (int) p1.y, (int) x2.getX(), (int) x2.getY());
 			g.drawLine((int) x2.getX(), (int) x2.getY(), (int) p2.x, (int) p2.y);
 			g.drawLine((int) p2.x, (int) p2.y, (int) x1.getX(), (int) x1.getY());
-		}
-		if(j instanceof RopeJoint){
-			RopeJoint joint = (RopeJoint) j;
-			
-			Body b1 = joint.getBody1();
-			Body b2 = joint.getBody2();
-	
-			Vector2D R1 = new Vector2D(b1.getRotation());
-			Vector2D R2 = new Vector2D(b2.getRotation());
-	
-			Vector x1 = b1.getPosition();
-			Vector p1 = MathUtil.mul(R1,joint.getAnchor1());
-			p1.add(x1);
-	
-			Vector x2 = b2.getPosition();
-			Vector p2 = MathUtil.mul(R2,joint.getAnchor2());
-			p2.add(x2);
-			
-			g.setColor(Color.red);
-			g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.x, (int) p2.y);
-		}
+		}}
 		
-	}
 	
 	/**
 	 * Draw the whole simulation
