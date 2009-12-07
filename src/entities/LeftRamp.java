@@ -16,7 +16,7 @@ public class LeftRamp extends Entities {
 	public LeftRamp() {
 		super(EType.leftRamp);
 		lRamp = new StaticBody("Left Ramp", new Box(225.0f, 25.0f));
-		lRamp.setPosition(350.0f, 300);
+	//	lRamp.setPosition(350.0f, 300);
 		lRamp.setRestitution(1.0f);
 		lRamp.setRotation(-.4f);
 	}

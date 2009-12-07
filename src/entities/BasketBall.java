@@ -61,10 +61,10 @@ public class BasketBall extends Entities {
 	 */
 	public int getSpriteX(int c) {
 						
-		if(count > 10)
+		if(count > 20)
 			count = 0;
 		
-		if (count == 10)
+		if (count == 20)
 			setSprite();
 		
 		count++;
