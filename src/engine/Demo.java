@@ -11,7 +11,6 @@ import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
-import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 import entities.Balloon;
 import entities.BasketBall;
@@ -31,7 +30,7 @@ public class Demo {
 	protected Frame frame;
 	protected String title;
 	protected World world = World.createWorld(new Vector(0.0f, 10.0f), 10,
-			new QuadSpaceStrategy(20, 5));
+			new Strategy(20, 5));
 	private boolean running = true;
 	private BufferStrategy strategy;
 	protected boolean needsReset;

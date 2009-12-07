@@ -7,7 +7,6 @@ import engine.collision.CollisionEvent;
 import engine.collision.CollisionSpace;
 import engine.joint.Joint;
 import engine.shapes.Body;
-import engine.strategies.QuadSpaceStrategy;
 import engine.vector.Vector;
 
 
@@ -35,7 +34,7 @@ public strictfp class World extends CollisionSpace {
 	private float positionTolerance; 
 	private static World world;
 	
-	public static World createWorld(Vector gravity, int iterations, QuadSpaceStrategy strategy){
+	public static World createWorld(Vector gravity, int iterations, Strategy strategy){
 		world = new World(gravity,iterations,strategy);
 		return world;
 	}
@@ -50,7 +49,7 @@ public strictfp class World extends CollisionSpace {
 	 * @param strategy The strategy used to determine which bodies to check detailed
 	 * collision on
 	 */
-	public World(Vector gravity, int iterations, QuadSpaceStrategy strategy) {
+	public World(Vector gravity, int iterations, Strategy strategy) {
 		super(strategy);
 		
 		this.gravity = gravity;
