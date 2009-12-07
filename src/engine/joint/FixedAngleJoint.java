@@ -16,27 +16,25 @@ public class FixedAngleJoint implements Joint {
 	private Body body2;
 	private Vector anchor1;
 	private Vector anchor2;
-	/** The cached impulse through the calculation to yield correct impulse faster */
 	private float accumulateImpulse;
-	/** The squared distance of two body*/
 	private float dlength2;
-	/** Used to calculate the relation ship between impulse and velocity change between body*/
 	private float K;
-	/** Normalised distance vector*/
 	private Vector ndp;
-	/** Distance Vector*/
 	private Vector dp;
-	/** The normal vector of the impulse direction*/
 	private Vector n;
-	/** R = r1 + d */
 	private Vector R;
 
 	/**
-	 * @param body1	The first body to be attached on constraint
-	 * @param body2 The second body to be attached on constraint
-	 * @param anchor1 The anchor point on first body
-	 * @param anchor2 The anchor point on second body
-	 * @param rotateA The fixed angle on body2 from body1
+	 * @param body1
+	 *            The first body to be attached on constraint
+	 * @param body2
+	 *            The second body to be attached on constraint
+	 * @param anchor1
+	 *            The anchor point on first body
+	 * @param anchor2
+	 *            The anchor point on second body
+	 * @param rotateA
+	 *            The fixed angle on body2 from body1
 	 */
 	public FixedAngleJoint(Body body1, Body body2, Vector anchor1,
 			Vector anchor2, float rotateA) {
@@ -105,7 +103,7 @@ public class FixedAngleJoint implements Joint {
 	public Body getBody2() {
 		return body2;
 	}
-	
+
 	/**
 	 * @see engine.joint.Joint#preStep(float)
 	 */
@@ -155,12 +153,10 @@ public class FixedAngleJoint implements Joint {
 		K = MathUtil.cross(dp, K1) / dlength2 - MathUtil.cross(R, n)
 				* body1.getInvI();
 
-
-
-			biasImpulse = biasFactor * MathUtil.cross(ndp, VA) * invDT;
+		biasImpulse = biasFactor * MathUtil.cross(ndp, VA) * invDT;
 
 		Vector impulse = new Vector(n);
-		impulse.scale(accumulateImpulse+biasImpulse);
+		impulse.scale(accumulateImpulse + biasImpulse);
 		if (!body1.isStatic()) {
 			Vector accum1 = new Vector(impulse);
 			accum1.scale(body1.getInvMass());
@@ -191,7 +187,6 @@ public class FixedAngleJoint implements Joint {
 	public float getRotateA() {
 		return rotateA;
 	}
-
 
 	/**
 	 * Get the anchor of the joint on the first body
