@@ -164,6 +164,13 @@ public class Model extends Observable implements Serializable {
 
 
 	/**
+	 * @return the gravity
+	 */
+	public static float getGravity() {
+		return gravity;
+	}
+
+	/**
 	 * @param gravity
 	 *            the gravity to set
 	 */
