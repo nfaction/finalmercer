@@ -267,5 +267,4 @@ public class SandboxPanel extends JPanel implements Observer,
 	 */
 	public void mouseExited(MouseEvent arg0) {
 	}
-
 }
