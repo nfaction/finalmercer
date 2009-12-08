@@ -15,16 +15,7 @@ public class AbstractGear extends Entities {
 	private Joint[] joints;
 	
 	private float factor = 3f;
-
-	//////////Info for sprite sheet/////////////////////
-	public static final int absGearWidth = 45;
-	public static final int absGearHeight = 45;
-	public static final int Y_LENGTH = 24;
-	public static final int X_LENGTH = 24;
-	public int bbX = 0;
-	public int bbY = 0;
-	////////////////////////////////////////////////////
-
+	
 	public AbstractGear() {
 		super(EType.gear);
 		init();

@@ -21,8 +21,6 @@ public abstract class Entities extends Observable {
 	/** Image for specific object type */
 	private String imagePath;
 	protected BufferedImage[] sprite;	
-	protected int Y_LENGTH;
-	protected int X_LENGTH;
 
 
 	/**Basic constructor. Must remember to set all the variables on its own
@@ -44,12 +42,9 @@ public abstract class Entities extends Observable {
 	 * @param spriteWidth SpriteWidth of the entity
 	 * @param spriteHeight SpriteHeight of the entity
 	 */
-	public Entities(EType objType, String imagePath, int x_LENGTH,
-			int y_LENGTH) {
+	public Entities(EType objType, String imagePath) {
 		this.objType=objType;
 		this.imagePath = imagePath;
-		this.Y_LENGTH = y_LENGTH;
-		this.X_LENGTH = x_LENGTH;
 		state = 0;
 	}
 
@@ -162,20 +157,16 @@ public abstract class Entities extends Observable {
 	}
 	
 	public int getXLength(){
-		return this.X_LENGTH;
+		return utils.width(getSpriteImage())/2;
 	}
 	
 	public int getYLength(){
-		return this.Y_LENGTH;
+		return utils.height(getSpriteImage())/2;
 	}
 	
 	public String toString(){
 		return this.objType.toString();
 	}
-	
-	public abstract int getSpriteX();
-	
-	public abstract int getSpriteY();
 
 	public abstract void addObj(World world, float x, float y);
 
