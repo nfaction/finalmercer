@@ -5,7 +5,7 @@ import enums.EType;
 
 public class Light extends Entities {
 
-	public Light(String objType) {
+	public Light() {
 		super(EType.light);
 		// TODO Auto-generated constructor stub
 	}
