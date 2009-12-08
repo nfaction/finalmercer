@@ -1,6 +1,5 @@
 package graphics;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,27 +13,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import model.Model;
 import entities.Balloon;
-import entities.PingPongBall;
 import entities.BasketBall;
 import entities.BowlingBall;
-import entities.Candle;
 import entities.Entities;
 import entities.LeftRamp;
 import enums.EType;
-
-import model.Model;
 
 public class SandboxPanel extends JPanel implements Observer,
 		MouseMotionListener, MouseListener, Runnable {
@@ -56,22 +48,30 @@ public class SandboxPanel extends JPanel implements Observer,
 	private int pingpongballimageY = 40 + toolboxShiftY;
 	private int leftrampimageX = 20 + toolboxShiftX;
 	private int leftrampimageY = 270 + toolboxShiftY;
+	private int gearimageX = 0 + toolboxShiftX;
+	private int gearimageY = 80 + toolboxShiftY;
+	private int conveyorbeltimageX = 0 + toolboxShiftX;
+	private int conveyorbeltimageY = 150 + toolboxShiftY;
+	private int batteryimageX = 140 + toolboxShiftX;
+	private int batteryimageY = 150 + toolboxShiftY;
 
 	private Image toolbox;
 	private Image sandbox;
-	// private Image balloon;
-	// private Image rightRamp;
-	// private Image straightRamp;
-	// private Image belt;
-	// private Image bowlingball;
-	// private Image bucket;
-	// private Image candle;
-	// private Image conveyorbelt;
-	// private Image gear;
-	// private Image leftRamp;
-	// private Image light;
-	// private Image PingPongBall;
-	// private Image rightramp;
+
+	private Image basketball;
+	private Image balloon;
+	private Image battery;
+	private Image rightRamp;
+	private Image straightRamp;
+//	private Image belt;
+	private Image bowlingball;
+//	private Image bucket;
+	private Image conveyorbelt;
+	private Image gear;
+	private Image leftRamp;
+	private Image light;
+	private Image PingPongBall;
+	private Image rightramp;
 	// Moved Gif booleans for Entities
 	// private boolean balloonmoved;
 	// private boolean beltmoved;
@@ -90,7 +90,7 @@ public class SandboxPanel extends JPanel implements Observer,
 	private ArrayList<Entities> temp = new ArrayList<Entities>();
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
-	private Data info;
+//	private Data info;
 
 	Thread run;
 	JButton start = new JButton("Start");
@@ -98,7 +98,7 @@ public class SandboxPanel extends JPanel implements Observer,
 	private Model model;
 
 	public SandboxPanel(Model m, int xsize, int ysize) {
-		info = new Data(toolboxShiftX, toolboxShiftY);
+//		info = new Data(toolboxShiftX, toolboxShiftY);
 		this.model = m;
 		this.xsize = xsize;
 		this.ysize = ysize;
@@ -117,12 +117,13 @@ public class SandboxPanel extends JPanel implements Observer,
 			// Entities
 			// balloon = ImageIO.read(new File("Images/Balloon.gif"));
 			// basketball = ImageIO.read(new File("Images/basketball.gif"));
+			battery = ImageIO.read(new File("Images/Battery.gif"));
 			// belt = ImageIO.read(new File("Images/basketball.gif"));
 			// bowlingball = ImageIO.read(new File("Images/bowling ball.gif"));
 			// bucket = ImageIO.read(new File("Images/basketball.gif"));
 			// candle = ImageIO.read(new File("Images/basketball.gif"));
-			// conveyorbelt = ImageIO.read(new File("Images/basketball.gif"));
-			// gear = ImageIO.read(new File("Images/basketball.gif"));
+			conveyorbelt = ImageIO.read(new File("Images/ConveyorBelt.gif"));
+			gear = ImageIO.read(new File("Images/abstractGear.gif"));
 			// leftRamp = ImageIO.read(new File("Images/LeftRamp.gif"));
 			// light = ImageIO.read(new File("Images/BrickWall.gif"));
 			// ngPongBall = ImageIO.read(new File("Images/PingPongBall.gif"));
@@ -160,6 +161,20 @@ public class SandboxPanel extends JPanel implements Observer,
 
 		o.drawImage(toolbox, 10, 10, this);
 		o.drawImage(sandbox, 350, 10, this);
+		// Entities
+		o.drawImage(balloon, balloonimageX, balloonimageY, this);
+		o.drawImage(battery, batteryimageX, batteryimageY, this);
+		o.drawImage(basketball, basketballimageX, basketballimageY, this);
+		o.drawImage(bowlingball, bowlingballimageX, bowlingballimageY, this);
+		// o.drawImage(belt, 60, 40, this);
+		// o.drawImage(bucket, 60, 40, this);
+		// o.drawImage(candle, 60, 40, this);
+		o.drawImage(conveyorbelt, conveyorbeltimageX, conveyorbeltimageY, this);
+		o.drawImage(gear, gearimageX, gearimageY, this);
+		o.drawImage(leftRamp, leftrampimageX, leftrampimageY, this);
+		// o.drawImage(light, 60, 40, this);
+		o.drawImage(PingPongBall, pingpongballimageX, pingpongballimageY, this);
+		// o.drawImage(rightramp, 60, 40, this);
 
 		for (int i = 0; i < info.length(); i++) {
 			EType temp = info.intToEType(i);
@@ -301,12 +316,12 @@ public class SandboxPanel extends JPanel implements Observer,
 			// System.out.println("Light = true");
 			// }
 			// }
-			// else if (pingpongballmoved) {
-			// if (model.addObjToBoard(EType.pingpongball, newXi
-			// - PingPongBall.X_LENGTH, newYi - PingPongBall.Y_LENGTH)) {
-			// beltmoved = false;
-			// System.out.println("Belt = true");
-			// }
+//			 else if (pingpongballmoved) {
+//			 if (model.addObjToBoard(EType.pingPongBall, newXi
+//			 - PingPongBall., newYi - PingPongBall.Y_LENGTH)) {
+//			 beltmoved = false;
+//			 System.out.println("Belt = true");
+//			 }
 			// }
 			// else if (rightrampmoved) {
 			// if (model.addObjToBoard(EType.rightRamp, newXi
