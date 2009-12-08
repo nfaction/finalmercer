@@ -16,9 +16,9 @@ import enums.EType;
 public class Model extends Observable {
 	/** The world containing the physics model */
 
-	private float gravity = 10.00f;
-	protected World world = World.createWorld(new Vector(0.0f, gravity), 10, new Strategy(1, 5));
-	protected World world2 = World.createWorld(new Vector(0.0f, 1), 10, new Strategy(1, 5));
+	protected static float gravity = 10.00f;
+	protected static World world = World.createWorld(new Vector(0.0f, gravity), 10, new Strategy(1, 5));
+	
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
 	private int maxY;
@@ -65,11 +65,10 @@ public class Model extends Observable {
 			
 		} else if (objType.equals(EType.leftRamp)) {
 			newEntity = new LeftRamp();
-	
+			
+		} else if (objType.equals(EType.rightRamp)) {
+			newEntity = new RightRamp();
 
-			// } else if (objType.equals(EType.rightRamp)) {
-			// newEntity = new RightRamp();
-			//
 			// } else {// objType.equals(EType.light)
 			// newEntity = new Light();
 		}
@@ -171,7 +170,10 @@ public class Model extends Observable {
 	 */
 	public void setGravity(float gravity) {
 		this.gravity = gravity;
+	
 	}
+
+	
 	
 	
 
