@@ -36,6 +36,7 @@ public class PlayOneAudioFile extends Thread {
 	/**
 	 * Looks up properties of the audio file
 	 */
+	@SuppressWarnings("unchecked")
 	public void printMP3Properties() {
 		File file2 = new File(filename);
 		AudioFileFormat baseFileFormat = null;
@@ -68,6 +69,7 @@ public class PlayOneAudioFile extends Thread {
 	/**
 	 * This plays the audio file
 	 */
+	@SuppressWarnings("deprecation")
 	public void play() {
 		AudioFormat decodedFormat = null;
 		try {
@@ -104,13 +106,13 @@ public class PlayOneAudioFile extends Thread {
 			try {
 				line = getLine(targetFormat);
 			} catch (LineUnavailableException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (line != null) {
 				// Start
 				line.start();
 				int nBytesRead = 0;
+				@SuppressWarnings("unused")
 				int nBytesWritten = 0;
 				while (nBytesRead != -1) {
 					nBytesRead = din.read(data, 0, data.length);
