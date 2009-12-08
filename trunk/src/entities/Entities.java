@@ -6,12 +6,6 @@ import engine.World;
 import enums.EType;
 
 public abstract class Entities extends Observable {
-	/**  X coordinate */
-	private float x;
-	/** Y coordinate */
-	private float y;
-	/** Previous Upper X coordinate */
-	private float prevUpperX;
 	/** Upper X coordinate */
 	private float upperX;
 	/** Lower X coordinate */
@@ -20,21 +14,14 @@ public abstract class Entities extends Observable {
 	private float upperY;
 	/** Lower Y coordinate */
 	private float lowerY;
-
-	private int imageX;
-	private int imageY;
-	
-	
 	/** Object's state */
-	private int state;
-	/** Object's length */
-	//private int length;
-	/** Object's height */
-	//private int height;
+	protected int state;
 	/** Object name / type */
 	private EType objType;
 	/** Image for specific object type */
 	private String imagePath;
+	
+
 
 	// ///// METHODS /////////////////////////////////////////////////
 
@@ -44,95 +31,22 @@ public abstract class Entities extends Observable {
 	}
 	
 	/**
-	 * @return 1 if rolling right -1 left
-	 */
-	public int rollDirection(){
-		if(upperX - prevUpperX > 0)
-			return 1;
-		else if(upperX - prevUpperX < 0)
-			return -1;
-		else
-			return 0;
-		
-		
-		
-	}
-	
-	/**
 	 * Sets the location for the image to be printed. Based on x and
 	 *            y coordinates in the center of the object.
 	 * @param x
 	 * @param y
 	 */
 	protected void setImageLocations(float x, float y) {
-		//this.x = x;
-		//this.y = y;
-		
-		
-		this.prevUpperX = upperX;
+
 		this.upperX = (this.getX() - (getXLength() / 2));
 		this.upperY = (this.getY() - (getYLength() / 2));
 		this.lowerX = (this.getX() + (getXLength() / 2));
 		this.lowerY = (this.getY() + (getYLength() / 2));
 		
-		System.out.println("in Entities get X "+this.getX());
-		System.out.println("in Entities get y "+this.getY());
-		
-		System.out.println("in Entities X "+x);
-		System.out.println("in Entities y "+y);
-		
-		
-		
-		System.out.println("in Entities upperX "+upperX);
-		System.out.println("in Entities upperY "+upperY);
-		System.out.println("in Entities lowerX "+lowerX);
-		System.out.println("in Entities lowerY "+lowerY);
-	}
+		}
 	
 	protected void setImageLocations() {
 		setImageLocations(0,0);
-	}
-	
-	public abstract int getXLength();
-	
-	public abstract int getYLength();
-
-	/**
-	 * @return the x
-	 */
-	public abstract float getX();
-
-	/**
-	 * @return the y
-	 */
-	public abstract float getY();
-	
-	/**
-	 * @return the x
-	 */
-	public void setImageX(int x){
-		this.imageX = x;
-	}
-
-	/**
-	 * @return the y
-	 */
-	public void setImageY(int y){
-		this.imageY = y;
-	}
-
-	/**
-	 * @return the x
-	 */
-	public int getImageX(){
-		return imageX;
-	}
-
-	/**
-	 * @return the y
-	 */
-	public int getImageY(){
-		return imageY;
 	}
 	
 	/**
@@ -178,7 +92,6 @@ public abstract class Entities extends Observable {
 		this.state = state;
 	}
 
-	
 	/**
 	 * @return the objType
 	 */
@@ -186,10 +99,6 @@ public abstract class Entities extends Observable {
 		return objType;
 	}
 
-	public abstract int getSpriteX(int count);
-	
-	public abstract int getSpriteY();
-	
 	/**
 	 * @param objType
 	 *            the objType to set
@@ -212,15 +121,36 @@ public abstract class Entities extends Observable {
 	public String getImagePath() {
 		return imagePath;
 	}
+
+	public void upDate(){
+		setSprite();
+		setImageLocations();
+	}
+	
+	public abstract int getXLength();
+	
+	public abstract int getYLength();
+	
+	public abstract int getSpriteWidth();
+	
+	public abstract int getSpriteHeight();
+	
+	public abstract int getSpriteX();
+	
+	public abstract int getSpriteY();
 	
 	public abstract String toString();
 	
-	public abstract void upDate();
+	public abstract void setSprite();
 
 	public abstract void addObj(World world, float x, float y);
 
 	public abstract void removeObj(World world);
 	
 	public abstract int gettouchingBodies();
+	
+	public abstract float getX();
+
+	public abstract float getY();
 
 }
