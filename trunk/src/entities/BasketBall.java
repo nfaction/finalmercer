@@ -18,7 +18,7 @@ public class BasketBall extends Entities {
 	public int bbY = 0;
 
 	public BasketBall() {
-		super(EType.basketball, "Images/basketball.gif", 24, 24, 45, 45);
+		super(EType.basketball, "Images/basketball.gif", 24, 24);
 		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
 		bBall.setRestitution(1.0f);
 		bBall.setDamping(.001f);

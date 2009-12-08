@@ -1,12 +1,7 @@
 package entities;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Observable;
-
-import javax.imageio.ImageIO;
-
 import engine.World;
 import enums.EType;
 
@@ -25,11 +20,10 @@ public abstract class Entities extends Observable {
 	private EType objType;
 	/** Image for specific object type */
 	private String imagePath;
-	private String spritePath;	
+	protected BufferedImage[] sprite;	
 	protected int Y_LENGTH;
 	protected int X_LENGTH;
-	protected int SpriteWidth;
-	protected int SpriteHeight;	
+
 
 	/**Basic constructor. Must remember to set all the variables on its own
 	 * @param objType The Object Type
@@ -41,7 +35,7 @@ public abstract class Entities extends Observable {
 	
 	
 
-	/** Constructor that sets up every necessary variable
+	/**
 	 * @param objType The Object Type
 	 * @param spritePath Path for the sprite sheet
 	 * @param imagePath Path for the "image"
@@ -50,15 +44,12 @@ public abstract class Entities extends Observable {
 	 * @param spriteWidth SpriteWidth of the entity
 	 * @param spriteHeight SpriteHeight of the entity
 	 */
-	public Entities(EType objType, String spritePath, String imagePath, int x_LENGTH,
-			int y_LENGTH, int spriteWidth, int spriteHeight) {
+	public Entities(EType objType, String imagePath, int x_LENGTH,
+			int y_LENGTH) {
 		this.objType=objType;
 		this.imagePath = imagePath;
-		this.spritePath = spritePath;
 		this.Y_LENGTH = y_LENGTH;
 		this.X_LENGTH = x_LENGTH;
-		this.SpriteWidth = spriteWidth;
-		this.SpriteHeight = spriteHeight;
 		state = 0;
 	}
 
@@ -141,17 +132,6 @@ public abstract class Entities extends Observable {
 		this.objType = objType;
 	}
 
-	/**
-	 * @param image
-	 *            the image to set
-	 */
-	public void setSpritePath(String imagePath) {
-		this.spritePath = imagePath;
-	}
-	
-	public String getSpritePath() {
-		return spritePath;
-	}
 	
 	/**
 	 * @param image
@@ -169,35 +149,16 @@ public abstract class Entities extends Observable {
 	}
 
 	public void upDate(){
-		setSprite();
 		setImageLocations();
 	}
 	
 	/**
-	 * This method will get the subimage which represents the card 'c'.
 	 * 
-	 * @param c
-	 *            , the card for which we want an image
-	 * @return The image for the card c
+	 * @return The current sprite.
 	 */
 	public BufferedImage getSpriteImage() {
-
-		BufferedImage sprite;
-		int x = getSpriteX();
-		int y = getSpriteY();
-		int w = getXLength() * 2;
-		int h = getYLength() * 2;
-		String imageLocation = spritePath;
-		BufferedImage temp = null;
-		try {
-			temp = ImageIO.read(new File(imageLocation));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		sprite = temp.getSubimage(x, y, w, h);
-
-		return sprite;
+		
+		return sprite[state];
 	}
 	
 	public int getXLength(){
@@ -212,19 +173,9 @@ public abstract class Entities extends Observable {
 		return this.objType.toString();
 	}
 	
-	public int getSpriteWidth(){
-		return SpriteWidth;
-	}
-	
-	public int getSpriteHeight(){
-		return SpriteHeight ;
-	}
-	
 	public abstract int getSpriteX();
 	
 	public abstract int getSpriteY();
-	
-	public abstract void setSprite();
 
 	public abstract void addObj(World world, float x, float y);
 
