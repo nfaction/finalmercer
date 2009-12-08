@@ -7,11 +7,8 @@ import enums.EType;
 public class BasketBall extends Entities {
 
 	private Body bBall;
-
-	// ////////Info for sprite sheet/////////////////////
 	public int bbX = 0;
 	public int bbY = 0;
-	// //////////////////////////////////////////////////
 
 	public BasketBall() {
 
