@@ -162,12 +162,6 @@ public class Model extends Observable implements Serializable {
 		return this.objList;
 	}
 
-	/**
-	 * @return the gravity
-	 */
-	public float getGravity() {
-		return gravity;
-	}
 
 	/**
 	 * @param gravity
@@ -248,21 +242,6 @@ public class Model extends Observable implements Serializable {
 		 public boolean isOverlapBottomRight(Entities battery, Entities other){
 				return true;
 			}
-	
-	
-		// check for overlapping on images and set states accordingly
-
-			
-		 //for (int i = 0; i < objList.size(); i++) { 
-/*		 if (newEntity.getLowerX() > this.objList.get(i).getUpperX() 
-			&& newEntity.getLowerX() <  this.objList.get(i).getLowerX() 
-			&& newEntity.getUpperX() > this.objList.get(i).getUpperX() 
-			&& newEntity.getUpperX() <  this.objList.get(i).getLowerX() &&
-		  
-		  newEntity.getLowerY() > this.objList.get(i).getUpperY() &&
-		  newEntity.getLowerY() < this.objList.get(i).getLowerY() &&
-		  newEntity.getUpperY() > this.objList.get(i).getUpperY() &&
-		  newEntity.getUpperY() < this.objList.get(i).getLowerY()){*/ 
 	
 	
 	
