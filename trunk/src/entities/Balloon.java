@@ -57,7 +57,6 @@ public class Balloon extends Entities {
 
 	@Override
 	public int getSpriteY() {
-		// TODO Auto-generated method stub
 		return bbY;
 	}
 
@@ -68,7 +67,7 @@ public class Balloon extends Entities {
 
 	@Override
 	public void setSprite() {
-
+		// TODO setSprite() in Balloon
 	}
 
 }
