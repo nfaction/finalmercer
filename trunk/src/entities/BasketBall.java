@@ -75,9 +75,6 @@ public class BasketBall extends Entities {
 			state = 3;
 		else if (rotation <= -5.236f && rotation > -6.3f)
 			state = 2;
-
-		System.out.println(rotation);
-
 		bbX = ((state * 50));
 	}
 

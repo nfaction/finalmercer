@@ -13,8 +13,6 @@ public class Balloon extends Entities {
 //////////Info for sprite sheet/////////////////////
 	public static final int balloonWidth = 45;
 	public static final int balloonHeight = 45;
-	public static final int Y_LENGTH = 25;
-	public static final int X_LENGTH = 25;
 	public int bbX = 0;
 	public int bbY = 0;
 	////////////////////////////////////////////////////
@@ -24,7 +22,10 @@ public class Balloon extends Entities {
 		balloon = new Body("Balloon", new Circle(15.0f), .5f);
 		balloon.setPosition(200.0f, 300.0f);
 		balloon.setGravityEffected(false);
-		setImagePath("Images/balloonSpriteSheet.png");
+		setImagePath("Images/Balloon.gif");
+		setSpritePath("Images/balloonSpriteSheet.png");
+		Y_LENGTH = 25;
+		X_LENGTH = 25;
 	}
 
 	@Override
@@ -73,18 +74,6 @@ public class Balloon extends Entities {
 	public String toString() {
 
 		return "balloon";
-	}
-
-	@Override
-	public int getXLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYLength() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
