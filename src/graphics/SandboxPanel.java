@@ -30,10 +30,10 @@ import enums.EType;
 
 public class SandboxPanel extends JPanel implements Observer,
 		MouseMotionListener, MouseListener, Runnable {
-	private int sandboxShiftX = 365;
-	private int sandboxShiftY = 13;
-	private int toolboxShiftX = 19;
-	private int toolboxShiftY = 20;
+	protected static final int sandboxShiftX = 365;
+	protected static final int sandboxShiftY = 13;
+	protected static final int toolboxShiftX = 19;
+	protected static final int toolboxShiftY = 20;
 	private int xsize;
 	private int ysize;
 
@@ -45,14 +45,14 @@ public class SandboxPanel extends JPanel implements Observer,
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
 	private Data info;
-	
+
 	Thread run;
 	JButton start = new JButton("Start");
 
 	private Model model;
 
 	public SandboxPanel(Model m, int xsize, int ysize) {
-		info = new Data(toolboxShiftX, toolboxShiftY);
+		info = Data.getObj();
 		this.model = m;
 		this.xsize = xsize;
 		this.ysize = ysize;
