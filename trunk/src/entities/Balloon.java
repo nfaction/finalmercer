@@ -13,7 +13,7 @@ public class Balloon extends Entities {
 	public int bbY = 0;
 	
 	public Balloon() {
-		super(EType.balloon,"Images/Balloon.gif", "Images/balloonSpriteSheet.png", 25, 25, 45, 45);
+		super(EType.balloon,"Images/balloonSpriteSheet.png", "Images/Balloon.gif", 25, 25, 45, 45);
 		balloon = new Body("Balloon", new Circle(15.0f), .5f);
 		balloon.setPosition(200.0f, 300.0f);
 		balloon.setGravityEffected(false);
