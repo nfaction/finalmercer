@@ -1,5 +1,7 @@
 package model;
+
 //
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -13,12 +15,13 @@ import engine.vector.Vector;
 import entities.*;
 import enums.EType;
 
-public class Model extends Observable {
+public class Model extends Observable implements Serializable {
 	/** The world containing the physics model */
 
 	protected static float gravity = 10.00f;
-	protected static World world = World.createWorld(new Vector(0.0f, gravity), 10, new Strategy(1, 5));
-	
+	protected static World world = World.createWorld(new Vector(0.0f, gravity),
+			10, new Strategy(1, 5));
+
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
 	private int maxY;
@@ -42,10 +45,6 @@ public class Model extends Observable {
 		world.add(ground);
 		world.enableRestingBodyDetection(1f, 1f, 1f);
 	}
-	
-
-		
-
 
 	public boolean addObjToBoard(EType objType, float x, float y) {
 		Entities newEntity = null;
@@ -59,49 +58,60 @@ public class Model extends Observable {
 
 		} else if (objType.equals(EType.bowlingball)) {
 			newEntity = new BowlingBall();
-			
+
 		} else if (objType.equals(EType.pingPongBall)) {
 			newEntity = new PingPongBall();
-			
+
 		} else if (objType.equals(EType.leftRamp)) {
 			newEntity = new LeftRamp();
-			
+
 		} else if (objType.equals(EType.rightRamp)) {
 			newEntity = new RightRamp();
+			
+		} else if (objType.equals(EType.straightRamp)) {
+			newEntity = new StraightRamp();
 
-			// } else {// objType.equals(EType.light)
-			// newEntity = new Light();
+		} else if (objType.equals(EType.battery)) {
+			newEntity = new Battery();
+			
+		} else if (objType.equals(EType.conveyorBelt)) {
+			newEntity = new ConveyorBelt();
+	
+		} else if (objType.equals(EType.gear)) {
+			newEntity = new Gear();	
+			
+		
+			
 		}
 
 		// Code to not allow overlaps on all objects already in world
 
-/*		for (int i = 0; i < objList.size(); i++) {
-			if (newEntity.getLowerX() > this.objList.get(i).getUpperX()
-					&& newEntity.getLowerX() < this.objList.get(i).getLowerX()
-					&& newEntity.getUpperX() > this.objList.get(i).getUpperX()
-					&& newEntity.getUpperX() < this.objList.get(i).getLowerX()
-					&&
-
-					newEntity.getLowerY() > this.objList.get(i).getUpperY()
-					&& newEntity.getLowerY() < this.objList.get(i).getLowerY()
-					&& newEntity.getUpperY() > this.objList.get(i).getUpperY()
-					&& newEntity.getUpperY() < this.objList.get(i).getLowerY()) {
-
-				notifyObservers();
-				return false;
-
-			}
-		}*/
+		/*
+		 * for (int i = 0; i < objList.size(); i++) { if (newEntity.getLowerX()
+		 * > this.objList.get(i).getUpperX() && newEntity.getLowerX() <
+		 * this.objList.get(i).getLowerX() && newEntity.getUpperX() >
+		 * this.objList.get(i).getUpperX() && newEntity.getUpperX() <
+		 * this.objList.get(i).getLowerX() &&
+		 * 
+		 * newEntity.getLowerY() > this.objList.get(i).getUpperY() &&
+		 * newEntity.getLowerY() < this.objList.get(i).getLowerY() &&
+		 * newEntity.getUpperY() > this.objList.get(i).getUpperY() &&
+		 * newEntity.getUpperY() < this.objList.get(i).getLowerY()) {
+		 * 
+		 * notifyObservers(); return false;
+		 * 
+		 * } }
+		 */
 		newEntity.addObj(world, x, y);
 		world.step();
-		//prevent overlaping objects
-		if(newEntity.gettouchingBodies() >0){
+		// prevent overlaping objects
+		if (newEntity.gettouchingBodies() > 0) {
 			notifyObservers();
 			newEntity.removeObj(world);
-			return false;	
-			
+			return false;
+
 		}
-		
+
 		// if it will not fit on board remove it from array and world
 		if (newEntity.getLowerX() < 0 || newEntity.getLowerY() < 0
 				|| newEntity.getUpperX() > maxX || newEntity.getUpperY() > maxY) {
@@ -109,7 +119,7 @@ public class Model extends Observable {
 			notifyObservers();
 			return false;
 		} else {
-			//newEntity.addObj(world, x, y);
+			// newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
 			notifyObservers();
 			return true;
@@ -118,7 +128,7 @@ public class Model extends Observable {
 
 	public void step() {
 		world.setGravity(0, gravity);
-		
+
 		for (int i = 0; i < objList.size(); i++) {
 			if (this.objList.get(i).toString().equalsIgnoreCase("Balloon")
 					&& playedBaloonSound == false) {
@@ -166,15 +176,43 @@ public class Model extends Observable {
 	}
 
 	/**
-	 * @param gravity the gravity to set
+	 * @param gravity
+	 *            the gravity to set
 	 */
 	public void setGravity(float gravity) {
 		this.gravity = gravity;
-	
+
 	}
 
-	
-	
-	
+	public void removeObjFromBoardLocatedAt(int X, int Y) {
+		for (int i = 0; i < this.objList.size(); i++) {
+			if (X >= this.objList.get(i).getUpperX()
+					&& X <= this.objList.get(i).getLowerX()
+					&& Y >= this.objList.get(i).getUpperY()
+					&& Y <= this.objList.get(i).getLowerY()) {
+				this.objList.get(i).removeObj(world);
 
+			}
+		}
+	}
+
+	public Entities getObjLocatedAt(int X, int Y) {
+		for (int i = 0; i < this.objList.size(); i++) {
+			if (X >= this.objList.get(i).getUpperX()
+					&& X <= this.objList.get(i).getLowerX()
+					&& Y >= this.objList.get(i).getUpperY()
+					&& Y <= this.objList.get(i).getLowerY()) {
+				return this.objList.get(i);
+
+			}
+		}
+		return null;
+
+	}
+	
+	
+	
+	
+	
+	
 }
