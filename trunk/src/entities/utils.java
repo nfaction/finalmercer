@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 public class utils {
 
@@ -87,6 +90,10 @@ public class utils {
 		return dimg;
 	}
 
+	public static BufferedImage[] splitImage(String img, int cols,
+			int rows) {
+		return splitImage(loadImage(img),  cols, rows);
+	}
 	public static BufferedImage[] splitImage(BufferedImage img, int cols,
 			int rows) {
 		int w = img.getWidth() / cols;
@@ -105,5 +112,16 @@ public class utils {
 			}
 		}
 		return imgs;
+	}
+
+	public static BufferedImage loadImage(String ref) {
+		BufferedImage bimg = null;
+		try {
+
+			bimg = ImageIO.read(new File(ref));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bimg;
 	}
 }
