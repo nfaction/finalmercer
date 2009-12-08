@@ -126,8 +126,8 @@ public class MainGUI extends JFrame{
 		//master.add(main);
 		//master.add(scenario);
 		//master.add(options);
-		//master.add(sandbox);
-		master.add(mmp);
+		master.add(sandbox);
+		//master.add(mmp);
 		cp.add(master);
 	}
 	
