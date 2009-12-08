@@ -28,17 +28,46 @@ public abstract class Entities extends Observable {
 	private String spritePath;	
 	protected int Y_LENGTH;
 	protected int X_LENGTH;
-	
-	
+	protected int SpriteWidth;
+	protected int SpriteHeight;	
 
-
-	// ///// METHODS /////////////////////////////////////////////////
-
+	/**Basic constructor. Must remember to set all the variables on its own
+	 * @param objType The Object Type
+	 */
 	public Entities(EType objType) {
 		this.objType=objType;
 		state = 0;
 	}
 	
+	
+
+	/** Constructor that sets up every necessary variable
+	 * @param objType The Object Type
+	 * @param spritePath Path for the sprite sheet
+	 * @param imagePath Path for the "image"
+	 * @param x_LENGTH X_LENGTH of the entity
+	 * @param y_LENGTH Y_LENGTH of the entity
+	 * @param spriteWidth SpriteWidth of the entity
+	 * @param spriteHeight SpriteHeight of the entity
+	 */
+	public Entities(EType objType, String spritePath, String imagePath, int x_LENGTH,
+			int y_LENGTH, int spriteWidth, int spriteHeight) {
+		this.objType=objType;
+		this.imagePath = imagePath;
+		this.spritePath = spritePath;
+		this.Y_LENGTH = y_LENGTH;
+		this.X_LENGTH = x_LENGTH;
+		this.SpriteWidth = spriteWidth;
+		this.SpriteHeight = spriteHeight;
+		state = 0;
+	}
+
+
+
+	protected void setImageLocations() {
+		setImageLocations(0,0);
+	}
+
 	/**
 	 * Sets the location for the image to be printed. Based on x and
 	 *            y coordinates in the center of the object.
@@ -53,10 +82,6 @@ public abstract class Entities extends Observable {
 		this.lowerY = (this.getY() + (getYLength() / 2));
 		
 		}
-	
-	protected void setImageLocations() {
-		setImageLocations(0,0);
-	}
 	
 	/**
 	 * @return the upperX
@@ -183,15 +208,21 @@ public abstract class Entities extends Observable {
 		return this.Y_LENGTH;
 	}
 	
-	public abstract int getSpriteWidth();
+	public String toString(){
+		return this.objType.toString();
+	}
 	
-	public abstract int getSpriteHeight();
+	public int getSpriteWidth(){
+		return SpriteWidth;
+	}
+	
+	public int getSpriteHeight(){
+		return SpriteHeight ;
+	}
 	
 	public abstract int getSpriteX();
 	
 	public abstract int getSpriteY();
-	
-	public abstract String toString();
 	
 	public abstract void setSprite();
 

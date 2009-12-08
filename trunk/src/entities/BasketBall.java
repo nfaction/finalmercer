@@ -8,34 +8,19 @@ public class BasketBall extends Entities {
 
 	private Body bBall;
 
-	//////////Info for sprite sheet/////////////////////
-	public static final int basketBallWidth = 45;
-	public static final int basketBallHeight = 45;
+	// ////////Info for sprite sheet/////////////////////
 	public int bbX = 0;
 	public int bbY = 0;
-	////////////////////////////////////////////////////
-	
+	// //////////////////////////////////////////////////
+
 	public BasketBall() {
-		
-		super(EType.basketball);
+
+		super(EType.basketball, "Images/BasketBallSpriteSheet.png",
+				"Images/basketball.gif", 24, 24, 45, 45);
 		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
 		bBall.setRestitution(1.0f);
 		bBall.setDamping(.001f);
 		bBall.setCanRest(true);
-		
-		setSpritePath("Images/BasketBallSpriteSheet.png");
-		setImagePath("Images/basketball.gif");
-		Y_LENGTH = 24;
-		X_LENGTH = 24;
-	}
-
-	public int getSpriteWidth() {
-		return basketBallWidth;
-	}
-
-	public int getSpriteHeight() {
-
-		return basketBallHeight;
 	}
 
 	public int getSpriteX() {
@@ -49,7 +34,7 @@ public class BasketBall extends Entities {
 	public void setSprite() {
 
 		float rotation = bBall.getRotation();
-		rotation = rotation % (2f*(new Float(Math.PI)));
+		rotation = rotation % (2f * (new Float(Math.PI)));
 
 		if (rotation >= 0f && rotation < 1.046f)
 			state = 0;
@@ -100,10 +85,6 @@ public class BasketBall extends Entities {
 	@Override
 	public void removeObj(World world) {
 		world.remove(bBall);
-	}
-
-	public String toString() {
-		return "basketball";
 	}
 
 	@Override
