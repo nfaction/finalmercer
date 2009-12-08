@@ -8,17 +8,17 @@ public class BasketBall extends Entities {
 
 	private Body bBall;
 
-	// ///////Info for sprite sheet////////////////////
+	//////////Info for sprite sheet/////////////////////
 	public static final int basketBallWidth = 45;
 	public static final int basketBallHeight = 45;
 	public static final int Y_LENGTH = 24;
 	public static final int X_LENGTH = 24;
-	// /////////////////////////////////////////////////
-	
 	public int bbX = 0;
 	public int bbY = 0;
+	////////////////////////////////////////////////////
 	
 	public BasketBall() {
+		
 		super(EType.basketball);
 		bBall = new Body("BasketBall", new Circle(20.0f), 2.0f);
 		bBall.setRestitution(1.0f);

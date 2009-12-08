@@ -7,16 +7,21 @@ import engine.shapes.StaticBody;
 import enums.EType;
 
 public class LeftRamp extends Entities {
-
+	
 	private Body lRamp;
 	
+//////////Info for sprite sheet/////////////////////
+	public static final int leftRampWidth = 200;
+	public static final int leftRampHeight = 115;
 	public static final int Y_LENGTH = 58;
 	public static final int X_LENGTH = 100;
+	public int bbX = 0;
+	public int bbY = 0;
+	////////////////////////////////////////////////////
 	
 	public LeftRamp() {
 		super(EType.leftRamp);
 		lRamp = new StaticBody("Left Ramp", new Box(225.0f, 25.0f));
-	//	lRamp.setPosition(350.0f, 300);
 		lRamp.setRestitution(1.0f);
 		lRamp.setRotation(-.4f);
 	}
@@ -54,15 +59,15 @@ public class LeftRamp extends Entities {
 	}
 
 	@Override
-	public int getSpriteX(int count) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getSpriteX() {
+
+		return bbX;
 	}
 
 	@Override
 	public int getSpriteY() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return bbY;
 	}
 
 	public String toString() {
@@ -85,5 +90,23 @@ public class LeftRamp extends Entities {
 	public int gettouchingBodies() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getSpriteHeight() {
+
+		return leftRampHeight;
+	}
+
+	@Override
+	public int getSpriteWidth() {
+
+		return leftRampWidth;
+	}
+
+	@Override
+	public void setSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 }

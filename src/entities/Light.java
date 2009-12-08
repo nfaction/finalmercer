@@ -41,7 +41,7 @@ public class Light extends Entities {
 	}
 
 	@Override
-	public int getSpriteX(int count) {
+	public int getSpriteX() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -74,6 +74,24 @@ public class Light extends Entities {
 	public int gettouchingBodies() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getSpriteHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSpriteWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

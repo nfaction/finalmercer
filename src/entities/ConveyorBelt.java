@@ -17,8 +17,14 @@ public class ConveyorBelt extends Entities {
 	private float xPos;
 	private float yPos;
 
+//////////Info for sprite sheet/////////////////////
+	public static final int conveyorBeltWidth = 45;
+	public static final int conveyorBeltHeight = 45;
 	public static final int Y_LENGTH = 24;
 	public static final int X_LENGTH = 24;
+	public int bbX = 0;
+	public int bbY = 0;
+	////////////////////////////////////////////////////
 
 	public int curState = 0;
 	public int dir = 0;
@@ -132,15 +138,15 @@ public class ConveyorBelt extends Entities {
 	}
 
 	@Override
-	public int getSpriteX(int count) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getSpriteX() {
+
+		return bbX;
 	}
 
 	@Override
 	public int getSpriteY() {
 		// TODO Auto-generated method stub
-		return 0;
+		return bbY;
 	}
 
 	@Override
@@ -164,6 +170,24 @@ public class ConveyorBelt extends Entities {
 	@Override
 	public String toString() {
 		return null;
+	}
+
+	@Override
+	public int getSpriteHeight() {
+
+		return conveyorBeltHeight;
+	}
+
+	@Override
+	public int getSpriteWidth() {
+
+		return conveyorBeltWidth;
+	}
+
+	@Override
+	public void setSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

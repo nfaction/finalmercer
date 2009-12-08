@@ -8,9 +8,15 @@ import enums.EType;
 public class PingPongBall extends Entities{
 
 	private Body ppBall;
-
+	
+	//////////Info for sprite sheet/////////////////////
+	public static final int pingPongWidth = 16;
+	public static final int pingPongHeight = 16;
 	public static final int Y_LENGTH = 8;
 	public static final int X_LENGTH = 8;
+	public int bbX = 0;
+	public int bbY = 0;
+	////////////////////////////////////////////////////
 	
 	public PingPongBall() {
 		
@@ -20,6 +26,7 @@ public class PingPongBall extends Entities{
 		ppBall.setDamping(.00009f);
 		ppBall.setCanRest(true);
 		ppBall.configureRestingBodyDetection(1f, 1f, 1f);
+		setImagePath("Images/pingPongBallSpriteSheet.png");
 	}
 
 	@Override
@@ -54,15 +61,15 @@ public class PingPongBall extends Entities{
 	}
 
 	@Override
-	public int getSpriteX(int count) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getSpriteX(){
+
+		return bbX;
 	}
 
 	@Override
 	public int getSpriteY() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return bbY;
 	}
 
 	@Override
@@ -87,5 +94,23 @@ public class PingPongBall extends Entities{
 	public int gettouchingBodies() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getSpriteHeight() {
+
+		return pingPongHeight;
+	}
+
+	@Override
+	public int getSpriteWidth() {
+
+		return pingPongWidth;
+	}
+
+	@Override
+	public void setSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 }
