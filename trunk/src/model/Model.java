@@ -74,9 +74,6 @@ public class Model extends Observable implements Serializable {
 		} else if (objType.equals(EType.battery)) {
 			newEntity = new Battery();
 			
-		} else if (objType.equals(EType.conveyorBelt)) {
-			newEntity = new ConveyorBelt();
-	
 		} else if (objType.equals(EType.gear)) {
 			newEntity = new Gear();	
 			
@@ -90,31 +87,18 @@ public class Model extends Observable implements Serializable {
 			newEntity = new Pin();	
 			
 		} else if (objType.equals(EType.powerGear)) {
-			newEntity = new PowerGear();	
+			newEntity = new PowerGear();
 			
+		} else if (objType.equals(EType.conveyorBelt)) {
+			newEntity = new ConveyorBelt();
+						
 		}
-
-		// Code to not allow overlaps on all objects already in world
-
-		/*
-		 * for (int i = 0; i < objList.size(); i++) { if (newEntity.getLowerX()
-		 * > this.objList.get(i).getUpperX() && newEntity.getLowerX() <
-		 * this.objList.get(i).getLowerX() && newEntity.getUpperX() >
-		 * this.objList.get(i).getUpperX() && newEntity.getUpperX() <
-		 * this.objList.get(i).getLowerX() &&
-		 * 
-		 * newEntity.getLowerY() > this.objList.get(i).getUpperY() &&
-		 * newEntity.getLowerY() < this.objList.get(i).getLowerY() &&
-		 * newEntity.getUpperY() > this.objList.get(i).getUpperY() &&
-		 * newEntity.getUpperY() < this.objList.get(i).getLowerY()) {
-		 * 
-		 * notifyObservers(); return false;
-		 * 
-		 * } }
-		 */
+		
+		
+		
+		// prevent overlapping objects in the world
 		newEntity.addObj(world, x, y);
 		world.step();
-		// prevent overlaping objects
 		if (newEntity.gettouchingBodies() > 0) {
 			notifyObservers();
 			newEntity.removeObj(world);
@@ -220,8 +204,65 @@ public class Model extends Observable implements Serializable {
 
 	}
 	
+	public void setStatesForBatteryObjs(){
+		//find each battery and then look for each object around them
+		for (int i = 0; i < objList.size(); i++)
+			if(this.objList.get(i).toString().equalsIgnoreCase("battery")){
+			
+				for (int j = 0; j < objList.size(); j++){
+					if(isOverlapTopLeft(this.objList.get(i),this.objList.get(j)) ||
+					isOverlapTopRight(this.objList.get(i),this.objList.get(j))	||
+					isOverlapBottomRight(this.objList.get(i),this.objList.get(j)) ||
+					isOverlapBottomLeft(this.objList.get(i),this.objList.get(j))){
+						this.objList.get(i).setState(1);
+						this.objList.get(j).setState(1);
+						
+					}
+				}
+			}
+		  } 
+		 
+		 public boolean isOverlapTopLeft(Entities battery, Entities other){
+			 
+			 if (other.getLowerX() > battery.getUpperX() &&
+				other.getLowerX() <  battery.getLowerX() &&
+				other.getUpperX() > battery.getUpperX() &&
+				other.getUpperX() <  battery.getLowerX() &&
+				other.getLowerY() > battery.getUpperY() &&
+				other.getLowerY() < battery.getLowerY() &&
+				other.getUpperY() > battery.getUpperY() &&
+				other.getUpperY() < battery.getLowerY()){ 
+				 return true;
+			 }
+			return false;
+		}
+		 
+		 public boolean isOverlapTopRight(Entities battery, Entities other){
+				return true;
+			}
+		 
+		 public boolean isOverlapBottomLeft(Entities battery, Entities other){
+				return true;
+			}
+		 
+		 public boolean isOverlapBottomRight(Entities battery, Entities other){
+				return true;
+			}
 	
 	
+		// check for overlapping on images and set states accordingly
+
+			
+		 //for (int i = 0; i < objList.size(); i++) { 
+/*		 if (newEntity.getLowerX() > this.objList.get(i).getUpperX() 
+			&& newEntity.getLowerX() <  this.objList.get(i).getLowerX() 
+			&& newEntity.getUpperX() > this.objList.get(i).getUpperX() 
+			&& newEntity.getUpperX() <  this.objList.get(i).getLowerX() &&
+		  
+		  newEntity.getLowerY() > this.objList.get(i).getUpperY() &&
+		  newEntity.getLowerY() < this.objList.get(i).getLowerY() &&
+		  newEntity.getUpperY() > this.objList.get(i).getUpperY() &&
+		  newEntity.getUpperY() < this.objList.get(i).getLowerY()){*/ 
 	
 	
 	
