@@ -5,8 +5,8 @@ import enums.EType;
 
 public class Pin extends Entities {
 
-	public Pin(String objType) {
-		super(EType.basketball);
+	public Pin() {
+		super(EType.pin);
 
 	}
 
