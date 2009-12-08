@@ -7,73 +7,19 @@ import engine.shapes.Body;
 import engine.shapes.Circle;
 import enums.EType;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 public strictfp class BowlingBall extends Entities {
 
 	private Body bowlBall;
-	
-	//////////Info for sprite sheet/////////////////////
-	public static final int bowlingBallWidth = 35;
-	public static final int bowlingBallHeight = 35;
-	public static final int Y_LENGTH = 18;
-	public static final int X_LENGTH = 18;
 	public int bbX = 0;
 	public int bbY = 0;
-	////////////////////////////////////////////////////
 
 	public BowlingBall() {
-
-		super(EType.bowlingball);
+		super(EType.bowlingball, "Images/bowlingBallSpriteSheet.png",
+				"Images/bowling ball.gif", 18, 18, 35, 35);
 		bowlBall = new Body("BowlingBall", new Circle(15.0f), 7257.0f);
 		bowlBall.setRestitution(.5f);
 		bowlBall.setDamping(.01f);
 		bowlBall.setCanRest(true);
-		setImagePath("Images/bowlingBallSpriteSheet.png");
-	}
-
-	/**
-	 * This method will return the row that the bowling ball will be on in the
-	 * sprite sheet
-	 * 
-	 * @param c
-	 *            , direction of bowling ball c
-	 * @return row of bowling ball's image
-	 */
-	public int getDirection(char c) {
-
-		switch (c) {
-		case 'L':
-			return 0;
-		case 'R':
-			return 1;
-		}
-
-		return -1;
-	}
-
-	/**
-	 * This method will return the column that the card will be on in the sprite
-	 * sheet
-	 * 
-	 * @param r
-	 *            , Rank of card c
-	 * @return column of card c's image
-	 */
-	public int getState(int i) {
-
-		switch (i) {
-		case 0: // state of 0 means ball is NOT rolling
-			return 0;
-		case 1: // state of 1 means ball IS rolling
-
-			return 1;
-		}
-
-		return -1;
 	}
 
 	@Override
@@ -86,80 +32,38 @@ public strictfp class BowlingBall extends Entities {
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return bowlBall.getPosition().getX();
 	}
 
 	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return bowlBall.getPosition().getY();
 	}
 
 	@Override
 	public void removeObj(World world) {
-		// TODO Auto-generated method stub
+		world.remove(bowlBall);
 
-	}
-
-	@Override
-	public void upDate() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public int getSpriteX() {
-
 		return bbX;
 	}
 
 	@Override
 	public int getSpriteY() {
-
 		return bbY;
 	}
 
 	@Override
-	public String toString() {
-
-		return "bowlingball";
-	}
-
-	@Override
-	public int getXLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int gettouchingBodies() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getSpriteHeight() {
-
-		return bowlingBallHeight;
-	}
-
-	@Override
-	public int getSpriteWidth() {
-
-		return bowlingBallWidth;
+		return this.bowlBall.getTouchingCount();
 	}
 
 	@Override
 	public void setSprite() {
-		// TODO Auto-generated method stub
-		
+		// TODO setSprite() for BowlingBall
 	}
 
 }
