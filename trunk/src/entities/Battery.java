@@ -10,13 +10,21 @@ public class Battery extends Entities{
 
 	private Body battery;
 	
-	public static final int Y_LENGTH = 1;
-	public static final int X_LENGTH = 1;
+//////////Info for sprite sheet/////////////////////
+	public static final int batteryWidth = 30;
+	public static final int batteryHeight = 30;
+	public static final int Y_LENGTH = 15;	// not sure what this number is doing now
+	public static final int X_LENGTH = 15;
+	public int bbX = 0;
+	public int bbY = 0;
+	////////////////////////////////////////////////////
 	
 	public Battery() {
 		super(EType.battery);
 		battery = new StaticBody("Battery", new Box(1.0f, 1.0f));
 		battery.setRestitution(1.0f);
+		battery.setEnabled(false);
+		setImagePath("Images/batterySpriteSheet.gif");
 	}
 
 	@Override
@@ -28,7 +36,7 @@ public class Battery extends Entities{
 	}
 
 	@Override
-	public int getSpriteX(int count) {
+	public int getSpriteX() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -85,6 +93,24 @@ public class Battery extends Entities{
 	public void upDate() {
 
 		setImageLocations();
+	}
+
+	@Override
+	public int getSpriteHeight() {
+
+		return batteryHeight;
+	}
+
+	@Override
+	public int getSpriteWidth() {
+
+		return batteryHeight;
+	}
+
+	@Override
+	public void setSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -16,6 +16,15 @@ public class AbstractGear extends Entities {
 	
 	private float factor = 3f;
 
+	//////////Info for sprite sheet/////////////////////
+	public static final int absGearWidth = 45;
+	public static final int absGearHeight = 45;
+	public static final int Y_LENGTH = 24;
+	public static final int X_LENGTH = 24;
+	public int bbX = 0;
+	public int bbY = 0;
+	////////////////////////////////////////////////////
+
 	public AbstractGear() {
 		super(EType.gear);
 		init();
@@ -114,15 +123,15 @@ public class AbstractGear extends Entities {
 	}
 
 	@Override
-	public int getSpriteX(int count) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getSpriteWidth() {
+
+		return absGearWidth;
 	}
 
 	@Override
-	public int getSpriteY() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getSpriteHeight() {
+
+		return absGearHeight;
 	}
 
 	@Override
@@ -147,6 +156,24 @@ public class AbstractGear extends Entities {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getSpriteX() {
+
+		return bbX;
+	}
+
+	@Override
+	public int getSpriteY() {
+		// TODO Auto-generated method stub
+		return bbY;
+	}
+
+	@Override
+	public void setSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

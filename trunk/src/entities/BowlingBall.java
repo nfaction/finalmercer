@@ -16,8 +16,14 @@ public strictfp class BowlingBall extends Entities {
 
 	private Body bowlBall;
 	
+	//////////Info for sprite sheet/////////////////////
+	public static final int bowlingBallWidth = 35;
+	public static final int bowlingBallHeight = 35;
 	public static final int Y_LENGTH = 18;
 	public static final int X_LENGTH = 18;
+	public int bbX = 0;
+	public int bbY = 0;
+	////////////////////////////////////////////////////
 
 	public BowlingBall() {
 
@@ -26,6 +32,7 @@ public strictfp class BowlingBall extends Entities {
 		bowlBall.setRestitution(.5f);
 		bowlBall.setDamping(.01f);
 		bowlBall.setCanRest(true);
+		setImagePath("Images/bowlingBallSpriteSheet.png");
 	}
 
 	/**
@@ -102,15 +109,15 @@ public strictfp class BowlingBall extends Entities {
 	}
 
 	@Override
-	public int getSpriteX(int count) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getSpriteX() {
+
+		return bbX;
 	}
 
 	@Override
 	public int getSpriteY() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return bbY;
 	}
 
 	@Override
@@ -135,6 +142,24 @@ public strictfp class BowlingBall extends Entities {
 	public int gettouchingBodies() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getSpriteHeight() {
+
+		return bowlingBallHeight;
+	}
+
+	@Override
+	public int getSpriteWidth() {
+
+		return bowlingBallWidth;
+	}
+
+	@Override
+	public void setSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
