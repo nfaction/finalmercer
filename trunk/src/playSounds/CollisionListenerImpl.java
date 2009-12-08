@@ -1,8 +1,5 @@
 package playSounds;
 
-
-import model.Model;
-import engine.World;
 import engine.collision.CollisionEvent;
 import engine.collision.CollisionListener;
 
