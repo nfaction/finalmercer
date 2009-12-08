@@ -1,52 +1,18 @@
 package graphics;
 
-import java.awt.Image;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import entities.Balloon;
-import entities.BasketBall;
-import entities.BowlingBall;
-import entities.LeftRamp;
 import entities.Entities;
-import entities.PingPongBall;
-import enums.EType;
+
 
 public class SpriteSheet {
 	private BufferedImage sprite;
-	private BufferedImage balloonSprite;
-	private BufferedImage basketballSprite;
-	private BufferedImage beltSprite;
-	private BufferedImage bowlingballSprite;
-	private BufferedImage bucketSprite;
-	private BufferedImage candleSprite;
-	private BufferedImage conveyorbeltSprite;
-	private BufferedImage dominoSprite;
-	private BufferedImage gearSprite;
-	private BufferedImage leftrampSprite;
-	private BufferedImage lightSprite;
-	private BufferedImage pinSprite;
-	private BufferedImage pingpongballSprite;
-	private BufferedImage rightrampSprite;
-	private int count = 0;
-	
-	
-	public SpriteSheet()
-	{
-		// Use ImageIO to read in the card sheet
-		try
-		{
-			balloonSprite = ImageIO.read(new File("Images/BasketBallSpriteSheet.png"));
-			basketballSprite = ImageIO.read(new File("Images/BasketBallSpriteSheet.png"));
-			bowlingballSprite = ImageIO.read(new File("Images/BasketBallSpriteSheet.png"));
-			leftrampSprite = ImageIO.read(new File("Images/LeftRampSprite.gif"));
-			//Add other objects to read in.
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+
+	public SpriteSheet() {
 	}
 
 	/**
@@ -56,37 +22,25 @@ public class SpriteSheet {
 	 *            , the card for which we want an image
 	 * @return The image for the card c
 	 */
-	public BufferedImage getStateImage(Entities e)
-	{
-		if(count > 10){
-			count = 0;
+	public BufferedImage getStateImage(Entities e) {
+
+		int x = e.getSpriteX();
+		int y = e.getSpriteY();
+		int w = e.getXLength() * 2;
+		int h = e.getYLength() * 2;
+		String imageLocation = e.getImagePath();
+		BufferedImage temp = null;
+		try {
+			temp = ImageIO.read(new File(imageLocation));
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
-		if(e.toString().equalsIgnoreCase("Basketball")){
-			System.out.println("Sprite image will be set");
-			sprite = basketballSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
-				BasketBall.X_LENGTH * 2, BasketBall.Y_LENGTH * 2);
-		}
-		if(e.toString().equalsIgnoreCase("Balloon")){
-			System.out.println("Sprite image will be set");
-			sprite = balloonSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
-				Balloon.X_LENGTH * 2, Balloon.Y_LENGTH * 2);
-		}
-		if(e.toString().equalsIgnoreCase("BowlingBall")){
-			System.out.println("Sprite image will be set");
-			sprite = bowlingballSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
-				BowlingBall.X_LENGTH * 2, BowlingBall.Y_LENGTH * 2);
-		}
-		if(e.toString().equalsIgnoreCase("PingPongball")){
-			System.out.println("Sprite image will be set");
-			sprite = basketballSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
-				PingPongBall.X_LENGTH * 2, PingPongBall.Y_LENGTH * 2);
-		}
-		else if(e.toString().equalsIgnoreCase("Leftramp")){
-			System.out.println("Sprite image will be set left RAMP");
-			sprite = leftrampSprite.getSubimage(e.getSpriteX(count), e.getSpriteY(),
-				LeftRamp.X_LENGTH * 2, LeftRamp.Y_LENGTH * 2);
-		}
-		count++;
+		;
+
+		sprite = temp.getSubimage(x, y, w, h);
+
 		return sprite;
+
+
 	}
 }
