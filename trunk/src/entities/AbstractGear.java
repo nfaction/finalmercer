@@ -28,12 +28,14 @@ public class AbstractGear extends Entities {
 	public AbstractGear() {
 		super(EType.gear);
 		init();
+		setImagePath("Images/abstractGear.gif");
 	}
 	
 	public AbstractGear(float newFactor){
 		super(EType.gear);
 		factor = newFactor;
 		init();
+		setImagePath("Images/abstractGear.gif");
 	}
 	
 	public AbstractGear(float newFactor, float rotation ){
@@ -41,7 +43,7 @@ public class AbstractGear extends Entities {
 		factor = newFactor;
 		init();
 		wheel.adjustAngularVelocity(rotation);
-		
+		setImagePath("Images/abstractGear.gif");
 	}
 
 	private void init() {

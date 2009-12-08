@@ -38,6 +38,7 @@ public class ConveyorBelt extends Entities {
 		initbox();
 		initBelt();
 		speed = 1f;
+		setImagePath("Images/ConveyorBelt.gif");
 	}
 	
 	public ConveyorBelt(float newSpeed) {
@@ -47,6 +48,7 @@ public class ConveyorBelt extends Entities {
 		initbox();
 		initBelt();
 		speed = newSpeed;
+		setImagePath("Images/ConveyorBelt.gif");
 	}
 
 	private void initBelt() {
