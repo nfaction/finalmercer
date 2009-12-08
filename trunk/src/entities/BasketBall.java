@@ -11,8 +11,6 @@ public class BasketBall extends Entities {
 	//////////Info for sprite sheet/////////////////////
 	public static final int basketBallWidth = 45;
 	public static final int basketBallHeight = 45;
-	public static final int Y_LENGTH = 24;
-	public static final int X_LENGTH = 24;
 	public int bbX = 0;
 	public int bbY = 0;
 	////////////////////////////////////////////////////
@@ -24,15 +22,11 @@ public class BasketBall extends Entities {
 		bBall.setRestitution(1.0f);
 		bBall.setDamping(.001f);
 		bBall.setCanRest(true);
-		setImagePath("Images/BasketBallSpriteSheet.png");
-	}
-
-	public int getXLength() {
-		return X_LENGTH;
-	}
-
-	public int getYLength() {
-		return Y_LENGTH;
+		
+		setSpritePath("Images/BasketBallSpriteSheet.png");
+		setImagePath("Images/basketball.gif");
+		Y_LENGTH = 24;
+		X_LENGTH = 24;
 	}
 
 	public int getSpriteWidth() {
