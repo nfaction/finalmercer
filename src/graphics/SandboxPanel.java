@@ -37,68 +37,22 @@ public class SandboxPanel extends JPanel implements Observer,
 	private int xsize;
 	private int ysize;
 
-	/** Variables for image spacing */
-	private int balloonimageX = 20 + toolboxShiftX;
-	private int balloonimageY = 20 + toolboxShiftY;
-	private int basketballimageX = 75 + toolboxShiftX;
-	private int basketballimageY = 20 + toolboxShiftY;
-	private int bowlingballimageX = 140 + toolboxShiftX;
-	private int bowlingballimageY = 30 + toolboxShiftY;
-	private int pingpongballimageX = 185 + toolboxShiftX;
-	private int pingpongballimageY = 40 + toolboxShiftY;
-	private int leftrampimageX = 20 + toolboxShiftX;
-	private int leftrampimageY = 270 + toolboxShiftY;
-	private int gearimageX = 0 + toolboxShiftX;
-	private int gearimageY = 80 + toolboxShiftY;
-	private int conveyorbeltimageX = 0 + toolboxShiftX;
-	private int conveyorbeltimageY = 150 + toolboxShiftY;
-	private int batteryimageX = 140 + toolboxShiftX;
-	private int batteryimageY = 150 + toolboxShiftY;
-
 	private Image toolbox;
 	private Image sandbox;
 
-	private Image basketball;
-	private Image balloon;
-	private Image battery;
-	private Image rightRamp;
-	private Image straightRamp;
-//	private Image belt;
-	private Image bowlingball;
-//	private Image bucket;
-	private Image conveyorbelt;
-	private Image gear;
-	private Image leftRamp;
-	private Image light;
-	private Image PingPongBall;
-	private Image rightramp;
-	// Moved Gif booleans for Entities
-	// private boolean balloonmoved;
-	// private boolean beltmoved;
-	// private boolean bowlingballmoved;
-	// private boolean bucketmoved;
-	// private boolean candlemoved;
-	// private boolean conveyorbeltmoved;
-	// private boolean dominomoved;
-	// private boolean gearmoved;
-	// private boolean leftrampmoved;
-	// private boolean lightmoved;
-	// private boolean pinmoved;
-	// private boolean pingpongballmoved;
-	// private boolean rightrampmoved;
 	private boolean running = true;
 	private ArrayList<Entities> temp = new ArrayList<Entities>();
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
-//	private Data info;
-
+	private Data info;
+	
 	Thread run;
 	JButton start = new JButton("Start");
 
 	private Model model;
 
 	public SandboxPanel(Model m, int xsize, int ysize) {
-//		info = new Data(toolboxShiftX, toolboxShiftY);
+		info = new Data(toolboxShiftX, toolboxShiftY);
 		this.model = m;
 		this.xsize = xsize;
 		this.ysize = ysize;
@@ -114,21 +68,6 @@ public class SandboxPanel extends JPanel implements Observer,
 			// Static Background images
 			toolbox = ImageIO.read(new File("Images/ToolBox.gif"));
 			sandbox = ImageIO.read(new File("Images/SandBox.gif"));
-			// Entities
-			// balloon = ImageIO.read(new File("Images/Balloon.gif"));
-			// basketball = ImageIO.read(new File("Images/basketball.gif"));
-			battery = ImageIO.read(new File("Images/Battery.gif"));
-			// belt = ImageIO.read(new File("Images/basketball.gif"));
-			// bowlingball = ImageIO.read(new File("Images/bowling ball.gif"));
-			// bucket = ImageIO.read(new File("Images/basketball.gif"));
-			// candle = ImageIO.read(new File("Images/basketball.gif"));
-			conveyorbelt = ImageIO.read(new File("Images/ConveyorBelt.gif"));
-			gear = ImageIO.read(new File("Images/abstractGear.gif"));
-			// leftRamp = ImageIO.read(new File("Images/LeftRamp.gif"));
-			// light = ImageIO.read(new File("Images/BrickWall.gif"));
-			// ngPongBall = ImageIO.read(new File("Images/PingPongBall.gif"));
-
-			// rightRamp = ImageIO.read(new File("Images/BrickWall.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -161,20 +100,6 @@ public class SandboxPanel extends JPanel implements Observer,
 
 		o.drawImage(toolbox, 10, 10, this);
 		o.drawImage(sandbox, 350, 10, this);
-		// Entities
-		o.drawImage(balloon, balloonimageX, balloonimageY, this);
-		o.drawImage(battery, batteryimageX, batteryimageY, this);
-		o.drawImage(basketball, basketballimageX, basketballimageY, this);
-		o.drawImage(bowlingball, bowlingballimageX, bowlingballimageY, this);
-		// o.drawImage(belt, 60, 40, this);
-		// o.drawImage(bucket, 60, 40, this);
-		// o.drawImage(candle, 60, 40, this);
-		o.drawImage(conveyorbelt, conveyorbeltimageX, conveyorbeltimageY, this);
-		o.drawImage(gear, gearimageX, gearimageY, this);
-		o.drawImage(leftRamp, leftrampimageX, leftrampimageY, this);
-		// o.drawImage(light, 60, 40, this);
-		o.drawImage(PingPongBall, pingpongballimageX, pingpongballimageY, this);
-		// o.drawImage(rightramp, 60, 40, this);
 
 		for (int i = 0; i < info.length(); i++) {
 			EType temp = info.intToEType(i);
@@ -205,39 +130,22 @@ public class SandboxPanel extends JPanel implements Observer,
 	public void mousePressed(MouseEvent arg0) {
 		newX = arg0.getX();
 		newY = arg0.getY();
-		EType type = EType.basketball;
-		/** Code for each type of object in toolbox */
-		if ((newX > info.getImageX(EType.basketball) && newX < (info
-				.getImageX(EType.basketball) + info.getXLENGTH(type) * 2))
-				&& (newY > info.getImageY(EType.basketball) && newY < (info
-						.getImageY(EType.basketball) + info.getYLENGTH(type) * 2))) {
-			System.out.println(type + " selected");
-			info.setMoved(EType.basketball, true);
-		} else if ((newX > balloonimageX && newX < (balloonimageX + Balloon.X_LENGTH * 2))
-				&& (newY > balloonimageY && newY < (balloonimageY + Balloon.Y_LENGTH * 2))) {
-			System.out.println("balloon selected");
-			info.setMoved(EType.balloon, true);
-		} else if ((newX > bowlingballimageX && newX < (bowlingballimageX + BowlingBall.X_LENGTH * 2))
-				&& (newY > bowlingballimageY && newY < (bowlingballimageY + BowlingBall.Y_LENGTH * 2))) {
-			System.out.println("bowling selected");
-			info.setMoved(EType.bowlingball, true);
-		}
-		// else if ((newX > pingpongballimageX && newX basketballimageY<
-		// pingpongballimageX +
-		// PingPongBall.X_LENGTH*2) && (newY > pingpongballimageY && newY <
-		// pingpongballimageY + PingPongBall.Y_LENGTH*2)) {
-		// pingpongballmoved = true;
-		// }
-		else if ((newX > leftrampimageX && newX < leftrampimageX
-				+ LeftRamp.X_LENGTH * 2)
-				&& (newY > leftrampimageY && newY < leftrampimageY
-						+ LeftRamp.Y_LENGTH * 2)) {
-			System.out.println("lramp selected");
-			info.setMoved(EType.leftRamp, true);
-		}
 
-		/** Code for objects being placed into the sandbox */
-		else if ((newX > sandboxShiftX && newX < (sandboxShiftX + xsize))
+		// Code for each type of object in toolbox
+		if (newX < sandboxShiftX) {
+			for (int i = 0; i < info.length(); i++) {
+				EType type = info.intToEType(i);
+				if ((newX > info.getImageX(type) && newX < (info
+						.getImageX(type) + info.getXLENGTH(type) * 2))
+						&& (newY > info.getImageY(type) && newY < (info
+								.getImageY(type) + info.getYLENGTH(type) * 2))) {
+					System.out.println(type + " selected");
+					info.setMoved(type, true);
+				}
+			}
+
+			// Code for objects being placed into the sandbox
+		} else if ((newX > sandboxShiftX && newX < (sandboxShiftX + xsize))
 				&& (newY > sandboxShiftY && newY < (sandboxShiftY + ysize))) {
 
 			newXi -= sandboxShiftX;
@@ -250,86 +158,6 @@ public class SandboxPanel extends JPanel implements Observer,
 					System.out.println(mover + " = true");
 				}
 			}
-
-			// if (balloonmoved) {
-			// if (model.addObjToBoard(EType.balloon,
-			// newXi - Balloon.X_LENGTH, newYi - Balloon.Y_LENGTH)) {
-			// balloonmoved = false;
-			// System.out.println("Balloon = true");
-			// }
-			// } else if (info.getMoved(EType.basketball)) {
-			// if (model.addObjToBoard(EType.basketball, newXi
-			// - BasketBall.X_LENGTH, newYi - BasketBall.Y_LENGTH)) {
-			// info.setMoved(1, false);
-			// System.out.println("BasketBall = true");
-			// }
-			// }
-			// else if (beltmoved) {
-			// if (model.addObjToBoard(EType.belt, newXi
-			// - Belt.X_LENGTH, newYi - Belt.Y_LENGTH)) {
-			// beltmoved = false;
-			// System.out.println("Belt = true");
-			// }
-			// }
-			// else if (bowlingballmoved) {
-			// if (model.addObjToBoard(EType.bowlingball, newXi
-			// - BowlingBall.X_LENGTH, newYi - BowlingBall.Y_LENGTH)) {
-			// bowlingballmoved = false;
-			// System.out.println("Bowlingball = true");
-			// }
-			// }
-			// else if (bucketmoved) {
-			// if (model.addObjToBoard(EType.bucket, newXi
-			// - Bucket.X_LENGTH, newYi - Bucket.Y_LENGTH)) {
-			// bucketmoved = false;
-			// System.out.println("Bucket = true");
-			// }
-			// }
-			// else if (conveyorbeltmoved) {
-			// if (model.addObjToBoard(EType.conveyorbelt, newXi
-			// - ConveyorBelt.X_LENGTH, newYi - ConveyorBelt.Y_LENGTH)) {
-			// beltmoved = false;
-			// System.out.println("Conveyor Belt = true");
-			// }
-			// }
-			// else if (gearmoved) {
-			// if (model.addObjToBoard(EType.gear, newXi
-			// - Gear.X_LENGTH, newYi - Gear.Y_LENGTH)) {
-			// gearmoved = false;
-			// System.out.println("Gear = true");
-			// }
-			// }
-			// else if (leftrampmoved) {
-			//
-			// // if (model.addObjToBoard(EType.leftRamp, newXi -
-			// // LeftRamp.X_LENGTH, newYi - LeftRamp.Y_LENGTH)) {
-			// if (model.addObjToBoard(EType.leftRamp, newXi
-			// - LeftRamp.X_LENGTH, newYi - LeftRamp.Y_LENGTH)) {
-			// leftrampmoved = false;
-			// System.out.println("Left Ramp = true");
-			// }
-			// }
-			// else if (lightmoved) {
-			// if (model.addObjToBoard(EType.light, newXi
-			// - Light.X_LENGTH, newYi - Light.Y_LENGTH)) {
-			// lightmoved = false;
-			// System.out.println("Light = true");
-			// }
-			// }
-//			 else if (pingpongballmoved) {
-//			 if (model.addObjToBoard(EType.pingPongBall, newXi
-//			 - PingPongBall., newYi - PingPongBall.Y_LENGTH)) {
-//			 beltmoved = false;
-//			 System.out.println("Belt = true");
-//			 }
-			// }
-			// else if (rightrampmoved) {
-			// if (model.addObjToBoard(EType.rightRamp, newXi
-			// - RightRamp.X_LENGTH, newYi - RightRamp.Y_LENGTH)) {
-			// rightrampmoved = false;
-			// System.out.println("Right Ramp = true");
-			// }
-			// }
 		}
 
 	}
@@ -370,7 +198,6 @@ public class SandboxPanel extends JPanel implements Observer,
 		@SuppressWarnings("unused")
 		long logicTime = 0;
 		while (running) {
-			// adaptive timing loop from Master Onyx
 			long timeNow = System.currentTimeMillis();
 			frameAverage = (frameAverage * 10 + (timeNow - lastFrame)) / 11;
 			lastFrame = timeNow;

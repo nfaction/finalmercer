@@ -6,8 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import entities.BasketBall;
-import entities.Entities;
+import entities.*;
 import enums.EType;
 
 public class Data {
@@ -44,7 +43,7 @@ public class Data {
 
 	private void initObj() {
 		initObjHellper(new BasketBall());
-
+		initObjHellper(new Balloon());
 	}
 
 	private void initObjHellper(Entities ent) {
