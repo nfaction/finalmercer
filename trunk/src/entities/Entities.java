@@ -1,6 +1,11 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
+
+import javax.imageio.ImageIO;
 
 import engine.World;
 import enums.EType;
@@ -20,6 +25,10 @@ public abstract class Entities extends Observable {
 	private EType objType;
 	/** Image for specific object type */
 	private String imagePath;
+	private String spritePath;	
+	protected int Y_LENGTH;
+	protected int X_LENGTH;
+	
 	
 
 
@@ -111,6 +120,18 @@ public abstract class Entities extends Observable {
 	 * @param image
 	 *            the image to set
 	 */
+	public void setSpritePath(String imagePath) {
+		this.spritePath = imagePath;
+	}
+	
+	public String getSpritePath() {
+		return spritePath;
+	}
+	
+	/**
+	 * @param image
+	 *            the image to set
+	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
@@ -127,9 +148,40 @@ public abstract class Entities extends Observable {
 		setImageLocations();
 	}
 	
-	public abstract int getXLength();
+	/**
+	 * This method will get the subimage which represents the card 'c'.
+	 * 
+	 * @param c
+	 *            , the card for which we want an image
+	 * @return The image for the card c
+	 */
+	public BufferedImage getSpriteImage() {
+
+		BufferedImage sprite;
+		int x = getSpriteX();
+		int y = getSpriteY();
+		int w = getXLength() * 2;
+		int h = getYLength() * 2;
+		String imageLocation = spritePath;
+		BufferedImage temp = null;
+		try {
+			temp = ImageIO.read(new File(imageLocation));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		sprite = temp.getSubimage(x, y, w, h);
+
+		return sprite;
+	}
 	
-	public abstract int getYLength();
+	public int getXLength(){
+		return this.X_LENGTH;
+	}
+	
+	public int getYLength(){
+		return this.Y_LENGTH;
+	}
 	
 	public abstract int getSpriteWidth();
 	
