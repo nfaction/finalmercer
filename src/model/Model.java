@@ -93,9 +93,6 @@ public class Model extends Observable implements Serializable {
 		} else if (objType.equals(EType.gear)) {
 			newEntity = new Gear();
 
-		} else if (objType.equals(EType.belt)) {
-			newEntity = new Belt();
-
 		} else if (objType.equals(EType.light)) {
 			newEntity = new Light();
 
