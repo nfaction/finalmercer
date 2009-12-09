@@ -131,8 +131,12 @@ public class Model extends Observable implements Serializable {
 			// newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
 			notifyObservers();
+			setStatesForBatteryObjs();
 			return true;
+			
+			
 		}
+		
 	}
 
 	public void step() {
@@ -206,9 +210,9 @@ public class Model extends Observable implements Serializable {
 
 			
 			if (X >= this.objList.get(i).getUpperX()
-					&& X <= this.objList.get(i).getLowerX()
+					&& X <= this.objList.get(i).getLowerX() + this.objList.get(i).getXLength()
 					&& Y >= this.objList.get(i).getUpperY()
-					&& Y <= this.objList.get(i).getLowerY()) {
+					&& Y <= this.objList.get(i).getLowerY()+ this.objList.get(i).getYLength()) {
 				ETemp = this.objList.get(i).getObjType();
 				this.objList.get(i).removeObj(world);
 				this.objList.remove(i);
@@ -243,7 +247,10 @@ public class Model extends Observable implements Serializable {
 					isOverlapBottomRight(this.objList.get(i),this.objList.get(j)) ||
 					isOverlapBottomLeft(this.objList.get(i),this.objList.get(j))){
 						if(this.objList.get(i).toString().equalsIgnoreCase("light") ||
+						
+								
 						this.objList.get(i).toString().equalsIgnoreCase("powerGear")){
+							System.out.println("LightOn");
 						this.objList.get(i).setState(1);
 						this.objList.get(j).setState(1);
 					}
