@@ -125,6 +125,9 @@ public class Model extends Observable implements Serializable {
 		else if (objType.equals(EType.straightRamp)) {
 			newEntity = new StraightRamp();
 		}
+		else if (objType.equals(EType.motor)) {
+			newEntity = new PowerGear();
+		}
 
 		// prevent overlapping objects in the world
 		newEntity.addObj(world, x, y);
@@ -213,9 +216,9 @@ public class Model extends Observable implements Serializable {
 	public void saveState(String fileName, Model m){
 		ArrayList<Entity> entList = new ArrayList<Entity>();
 		for(int i = 0; i < objList.size(); i ++){
-		Entity temp = new Entity();
+		//Entity temp = new Entity();
 		//objList.get(i).toString(), (int) objList.get(i).getX(), (int) objList.get(i).getY()
-		entList.add(temp);
+		//entList.add(temp);
 		}
 		randw.write(entList, fileName);
 	}

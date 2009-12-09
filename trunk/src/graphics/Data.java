@@ -83,6 +83,7 @@ public class Data {
 		initObjHellper(new Rocket());
 		initObjHellper(new RightRamp());
 		initObjHellper(new StraightRamp());
+		initObjHellper(new PowerGear());
 		// initObjHellper(new );
 	}
 
