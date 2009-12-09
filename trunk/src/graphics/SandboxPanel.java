@@ -120,7 +120,6 @@ public class SandboxPanel extends JPanel implements Observer,
 				Entities ent = entitiesIter.next();
 				int upperx = (int) ent.getUpperX() + sandboxShiftX + 30;
 				int uppery = (int) ent.getUpperY() + sandboxShiftY;
-				System.out.println("upperx = " + upperx);
 				o.drawImage(ent.getSpriteImage(), upperx, uppery, this);
 			}
 		}
