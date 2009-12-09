@@ -19,7 +19,7 @@ public class Balloon extends Entities {
 		if(staticSprites == null )
 			staticSprites = utils.splitImage(utils.loadImage("Images/balloonSpriteSheet.png"), 5, 5);
 		sprite = staticSprites;
-		balloon = new Body("Balloon", new Circle(15.0f), .5f);
+		balloon = new Body("Balloon", new Circle(24.0f), .5f);
 		balloon.setGravityEffected(false);
 	}
 	
