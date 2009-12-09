@@ -54,5 +54,4 @@ public class Rock extends Entities {
 
 		world.remove(rock);
 	}
-
 }
