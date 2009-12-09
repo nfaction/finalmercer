@@ -138,6 +138,15 @@ public class Model extends Observable {
 			newEntity = new StraightRamp();
 		} else if (objType.equals(EType.motor)) {
 			newEntity = new PowerGear();
+			
+		}
+		else if (objType.equals(EType.hCWall)) {
+			newEntity = new HCementWall();
+			
+		}
+		else if (objType.equals(EType.vCWall)) {
+			newEntity = new VCementWall();
+			
 		}
 
 		// prevent overlapping objects in the world
