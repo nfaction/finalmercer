@@ -26,8 +26,8 @@ public class Model extends Observable implements Serializable {
 
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
-	private static int maxY;
-	private static int maxX;
+	private  int maxY;
+	private  int maxX;
 	private boolean playedBaloonSound = false;
 	private static CollisionListenerImpl collisionListenerImpl = new CollisionListenerImpl();
 
@@ -47,11 +47,13 @@ public class Model extends Observable implements Serializable {
 	private Model(int maxX, int maxY) {
 		initWorld();
 		world.addListener(collisionListenerImpl);
-		maxX = maxX;
-		maxY = maxY;
+		this.maxX = maxX;
+		this.maxY = maxY;
 	}
+	
+	
 
-	private static void initWorld() {
+	private  void initWorld() {
 		world.clear();
 		world.setGravity(0, 0);
 		Body ground = new StaticBody("Ground", new Box(maxX, 5.0f));
