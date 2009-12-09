@@ -50,15 +50,15 @@ public class Rocket extends Entities {
 		super.upDate();
 		
 		if(rocket.isMoveable()){
-		rocket.adjustVelocity(new Vector(0.0f, -1.0f));
+		rocket.adjustVelocity(new Vector(0.0f, -100.0f));
 		} else {
 			rocket.resetBias();
-			rocket.adjustVelocity(new Vector(0.0f, 1000.0f));
-			rocket.adjustVelocity(new Vector(0.0f, 1000.0f));
-			rocket.adjustVelocity(new Vector(0.0f, 1000.0f));
-			rocket.adjustVelocity(new Vector(0.0f, 1000.0f));
-			rocket.adjustVelocity(new Vector(0.0f, 1000.0f));
-			rocket.adjustVelocity(new Vector(0.0f, 1000.0f));
+			rocket.adjustVelocity(new Vector(0.0f, 5000.0f));
+			rocket.adjustVelocity(new Vector(0.0f, 5000.0f));
+			rocket.adjustVelocity(new Vector(0.0f, 5000.0f));
+			rocket.adjustVelocity(new Vector(0.0f, 5000.0f));
+			rocket.adjustVelocity(new Vector(0.0f, 5000.0f));
+			rocket.adjustVelocity(new Vector(0.0f, 5000.0f));
 		}
 		
 	}
