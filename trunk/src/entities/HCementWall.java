@@ -14,11 +14,12 @@ public class HCementWall extends Entities{
 	private static BufferedImage[] staticSprites;
 	
 	public HCementWall() {
-		super(EType.vCWall);
+		super(EType.hCWall);
 			if(staticSprites == null )
-				staticSprites = utils.splitImage(utils.loadImage("Images/vCWall.gif"), 5, 5);
+				staticSprites = utils.splitImage(utils.loadImage("Images/hCWall.gif"), 1, 1);
 			sprite = staticSprites;
-			hCementWall = new StaticBody("cHorzWall", new Box(125.0f, 10.0f));
+			hCementWall = new StaticBody("cHorzWall", new Box(125.0f, 20.0f));
+			hCementWall.setRestitution(.5f);
 	}
 
 	@Override
