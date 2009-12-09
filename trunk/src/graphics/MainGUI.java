@@ -29,7 +29,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainGUI extends JFrame{
-	Model model = new Model(500, 500);
+	//Model model = new Model(500, 500);
+	private Model model = Model.getObj(500,500);
 	// Model Call goes here
 	static JFrame window = new JFrame();
 	/** Menu Bar */
