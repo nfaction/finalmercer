@@ -199,16 +199,18 @@ public class Model extends Observable implements Serializable {
 
 	}
 
-	public void removeObjFromBoardAtLocated(int X, int Y) {
+	public boolean removeObjFromBoardAtLocated(int X, int Y) {
 		for (int i = 0; i < this.objList.size(); i++) {
 			if (X >= this.objList.get(i).getUpperX()
 					&& X <= this.objList.get(i).getLowerX()
 					&& Y >= this.objList.get(i).getUpperY()
 					&& Y <= this.objList.get(i).getLowerY()) {
 				this.objList.get(i).removeObj(world);
+				return true;
 
 			}
 		}
+		return false;
 	}
 
 /*	public Entities getObjAtLocatedAt(int X, int Y) {
