@@ -98,8 +98,8 @@ public class Model extends Observable implements Serializable {
 		} else if (objType.equals(EType.light)) {
 			newEntity = new Light();
 			
-		} else if (objType.equals(EType.pin)) {
-			newEntity = new Pin();	
+		} else if (objType.equals(EType.tack)) {
+			newEntity = new Tack();	
 			
 		} else if (objType.equals(EType.powerGear)) {
 			newEntity = new PowerGear();
