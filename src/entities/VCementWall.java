@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Box;
-import engine.shapes.Circle;
 import engine.shapes.StaticBody;
 import enums.EType;
 
@@ -17,10 +16,10 @@ public class VCementWall extends Entities{
 	public VCementWall() {
 		super(EType.vCWall);
 			if(staticSprites == null )
-				staticSprites = utils.splitImage(utils.loadImage("Images/vCWall.gif"), 5, 5);
+				staticSprites = utils.splitImage(utils.loadImage("Images/vCWall.gif"), 1, 1);
 			sprite = staticSprites;
 			vCementWall = new StaticBody("cVertWall", new Box(10.0f, 125.0f));
-		
+			vCementWall.setRestitution(.5f);
 	}
 
 	@Override

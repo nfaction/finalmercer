@@ -16,7 +16,7 @@ public class HRubberWall extends Entities{
 	public HRubberWall() {
 		super(EType.vCWall);
 			if(staticSprites == null )
-				staticSprites = utils.splitImage(utils.loadImage("Images/hRWall.gif"), 5, 5);
+				staticSprites = utils.splitImage(utils.loadImage("Images/hRWall.gif"), 1, 1);
 			sprite = staticSprites;
 			hRubberWall = new StaticBody("rVertWall", new Box(125.0f, 10.0f));
 			hRubberWall.setRestitution(3.0f);
