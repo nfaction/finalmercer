@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+
 import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Circle;
@@ -9,10 +11,13 @@ import enums.EType;
 public class Balloon extends Entities {
 
 	private Body balloon;
+	private static BufferedImage[] staticSprites;
 	
 	public Balloon() {
 		super(EType.balloon, "Images/Balloon.gif");
-		sprite = utils.splitImage(utils.loadImage("Images/balloonSpriteSheet.png"), 5, 5);
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/balloonSpriteSheet.png"), 5, 5);
+		sprite = staticSprites;
 		balloon = new Body("Balloon", new Circle(15.0f), .5f);
 		balloon.setPosition(200.0f, 300.0f);
 		balloon.setGravityEffected(false);
