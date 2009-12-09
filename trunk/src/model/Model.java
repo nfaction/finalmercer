@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import com.sun.tools.internal.ws.wsdl.framework.Entity;
 
 import playSounds.CollisionListenerImpl;
 import playSounds.PlaySound;
@@ -122,6 +121,7 @@ public class Model extends Observable implements Serializable {
 		else if (objType.equals(EType.rightRamp)) {
 			newEntity = new RightRamp();
 		}
+
 		else if (objType.equals(EType.straightRamp)) {
 			newEntity = new StraightRamp();
 		}
