@@ -1,8 +1,21 @@
 package graphics;
 
-import java.awt.Image;
-import entities.*;
+import entities.Balloon;
+import entities.BasketBall;
+import entities.Battery;
+import entities.BowlingBall;
+import entities.ConveyorBelt;
+import entities.Entities;
+import entities.Gear;
+import entities.LeftRamp;
+import entities.Light;
+import entities.PingPongBall;
+import entities.PowerGear;
+import entities.Tack;
+import entities.Weight;
 import enums.EType;
+
+import java.awt.Image;
 
 public class Data {
 	private static Data single;
@@ -59,7 +72,7 @@ public class Data {
 		initObjHellper(new Gear());
 		initObjHellper(new Tack());
 		initObjHellper(new Light());
-		// initObjHellper(new );
+		initObjHellper(new Weight());
 		// initObjHellper(new );
 		// initObjHellper(new );
 		// initObjHellper(new );
@@ -109,6 +122,9 @@ public class Data {
 		
 		imageX[getLocation(EType.light)] = 170 + toolboxShiftX;
 		imageY[getLocation(EType.light)] = 200 + toolboxShiftY;
+		
+		imageX[getLocation(EType.weight)] = 170 + toolboxShiftX;
+		imageY[getLocation(EType.weight)] = 325 + toolboxShiftY;
 	}
 
 	// =============================================================
