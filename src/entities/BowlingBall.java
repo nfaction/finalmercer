@@ -1,5 +1,8 @@
 package entities;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
 import engine.World;
 
 import engine.shapes.Body;
@@ -10,12 +13,12 @@ import enums.EType;
 public strictfp class BowlingBall extends Entities {
 
 	private Body bowlBall;
-	public int bbX = 0;
-	public int bbY = 0;
+	private static BufferedImage[] staticSprites;
 
 	public BowlingBall() {
-		super(EType.bowlingball, "Images/bowlingBallSpriteSheet.png",
-				"Images/bowling ball.gif", 18, 18, 35, 35);
+		super(EType.bowlingball, "Images/bowlingBallSpriteSheet.png");
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
 		bowlBall = new Body("BowlingBall", new Circle(15.0f), 7257.0f);
 		bowlBall.setRestitution(.5f);
 		bowlBall.setDamping(.01f);
@@ -47,23 +50,18 @@ public strictfp class BowlingBall extends Entities {
 	}
 
 	@Override
-	public int getSpriteX() {
-		return bbX;
-	}
-
-	@Override
-	public int getSpriteY() {
-		return bbY;
-	}
-
-	@Override
 	public int gettouchingBodies() {
 		return this.bowlBall.getTouchingCount();
 	}
+	
+	public BufferedImage getSpriteImage() {
+		float rotation = bowlBall.getRotation();
+		rotation = rotation % (2f * (new Float(Math.PI)));
 
-	@Override
-	public void setSprite() {
-		// TODO setSprite() for BowlingBall
+		BufferedImage temp = sprite[0];
+		temp = utils.rotate(temp, rotation);
+		temp = utils.makeColorTransparent(temp, Color.black);
+		return temp;
+
 	}
-
 }
