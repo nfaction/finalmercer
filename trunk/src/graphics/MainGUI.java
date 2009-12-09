@@ -60,7 +60,7 @@ public class MainGUI extends JFrame{
 	JPanel options = new JPanel();
 	JLabel optionL = new JLabel("Options:");
 	JLabel gravityL = new JLabel("Gravity:");
-	JTextField gravityText = new JTextField("" );//+ model.getGravity());
+	JTextField gravityText = new JTextField("" + model.getGravity());
 	JButton submit = new JButton("Submit");
 	JLabel soundL = new JLabel("Sound:");
 	JButton soundon = new JButton("Sound ON");
