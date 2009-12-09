@@ -20,7 +20,7 @@ public class LeftRamp extends Entities {
 		sprite = staticSprites;
 		lRamp = new StaticBody("Left Ramp", new Box(225.0f, 25.0f));
 		lRamp.setRestitution(1.0f);
-		lRamp.setRotation(-.4f);
+		lRamp.setRotation(-0.1389f);
 	}
 
 	@Override

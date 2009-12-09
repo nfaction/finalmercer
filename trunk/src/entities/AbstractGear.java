@@ -26,6 +26,7 @@ public class AbstractGear extends Entities {
 		init();
 	}
 	
+	
 	public AbstractGear(EType e, float newFactor){
 		super(e);
 		factor = newFactor;

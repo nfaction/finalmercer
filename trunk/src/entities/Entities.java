@@ -74,6 +74,7 @@ public abstract class Entities extends Observable {
 	 * @return the upperX
 	 */
 	public float getUpperX() {
+		setImageLocations();
 		return upperX;
 	}
 
@@ -81,6 +82,7 @@ public abstract class Entities extends Observable {
 	 * @return the lowerX
 	 */
 	public float getLowerX() {
+		setImageLocations();
 		return lowerX;
 	}
 
@@ -88,6 +90,7 @@ public abstract class Entities extends Observable {
 	 * @return the upperY
 	 */
 	public float getUpperY() {
+		setImageLocations();
 		return upperY;
 	}
 
@@ -95,6 +98,7 @@ public abstract class Entities extends Observable {
 	 * @return the lowerY
 	 */
 	public float getLowerY() {
+		setImageLocations();
 		return lowerY;
 	}
 
