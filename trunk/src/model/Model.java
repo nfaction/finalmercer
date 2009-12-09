@@ -222,19 +222,19 @@ public class Model extends Observable implements Serializable {
 		return null;
 	}
 
-/*	public Entities getObjAtLocatedAt(int X, int Y) {
+	public boolean getObjAtLocatedAt(int X, int Y) {
 		for (int i = 0; i < this.objList.size(); i++) {
 			if (X >= this.objList.get(i).getUpperX()
 					&& X <= this.objList.get(i).getLowerX()
 					&& Y >= this.objList.get(i).getUpperY()
 					&& Y <= this.objList.get(i).getLowerY()) {
-				return this.objList.get(i);
+				return true;
 
 			}
 		}
-		return null;
+		return false;
 
-	}*/
+	}
 	
 	public void setStatesForBatteryObjs(){
 		//find each battery and then look for each object around them
