@@ -34,16 +34,20 @@ public class CollisionListenerImpl implements CollisionListener{
 		if (event.getBodyA().getName().equals("Balloon") && 
 				event.getBodyB().getName().equals("tack")){
 			System.out.println("POP");
-			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
-			model.getWorld().remove(event.getBodyA());
+			mySoundPlayer.play(baseDir + "PingPong.wav");
+			event.getBodyA().setMoveable(false);
+			//model.getWorld().remove(event.getBodyA());
+			//model.removeObjFromBoardAtLocated((int) event.getBodyA().getPosition().getX(), (int) event.getBodyA().getPosition().getY());
 			
 		}
 		
 		if (event.getBodyA().getName().equals("tack") && 
 				event.getBodyB().getName().equals("Balloon")){
 			System.out.println("POP");
-			mySoundPlayer.play(baseDir + "PoppedBaBlloon.wav");
-			model.getWorld().remove(event.getBodyB());
+			mySoundPlayer.play(baseDir + "PingPong.wav");
+			event.getBodyB().setMoveable(false);
+			//model.getWorld().remove(event.getBodyB());
+			//model.removeObjFromBoardAtLocated((int) event.getBodyA().getPosition().getX(), (int) event.getBodyA().getPosition().getY());
 			
 		}
 		
