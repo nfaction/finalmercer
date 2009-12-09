@@ -116,6 +116,10 @@ public class Model extends Observable implements Serializable {
 			newEntity = new Rocket();
 
 		}
+		else if (objType.equals(EType.rightRamp)) {
+			newEntity = new RightRamp();
+
+		}
 
 		// prevent overlapping objects in the world
 		newEntity.addObj(world, x, y);
