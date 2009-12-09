@@ -17,6 +17,7 @@ public class LeftRamp extends Entities {
 		super(EType.leftRamp);
 		if(staticSprites == null )
 			staticSprites = utils.splitImage(utils.loadImage("Images/LeftRampSpriteSheet.png"), 5, 5);
+		sprite = staticSprites;
 		lRamp = new StaticBody("Left Ramp", new Box(225.0f, 25.0f));
 		lRamp.setRestitution(1.0f);
 		lRamp.setRotation(-.4f);

@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+
 import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Box;
@@ -9,18 +11,16 @@ import enums.EType;
 public class StraightRamp extends Entities {
 
 	private Body sRamp;
-	
-	//////////Info for sprite sheet/////////////////////
-	public static final int straightRampWidth = 115;
-	public static final int straightRampHeight = 200;
-	public static final int Y_LENGTH = 58;
-	public static final int X_LENGTH = 100;
-	public int bbX = 0;
-	public int bbY = 0;
-	////////////////////////////////////////////////////
+
+	private static BufferedImage[] staticSprites;
 	
 	public StraightRamp() {
 		super(EType.straightRamp);
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+		sprite = staticSprites;
+
+	
 		sRamp = new StaticBody("Straight Ramp", new Box(225.0f, 25.0f));
 		sRamp.setPosition(350.0f, 300);
 		sRamp.setRestitution(1.0f);
@@ -53,60 +53,7 @@ public class StraightRamp extends Entities {
 	}
 
 	@Override
-	public void upDate() {
-
-		setImageLocations();
-	}
-
-	@Override
-	public int getSpriteX() {
-
-		return bbX;
-	}
-
-	@Override
-	public int getSpriteY() {
-
-		return bbY;
-	}
-
-	public String toString() {
-		return "straightramp";
-	}
-
-	@Override
-	public int getXLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int gettouchingBodies() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getSpriteHeight() {
-
-		return straightRampHeight;
-	}
-
-	@Override
-	public int getSpriteWidth() {
-
-		return straightRampWidth;
-	}
-
-	@Override
-	public void setSprite() {
-		// TODO Auto-generated method stub
-		
+		return sRamp.getTouchingCount();
 	}
 }

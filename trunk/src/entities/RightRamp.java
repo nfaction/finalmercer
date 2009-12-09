@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+
 import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Box;
@@ -9,18 +11,14 @@ import enums.EType;
 public class RightRamp extends Entities {
 
 	private Body rRamp;
-	
-//////////Info for sprite sheet/////////////////////
-	public static final int rightRampWidth = 115;
-	public static final int rightRampHeight = 200;
-	public static final int Y_LENGTH = 58;
-	public static final int X_LENGTH = 100;
-	public int bbX = 0;
-	public int bbY = 0;
-	////////////////////////////////////////////////////
-	
+	private static BufferedImage[] staticSprites;
+		
 	public RightRamp() {
 		super(EType.rightRamp);
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+		sprite = staticSprites;
+
 		rRamp = new StaticBody("Right Ramp", new Box(225.0f, 25.0f));
 		rRamp.setPosition(350.0f, 300);
 		rRamp.setRestitution(1.0f);
@@ -38,14 +36,12 @@ public class RightRamp extends Entities {
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rRamp.getPosition().getX();
 	}
 
 	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rRamp.getPosition().getY();
 	}
 
 	@Override
@@ -55,65 +51,7 @@ public class RightRamp extends Entities {
 	}
 
 	@Override
-	public void upDate() {
-
-		setImageLocations();
-	}
-
-	@Override
-	public int getSpriteX() {
-
-		return bbX;
-	}
-
-	@Override
-	public int getSpriteY() {
-
-		return bbY;
-	}
-
-	@Override
-	public String toString() {
-
-		return "rightramp";
-	}
-
-	@Override
-	public int getXLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int gettouchingBodies() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rRamp.getTouchingCount();
 	}
-
-	@Override
-	public int getSpriteHeight() {
-
-		return rightRampHeight;
-	}
-
-	@Override
-	public int getSpriteWidth() {
-
-		return rightRampWidth;
-	}
-
-	@Override
-	public void setSprite() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-
 }

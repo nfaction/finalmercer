@@ -24,6 +24,7 @@ public class AbstractGear extends Entities {
 		super(EType.gear);
 		if(staticSprites == null )
 			staticSprites = utils.splitImage(utils.loadImage("Images/abstractGearSpriteSheet.png"), 3, 3);
+		sprite = staticSprites;
 		init();
 	}
 	
