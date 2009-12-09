@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+
 import engine.*;
 import engine.shapes.Body;
 import engine.shapes.Box;
@@ -16,23 +18,15 @@ public class ConveyorBelt extends Entities {
 
 	private float xPos;
 	private float yPos;
-
-//////////Info for sprite sheet/////////////////////
-	public static final int conveyorBeltWidth = 45;
-	public static final int conveyorBeltHeight = 45;
-	public static final int Y_LENGTH = 24;
-	public static final int X_LENGTH = 24;
-	public int bbX = 0;
-	public int bbY = 0;
-	////////////////////////////////////////////////////
-
-	public int curState = 0;
-	public int dir = 0;
-	public int count = 0;
 	private float speed;
 
+	private static BufferedImage[] staticSprites;
 	public ConveyorBelt() {
 		super(EType.conveyorBelt);
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+		sprite = staticSprites;
+		
 		initLeftWheel();
 		initRightWheel();
 		initbox();
@@ -40,7 +34,7 @@ public class ConveyorBelt extends Entities {
 		speed = 1f;
 		setImagePath("Images/ConveyorBelt.gif");
 	}
-	
+
 	public ConveyorBelt(float newSpeed) {
 		super(EType.conveyorBelt);
 		initLeftWheel();
@@ -53,7 +47,7 @@ public class ConveyorBelt extends Entities {
 
 	private void initBelt() {
 		belt = new Body[20];
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			belt[i] = new Body(new Circle(1f), 2);
 		}
 
@@ -89,15 +83,15 @@ public class ConveyorBelt extends Entities {
 		rightWheel.setPosition(x + 50, y);
 		box.setPosition(x, y);
 
-		for (int i = 0; i < 10; i++) {
-			belt[i].setPosition(x - 50 + 10 * i, y - 12);
+		for (int i = 0; i < 20; i++) {
+			belt[i].setPosition(x - 50 + 5 * i, y - 12);
 		}
 
 		world.add(rightWheel);
 		world.add(leftWheel);
 		world.add(box);
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			world.add(belt[i]);
 		}
 		this.setImageLocations(x, y);
@@ -126,7 +120,8 @@ public class ConveyorBelt extends Entities {
 
 	@Override
 	public void upDate() {
-		for (int i = 0; i < 10; i++) {
+		super.upDate();
+		for (int i = 0; i < 20; i++) {
 			belt[i].setForce(speed, 0);
 			if (belt[i].getPosition().getX() > this.xPos + 55
 					|| belt[i].getPosition().getX() < this.xPos - 55
@@ -136,60 +131,16 @@ public class ConveyorBelt extends Entities {
 			}
 
 		}
-		setImageLocations();
-	}
 
-	@Override
-	public int getSpriteX() {
-
-		return bbX;
-	}
-
-	@Override
-	public int getSpriteY() {
-		// TODO Auto-generated method stub
-		return bbY;
-	}
-
-	@Override
-	public int getXLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYLength() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
 	public int gettouchingBodies() {
-		// TODO Auto-generated method stub
-		return 0;
+		int i = 0;
+
+		i += this.leftWheel.getTouchingCount() - 1;
+		i += this.rightWheel.getTouchingCount() - 1;
+		i += this.box.getTouchingCount() - 2;
+		return i;
 	}
-
-	@Override
-	public String toString() {
-		return null;
-	}
-
-	@Override
-	public int getSpriteHeight() {
-
-		return conveyorBeltHeight;
-	}
-
-	@Override
-	public int getSpriteWidth() {
-
-		return conveyorBeltWidth;
-	}
-
-	@Override
-	public void setSprite() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
