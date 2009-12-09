@@ -1,8 +1,9 @@
 package entities;
 
 import engine.World;
-
-import engine.shapes.*;
+import engine.shapes.Body;
+import engine.shapes.Box;
+import engine.shapes.StaticBody;
 import engine.test.AbstractDemo;
 
 /**
@@ -37,10 +38,24 @@ public class TestBench extends AbstractDemo {
 	//	ground.setRotation(.4f);
 		world.add(ground);
 
+		//bouncy ball
+//		Body bouncy = new Body("bouncyBall", new Circle(10.0f), 1.0f);
+//		bouncy.setPosition(370.0f, 200);
+//		bouncy.setRestitution(1.0f);
+//		bouncy.setDamping(0.00009f);
+//		bouncy.setCanRest(true);
+//		world.add(bouncy);
+		
+		//weight
+		Body weight = new Body(new Box(50.0f, 50.0f),10000.0f);
+		weight.setPosition(370.0f, 100);
+		weight.setCanRest(true);
+		world.add(weight);
+		
 		// light
-		Body lamp = new StaticBody("lamp", new Box(30.0f, 45.0f));
-		lamp.setPosition(370.0f, 200.0f);
-		world.add(lamp);
+//		Body lamp = new StaticBody("lamp", new Box(30.0f, 45.0f));
+//		lamp.setPosition(370.0f, 200.0f);
+//		world.add(lamp);
 		
 		//pin
 //		Body pin = new StaticBody("Pin", new Box(2.5f, 15.0f));
