@@ -210,7 +210,7 @@ public class Model extends Observable implements Serializable {
 
 			
 			if (X >= this.objList.get(i).getUpperX()+ this.objList.get(i).getXLength()
-					&& X <= this.objList.get(i).getLowerX() + this.objList.get(i).getXLength()
+					&& X <= this.objList.get(i).getLowerX()+ this.objList.get(i).getXLength()
 					&& Y >= this.objList.get(i).getUpperY()+ this.objList.get(i).getYLength()
 					&& Y <= this.objList.get(i).getLowerY()+ this.objList.get(i).getYLength()) {
 				ETemp = this.objList.get(i).getObjType();
@@ -224,10 +224,10 @@ public class Model extends Observable implements Serializable {
 
 	public boolean getObjAtLocatedAt(int X, int Y) {
 		for (int i = 0; i < this.objList.size(); i++) {
-			if (X >= this.objList.get(i).getUpperX()
-					&& X <= this.objList.get(i).getLowerX()
-					&& Y >= this.objList.get(i).getUpperY()
-					&& Y <= this.objList.get(i).getLowerY()) {
+			if (X >= this.objList.get(i).getUpperX()+ this.objList.get(i).getXLength()
+			&& X <= this.objList.get(i).getLowerX()+ this.objList.get(i).getXLength()
+			&& Y >= this.objList.get(i).getUpperY()+ this.objList.get(i).getYLength()
+			&& Y <= this.objList.get(i).getLowerY()+ this.objList.get(i).getYLength()) {
 				return true;
 
 			}
