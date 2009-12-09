@@ -25,7 +25,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainGUI extends JFrame{
-	private Model model = Model.getObj(500,500);
+	private Model model = Model.getObj(550,550);
 	// Model Call goes here
 	static JFrame window = new JFrame();
 	/** Menu Bar */
@@ -102,7 +102,7 @@ public class MainGUI extends JFrame{
 	 * Sets up the JFrame and master panel
 	 */
 	public void setupJFrameModel(){
-		this.setSize(950, 630);
+		this.setSize(950, 620);
 		this.setLayout(null);
 		this.setLocation(150, 50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
