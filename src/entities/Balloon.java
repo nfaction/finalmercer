@@ -50,15 +50,17 @@ public class Balloon extends Entities {
 	@Override
 	public void upDate() {
 		super.upDate();
+		
 		if(balloon.isMoveable()){
 		balloon.adjustVelocity(new Vector(0.0f, -1.0f));
 		} else {
-			balloon.setMaxVelocity(0f, 0f);
+			balloon.resetBias();
 			state = 4;
 			if(count < 4)
 			state = 2;
 			if(count <2)
 				state =1;
+			count++;
 		}
 		
 	}
