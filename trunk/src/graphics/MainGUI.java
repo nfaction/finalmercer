@@ -5,6 +5,7 @@ package graphics;
 //Start, clear, reset
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -12,6 +13,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import model.Model;
 
 import java.awt.Container;
@@ -32,6 +36,9 @@ public class MainGUI extends JFrame{
 	private JMenuBar menuBar;
 	private JMenu m_file, m_scenario, m_options;
 	private JMenuItem m_mainmenu, m_start, m_clear, m_reset, m_save, m_load, m_gravity;
+	JFileChooser file = new JFileChooser("./Scenarios/");
+	FileFilter filter = new FileNameExtensionFilter("State Files", "state");
+	
 	/** Master panel*/
 	static JPanel master = new JPanel();
 	/** Main panel*/
@@ -455,17 +462,22 @@ public class MainGUI extends JFrame{
 			}
 
 			if (e.getSource() == m_clear) {
-				model.reset();
+				model.clearModel();
 			}
 
 			if (e.getSource() == m_reset) {
-				//model.getOriginalState();
+				model.reset();
 			}	
 			if (e.getSource() == m_save) {
 				
 			}
 			if (e.getSource() == m_load) {
-				
+				file.addChoosableFileFilter(filter);
+				int returnVal = file.showDialog(null, "Open File");
+				if(returnVal == JFileChooser.APPROVE_OPTION){
+					File fileOpen = file.getSelectedFile();
+					System.out.println(file + " was opened");
+				}
 			}
 			if (e.getSource() == m_gravity) {
 				master.removeAll();

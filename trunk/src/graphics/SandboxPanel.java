@@ -18,6 +18,7 @@ import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import model.Model;
@@ -37,6 +38,7 @@ public class SandboxPanel extends JPanel implements Observer,
 	private int xsize;
 	private int ysize;
 
+	
 	private Image toolbox;
 	private Image sandbox;
 
@@ -59,7 +61,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		this.setLayout(null);
 		this.setSize(950, 600);
 		this.setLocation(0, 0);
-		this.setBackground(Color.BLACK);
+		//this.setBackground(Color.BLACK);
 		start.setSize(125, 30);
 		start.setLocation(800, 10);
 		this.add(start);

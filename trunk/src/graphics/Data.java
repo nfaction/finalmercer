@@ -49,7 +49,7 @@ public class Data {
 
 	private void initObj() {
 		initObjHellper(new BasketBall());
-		initObjHellper(new Balloon());
+		//initObjHellper(new Balloon());
 		initObjHellper(new BowlingBall());
 		initObjHellper(new PingPongBall());
 	}
