@@ -10,8 +10,8 @@ import graphics.Data;
 public class CollisionListenerImpl implements CollisionListener{
 	
 	private PlaySound mySoundPlayer = new PlaySound();
-	private Model model = Model.getObj(1,1);
-	private World world = model.getWorld();
+	private Model model = Model.getObj();
+ 
 
 
 	public void collisionOccured(CollisionEvent event) {
@@ -34,14 +34,14 @@ public class CollisionListenerImpl implements CollisionListener{
 		if (event.getBodyA().getName().equals("Balloon") && 
 				event.getBodyB().getName().equals("Pin")){
 			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
-			world.remove(event.getBodyA());
+			model.getWorld().remove(event.getBodyA());
 			
 		}
 		
 		if (event.getBodyA().getName().equals("Pin") && 
 				event.getBodyB().getName().equals("Balloon")){
-			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
-			world.remove(event.getBodyB());
+			mySoundPlayer.play(baseDir + "PoppedBaBlloon.wav");
+			model.getWorld().remove(event.getBodyB());
 			
 		}
 		
