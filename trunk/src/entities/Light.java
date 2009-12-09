@@ -15,8 +15,11 @@ public class Light extends Entities {
 	
 	public Light() {
 		super(EType.light);
-		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/light.gif"), 1, 1);
+		if(staticSprites == null ) {
+			staticSprites = new BufferedImage[2];
+			staticSprites[0] = utils.loadImage("Images/light.gif");
+			staticSprites[1] = utils.loadImage("Images/lightON.gif");
+		}
 		sprite = staticSprites;
 
 		light = new StaticBody("light", new Box(30.0f, 45.0f));
