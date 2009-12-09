@@ -12,11 +12,13 @@ import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.vector.Vector;
+import entities.AbstractGear;
 import entities.Balloon;
 import entities.BasketBall;
 import entities.LeftRamp;
 import entities.RightRamp;
 import entities.StraightRamp;
+import entities.Tack;
 
 /**
  * Lines terrain testing extensive
@@ -141,17 +143,23 @@ public class Demo {
 //		land.setRestitution(1f);
 //		world.add(land);
 
-		LeftRamp newGround1 = new LeftRamp();
-		newGround1.addObj(world, 300, 200);
+//		LeftRamp newGround1 = new LeftRamp();
+//		newGround1.addObj(world, 300, 200);
 		
-		RightRamp newGround2 = new RightRamp();
-		newGround2.addObj(world, 80, 50);
+//		RightRamp newGround2 = new RightRamp();
+//		newGround2.addObj(world, 80, 50);
+//		
+//		StraightRamp newGround3 = new StraightRamp();
+//		newGround3.addObj(world, 150, 130);
 		
-		StraightRamp newGround3 = new StraightRamp();
-		newGround3.addObj(world, 150, 130);
+//		BasketBall newEntity = new BasketBall();
+//		newEntity.addObj(world, 200, 50);
 		
-		BasketBall newEntity = new BasketBall();
-		newEntity.addObj(world, 200, 50);
+//		AbstractGear g = new AbstractGear(null);
+//		g.addObj(world, 200, 300);
+		
+		Tack tack = new Tack();
+		tack.addObj(world, 200, 300);
 		
 //		BowlingBall newEntity1 = new BowlingBall();
 //		newEntity1.addObj(world, 200, 55);
@@ -159,8 +167,8 @@ public class Demo {
 //		PingPongBall newPPB = new PingPongBall();
 //		newPPB.addObj(world, 250, 57);
 
-		newBalloon = new Balloon();
-		newBalloon.addObj(world, 270, 450);
+//		newBalloon = new Balloon();
+//		newBalloon.addObj(world, 270, 450);
 	}
 
 	/**
@@ -265,7 +273,7 @@ public class Demo {
 	}
 
 	protected void update() {
-		newBalloon.upDate();
+	//	newBalloon.upDate();
 	}
 
 	protected void renderGUI(Graphics2D g) {
