@@ -49,9 +49,18 @@ public class Data {
 
 	private void initObj() {
 		initObjHellper(new BasketBall());
-		//initObjHellper(new Balloon());
+		initObjHellper(new Balloon());
 		initObjHellper(new BowlingBall());
 		initObjHellper(new PingPongBall());
+		initObjHellper(new LeftRamp());
+		initObjHellper(new PowerGear());
+		initObjHellper(new ConveyorBelt());
+		initObjHellper(new Battery());
+		// initObjHellper(new );
+		// initObjHellper(new );
+		// initObjHellper(new );
+		// initObjHellper(new );
+
 	}
 
 	private void initObjHellper(Entities ent) {
@@ -76,6 +85,15 @@ public class Data {
 
 		imageX[getLocation(EType.pingPongBall)] = 185 + toolboxShiftX;
 		imageY[getLocation(EType.pingPongBall)] = 40 + toolboxShiftY;
+
+		imageX[getLocation(EType.powerGear)] = 0 + toolboxShiftX;
+		imageY[getLocation(EType.powerGear)] = 100 + toolboxShiftY;
+
+		imageX[getLocation(EType.battery)] = 0 + toolboxShiftX;
+		imageY[getLocation(EType.battery)] = 150 + toolboxShiftY;
+
+		imageX[getLocation(EType.conveyorBelt)] = 100 + toolboxShiftX;
+		imageY[getLocation(EType.conveyorBelt)] = 100 + toolboxShiftY;
 
 		imageX[getLocation(EType.leftRamp)] = 20 + toolboxShiftX;
 		imageY[getLocation(EType.leftRamp)] = 270 + toolboxShiftY;
@@ -109,11 +127,13 @@ public class Data {
 	}
 
 	public void setMoved(int i, boolean set) {
+
 		setMoved(types[i], set);
 	}
 
 	public void setMoved(EType e, boolean set) {
-		moved[getLocation(e)] = set;
+		if ((anyHasMoved() && !set) || (!anyHasMoved() && set))
+			moved[getLocation(e)] = set;
 	}
 
 	// ===============================================================
