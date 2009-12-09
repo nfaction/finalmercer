@@ -11,6 +11,7 @@ import entities.LeftRamp;
 import entities.Light;
 import entities.PingPongBall;
 import entities.PowerGear;
+import entities.RightRamp;
 import entities.Rock;
 import entities.Rocket;
 import entities.Switch;
@@ -79,6 +80,7 @@ public class Data {
 		initObjHellper(new Rock());
 		initObjHellper(new Switch());
 		initObjHellper(new Rocket());
+		initObjHellper(new RightRamp());
 		// initObjHellper(new );
 	}
 
@@ -140,6 +142,9 @@ public class Data {
 		
 		imageX[getLocation(EType.rocket)] = 90 + toolboxShiftX;
 		imageY[getLocation(EType.rocket)] = 500 + toolboxShiftY;
+		
+		imageX[getLocation(EType.rightRamp)] = 110 + toolboxShiftX;
+		imageY[getLocation(EType.rightRamp)] = 480 + toolboxShiftY;
 	}
 
 	// =============================================================
