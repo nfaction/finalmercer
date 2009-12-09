@@ -203,11 +203,7 @@ public class Model extends Observable implements Serializable {
 		EType ETemp;
 		for (int i = 0; i < this.objList.size(); i++) {
 			System.out.println("obj found in objlist");
-			
-			System.out.println("UpperX = "+ this.objList.get(i).getUpperX() );
-			System.out.println("LowerX = "+ this.objList.get(i).getLowerX() );
-			System.out.println("UpperY = "+ this.objList.get(i).getUpperY ());
-			System.out.println("LowerY = "+ this.objList.get(i).getLowerY() );
+
 			
 			if (X >= this.objList.get(i).getUpperX()
 					&& X <= this.objList.get(i).getLowerX()
