@@ -17,12 +17,12 @@ public class Switch extends Entities {
 		super(EType.Switch);
 		if (staticSprites == null)
 			staticSprites = utils.splitImage(utils
-					.loadImage("Images/PingPongBall.gif"), 1, 10);
+					.loadImage("Images/switchSpriteSheet.gif"), 1, 2);
 		sprite = staticSprites;
 
 		s = new StaticBody(toString(), new Box(10f, 20f));
 		s.setCanRest(true);
-		s.setGravityEffected(false);
+		s.setRotatable(false);
 	}
 
 	@Override
@@ -30,11 +30,12 @@ public class Switch extends Entities {
 		s.setPosition(x, y);
 		this.setImageLocations(x, y);
 		world.add(s);
+
 	}
 
 	public void upDate() {
 		super.upDate();
-		if(s.getGravityEffected()){
+		if(s.isRotatable()){
 			state = 1;
 		} else {
 			state = 0;
