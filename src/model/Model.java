@@ -199,18 +199,27 @@ public class Model extends Observable implements Serializable {
 
 	}
 
-	public boolean removeObjFromBoardAtLocated(int X, int Y) {
+	public EType removeObjFromBoardAtLocated(int X, int Y) {
+		EType ETemp;
 		for (int i = 0; i < this.objList.size(); i++) {
+			System.out.println("obj found in objlist");
+			
+			System.out.println("UpperX = "+ this.objList.get(i).getUpperX() );
+			System.out.println("LowerX = "+ this.objList.get(i).getLowerX() );
+			System.out.println("UpperY = "+ this.objList.get(i).getUpperY ());
+			System.out.println("LowerY = "+ this.objList.get(i).getLowerY() );
+			
 			if (X >= this.objList.get(i).getUpperX()
 					&& X <= this.objList.get(i).getLowerX()
 					&& Y >= this.objList.get(i).getUpperY()
 					&& Y <= this.objList.get(i).getLowerY()) {
+				ETemp = this.objList.get(i).getObjType();
 				this.objList.get(i).removeObj(world);
-				return true;
-
+				this.objList.remove(i);
+				return ETemp;
 			}
 		}
-		return false;
+		return null;
 	}
 
 /*	public Entities getObjAtLocatedAt(int X, int Y) {
