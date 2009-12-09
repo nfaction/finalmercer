@@ -29,11 +29,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainGUI extends JFrame{
-	//Model model = new Model(500, 500);
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
 	private Model model = Model.getObj(500,500);
 	// Model Call goes here
 	static JFrame window = new JFrame();

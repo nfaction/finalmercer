@@ -27,13 +27,15 @@ public class Model extends Observable implements Serializable {
 	private int maxY;
 	private int maxX;
 	private boolean playedBaloonSound = false;
-	private CollisionListenerImpl collisionListenerImpl = new CollisionListenerImpl();
+	private CollisionListenerImpl collisionListenerImpl;
 
 	private Model(int maxX, int maxY) {
 		this.maxX = maxX;
 		this.maxY = maxY;
 		initWorld();
+		collisionListenerImpl = new CollisionListenerImpl();
 		world.addListener(collisionListenerImpl);
+		
 	}
 	
 	public static Model getObj(int maxX, int maxY) {
@@ -43,6 +45,11 @@ public class Model extends Observable implements Serializable {
 		return single;
 
 	}
+	
+	public static Model getObj() {
+		return single;
+	}
+
 
 	private void initWorld() {
 		world.clear();
