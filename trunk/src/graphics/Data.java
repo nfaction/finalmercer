@@ -14,6 +14,7 @@ import entities.PowerGear;
 import entities.RightRamp;
 import entities.Rock;
 import entities.Rocket;
+import entities.StraightRamp;
 import entities.Switch;
 import entities.Tack;
 import entities.Weight;
@@ -81,6 +82,7 @@ public class Data {
 		initObjHellper(new Switch());
 		initObjHellper(new Rocket());
 		initObjHellper(new RightRamp());
+		initObjHellper(new StraightRamp());
 		// initObjHellper(new );
 	}
 
@@ -140,8 +142,8 @@ public class Data {
 		imageX[getLocation(EType.rocket)] = 150 + toolboxShiftX;
 		imageY[getLocation(EType.rocket)] = 450 + toolboxShiftY;
 
-		imageX[getLocation(EType.rightRamp)] = 110 + toolboxShiftX;
-		imageY[getLocation(EType.rightRamp)] = 480 + toolboxShiftY;
+		imageX[getLocation(EType.straightRamp)] = 50 + toolboxShiftX;
+		imageY[getLocation(EType.straightRamp)] = 400 + toolboxShiftY;
 
 	}
 
