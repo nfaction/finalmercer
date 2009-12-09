@@ -199,7 +199,7 @@ public class Model extends Observable implements Serializable {
 
 	}
 
-	public void removeObjFromBoardLocatedAt(int X, int Y) {
+	public void removeObjFromBoardAtLocated(int X, int Y) {
 		for (int i = 0; i < this.objList.size(); i++) {
 			if (X >= this.objList.get(i).getUpperX()
 					&& X <= this.objList.get(i).getLowerX()
@@ -211,7 +211,7 @@ public class Model extends Observable implements Serializable {
 		}
 	}
 
-	public Entities getObjLocatedAt(int X, int Y) {
+/*	public Entities getObjAtLocatedAt(int X, int Y) {
 		for (int i = 0; i < this.objList.size(); i++) {
 			if (X >= this.objList.get(i).getUpperX()
 					&& X <= this.objList.get(i).getLowerX()
@@ -223,11 +223,11 @@ public class Model extends Observable implements Serializable {
 		}
 		return null;
 
-	}
+	}*/
 	
 	public void setStatesForBatteryObjs(){
 		//find each battery and then look for each object around them
-		for (int i = 0; i < objList.size(); i++)
+		for (int i = 0; i < objList.size(); i++){
 			if(this.objList.get(i).toString().equalsIgnoreCase("battery")){
 			
 				for (int j = 0; j < objList.size(); j++){
@@ -235,39 +235,57 @@ public class Model extends Observable implements Serializable {
 					isOverlapTopRight(this.objList.get(i),this.objList.get(j))	||
 					isOverlapBottomRight(this.objList.get(i),this.objList.get(j)) ||
 					isOverlapBottomLeft(this.objList.get(i),this.objList.get(j))){
+						if(this.objList.get(i).toString().equalsIgnoreCase("light") ||
+						this.objList.get(i).toString().equalsIgnoreCase("powerGear")){
 						this.objList.get(i).setState(1);
 						this.objList.get(j).setState(1);
-						
 					}
 				}
+					}
 			}
-		  } 
+			}
+		  }
+		
 		 
 		 public boolean isOverlapTopLeft(Entities battery, Entities other){
 			 
 			 if (other.getLowerX() > battery.getUpperX() &&
 				other.getLowerX() <  battery.getLowerX() &&
-				other.getUpperX() > battery.getUpperX() &&
-				other.getUpperX() <  battery.getLowerX() &&
 				other.getLowerY() > battery.getUpperY() &&
-				other.getLowerY() < battery.getLowerY() &&
-				other.getUpperY() > battery.getUpperY() &&
-				other.getUpperY() < battery.getLowerY()){ 
+				other.getLowerY() < battery.getLowerY()){ 
 				 return true;
 			 }
 			return false;
 		}
 		 
 		 public boolean isOverlapTopRight(Entities battery, Entities other){
+			 if (other.getUpperX() > battery.getUpperX() &&
+				other.getUpperX() <  battery.getLowerX() &&
+				other.getLowerY() > battery.getUpperY() &&
+				other.getLowerY() < battery.getLowerY()){ 
+				 return true;
+					 }
 				return true;
 			}
 		 
 		 public boolean isOverlapBottomLeft(Entities battery, Entities other){
+			 if (other.getLowerX() > battery.getUpperX() &&
+				other.getLowerX() <  battery.getLowerX() &&
+				other.getUpperY() > battery.getUpperY() &&
+				other.getUpperY() < battery.getLowerY()){ 
+				 return true;
+							 }
 				return true;
 			}
 		 
 		 public boolean isOverlapBottomRight(Entities battery, Entities other){
-				return true;
+			 if (other.getUpperX() > battery.getUpperX() &&
+				other.getUpperX() <  battery.getLowerX() &&
+				other.getUpperY() > battery.getUpperY() &&
+				other.getUpperY() < battery.getLowerY()){ 
+			 return true;
+					 }
+			 return false;
 			}
 	
 	
