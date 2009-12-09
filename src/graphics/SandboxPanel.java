@@ -31,7 +31,7 @@ import enums.EType;
 
 public class SandboxPanel extends JPanel implements Observer,
 		MouseMotionListener, MouseListener, Runnable {
-	protected static final int sandboxShiftX = 405;
+	protected static final int sandboxShiftX = 380;
 	protected static final int sandboxShiftY = 12;
 	protected static final int toolboxShiftX = 19;
 	protected static final int toolboxShiftY = 20;
@@ -135,6 +135,12 @@ public class SandboxPanel extends JPanel implements Observer,
 		System.out.println("newX = " + newX);
 		// Code for each type of object in toolbox
 		if (newX < sandboxShiftX) {
+			if (info.anyHasMoved()) {
+				System.out.println("set down");
+				EType toRemove = info.whoIsMoving();
+				info.setMoved(toRemove, false);
+				repaint();
+			}
 			for (int i = 0; i < info.length(); i++) {
 				EType type = info.intToEType(i);
 				if ((newX > info.getImageX(type) && newX < (info
