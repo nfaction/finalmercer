@@ -38,6 +38,12 @@ public class TestBench extends AbstractDemo {
 	//	ground.setRotation(.4f);
 		world.add(ground);
 
+		//rocket
+		Body rocket = new Body(new Box(3.0f, 50.0f), 10.0f);
+		rocket.setPosition(300.0f, 400.0f);
+		rocket.setGravityEffected(false);
+		world.add(rocket);
+		
 		//bouncy ball
 //		Body bouncy = new Body("bouncyBall", new Circle(10.0f), 1.0f);
 //		bouncy.setPosition(370.0f, 200);
@@ -47,10 +53,10 @@ public class TestBench extends AbstractDemo {
 //		world.add(bouncy);
 		
 		//weight
-		Body weight = new Body(new Box(50.0f, 50.0f),10000.0f);
-		weight.setPosition(370.0f, 100);
-		weight.setCanRest(true);
-		world.add(weight);
+//		Body weight = new Body(new Box(50.0f, 50.0f),10000.0f);
+//		weight.setPosition(370.0f, 100);
+//		weight.setCanRest(true);
+//		world.add(weight);
 		
 		// light
 //		Body lamp = new StaticBody("lamp", new Box(30.0f, 45.0f));
