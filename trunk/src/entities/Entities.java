@@ -63,10 +63,10 @@ public abstract class Entities extends Observable {
 	 */
 	protected void setImageLocations(float x, float y) {
 
-		this.upperX = (this.getX() - (getXLength() / 2));
-		this.upperY = (this.getY() - (getYLength() / 2));
-		this.lowerX = (this.getX() + (getXLength() / 2));
-		this.lowerY = (this.getY() + (getYLength() / 2));
+		this.upperX = (this.getX() - (getXLength()));
+		this.upperY = (this.getY() - (getYLength()));
+		this.lowerX = (this.getX() + (getXLength()));
+		this.lowerY = (this.getY() + (getYLength()));
 		
 		}
 	
