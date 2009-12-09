@@ -55,7 +55,7 @@ public class SandboxPanel extends JPanel implements Observer,
 
 	public SandboxPanel(Model m, int xsize, int ysize) {
 		info = Data.getObj();
-		this.model = m;
+		this.model = m.getObj(xsize, ysize);
 		this.xsize = xsize;
 		this.ysize = ysize;
 		this.setLayout(null);
