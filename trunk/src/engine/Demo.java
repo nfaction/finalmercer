@@ -13,8 +13,7 @@ import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.vector.Vector;
 import entities.Balloon;
-import entities.Rock;
-import entities.Switch;
+import entities.Rocket;
 
 /**
  * Lines terrain testing extensive
@@ -33,6 +32,7 @@ public class Demo {
 	private BufferStrategy strategy;
 	protected boolean needsReset;
 	private Balloon newBalloon;
+	private Rocket rckt;
 
 	/**
 	 * Main
@@ -172,8 +172,11 @@ public class Demo {
 //		Switch s = new Switch();
 //		s.addObj(world, 270, 400);
 		
-		Rock r = new Rock();
-		r.addObj(world, 270, 400);
+//		Rock r = new Rock();
+//		r.addObj(world, 270, 400);
+		
+		rckt = new Rocket();
+		rckt.addObj(world, 270, 400);
 	}
 
 	/**
@@ -278,7 +281,7 @@ public class Demo {
 	}
 
 	protected void update() {
-	//	newBalloon.upDate();
+		rckt.upDate();
 	}
 
 	protected void renderGUI(Graphics2D g) {
