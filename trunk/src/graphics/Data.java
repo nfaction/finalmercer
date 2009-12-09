@@ -12,6 +12,7 @@ import entities.Light;
 import entities.PingPongBall;
 import entities.PowerGear;
 import entities.Rock;
+import entities.Rocket;
 import entities.Switch;
 import entities.Tack;
 import entities.Weight;
@@ -77,8 +78,7 @@ public class Data {
 		initObjHellper(new Weight());
 		initObjHellper(new Rock());
 		initObjHellper(new Switch());
-		// initObjHellper(new );
-		// initObjHellper(new );
+		initObjHellper(new Rocket());
 		// initObjHellper(new );
 	}
 
@@ -134,6 +134,12 @@ public class Data {
 		
 		imageX[getLocation(EType.Switch)] = 20 + toolboxShiftX;
 		imageY[getLocation(EType.Switch)] = 450 + toolboxShiftY;
+		
+		imageX[getLocation(EType.rock)] = 20 + toolboxShiftX;
+		imageY[getLocation(EType.rock)] = 450 + toolboxShiftY;
+		
+		imageX[getLocation(EType.rocket)] = 70 + toolboxShiftX;
+		imageY[getLocation(EType.rocket)] = 450 + toolboxShiftY;
 	}
 
 	// =============================================================
