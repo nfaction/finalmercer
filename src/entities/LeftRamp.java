@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+
 import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Box;
@@ -9,18 +11,12 @@ import enums.EType;
 public class LeftRamp extends Entities {
 	
 	private Body lRamp;
-	
-//////////Info for sprite sheet/////////////////////
-	public static final int leftRampWidth = 200;
-	public static final int leftRampHeight = 115;
-	public static final int Y_LENGTH = 58;
-	public static final int X_LENGTH = 100;
-	public int bbX = 0;
-	public int bbY = 0;
-	////////////////////////////////////////////////////
+	private static BufferedImage[] staticSprites;
 	
 	public LeftRamp() {
 		super(EType.leftRamp);
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/LeftRampSpriteSheet.png"), 5, 5);
 		lRamp = new StaticBody("Left Ramp", new Box(225.0f, 25.0f));
 		lRamp.setRestitution(1.0f);
 		lRamp.setRotation(-.4f);
@@ -28,7 +24,6 @@ public class LeftRamp extends Entities {
 
 	@Override
 	public void addObj(World world, float x, float y) {
-
 		lRamp.setPosition(x, y);
 		this.setImageLocations(x, y);
 		world.add(lRamp);
@@ -53,60 +48,8 @@ public class LeftRamp extends Entities {
 	}
 
 	@Override
-	public void upDate() {
-
-		setImageLocations();
-	}
-
-	@Override
-	public int getSpriteX() {
-
-		return bbX;
-	}
-
-	@Override
-	public int getSpriteY() {
-
-		return bbY;
-	}
-
-	public String toString() {
-		return "leftramp";
-	}
-
-	@Override
-	public int getXLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int gettouchingBodies() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.lRamp.getTouchingCount();
 	}
 
-	@Override
-	public int getSpriteHeight() {
-
-		return leftRampHeight;
-	}
-
-	@Override
-	public int getSpriteWidth() {
-
-		return leftRampWidth;
-	}
-
-	@Override
-	public void setSprite() {
-		// TODO Auto-generated method stub
-		
-	}
 }
