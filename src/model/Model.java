@@ -29,6 +29,8 @@ public class Model extends Observable {
 	private int maxX;
 	private ReadAndWrite randw = new ReadAndWrite();
 	private boolean playedBaloonSound = false;
+	private boolean started = false;
+	private boolean running = false;
 	private CollisionListenerImpl collisionListenerImpl;
 
 	private Model(int maxX, int maxY) {
@@ -52,6 +54,22 @@ public class Model extends Observable {
 		return single;
 	}
 
+	public void setStarted(boolean b){
+		this.started = b;
+	}
+	
+	public boolean getStarted(){
+		return started;
+	}
+	
+	public void setRunning(boolean b){
+		this.running = b;
+	}
+	
+	public boolean getRunning(){
+		return running;
+	}
+	
 	private void initWorld() {
 		world.clear();
 		world.setGravity(0, 0);
@@ -92,9 +110,6 @@ public class Model extends Observable {
 
 		} else if (objType.equals(EType.gear)) {
 			newEntity = new Gear();
-
-		} else if (objType.equals(EType.belt)) {
-			newEntity = new Belt();
 
 		} else if (objType.equals(EType.light)) {
 			newEntity = new Light();

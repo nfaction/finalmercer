@@ -462,22 +462,28 @@ public class MainGUI extends JFrame{
 
 			if (e.getSource() == m_clear) {
 				model.reset();
+				model.setStarted(false);
+				model.setRunning(false);
 			}
 
 			if (e.getSource() == m_reset) {
 				//model.getOriginalState();
+				model.setStarted(false);
+				model.setRunning(false);
 			}	
 			if (e.getSource() == m_save) {
 				model.saveState("Scenario" + 1 + ".state", model.getObj());
 			}
 			if (e.getSource() == m_load) {
-				file.addChoosableFileFilter(filter);
-                int returnVal = file.showDialog(null, "Open File");
-                if(returnVal == JFileChooser.APPROVE_OPTION){
-                        File fileOpen = file.getSelectedFile();
-                        System.out.println(file + " was opened");
-                }
-				model.loadState(file.toString());
+//				file.addChoosableFileFilter(filter);
+//                int returnVal = file.showDialog(null, "Open File");
+//                if(returnVal == JFileChooser.APPROVE_OPTION){
+//                        File fileOpen = file.getSelectedFile();
+//                        System.out.println(file + " was opened");
+//                }
+//				model.loadState(file.toString());
+				model.loadState(".");
+				sandbox.repaint();
 			}
 			if (e.getSource() == m_gravity) {
 				master.removeAll();
