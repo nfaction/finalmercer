@@ -37,6 +37,11 @@ public class TestBench extends AbstractDemo {
 	//	ground.setRotation(.4f);
 		world.add(ground);
 
+		//pin
+		Body pin = new StaticBody("Pin", new Box(2.5f, 15.0f));
+		pin.setPosition(370.0f, 200.0f);
+		world.add(pin);
+		
 		// Blockade
 //		Body blockade = new StaticBody("blockade", new Box(300.0f, 20.0f));
 //		blockade.setPosition(100.0f, 100.0f);
