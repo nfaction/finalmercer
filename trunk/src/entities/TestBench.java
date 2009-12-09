@@ -32,22 +32,22 @@ public class TestBench extends AbstractDemo {
 //		ground1.setRestitution(1.0f);
 //		world.add(ground1);
 
-		Body ground = new StaticBody("Ground1", new Box(225.0f, 5.0f));
-		ground.setPosition(350.0f, 300);
-		ground.setRestitution(1.0f);
+//		Body ground = new StaticBody("Ground1", new Box(225.0f, 5.0f));
+//		ground.setPosition(350.0f, 300);
+//		ground.setRestitution(1.0f);
 	//	ground.setRotation(.4f);
-		world.add(ground);
+//		world.add(ground);
 
 		// HorizontalCementWall
-		Body hCementWall = new StaticBody("cHorzWall", new Box(125.0f, 10.0f));
-		hCementWall.setPosition(200.0f, 250.0f);
-		hCementWall.setRestitution(1.0f);
-		world.add(hCementWall);
-		
-		Body vCementWall = new StaticBody("cVertWall", new Box(10.0f, 125.0f));
-		vCementWall.setPosition(251.0f, 199.0f);
-		vCementWall.setRestitution(1.0f);
-		world.add(vCementWall);
+//		Body hCementWall = new StaticBody("cHorzWall", new Box(125.0f, 10.0f));
+//		hCementWall.setPosition(200.0f, 250.0f);
+//		hCementWall.setRestitution(1.0f);
+//		world.add(hCementWall);
+//		
+//		Body vCementWall = new StaticBody("cVertWall", new Box(10.0f, 125.0f));
+//		vCementWall.setPosition(251.0f, 199.0f);
+//		vCementWall.setRestitution(1.0f);
+//		world.add(vCementWall);
 		
 		//rocket
 //		Body rocket = new Body(new Box(3.0f, 50.0f), 10.0f);
