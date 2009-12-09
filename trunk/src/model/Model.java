@@ -209,9 +209,9 @@ public class Model extends Observable implements Serializable {
 			System.out.println("obj found in objlist");
 
 			
-			if (X >= this.objList.get(i).getUpperX()
+			if (X >= this.objList.get(i).getUpperX()+ this.objList.get(i).getXLength()
 					&& X <= this.objList.get(i).getLowerX() + this.objList.get(i).getXLength()
-					&& Y >= this.objList.get(i).getUpperY()
+					&& Y >= this.objList.get(i).getUpperY()+ this.objList.get(i).getYLength()
 					&& Y <= this.objList.get(i).getLowerY()+ this.objList.get(i).getYLength()) {
 				ETemp = this.objList.get(i).getObjType();
 				this.objList.get(i).removeObj(world);
