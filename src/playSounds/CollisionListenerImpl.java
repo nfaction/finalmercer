@@ -51,11 +51,16 @@ public class CollisionListenerImpl implements CollisionListener{
 			
 		}
 		
-		if (event.getBodyA().getName().equals("Switch"))
-			event.getBodyA().setGravityEffected(!event.getBodyA().getGravityEffected());
+		if (event.getBodyA().getName().equals("Switch")){
+			System.out.println("A was hit");
+//			System.out.println(event.getBodyA().isRotatable());
+			event.getBodyA().setRotatable(!event.getBodyA().isRotatable());
+		}
 		
-		if(event.getBodyB().getName().equals("Switch"))
+		if(event.getBodyB().getName().equals("Switch")){
 			event.getBodyB().setGravityEffected(!event.getBodyB().getGravityEffected());
+			System.out.println("B was hit");
+		}
 		
 		
 			
