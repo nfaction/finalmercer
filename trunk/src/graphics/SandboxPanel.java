@@ -160,16 +160,16 @@ public class SandboxPanel extends JPanel implements Observer,
 					System.out.println(mover + " = true");
 				}
 			}
-			//System.out.println("Removed after clicked!" + model.removeObjFromBoardAtLocated(newXi, newYi));
-			for (int i = 0; i < info.length(); i++) {
-				mover = info.intToEType(i);
-			else if(model.removeObjFromBoardAtLocated(newX - info.getXLENGTH(mover),newY - info.getYLENGTH(mover))){
+			else if(model.getObjAtLocatedAt(newX,newY)){
+				EType temp = model.removeObjFromBoardAtLocated(newX,newY);
+				info.setMoved(temp, true);
 				System.out.println("Removed after clicked!");
+				
 			}
 			}
 		}
 
-	}
+	
 
 	/**
 	 * This method gets the position of the mouse and allows for select-ability
