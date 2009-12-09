@@ -118,7 +118,9 @@ public class Model extends Observable implements Serializable {
 		}
 		else if (objType.equals(EType.rightRamp)) {
 			newEntity = new RightRamp();
-
+		}
+		else if (objType.equals(EType.straightRamp)) {
+			newEntity = new StraightRamp();
 		}
 
 		// prevent overlapping objects in the world
