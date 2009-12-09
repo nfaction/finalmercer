@@ -16,7 +16,7 @@ public class Battery extends Entities{
 	public Battery() {
 		super(EType.battery);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/batterySpriteSheet.gif"), 1, 1);
+			staticSprites = utils.splitImage(utils.loadImage("Images/battery.gif"), 1, 1);
 		sprite = staticSprites;
 		
 		battery = new StaticBody("Battery", new Box(1.0f, 1.0f));

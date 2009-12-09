@@ -18,6 +18,7 @@ public class utils {
 		Graphics2D g = dimg.createGraphics();
 		g.rotate(angle, w / 2, h / 2);
 		g.drawImage(img, null, 0, 0);
+		dimg = makeColorTransparent(dimg, Color.black);
 		return dimg;
 	}
 
@@ -81,6 +82,7 @@ public class utils {
 				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g.drawImage(img, 0, 0, newW, newH, 0, 0, w, h, null);
 		g.dispose();
+		dimg = makeColorTransparent(dimg, Color.black);
 		return dimg;
 	}
 
