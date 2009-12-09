@@ -41,7 +41,6 @@ public class SandboxPanel extends JPanel implements Observer,
 	private Image toolbox;
 	private Image sandbox;
 
-	private boolean running = true;
 	private ArrayList<Entities> temp = new ArrayList<Entities>();
 	private int newX, newY;
 	private int newXi = 0, newYi = 0;
@@ -91,6 +90,8 @@ public class SandboxPanel extends JPanel implements Observer,
 		run.start();
 	}
 
+	
+	
 	/**
 	 * This method paints all objects onto this panel.
 	 */
@@ -133,7 +134,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		newY = arg0.getY();
 		System.out.println("newX = " + newX);
 		// Code for each type of object in toolbox
-		if (newX < sandboxShiftX) {
+		if (newX < sandboxShiftX){// && !model.getStarted()) {
 			if (info.anyHasMoved()) {
 				System.out.println("set down");
 				EType toRemove = info.whoIsMoving();
@@ -202,6 +203,8 @@ public class SandboxPanel extends JPanel implements Observer,
 	 * also includes timers to slow down the physics to look more realistic.
 	 */
 	public void run() {
+		model.setStarted(true);
+		model.setRunning(true);
 		float target = 1000 / 60.0f;
 		float frameAverage = target;
 		long lastFrame = System.currentTimeMillis();
@@ -211,7 +214,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		long renderTime = 0;
 		@SuppressWarnings("unused")
 		long logicTime = 0;
-		while (running) {
+		while (model.getRunning()) {
 			long timeNow = System.currentTimeMillis();
 			frameAverage = (frameAverage * 10 + (timeNow - lastFrame)) / 11;
 			lastFrame = timeNow;
