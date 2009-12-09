@@ -9,6 +9,7 @@ import entities.Entities;
 import entities.Gear;
 import entities.LeftRamp;
 import entities.Light;
+import entities.Motor;
 import entities.PingPongBall;
 import entities.PowerGear;
 import entities.RightRamp;
@@ -82,9 +83,13 @@ public class Data {
 		initObjHellper(new Switch());
 		initObjHellper(new Rocket());
 		initObjHellper(new RightRamp());
+		initObjHellper(new Motor());
 		initObjHellper(new StraightRamp());
 		initObjHellper(new PowerGear());
 		// initObjHellper(new );
+		// initObjHellper(new );
+		// initObjHellper(new );
+
 	}
 
 	private void initObjHellper(Entities ent) {
@@ -145,6 +150,9 @@ public class Data {
 
 		imageX[getLocation(EType.straightRamp)] = 50 + toolboxShiftX;
 		imageY[getLocation(EType.straightRamp)] = 400 + toolboxShiftY;
+		
+		imageX[getLocation(EType.motor)] = 80 + toolboxShiftX;
+		imageY[getLocation(EType.motor)] = 380 + toolboxShiftY;
 
 	}
 
