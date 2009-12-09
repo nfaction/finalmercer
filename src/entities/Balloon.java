@@ -53,9 +53,9 @@ public class Balloon extends Entities {
 		balloon.adjustVelocity(new Vector(0.0f, -1.0f));
 		if(!balloon.isMoveable()){
 			state = 4;
-			if(count < 20)
+			if(count < 4)
 			state = 2;
-			if(count <10)
+			if(count <2)
 				state =1;
 		}
 		
