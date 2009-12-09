@@ -17,7 +17,7 @@ public class Battery extends Entities {
 		super(EType.battery);
 		if (staticSprites == null) {
 			staticSprites = utils.splitImage(utils
-					.loadImage("Images/Battery.gif"), 1, 1);
+					.loadImage("Images/battery.gif"), 1, 1);
 			staticSprites = new BufferedImage[2];
 			staticSprites[0] = utils.loadImage("Images/battery.gif");
 			staticSprites[1] = utils.loadTranslucentImage(utils.loadImage("Images/batteryON.gif"), .5f);
