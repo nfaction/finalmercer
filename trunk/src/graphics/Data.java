@@ -131,9 +131,6 @@ public class Data {
 		imageX[getLocation(EType.weight)] = 170 + toolboxShiftX;
 		imageY[getLocation(EType.weight)] = 325 + toolboxShiftY;
 		
-		imageX[getLocation(EType.rock)] = 100 + toolboxShiftX;
-		imageY[getLocation(EType.rock)] = 375 + toolboxShiftY;
-		
 		imageX[getLocation(EType.Switch)] = 20 + toolboxShiftX;
 		imageY[getLocation(EType.Switch)] = 450 + toolboxShiftY;
 		
