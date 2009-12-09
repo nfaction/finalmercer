@@ -16,7 +16,7 @@ public class RightRamp extends Entities {
 	public RightRamp() {
 		super(EType.rightRamp);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/RightRamp.gif"), 1, 1);
 		sprite = staticSprites;
 
 		rRamp = new StaticBody("Right Ramp", new Box(225.0f, 25.0f));
