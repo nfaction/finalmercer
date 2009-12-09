@@ -20,10 +20,8 @@ public class RightRamp extends Entities {
 		sprite = staticSprites;
 
 		rRamp = new StaticBody("Right Ramp", new Box(225.0f, 25.0f));
-		rRamp.setPosition(350.0f, 300);
 		rRamp.setRestitution(1.0f);
 		rRamp.setRotation(.4f);
-		setImagePath("Image/rightRampSpriteSheet.png");
 	}
 
 	@Override
