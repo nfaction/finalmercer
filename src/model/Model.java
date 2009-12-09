@@ -35,10 +35,6 @@ public class Model extends Observable implements Serializable {
 	public static Model getObj(int maxX, int maxY) {
 		if (single == null) {
 			single = new Model(maxX, maxY);
-			initWorld();
-			world.addListener(collisionListenerImpl);
-			maxX = maxX;
-			maxY = maxY;
 		}
 		return single;
 
@@ -49,7 +45,10 @@ public class Model extends Observable implements Serializable {
 	}
 	
 	private Model(int maxX, int maxY) {
-		
+		initWorld();
+		world.addListener(collisionListenerImpl);
+		maxX = maxX;
+		maxY = maxY;
 	}
 
 	private static void initWorld() {
@@ -222,7 +221,7 @@ public class Model extends Observable implements Serializable {
 		}
 	}
 
-	public Entities getObjLocatedAt(int X, int Y) {
+/*	public Entities getObjLocatedAt(int X, int Y) {
 		for (int i = 0; i < this.objList.size(); i++) {
 			if (X >= this.objList.get(i).getUpperX()
 					&& X <= this.objList.get(i).getLowerX()
@@ -234,7 +233,7 @@ public class Model extends Observable implements Serializable {
 		}
 		return null;
 
-	}
+	}*/
 	
 	public void setStatesForBatteryObjs(String objToLookAt, String ObjToLookFor1,String ObjToLookFor2,String ObjToLookFor3){
 		//find each battery and then look for each object around them
