@@ -38,7 +38,6 @@ public class SandboxPanel extends JPanel implements Observer,
 	private int xsize;
 	private int ysize;
 
-	
 	private Image toolbox;
 	private Image sandbox;
 
@@ -61,7 +60,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		this.setLayout(null);
 		this.setSize(950, 600);
 		this.setLocation(0, 0);
-		//this.setBackground(Color.BLACK);
+		// this.setBackground(Color.BLACK);
 		start.setSize(125, 30);
 		start.setLocation(800, 10);
 		this.add(start);
@@ -119,7 +118,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		if (entitiesIter.hasNext()) {
 			while (entitiesIter.hasNext()) {
 				Entities ent = entitiesIter.next();
-				int upperx = (int) ent.getUpperX() + sandboxShiftX+28;
+				int upperx = (int) ent.getUpperX() + sandboxShiftX + 30;
 				int uppery = (int) ent.getUpperY() + sandboxShiftY;
 				System.out.println("upperx = " + upperx);
 				o.drawImage(ent.getSpriteImage(), upperx, uppery, this);
@@ -150,16 +149,23 @@ public class SandboxPanel extends JPanel implements Observer,
 			// Code for objects being placed into the sandbox
 		} else if ((newX > sandboxShiftX && newX < (sandboxShiftX + xsize))
 				&& (newY > sandboxShiftY && newY < (sandboxShiftY + ysize))) {
-
-			newXi -= sandboxShiftX;
-			newXi -= sandboxShiftY;
+			EType mover = info.whoIsMoving();
+			newX -= sandboxShiftX;
+			newY += sandboxShiftY;
 			if (info.anyHasMoved()) {
-				EType mover = info.whoIsMoving();
-				if (model.addObjToBoard(mover, newXi - info.getXLENGTH(mover),
-						newYi - info.getYLENGTH(mover))) {
+				//EType mover = info.whoIsMoving();
+				if (model.addObjToBoard(mover, newX - info.getXLENGTH(mover),
+						newY - info.getYLENGTH(mover))) {
 					info.setMoved(mover, false);
 					System.out.println(mover + " = true");
 				}
+			}
+			//System.out.println("Removed after clicked!" + model.removeObjFromBoardAtLocated(newXi, newYi));
+			for (int i = 0; i < info.length(); i++) {
+				mover = info.intToEType(i);
+			else if(model.removeObjFromBoardAtLocated(newX - info.getXLENGTH(mover),newY - info.getYLENGTH(mover))){
+				System.out.println("Removed after clicked!");
+			}
 			}
 		}
 
