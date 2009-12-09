@@ -138,8 +138,8 @@ public class Data {
 		imageX[getLocation(EType.rock)] = 20 + toolboxShiftX;
 		imageY[getLocation(EType.rock)] = 450 + toolboxShiftY;
 		
-		imageX[getLocation(EType.rocket)] = 70 + toolboxShiftX;
-		imageY[getLocation(EType.rocket)] = 450 + toolboxShiftY;
+		imageX[getLocation(EType.rocket)] = 90 + toolboxShiftX;
+		imageY[getLocation(EType.rocket)] = 500 + toolboxShiftY;
 	}
 
 	// =============================================================
