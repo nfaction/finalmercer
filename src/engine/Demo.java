@@ -16,6 +16,7 @@ import entities.AbstractGear;
 import entities.Balloon;
 import entities.BasketBall;
 import entities.LeftRamp;
+import entities.Light;
 import entities.RightRamp;
 import entities.StraightRamp;
 import entities.Tack;
@@ -157,10 +158,10 @@ public class Demo {
 		
 //		AbstractGear g = new AbstractGear(null);
 //		g.addObj(world, 200, 300);
-		
-		Tack tack = new Tack();
-		tack.addObj(world, 200, 300);
-		
+//		
+//		Tack tack = new Tack();
+//		tack.addObj(world, 200, 300);
+//		
 //		BowlingBall newEntity1 = new BowlingBall();
 //		newEntity1.addObj(world, 200, 55);
 //
@@ -169,6 +170,9 @@ public class Demo {
 
 //		newBalloon = new Balloon();
 //		newBalloon.addObj(world, 270, 450);
+		
+		Light l = new Light();
+		l.addObj(world, 270, 400);
 	}
 
 	/**
