@@ -56,8 +56,8 @@ public class Data {
 		initObjHellper(new PowerGear());
 		initObjHellper(new ConveyorBelt());
 		initObjHellper(new Battery());
-		// initObjHellper(new );
-		// initObjHellper(new );
+		initObjHellper(new Gear());
+		initObjHellper(new Tack());
 		// initObjHellper(new );
 		// initObjHellper(new );
 
@@ -87,8 +87,11 @@ public class Data {
 		imageY[getLocation(EType.pingPongBall)] = 40 + toolboxShiftY;
 
 		imageX[getLocation(EType.powerGear)] = 0 + toolboxShiftX;
-		imageY[getLocation(EType.powerGear)] = 100 + toolboxShiftY;
+		imageY[getLocation(EType.powerGear)] = 200 + toolboxShiftY;
 
+		imageX[getLocation(EType.gear)] = 50 + toolboxShiftX;
+		imageY[getLocation(EType.gear)] = 200 + toolboxShiftY;
+		
 		imageX[getLocation(EType.battery)] = 0 + toolboxShiftX;
 		imageY[getLocation(EType.battery)] = 150 + toolboxShiftY;
 
@@ -97,6 +100,9 @@ public class Data {
 
 		imageX[getLocation(EType.leftRamp)] = 20 + toolboxShiftX;
 		imageY[getLocation(EType.leftRamp)] = 270 + toolboxShiftY;
+		
+		imageX[getLocation(EType.tack)] = 130 + toolboxShiftX;
+		imageY[getLocation(EType.tack)] = 200 + toolboxShiftY;
 
 	}
 
