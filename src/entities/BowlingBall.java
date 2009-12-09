@@ -21,7 +21,7 @@ public strictfp class BowlingBall extends Entities {
 			staticSprites = utils.splitImage(utils.loadImage("Images/bowlingBallSpriteSheet.png"), 5, 5);
 		sprite = staticSprites;
 		
-		bowlBall = new Body("BowlingBall", new Circle(15.0f), 7257.0f);
+		bowlBall = new Body("BowlingBall", new Circle(15.0f), 15.0f);
 		bowlBall.setRestitution(.5f);
 		bowlBall.setDamping(.01f);
 		bowlBall.setCanRest(true);
