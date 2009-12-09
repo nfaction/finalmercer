@@ -12,6 +12,7 @@ public class Balloon extends Entities {
 
 	private Body balloon;
 	private static BufferedImage[] staticSprites;
+	private int count = 0;
 	
 	public Balloon() {
 		super(EType.balloon, "Images/Balloon.gif");
@@ -51,7 +52,11 @@ public class Balloon extends Entities {
 		super.upDate();
 		balloon.adjustVelocity(new Vector(0.0f, -1.0f));
 		if(!balloon.isMoveable()){
-			state = 5;
+			state = 4;
+			if(count < 20)
+			state = 2;
+			if(count <10)
+				state =1;
 		}
 		
 	}
