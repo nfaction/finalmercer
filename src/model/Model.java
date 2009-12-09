@@ -26,6 +26,7 @@ public class Model extends Observable implements Serializable {
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
 	private int maxY;
 	private int maxX;
+	private ReadAndWrite randw = new ReadAndWrite();
 	private boolean playedBaloonSound = false;
 	private CollisionListenerImpl collisionListenerImpl;
 
@@ -197,6 +198,14 @@ public class Model extends Observable implements Serializable {
 		return this.objList;
 	}
 
+	public void loadState(String fileName){
+		randw.read(fileName);
+	}
+	
+	public void saveState(String fileName, Model m){
+		randw.write(m, fileName);
+	}
+	
 	/**
 	 * @return the gravity
 	 */
