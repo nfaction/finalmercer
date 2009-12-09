@@ -11,6 +11,7 @@ import entities.LeftRamp;
 import entities.Light;
 import entities.PingPongBall;
 import entities.PowerGear;
+import entities.Switch;
 import entities.Tack;
 import entities.Weight;
 import enums.EType;
@@ -73,7 +74,7 @@ public class Data {
 		initObjHellper(new Tack());
 		initObjHellper(new Light());
 		initObjHellper(new Weight());
-		// initObjHellper(new );
+		initObjHellper(new Switch());
 		// initObjHellper(new );
 		// initObjHellper(new );
 		// initObjHellper(new );
@@ -125,6 +126,9 @@ public class Data {
 		
 		imageX[getLocation(EType.weight)] = 170 + toolboxShiftX;
 		imageY[getLocation(EType.weight)] = 325 + toolboxShiftY;
+		
+		imageX[getLocation(EType.Switch)] = 20 + toolboxShiftX;
+		imageY[getLocation(EType.Switch)] = 450 + toolboxShiftY;
 	}
 
 	// =============================================================
