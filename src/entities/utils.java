@@ -14,7 +14,7 @@ public class utils {
 	public static BufferedImage rotate(BufferedImage img, float angle) {
 		int w = img.getWidth();
 		int h = img.getHeight();
-		BufferedImage dimg = new BufferedImage(w, h, img.getType());
+		BufferedImage dimg = new BufferedImage(w, h, 5);
 		Graphics2D g = dimg.createGraphics();
 		g.rotate(angle, w / 2, h / 2);
 		g.drawImage(img, null, 0, 0);
@@ -54,7 +54,7 @@ public class utils {
 	public static BufferedImage horizontalflip(BufferedImage img) {
 		int w = img.getWidth();
 		int h = img.getHeight();
-		BufferedImage dimg = new BufferedImage(w, h, img.getType());
+		BufferedImage dimg = new BufferedImage(w, h, 4);
 		Graphics2D g = dimg.createGraphics();
 		g.drawImage(img, 0, 0, w, h, w, 0, 0, h, null);
 		g.dispose();
@@ -75,7 +75,7 @@ public class utils {
 	public static BufferedImage resize(BufferedImage img, int newW, int newH) {
 		int w = img.getWidth();
 		int h = img.getHeight();
-		BufferedImage dimg = new BufferedImage(newW, newH, img.getType());
+		BufferedImage dimg = new BufferedImage(newW, newH, 4);
 		Graphics2D g = dimg.createGraphics();
 		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
 				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -96,7 +96,7 @@ public class utils {
 		BufferedImage imgs[] = new BufferedImage[rows*cols];
 		for (int y = 0; y < rows; y++) {
 			for (int x = 0; x < cols; x++) {
-				imgs[num] = new BufferedImage(w, h, img.getType());
+				imgs[num] = new BufferedImage(w, h, 4);
 				// Tell the graphics to draw only one block of the image
 				Graphics2D g = imgs[num].createGraphics();
 				g.drawImage(img, 0, 0, w, h, w * x, h * y, w * x + w,
@@ -105,6 +105,7 @@ public class utils {
 				num++;
 			}
 		}
+		System.out.print(imgs);
 		return imgs;
 	}
 
