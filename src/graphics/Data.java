@@ -7,6 +7,7 @@ import entities.BowlingBall;
 import entities.ConveyorBelt;
 import entities.Entities;
 import entities.Gear;
+import entities.HCementWall;
 import entities.LeftRamp;
 import entities.Light;
 import entities.Motor;
@@ -18,6 +19,7 @@ import entities.Rocket;
 import entities.StraightRamp;
 import entities.Switch;
 import entities.Tack;
+import entities.VCementWall;
 import entities.Weight;
 import enums.EType;
 
@@ -86,9 +88,12 @@ public class Data {
 		initObjHellper(new Motor());
 		initObjHellper(new StraightRamp());
 		initObjHellper(new PowerGear());
+		initObjHellper(new HCementWall());
+		initObjHellper(new VCementWall());
 		// initObjHellper(new );
 		// initObjHellper(new );
 		// initObjHellper(new );
+
 
 	}
 
@@ -153,6 +158,13 @@ public class Data {
 		
 		imageX[getLocation(EType.motor)] = 80 + toolboxShiftX;
 		imageY[getLocation(EType.motor)] = 380 + toolboxShiftY;
+		
+		imageX[getLocation(EType.hCWall)] = 100 + toolboxShiftX;
+		imageY[getLocation(EType.hCWall)] = 150 + toolboxShiftY;
+		
+		imageX[getLocation(EType.vCWall)] = 95 + toolboxShiftX;
+		imageY[getLocation(EType.vCWall)] = 145 + toolboxShiftY;
+
 
 	}
 
