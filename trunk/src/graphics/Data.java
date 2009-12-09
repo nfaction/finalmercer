@@ -58,9 +58,12 @@ public class Data {
 		initObjHellper(new Battery());
 		initObjHellper(new Gear());
 		initObjHellper(new Tack());
+		initObjHellper(new Light());
 		// initObjHellper(new );
 		// initObjHellper(new );
-
+		// initObjHellper(new );
+		// initObjHellper(new );
+		// initObjHellper(new );
 	}
 
 	private void initObjHellper(Entities ent) {
@@ -103,7 +106,9 @@ public class Data {
 		
 		imageX[getLocation(EType.tack)] = 130 + toolboxShiftX;
 		imageY[getLocation(EType.tack)] = 200 + toolboxShiftY;
-
+		
+		imageX[getLocation(EType.light)] = 170 + toolboxShiftX;
+		imageY[getLocation(EType.light)] = 200 + toolboxShiftY;
 	}
 
 	// =============================================================
