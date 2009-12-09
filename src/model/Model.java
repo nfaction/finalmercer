@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
-
 import playSounds.CollisionListenerImpl;
 import playSounds.PlaySound;
+import states.*;
 
 import engine.Strategy;
 import engine.World;
@@ -16,15 +16,15 @@ import engine.vector.Vector;
 import entities.*;
 import enums.EType;
 
-public class Model extends Observable implements Serializable {
+public class Model extends Observable {
 	/** The world containing the physics model */
 	private static Model single;
 	protected static float gravity = 10.00f;
 	protected static World world = World.createWorld(new Vector(0.0f, gravity),
 			10, new Strategy(1, 5));
 
-	private ArrayList<Entities> objList = new ArrayList<Entities>();
-	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
+	private AbstractState objList = new CurrentState();
+	private  AbstractState saveObjList = new SaveState();
 	private int maxY;
 	private int maxX;
 	private ReadAndWrite randw = new ReadAndWrite();
@@ -93,6 +93,9 @@ public class Model extends Observable implements Serializable {
 		} else if (objType.equals(EType.gear)) {
 			newEntity = new Gear();
 
+		} else if (objType.equals(EType.belt)) {
+			newEntity = new Belt();
+
 		} else if (objType.equals(EType.light)) {
 			newEntity = new Light();
 
@@ -107,22 +110,18 @@ public class Model extends Observable implements Serializable {
 
 		} else if (objType.equals(EType.weight)) {
 			newEntity = new Weight();
-			
+
 		} else if (objType.equals(EType.rock)) {
 			newEntity = new Rock();
-			
+
 		} else if (objType.equals(EType.rocket)) {
 			newEntity = new Rocket();
 
-		}
-		else if (objType.equals(EType.rightRamp)) {
+		} else if (objType.equals(EType.rightRamp)) {
 			newEntity = new RightRamp();
-		}
-
-		else if (objType.equals(EType.straightRamp)) {
+		} else if (objType.equals(EType.straightRamp)) {
 			newEntity = new StraightRamp();
-		}
-		else if (objType.equals(EType.motor)) {
+		} else if (objType.equals(EType.motor)) {
 			newEntity = new PowerGear();
 		}
 
@@ -176,9 +175,8 @@ public class Model extends Observable implements Serializable {
 	}
 
 	public void reset() {
-		objList.clear();
-		this.objList = this.saveObjList;
-		initWorld();
+		clearModel();
+		this.objList.set(this.saveObjList);
 		for (int i = 0; i < objList.size(); i++) {
 			objList.get(i).addObj(world, objList.get(i).getX(),
 					objList.get(i).getY());
@@ -192,34 +190,45 @@ public class Model extends Observable implements Serializable {
 	}
 
 	public void clearModel() {
-		objList.clear();
-		initWorld();
+		for (int i = 0; i < objList.size(); i++) {
+			objList.get(i).removeObj(world);
+		}
 	}
 
 	public ArrayList<Entities> getObjList() {
-		return this.objList;
+		return this.objList.getList();
 	}
 
-	public void loadState(String fileName){
-		ArrayList<Entity> entList = new ArrayList<Entity>();
-		randw.read(fileName);
-		//clear
-		for(int i = 0; i < objList.size(); i ++){
-			//model.
-		}
-		
+	public void loadState(String fileName) {
+		// ArrayList<Entity> entList = new ArrayList<Entity>();
+		// randw.read(fileName);
+		// //clear
+		// for(int i = 0; i < objList.size(); i ++){
+		// model.
+
+		// }
+
+		reset();
+		System.out.println("loadstate");
+		System.out.println("world " + world.getBodies().size());
+		System.out.println("state " + objList.size());
+
 	}
-	
-	public void saveState(String fileName, Model m){
-		ArrayList<Entity> entList = new ArrayList<Entity>();
-		for(int i = 0; i < objList.size(); i ++){
-		//Entity temp = new Entity();
-		//objList.get(i).toString(), (int) objList.get(i).getX(), (int) objList.get(i).getY()
-		//entList.add(temp);
-		}
-		randw.write(entList, fileName);
+
+	public void saveState(String fileName, Model m) {
+		// ArrayList<Entity> entList = new ArrayList<Entity>();
+		// for(int i = 0; i < objList.size(); i ++){
+		// Entity temp = new Entity();
+		// objList.get(i).toString(), (int) objList.get(i).getX(), (int)
+		// objList.get(i).getY()
+		// entList.add(temp);
+		// }
+		// randw.write(entList, fileName);
+		this.saveObjList.set(this.objList);
+		System.out.println("savestate");
+		System.out.println(world.getBodies().size());
 	}
-	
+
 	/**
 	 * @return the gravity
 	 */
@@ -240,8 +249,6 @@ public class Model extends Observable implements Serializable {
 		EType ETemp;
 		for (int i = 0; i < this.objList.size(); i++) {
 			System.out.println("obj found in objlist");
-			
-			
 
 			if (X >= this.objList.get(i).getUpperX()
 					+ this.objList.get(i).getXLength()
@@ -282,35 +289,47 @@ public class Model extends Observable implements Serializable {
 		// find each battery and then look for each object around them
 		for (int i = 0; i < objList.size(); i++) {
 			if (this.objList.get(i).toString().equalsIgnoreCase("battery")) {
-				
-				
 
 				for (int j = 0; j < objList.size(); j++) {
-					if(!this.objList.get(j).toString().equalsIgnoreCase("battery")){
-					if (isOverlapTopLeft(this.objList.get(i), this.objList.get(j))
-							|| isOverlapTopRight(this.objList.get(i),this.objList.get(j))
-							|| isOverlapBottomRight(this.objList.get(i),this.objList.get(j))
-							|| isOverlapBottomLeft(this.objList.get(i),	this.objList.get(j))) {
-						if (this.objList.get(j).toString().equalsIgnoreCase(
-								"light")
-								||
+					if (!this.objList.get(j).toString().equalsIgnoreCase(
+							"battery")) {
+						if (isOverlapTopLeft(this.objList.get(i), this.objList
+								.get(j))
+								|| isOverlapTopRight(this.objList.get(i),
+										this.objList.get(j))
+								|| isOverlapBottomRight(this.objList.get(i),
+										this.objList.get(j))
+								|| isOverlapBottomLeft(this.objList.get(i),
+										this.objList.get(j))) {
+							if (this.objList.get(j).toString()
+									.equalsIgnoreCase("light")
+									||
 
-								this.objList.get(j).toString()
-										.equalsIgnoreCase("powerGear")) {
-							
-							System.out.println("TL"+isOverlapTopLeft(this.objList.get(i), this.objList.get(j)));
-							System.out.println("TR"+isOverlapTopRight(this.objList.get(i),this.objList.get(j)));
-							System.out.println("BR"+isOverlapBottomRight(this.objList.get(i),this.objList.get(j)));
-							System.out.println("BL"+isOverlapBottomLeft(this.objList.get(i),	this.objList.get(j)));
-							System.out.println("LightOn");
-							this.objList.get(i).setState(1);
-							this.objList.get(j).setState(1);
+									this.objList.get(j).toString()
+											.equalsIgnoreCase("powerGear")) {
+
+								System.out.println("TL"
+										+ isOverlapTopLeft(this.objList.get(i),
+												this.objList.get(j)));
+								System.out.println("TR"
+										+ isOverlapTopRight(
+												this.objList.get(i),
+												this.objList.get(j)));
+								System.out.println("BR"
+										+ isOverlapBottomRight(this.objList
+												.get(i), this.objList.get(j)));
+								System.out.println("BL"
+										+ isOverlapBottomLeft(this.objList
+												.get(i), this.objList.get(j)));
+								System.out.println("LightOn");
+								this.objList.get(i).setState(1);
+								this.objList.get(j).setState(1);
+							}
 						}
 					}
 				}
 			}
 		}
-	}
 	}
 
 	public boolean isOverlapTopLeft(Entities battery, Entities other) {
@@ -320,12 +339,15 @@ public class Model extends Observable implements Serializable {
 		System.out.println("battery LowerX= " + battery.getLowerX());
 		System.out.println("battery UpperY= " + battery.getUpperY());
 		System.out.println("battery LowerY= " + battery.getLowerY());
-	
-		
-		if (other.getLowerX()+ other.getXLength() > battery.getUpperX()+ battery.getXLength()
-			&& other.getLowerX()+ other.getXLength() < battery.getLowerX()+ battery.getXLength()
-			&& other.getLowerY()+ other.getXLength() > battery.getUpperY()+ battery.getXLength()
-			&& other.getLowerY()+ other.getXLength() < battery.getLowerY()+ battery.getXLength()) {
+
+		if (other.getLowerX() + other.getXLength() > battery.getUpperX()
+				+ battery.getXLength()
+				&& other.getLowerX() + other.getXLength() < battery.getLowerX()
+						+ battery.getXLength()
+				&& other.getLowerY() + other.getXLength() > battery.getUpperY()
+						+ battery.getXLength()
+				&& other.getLowerY() + other.getXLength() < battery.getLowerY()
+						+ battery.getXLength()) {
 			return true;
 		}
 		return false;
