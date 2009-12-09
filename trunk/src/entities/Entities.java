@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
 import engine.World;
@@ -153,15 +154,15 @@ public abstract class Entities extends Observable {
 	 */
 	public BufferedImage getSpriteImage() {
 		
-		return sprite[state];
+		return 	utils.makeColorTransparent(sprite[state], Color.black);
 	}
 	
 	public int getXLength(){
-		return utils.width(getSpriteImage())/2;
+		return utils.width(sprite[0])/2;
 	}
 	
 	public int getYLength(){
-		return utils.height(getSpriteImage())/2;
+		return utils.height(sprite[0])/2;
 	}
 	
 	public String toString(){
