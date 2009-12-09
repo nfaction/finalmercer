@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import com.sun.tools.internal.ws.wsdl.framework.Entity;
+
 import playSounds.CollisionListenerImpl;
 import playSounds.PlaySound;
 
@@ -199,11 +201,23 @@ public class Model extends Observable implements Serializable {
 	}
 
 	public void loadState(String fileName){
+		ArrayList<Entity> entList = new ArrayList<Entity>();
 		randw.read(fileName);
+		//clear
+		for(int i = 0; i < objList.size(); i ++){
+			//model.
+		}
+		
 	}
 	
 	public void saveState(String fileName, Model m){
-		randw.write(m, fileName);
+		ArrayList<Entity> entList = new ArrayList<Entity>();
+		for(int i = 0; i < objList.size(); i ++){
+		Entity temp = new Entity();
+		//objList.get(i).toString(), (int) objList.get(i).getX(), (int) objList.get(i).getY()
+		entList.add(temp);
+		}
+		randw.write(entList, fileName);
 	}
 	
 	/**

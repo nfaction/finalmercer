@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -15,7 +16,7 @@ public class ReadAndWrite {
 	 * @param fileName
 	 *            This writes the accounts to disk
 	 */
-	public void write(Model list, String fileName) {
+	public void write(ArrayList list, String fileName) {
 		try {
 			FileOutputStream outFile = new FileOutputStream(fileName);
 			ObjectOutputStream outputStream = new ObjectOutputStream(outFile);
@@ -34,13 +35,13 @@ public class ReadAndWrite {
 	 * @param fileName
 	 * @return This reads the accounts from disk
 	 */
-	public Model read(String fileName) {
-		Model list = null;
+	public ArrayList read(String fileName) {
+		ArrayList list = null;
 		try {
 			FileInputStream inFile = new FileInputStream(fileName);
 			ObjectInputStream inputStream = new ObjectInputStream(inFile);
 			Object o = inputStream.readObject();
-			list = (Model) o;
+			list = (ArrayList) o;
 			inputStream.close();
 		} catch (Exception e) {
 			String message = "Error reading objects from disk: " + "\n" + e
