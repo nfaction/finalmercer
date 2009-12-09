@@ -468,7 +468,7 @@ public class MainGUI extends JFrame{
 				//model.getOriginalState();
 			}	
 			if (e.getSource() == m_save) {
-				model.saveState(file.toString(), model);
+				model.saveState("Scenario" + 1 + ".state", model.getObj());
 			}
 			if (e.getSource() == m_load) {
 				file.addChoosableFileFilter(filter);
