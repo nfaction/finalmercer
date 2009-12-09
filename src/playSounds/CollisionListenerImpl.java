@@ -1,12 +1,17 @@
 package playSounds;
 
+import model.Model;
+import engine.World;
 import engine.collision.CollisionEvent;
 import engine.collision.CollisionListener;
+import graphics.Data;
 
 
 public class CollisionListenerImpl implements CollisionListener{
 	
 	private PlaySound mySoundPlayer = new PlaySound();
+	private Model model = Model.getObj(1,1);
+	private World world = model.getWorld();
 
 
 	public void collisionOccured(CollisionEvent event) {
@@ -29,14 +34,14 @@ public class CollisionListenerImpl implements CollisionListener{
 		if (event.getBodyA().getName().equals("Balloon") && 
 				event.getBodyB().getName().equals("Pin")){
 			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
-			//world.remove(event.getBodyA());
+			world.remove(event.getBodyA());
 			
 		}
 		
 		if (event.getBodyA().getName().equals("Pin") && 
 				event.getBodyB().getName().equals("Balloon")){
 			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
-			//world.remove(event.getBodyB());
+			world.remove(event.getBodyB());
 			
 		}
 		
