@@ -50,24 +50,6 @@ public class CollisionListenerImpl implements CollisionListener{
 			//model.removeObjFromBoardAtLocated((int) event.getBodyA().getPosition().getX(), (int) event.getBodyA().getPosition().getY());
 			
 		}
-		
-		if (event.getBodyA().getName().equals("Switch")){
-			System.out.println("A was hit");
-//			System.out.println(event.getBodyA().isRotatable());
-			event.getBodyA().setRotatable(!event.getBodyA().isRotatable());
-		}
-		
-		if(event.getBodyB().getName().equals("Switch")){
-			event.getBodyB().setGravityEffected(!event.getBodyB().getGravityEffected());
-			System.out.println("B was hit");
-		}
-		
-		
-			
-		
-		
-		
-
 	}
 
 }
