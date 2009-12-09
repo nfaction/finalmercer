@@ -50,6 +50,8 @@ public class Data {
 	private void initObj() {
 		initObjHellper(new BasketBall());
 		initObjHellper(new Balloon());
+		initObjHellper(new BowlingBall());
+		initObjHellper(new PingPongBall());
 	}
 
 	private void initObjHellper(Entities ent) {
