@@ -16,7 +16,7 @@ public class PingPongBall extends Entities{
 		
 		super(EType.pingPongBall);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/PingPongBall.gif"), 1, 1);
 		sprite = staticSprites;
 
 		ppBall = new Body("Ping-Pong Ball", new Circle(7.0f), 2.50f);

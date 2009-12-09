@@ -18,7 +18,7 @@ public strictfp class BowlingBall extends Entities {
 	public BowlingBall() {
 		super(EType.bowlingball, "Images/bowlingBallSpriteSheet.png");
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/bowlingBallSpriteSheet.png"), 5, 5);
 		sprite = staticSprites;
 		
 		bowlBall = new Body("BowlingBall", new Circle(15.0f), 7257.0f);
