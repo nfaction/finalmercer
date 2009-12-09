@@ -179,8 +179,13 @@ public class Model extends Observable implements Serializable {
 
 	}
 
-	public void stop() {
+	public void clearModel() {
+		for (int i = 0; i < objList.size(); i++) {
+			objList.get(i).removeObj(world);
+					
+		}
 		objList.clear();
+		
 		initWorld();
 	}
 
