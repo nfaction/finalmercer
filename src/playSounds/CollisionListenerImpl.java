@@ -32,14 +32,16 @@ public class CollisionListenerImpl implements CollisionListener{
 			mySoundPlayer.play(baseDir + "Tink.wav");
 		
 		if (event.getBodyA().getName().equals("Balloon") && 
-				event.getBodyB().getName().equals("Pin")){
+				event.getBodyB().getName().equals("tack")){
+			System.out.println("POP");
 			mySoundPlayer.play(baseDir + "PoppedBalloon.wav");
 			model.getWorld().remove(event.getBodyA());
 			
 		}
 		
-		if (event.getBodyA().getName().equals("Pin") && 
+		if (event.getBodyA().getName().equals("tack") && 
 				event.getBodyB().getName().equals("Balloon")){
+			System.out.println("POP");
 			mySoundPlayer.play(baseDir + "PoppedBaBlloon.wav");
 			model.getWorld().remove(event.getBodyB());
 			
