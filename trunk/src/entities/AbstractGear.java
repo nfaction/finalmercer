@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.image.BufferedImage;
+
 import engine.World;
 import engine.joint.FixedJoint;
 import engine.joint.Joint;
@@ -13,13 +15,16 @@ public class AbstractGear extends Entities {
 	protected Body wheel;
 	private Body[] teeth;
 	private Joint[] joints;
+	private static BufferedImage[] staticSprites;
+
 	
 	private float factor = 3f;
 	
 	public AbstractGear() {
 		super(EType.gear);
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/abstractGearSpriteSheet.png"), 3, 3);
 		init();
-		setImagePath("Images/abstractGear.gif");
 	}
 	
 	public AbstractGear(float newFactor){
@@ -108,65 +113,9 @@ public class AbstractGear extends Entities {
 			world.remove(joints[i]);
 		}
 	}
-
-	@Override
-	public void upDate() {
-		
-
-	}
-
-	@Override
-	public int getSpriteWidth() {
-
-		return absGearWidth;
-	}
-
-	@Override
-	public int getSpriteHeight() {
-
-		return absGearHeight;
-	}
-
-	@Override
-	public int getXLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public int gettouchingBodies() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.wheel.getTouchingCount() - 8;
 	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getSpriteX() {
-
-		return bbX;
-	}
-
-	@Override
-	public int getSpriteY() {
-		// TODO Auto-generated method stub
-		return bbY;
-	}
-
-	@Override
-	public void setSprite() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
