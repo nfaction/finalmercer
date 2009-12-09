@@ -56,11 +56,17 @@ public class Balloon extends Entities {
 		} else {
 			balloon.resetBias();
 			state = 4;
-			if(count < 4)
+			if(count < 20)
 			state = 2;
-			if(count <2)
+			if(count <10)
 				state =1;
 			count++;
+			balloon.adjustVelocity(new Vector(0.0f, 1000.0f));
+			balloon.adjustVelocity(new Vector(0.0f, 1000.0f));
+			balloon.adjustVelocity(new Vector(0.0f, 1000.0f));
+			balloon.adjustVelocity(new Vector(0.0f, 1000.0f));
+			balloon.adjustVelocity(new Vector(0.0f, 1000.0f));
+			balloon.adjustVelocity(new Vector(0.0f, 1000.0f));
 		}
 		
 	}
