@@ -37,10 +37,15 @@ public class TestBench extends AbstractDemo {
 	//	ground.setRotation(.4f);
 		world.add(ground);
 
+		// light
+		Body lamp = new StaticBody("lamp", new Box(30.0f, 45.0f));
+		lamp.setPosition(370.0f, 200.0f);
+		world.add(lamp);
+		
 		//pin
-		Body pin = new StaticBody("Pin", new Box(2.5f, 15.0f));
-		pin.setPosition(370.0f, 200.0f);
-		world.add(pin);
+//		Body pin = new StaticBody("Pin", new Box(2.5f, 15.0f));
+//		pin.setPosition(370.0f, 200.0f);
+//		world.add(pin);
 		
 		// Blockade
 //		Body blockade = new StaticBody("blockade", new Box(300.0f, 20.0f));
