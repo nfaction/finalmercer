@@ -14,29 +14,45 @@ import engine.shapes.*;
 import engine.vector.Vector;
 import entities.*;
 import enums.EType;
+import graphics.Data;
+import graphics.SandboxPanel;
 
 public class Model extends Observable implements Serializable {
 	/** The world containing the physics model */
-
+	private static Model single;
 	protected static float gravity = 10.00f;
 	protected static World world = World.createWorld(new Vector(0.0f, gravity),
 			10, new Strategy(1, 5));
 
 	private ArrayList<Entities> objList = new ArrayList<Entities>();
 	private ArrayList<Entities> saveObjList = new ArrayList<Entities>();
-	private int maxY;
-	private int maxX;
+	private static int maxY;
+	private static int maxX;
 	private boolean playedBaloonSound = false;
-	private CollisionListenerImpl collisionListenerImpl = new CollisionListenerImpl();
+	private static CollisionListenerImpl collisionListenerImpl = new CollisionListenerImpl();
 
-	public Model(int maxX, int maxY) {
-		this.maxX = maxX;
-		this.maxY = maxY;
-		initWorld();
-		world.addListener(collisionListenerImpl);
+	
+	public static Model getObj(int maxX, int maxY) {
+		if (single == null) {
+			single = new Model(maxX, maxY);
+			initWorld();
+			world.addListener(collisionListenerImpl);
+			maxX = maxX;
+			maxY = maxY;
+		}
+		return single;
+
+	}
+	
+	public World getWorld(){
+		return world;
+	}
+	
+	private Model(int maxX, int maxY) {
+		
 	}
 
-	private void initWorld() {
+	private static void initWorld() {
 		world.clear();
 		world.setGravity(0, 0);
 		Body ground = new StaticBody("Ground", new Box(maxX, 5.0f));
@@ -138,7 +154,17 @@ public class Model extends Observable implements Serializable {
 		// updates all the objects
 		for (int i = 0; i < this.objList.size(); i++) {
 			this.objList.get(i).upDate();
+			if(this.objList.get(i).getObjType()== EType.Switch){
+				if(this.objList.get(i).getState()== 1){
+					for (int j = 0; j < this.objList.size(); j++) {
+						if(this.objList.get(i).getObjType()== EType.moter){
+							this.objList.get(i).setState(1);
+						}
+					}
+				}
+			}
 			this.notifyObservers();
+			
 		}
 	}
 
@@ -205,16 +231,19 @@ public class Model extends Observable implements Serializable {
 
 	}
 	
-	public void setStatesForBatteryObjs(){
+	public void setStatesForBatteryObjs(String objToLookAt, String ObjToLookFor1,String ObjToLookFor2,String ObjToLookFor3){
 		//find each battery and then look for each object around them
 		for (int i = 0; i < objList.size(); i++)
-			if(this.objList.get(i).toString().equalsIgnoreCase("battery")){
+			if(this.objList.get(i).toString().equalsIgnoreCase(ObjToLookFor1)){
 			
 				for (int j = 0; j < objList.size(); j++){
 					if(isOverlapTopLeft(this.objList.get(i),this.objList.get(j)) ||
 					isOverlapTopRight(this.objList.get(i),this.objList.get(j))	||
 					isOverlapBottomRight(this.objList.get(i),this.objList.get(j)) ||
 					isOverlapBottomLeft(this.objList.get(i),this.objList.get(j))){
+						if(this.objList.get(j).toString().equalsIgnoreCase(ObjToLookFor1)){
+							
+						}
 						this.objList.get(i).setState(1);
 						this.objList.get(j).setState(1);
 						
