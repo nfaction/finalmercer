@@ -31,8 +31,8 @@ import enums.EType;
 
 public class SandboxPanel extends JPanel implements Observer,
 		MouseMotionListener, MouseListener, Runnable {
-	protected static final int sandboxShiftX = 365;
-	protected static final int sandboxShiftY = 13;
+	protected static final int sandboxShiftX = 405;
+	protected static final int sandboxShiftY = 12;
 	protected static final int toolboxShiftX = 19;
 	protected static final int toolboxShiftY = 20;
 	private int xsize;
@@ -55,7 +55,7 @@ public class SandboxPanel extends JPanel implements Observer,
 
 	public SandboxPanel(Model m, int xsize, int ysize) {
 		info = Data.getObj();
-		this.model = m.getObj(xsize, ysize);
+		this.model = new Model(xsize, ysize);
 		this.xsize = xsize;
 		this.ysize = ysize;
 		this.setLayout(null);
@@ -119,8 +119,9 @@ public class SandboxPanel extends JPanel implements Observer,
 		if (entitiesIter.hasNext()) {
 			while (entitiesIter.hasNext()) {
 				Entities ent = entitiesIter.next();
-				int upperx = (int) ent.getUpperX() + sandboxShiftX;
+				int upperx = (int) ent.getUpperX() + sandboxShiftX+28;
 				int uppery = (int) ent.getUpperY() + sandboxShiftY;
+				System.out.println("upperx = " + upperx);
 				o.drawImage(ent.getSpriteImage(), upperx, uppery, this);
 			}
 		}
@@ -132,7 +133,7 @@ public class SandboxPanel extends JPanel implements Observer,
 	public void mousePressed(MouseEvent arg0) {
 		newX = arg0.getX();
 		newY = arg0.getY();
-
+		System.out.println("newX = " + newX);
 		// Code for each type of object in toolbox
 		if (newX < sandboxShiftX) {
 			for (int i = 0; i < info.length(); i++) {
