@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class MainMenuPanel extends JPanel{
 
 	static Image rubeG;
-	JLabel intro = new JLabel("Please select and option: ");
+	JLabel intro = new JLabel("To start, go to File, then Start!");
 	JButton startB = new JButton("Start");
 	JButton scenarioB = new JButton("Scenarios");
 	JButton optionB = new JButton("Options");
@@ -44,8 +44,8 @@ public class MainMenuPanel extends JPanel{
 		this.setSize(950, 500);
 		this.setLocation(0,0);
 		
-//		intro.setSize(250, 20);
-//		intro.setLocation(365, 100);
+		intro.setSize(250, 20);
+		intro.setLocation(365, 100);
 //		
 //		startB.setSize(150, 40);
 //		startB.setLocation(400, 200);
@@ -56,7 +56,7 @@ public class MainMenuPanel extends JPanel{
 //		optionB.setSize(150, 40);
 //		optionB.setLocation(400, 300);
 //		
-//		this.add(intro);
+		this.add(intro);
 //		this.add(startB);
 //		this.add(scenarioB);
 //		this.add(optionB);
@@ -64,6 +64,6 @@ public class MainMenuPanel extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D o = (Graphics2D) g;
-		o.drawImage(rubeG, this.getWidth()/2 - 317, this.getHeight()/2 - 127,  this);
+		o.drawImage(rubeG, 158, 123,  this);
 	}
 }
