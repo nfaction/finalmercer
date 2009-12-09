@@ -29,7 +29,7 @@ public class ConveyorBelt extends Entities {
 		super(EType.conveyorBelt);
 		if (staticSprites == null)
 			staticSprites = utils.splitImage(utils
-					.loadImage("Images/conveyorBeltSpriteSheet.png"), 1, 10);
+					.loadImage("Images/conveyorBeltSpriteSheet.png"), 1, 4);
 		sprite = staticSprites;
 		this.spritePos = 0;
 		initLeftWheel();
