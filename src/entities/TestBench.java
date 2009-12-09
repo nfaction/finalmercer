@@ -3,6 +3,7 @@ package entities;
 import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Box;
+import engine.shapes.Circle;
 import engine.shapes.StaticBody;
 import engine.test.AbstractDemo;
 
@@ -38,6 +39,18 @@ public class TestBench extends AbstractDemo {
 	//	ground.setRotation(.4f);
 //		world.add(ground);
 
+		// HorizontalRubberWall
+		Body hRubberWall = new StaticBody("rHorzWall", new Box(125.0f, 10.0f));
+		hRubberWall.setPosition(150.0f, 250.0f);
+		hRubberWall.setRestitution(3.0f);
+		world.add(hRubberWall);
+		
+		// VerticalRubberWall
+		Body vRubberWall = new StaticBody("rVertWall", new Box(10.0f, 125.0f));
+		vRubberWall.setPosition(150.0f, 250.0f);
+		vRubberWall.setRestitution(3.0f);
+		world.add(vRubberWall);
+		
 		// HorizontalCementWall
 //		Body hCementWall = new StaticBody("cHorzWall", new Box(125.0f, 10.0f));
 //		hCementWall.setPosition(200.0f, 250.0f);
@@ -87,12 +100,12 @@ public class TestBench extends AbstractDemo {
 //		world.add(blockade);
 
 		// Bowling Ball
-		// Body bowlingBall = new Body("Bowling Ball", new Circle(15.0f),
-		// 16.0f);
-		// bowlingBall.setPosition(100.0f, 200.0f);
-		// bowlingBall.setRestitution(.5f);
-		// bowlingBall.setDamping(.01f);
-		// world.add(bowlingBall);
+		 Body bowlingBall = new Body("Bowling Ball", new Circle(15.0f),
+		 16.0f);
+		 bowlingBall.setPosition(100.0f, 200.0f);
+		 bowlingBall.setRestitution(.5f);
+		 bowlingBall.setDamping(.01f);
+		 world.add(bowlingBall);
 
 		// Ping-Pong Ball
 		/*
