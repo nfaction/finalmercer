@@ -16,7 +16,7 @@ public class Rocket extends Entities {
 	public Rocket() {
 		super(EType.rocket);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/rocket.gif"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/rocket.gif"), 1, 1);
 		sprite = staticSprites;
 		rocket = new Body("rocket", new Box(30.0f, 65.0f), .5f);
 		rocket.setGravityEffected(false);
