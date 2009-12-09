@@ -12,14 +12,9 @@ import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
 import engine.vector.Vector;
-import entities.AbstractGear;
 import entities.Balloon;
-import entities.BasketBall;
-import entities.LeftRamp;
-import entities.Light;
-import entities.RightRamp;
-import entities.StraightRamp;
-import entities.Tack;
+import entities.Rock;
+import entities.Switch;
 
 /**
  * Lines terrain testing extensive
@@ -171,8 +166,14 @@ public class Demo {
 //		newBalloon = new Balloon();
 //		newBalloon.addObj(world, 270, 450);
 		
-		Light l = new Light();
-		l.addObj(world, 270, 400);
+//		Light l = new Light();
+//		l.addObj(world, 270, 400);
+		
+//		Switch s = new Switch();
+//		s.addObj(world, 270, 400);
+		
+		Rock r = new Rock();
+		r.addObj(world, 270, 400);
 	}
 
 	/**
