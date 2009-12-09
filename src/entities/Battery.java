@@ -20,7 +20,7 @@ public class Battery extends Entities {
 					.loadImage("Images/Battery.gif"), 1, 1);
 			staticSprites = new BufferedImage[2];
 			staticSprites[0] = utils.loadImage("Images/battery.gif");
-			staticSprites[1] = utils.loadImage("Images/batteryON.gif");
+			staticSprites[1] = utils.loadTranslucentImage(utils.loadImage("Images/batteryON.gif"), .5f);
 		}
 		
 		sprite = staticSprites;
