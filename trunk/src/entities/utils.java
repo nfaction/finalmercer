@@ -93,7 +93,7 @@ public class utils {
 		int w = img.getWidth() / cols;
 		int h = img.getHeight() / rows;
 		int num = 0;
-		BufferedImage imgs[] = new BufferedImage[w * h];
+		BufferedImage imgs[] = new BufferedImage[rows*cols];
 		for (int y = 0; y < rows; y++) {
 			for (int x = 0; x < cols; x++) {
 				imgs[num] = new BufferedImage(w, h, img.getType());
