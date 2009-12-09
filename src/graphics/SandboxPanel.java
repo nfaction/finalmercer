@@ -31,10 +31,10 @@ import enums.EType;
 
 public class SandboxPanel extends JPanel implements Observer,
 		MouseMotionListener, MouseListener, Runnable {
-	protected static final int sandboxShiftX = 380;
-	protected static final int sandboxShiftY = 12;
-	protected static final int toolboxShiftX = 19;
-	protected static final int toolboxShiftY = 20;
+	protected static final int sandboxShiftX = 390;
+	protected static final int sandboxShiftY = 10;
+	protected static final int toolboxShiftX = 20;
+	protected static final int toolboxShiftY = 10;
 	private int xsize;
 	private int ysize;
 
@@ -61,8 +61,8 @@ public class SandboxPanel extends JPanel implements Observer,
 		this.setSize(950, 600);
 		this.setLocation(0, 0);
 		// this.setBackground(Color.BLACK);
-		start.setSize(125, 30);
-		start.setLocation(800, 10);
+		start.setSize(75, 30);
+		start.setLocation(390 - 78, 10);
 		this.add(start);
 		registerListeners();
 		try {
@@ -100,7 +100,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		temp = model.getObjList();
 
 		o.drawImage(toolbox, 10, 10, this);
-		o.drawImage(sandbox, 350, 10, this);
+		o.drawImage(sandbox, 390, 10, this);
 
 		for (int i = 0; i < info.length(); i++) {
 			EType temp = info.intToEType(i);
