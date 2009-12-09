@@ -11,5 +11,4 @@ public class PowerGear extends AbstractGear {
 		super.upDate();
 		wheel.adjustAngularVelocity(.1f);
 	}
-
 }
