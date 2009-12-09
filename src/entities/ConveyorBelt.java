@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import engine.*;
@@ -19,20 +20,26 @@ public class ConveyorBelt extends Entities {
 	private float xPos;
 	private float yPos;
 	private float speed;
+	private int spritePos;
+	private int count;
 
 	private static BufferedImage[] staticSprites;
+
 	public ConveyorBelt() {
 		super(EType.conveyorBelt);
-		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+		if (staticSprites == null)
+			staticSprites = utils.splitImage(utils
+					.loadImage("Images/conveyorBeltSpriteSheet.png"), 1, 10);
 		sprite = staticSprites;
-		
+		this.spritePos = 0;
 		initLeftWheel();
 		initRightWheel();
 		initbox();
 		initBelt();
-		speed = 1f;
+		speed = 2f;
 		setImagePath("Images/ConveyorBelt.gif");
+		state = 1;
+		count = 0;
 	}
 
 	public ConveyorBelt(float newSpeed) {
@@ -121,8 +128,12 @@ public class ConveyorBelt extends Entities {
 	@Override
 	public void upDate() {
 		super.upDate();
+		float mod;
+		if (state == 2)
+			mod = -1f;
+		mod = state;
 		for (int i = 0; i < 20; i++) {
-			belt[i].setForce(speed, 0);
+			belt[i].setForce(speed * mod, 0);
 			if (belt[i].getPosition().getX() > this.xPos + 55
 					|| belt[i].getPosition().getX() < this.xPos - 55
 					|| belt[i].getPosition().getY() > this.yPos - 10
@@ -142,5 +153,19 @@ public class ConveyorBelt extends Entities {
 		i += this.rightWheel.getTouchingCount() - 1;
 		i += this.box.getTouchingCount() - 2;
 		return i;
+	}
+
+	public BufferedImage getSpriteImage() {
+		if (state == 1) {
+			if (count > 20) {
+				spritePos++;
+				if (spritePos > 3)
+					spritePos = 1;
+				count = 0;
+			}
+			count++;
+			return utils.makeColorTransparent(sprite[this.spritePos], Color.black);
+		}
+		return utils.makeColorTransparent(sprite[0], Color.black);
 	}
 }

@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import engine.World;
@@ -20,30 +21,28 @@ public class AbstractGear extends Entities {
 	
 	private float factor = 3f;
 	
-	public AbstractGear() {
-		super(EType.gear);
-		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/abstractGearSpriteSheet.png"), 3, 3);
-		sprite = staticSprites;
+	public AbstractGear(EType e) {
+		super(e);
 		init();
 	}
 	
-	public AbstractGear(float newFactor){
-		super(EType.gear);
+	public AbstractGear(EType e, float newFactor){
+		super(e);
 		factor = newFactor;
 		init();
-		setImagePath("Images/abstractGear.gif");
 	}
 	
-	public AbstractGear(float newFactor, float rotation ){
-		super(EType.gear);
+	public AbstractGear(EType e, float newFactor, float rotation ){
+		super(e);
 		factor = newFactor;
 		init();
 		wheel.adjustAngularVelocity(rotation);
-		setImagePath("Images/abstractGear.gif");
 	}
 
 	private void init() {
+		if(staticSprites == null )
+			staticSprites = utils.splitImage(utils.loadImage("Images/abstractGearSpriteSheet.png"), 3, 3);
+		sprite = staticSprites;
 		wheel = new Body(new Circle(6f*factor), 2);
 		wheel.setMoveable(false);
 		teeth = new Body[8];
@@ -94,14 +93,12 @@ public class AbstractGear extends Entities {
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return wheel.getPosition().getX();
 	}
 
 	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return wheel.getPosition().getY();
 	}
 
 	@Override
@@ -119,4 +116,16 @@ public class AbstractGear extends Entities {
 	public int gettouchingBodies() {
 		return this.wheel.getTouchingCount() - 8;
 	}
+
+	public BufferedImage getSpriteImage() {
+		float rotation = wheel.getRotation();
+		rotation = rotation % (2f * (new Float(Math.PI)));
+
+		BufferedImage temp = sprite[0];
+		temp = utils.rotate(temp, rotation);
+		temp = utils.makeColorTransparent(temp, Color.black);
+		return temp;
+
+	}
+
 }
