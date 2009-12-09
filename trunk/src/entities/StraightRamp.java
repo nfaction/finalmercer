@@ -17,7 +17,7 @@ public class StraightRamp extends Entities {
 	public StraightRamp() {
 		super(EType.straightRamp);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/BasketBallSpriteSheet.png"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/StraightRamp.gif"), 1, 1);
 		sprite = staticSprites;
 
 	
