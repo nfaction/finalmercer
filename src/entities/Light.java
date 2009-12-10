@@ -11,6 +11,7 @@ import enums.EType;
 public class Light extends Entities {
 
 	private Body light;
+	private boolean field = false;
 	private static BufferedImage[] staticSprites;
 	
 	public Light() {
@@ -50,6 +51,15 @@ public class Light extends Entities {
 	public void removeObj(World world) {
 
 		world.remove(light);
+	}
+	
+	public boolean inField(){
+		
+		return field;
+	}
+	
+	public void setField(boolean b) {
+		field = b;
 	}
 
 }
