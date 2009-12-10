@@ -10,14 +10,25 @@ import enums.EType;
 public class StickMan extends Entities{
 	
 	private Body man;
+	private Body body;
+	private Body bottom;
+	private Body side;
+	
+	
 	private static BufferedImage[] staticSprites;
 	
 	public StickMan(){
 		super(EType.stickMan);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/stickManSpriteSheet"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/stickManSpriteSheet.gif"), 8, 1);
 		sprite = staticSprites;
 		man = new Body("man", new Box(10,20), 10f);
+		init();
+	}
+
+	private void init() {
+		
+		
 	}
 
 	@Override
@@ -47,5 +58,14 @@ public class StickMan extends Entities{
 	public int gettouchingBodies() {
 		return this.man.getTouchingCount();
 	}
+	
+	@Override
+	public void upDate() {
+		super.upDate();
+	
+		
+		
+	}
+	
 
 }
