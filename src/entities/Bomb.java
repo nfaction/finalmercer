@@ -47,10 +47,22 @@ public class Bomb extends Entities {
 		if (gettouchingBodies() > 0) {
 			state = 1;
 		}
+			super.upDate();
+			if (gettouchingBodies() > 0 && soundCount > 20){
+				mySoundPlayer.play(baseDir + "bomb.wav");
+				soundCount = 0;
+			}
+			soundCount++;
+			if(gettouchingBodies() > 0){
+				soundCount = 0;
+			
+		
+	}
 	}
 	
 	@Override
 	public int gettouchingBodies() {
 		return this.bomb.getTouchingCount();
 	}
+	
 }

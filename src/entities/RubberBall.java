@@ -49,4 +49,16 @@ public class RubberBall extends Entities{
 	public int gettouchingBodies() {
 		return this.rubberBall.getTouchingCount();
 	}
+	
+	public void upDate(){
+		super.upDate();
+		if (gettouchingBodies() > 0 && soundCount > 20){
+			mySoundPlayer.play(baseDir + "Boingey.wav");
+			soundCount = 0;
+		}
+		soundCount++;
+		if(gettouchingBodies() > 0){
+			soundCount = 0;
+		}
+	}
 }
