@@ -14,7 +14,7 @@ public class Bomb extends Entities {
 	public Bomb(){
 		super(EType.bomb);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/bombSpriteSheet.gif"), 5, 5);
 		sprite = staticSprites;
 		bomb = new Body("bomb", new Box(10,20), 10f);
 	}

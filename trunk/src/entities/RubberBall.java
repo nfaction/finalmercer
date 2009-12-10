@@ -14,7 +14,7 @@ public class RubberBall extends Entities{
 	public RubberBall(){
 		super(EType.rubberBall);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/rubberBall.gif"), 5, 5);
 		sprite = staticSprites;
 		rubberBall = new Body("rubberBall", new Box(10,20), 10f);
 	}
