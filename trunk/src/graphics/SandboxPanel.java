@@ -158,19 +158,16 @@ public class SandboxPanel extends JPanel implements Observer,
 			EType mover = info.whoIsMoving();
 			newX -= sandboxShiftX;
 			newY += sandboxShiftY;
-			System.out.println("Mouse clicked at x = " + newX + " y = " + newY);
 			if (info.anyHasMoved()) {
 				//EType mover = info.whoIsMoving();
 				if (model.addObjToBoard(mover, newX,
 						newY)) {
 					info.setMoved(mover, false);
-					System.out.println(mover + " = true at location x = " + (newX - info.getXLENGTH(mover)) + " y = " + (newY - info.getYLENGTH(mover)));
 				}
 			}
 			else if(model.getObjAtLocatedAt(newX,newY)){
 				EType temp = model.removeObjFromBoardAtLocated(newX,newY);
 				info.setMoved(temp, true);
-				System.out.println("Removed after clicked!");
 				
 			}
 			}
