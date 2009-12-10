@@ -150,6 +150,14 @@ public class Model extends Observable {
 			newEntity = new VCementWall();
 			
 		}
+		else if (objType.equals(EType.hRWall)) {
+			newEntity = new HRubberWall();
+			
+		}
+		else if (objType.equals(EType.vRWall)) {
+			newEntity = new VRubberWall();
+			
+		}
 
 		else if (objType.equals(EType.Switch)) {
 			newEntity = new Switch();
