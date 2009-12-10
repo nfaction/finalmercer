@@ -14,7 +14,7 @@ public class Poop extends Entities{
 	public Poop(){
 		super(EType.poop);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/poopSpriteSheet"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/poopSpriteSheet.gif"), 2, 1);
 		sprite = staticSprites;
 		poop = new Body("poop", new Box(10,20), 10f);
 	}
@@ -45,5 +45,17 @@ public class Poop extends Entities{
 	@Override
 	public int gettouchingBodies() {
 		return this.poop.getTouchingCount();
+	}
+	
+	public void upDate(){
+		super.upDate();
+		if (gettouchingBodies() > 0 && soundCount > 20){
+			mySoundPlayer.play(baseDir + "fart.wav");
+			soundCount = 0;
+		}
+		soundCount++;
+		if(gettouchingBodies() > 0){
+			soundCount = 0;
+		}
 	}
 }
