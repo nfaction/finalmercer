@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import engine.World;
 import entities.Entities;
 
 public abstract class AbstractState implements Serializable {
@@ -11,6 +12,8 @@ public abstract class AbstractState implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7552510714241154656L;
+	public static ArrayList<Float> x = new ArrayList<Float>();
+	public static ArrayList<Float> y = new ArrayList<Float>();
 
 	public AbstractState() {
 	}
@@ -53,5 +56,7 @@ public abstract class AbstractState implements Serializable {
 	public abstract ArrayList<Entities> getList();
 	
 	public abstract void set(AbstractState list) ;
+	
+	public abstract void reset(World world);
 	
 }
