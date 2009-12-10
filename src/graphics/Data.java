@@ -168,8 +168,8 @@ public class Data {
 		imageX[getLocation(EType.poop)] = 2 + toolboxShiftX;
 		imageY[getLocation(EType.poop)] = 380 + toolboxShiftY;
 		
-		imageX[getLocation(EType.rubberBall)] = 120 + toolboxShiftX;
-		imageY[getLocation(EType.rubberBall)] = 145 + toolboxShiftY;
+		imageX[getLocation(EType.rubberBall)] = 140 + toolboxShiftX;
+		imageY[getLocation(EType.rubberBall)] = 130 + toolboxShiftY;
 		
 		imageX[getLocation(EType.stickMan)] = 50 + toolboxShiftX;
 		imageY[getLocation(EType.stickMan)] = 465 + toolboxShiftY;
