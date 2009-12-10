@@ -30,15 +30,26 @@ public class ConveyorBelt extends Entities {
 		if (staticSprites == null)
 			staticSprites = utils.splitImage(utils
 					.loadImage("Images/conveyorBeltSpriteSheet.png"), 1, 4);
-		sprite = staticSprites;
+		sprite = new BufferedImage[7];
+		sprite[0] = utils.makeColorTransparent(staticSprites[0], Color.black);
+		sprite[1] = utils.makeColorTransparent(staticSprites[1], Color.black);
+		sprite[2] = utils.makeColorTransparent(staticSprites[2], Color.black);
+		sprite[3] = utils.makeColorTransparent(staticSprites[3], Color.black);
+		sprite[4] = utils.makeColorTransparent(utils
+				.horizontalflip(staticSprites[1]), Color.black);
+		sprite[5] = utils.makeColorTransparent(utils
+				.horizontalflip(staticSprites[2]), Color.black);
+		sprite[6] = utils.makeColorTransparent(utils
+				.horizontalflip(staticSprites[3]), Color.black);
+
 		this.spritePos = 0;
 		initLeftWheel();
 		initRightWheel();
 		initbox();
 		initBelt();
-		speed = 2f;
+		speed = 3f;
 		setImagePath("Images/ConveyorBelt.gif");
-		state = 1;
+		state = 5;
 		count = 0;
 	}
 
@@ -128,18 +139,30 @@ public class ConveyorBelt extends Entities {
 	@Override
 	public void upDate() {
 		super.upDate();
-		float mod;
-		if (state == 2)
-			mod = -1f;
-		mod = state;
-		for (int i = 0; i < 20; i++) {
-			belt[i].setForce(speed * mod, 0);
-			if (belt[i].getPosition().getX() > this.xPos + 55
-					|| belt[i].getPosition().getX() < this.xPos - 55
-					|| belt[i].getPosition().getY() > this.yPos - 10
-					|| belt[i].getPosition().getY() < this.yPos - 12) {
-				belt[i].setPosition(this.xPos - 45, this.yPos - 11);
+		if (state >= 1 && 3 >= state) {
+			for (int i = 0; i < 20; i++) {
+				belt[i].setForce(speed, 0);
+				if (belt[i].getPosition().getX() > this.xPos + 55
+						|| belt[i].getPosition().getX() < this.xPos - 55
+						|| belt[i].getPosition().getY() > this.yPos - 10
+						|| belt[i].getPosition().getY() < this.yPos - 12) {
+					belt[i].setPosition(this.xPos - 45, this.yPos - 11);
+				}
+
 			}
+
+		} else if (state >= 4 && 6 >= state) {
+			for (int i = 0; i < 20; i++) {
+				belt[i].setForce(-speed, 0);
+				if (belt[i].getPosition().getX() > this.xPos + 55
+						|| belt[i].getPosition().getX() < this.xPos - 55
+						|| belt[i].getPosition().getY() > this.yPos - 10
+						|| belt[i].getPosition().getY() < this.yPos - 12) {
+					belt[i].setPosition(this.xPos + 45, this.yPos - 11);
+				}
+			}
+
+		} else {
 
 		}
 
@@ -156,7 +179,7 @@ public class ConveyorBelt extends Entities {
 	}
 
 	public BufferedImage getSpriteImage() {
-		if (state == 1) {
+		if (state >= 1 && 3 >= state) {
 			if (count > 20) {
 				spritePos++;
 				if (spritePos > 3)
@@ -164,8 +187,20 @@ public class ConveyorBelt extends Entities {
 				count = 0;
 			}
 			count++;
-			return utils.makeColorTransparent(sprite[this.spritePos], Color.black);
+			return sprite[this.spritePos];
+		} else if (state >= 4 && 6 >= state) {
+			if(spritePos<4)
+				spritePos = 4;
+			if (count > 20) {
+				spritePos++;
+				if (spritePos > 6)
+					spritePos = 4;
+				count = 0;
+			}
+			count++;
+			return sprite[this.spritePos];
+		} else {
+			return sprite[0];
 		}
-		return utils.makeColorTransparent(sprite[0], Color.black);
 	}
 }
