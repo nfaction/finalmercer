@@ -70,9 +70,14 @@ public class MainGUI extends JFrame{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		window = new MainGUI();
-		window.setTitle("Rube Goldburg Machine");
-		window.setVisible(true);
+		try {
+			window = new MainGUI();
+			window.setTitle("Rube Goldburg Machine");
+			window.setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
