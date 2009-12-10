@@ -11,9 +11,11 @@ import engine.shapes.Body;
 import engine.shapes.Box;
 import engine.shapes.Circle;
 import engine.shapes.Line;
+import engine.shapes.StaticBody;
 import engine.vector.Vector;
 import entities.Balloon;
 import entities.Rocket;
+import entities.RubberBall;
 
 /**
  * Lines terrain testing extensive
@@ -106,26 +108,26 @@ public class Demo {
 	}
 
 	protected void init(World world) {
-//		Body land = new StaticBody("Line1", new Line(100, 50));
-//		land.setPosition(150, 150);
-//		land.setRestitution(1f);
-//		world.add(land);
-//		land = new StaticBody("Line2", new Line(150, -75));
-//		land.setPosition(250, 300);
-//		land.setRestitution(1f);
-//		world.add(land);
-//		land = new StaticBody("Line3", new Line(150, 75));
-//		land.setPosition(100, 350);
-//		land.setRestitution(1f);
-//		world.add(land);
-//		land = new StaticBody("Line4", new Line(150, 0));
-//		land.setPosition(300, 450);
-//		land.setRestitution(1f);
-//		world.add(land);
-//		land = new StaticBody("Floor", new Line(494, 0));
-//		land.setPosition(5, 475);
-//		land.setRestitution(1f);
-//		world.add(land);
+		Body land = new StaticBody("Line1", new Line(100, 50));
+		land.setPosition(150, 150);
+		land.setRestitution(1f);
+		world.add(land);
+		land = new StaticBody("Line2", new Line(150, -75));
+		land.setPosition(250, 300);
+		land.setRestitution(1f);
+		world.add(land);
+		land = new StaticBody("Line3", new Line(150, 75));
+		land.setPosition(100, 350);
+		land.setRestitution(1f);
+		world.add(land);
+		land = new StaticBody("Line4", new Line(150, 0));
+		land.setPosition(300, 450);
+		land.setRestitution(1f);
+		world.add(land);
+		land = new StaticBody("Floor", new Line(494, 0));
+		land.setPosition(5, 475);
+		land.setRestitution(1f);
+		world.add(land);
 //		land = new StaticBody("LWall", new Line(0, -475));
 //		land.setPosition(5, 475);
 //		land.setRestitution(1f);
@@ -148,8 +150,8 @@ public class Demo {
 //		StraightRamp newGround3 = new StraightRamp();
 //		newGround3.addObj(world, 150, 130);
 		
-//		BasketBall newEntity = new BasketBall();
-//		newEntity.addObj(world, 200, 50);
+		RubberBall newEntity = new RubberBall();
+		newEntity.addObj(world, 200, 50);
 		
 //		AbstractGear g = new AbstractGear(null);
 //		g.addObj(world, 200, 300);
@@ -175,8 +177,8 @@ public class Demo {
 //		Rock r = new Rock();
 //		r.addObj(world, 270, 400);
 		
-		rckt = new Rocket();
-		rckt.addObj(world, 270, 400);
+//		rckt = new Rocket();
+//		rckt.addObj(world, 270, 400);
 	}
 
 	/**

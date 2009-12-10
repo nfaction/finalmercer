@@ -89,9 +89,28 @@ public class SandboxPanel extends JPanel implements Observer,
 	 * This method registers all the listeners.
 	 */
 	private void registerListeners() {
+		lr.addActionListener(new UserClick());
+		sr.addActionListener(new UserClick());
+		rr.addActionListener(new UserClick());
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 		start.addActionListener(new startButtonListener());
+	}
+
+	public class UserClick implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			
+			if(e.getSource() == lr) {
+				info.setMoved(EType.leftRamp, true);
+			}
+			if(e.getSource() == sr) {
+				info.setMoved(EType.straightRamp, true);
+			}
+			if(e.getSource() == rr) {
+				info.setMoved(EType.rightRamp, true);
+			}
+		}
 	}
 
 	/**
@@ -102,8 +121,6 @@ public class SandboxPanel extends JPanel implements Observer,
 		run.start();
 	}
 
-	
-	
 	/**
 	 * This method paints all objects onto this panel.
 	 */
@@ -131,7 +148,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		if (entitiesIter.hasNext()) {
 			while (entitiesIter.hasNext()) {
 				Entities ent = entitiesIter.next();
-				int upperx = (int) ent.getUpperX() + sandboxShiftX ;
+				int upperx = (int) ent.getUpperX() + sandboxShiftX;
 				int uppery = (int) ent.getUpperY() + sandboxShiftY;
 				o.drawImage(ent.getSpriteImage(), upperx, uppery, this);
 			}
@@ -146,7 +163,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		newY = arg0.getY();
 		System.out.println("newX = " + newX);
 		// Code for each type of object in toolbox
-		if (newX < sandboxShiftX){// && !model.getStarted()) {
+		if (newX < sandboxShiftX) {// && !model.getStarted()) {
 			if (info.anyHasMoved()) {
 				System.out.println("set down");
 				EType toRemove = info.whoIsMoving();
@@ -171,21 +188,17 @@ public class SandboxPanel extends JPanel implements Observer,
 			newX -= sandboxShiftX;
 			newY += sandboxShiftY;
 			if (info.anyHasMoved()) {
-				//EType mover = info.whoIsMoving();
-				if (model.addObjToBoard(mover, newX,
-						newY)) {
+				// EType mover = info.whoIsMoving();
+				if (model.addObjToBoard(mover, newX, newY)) {
 					info.setMoved(mover, false);
 				}
-			}
-			else if(model.getObjAtLocatedAt(newX,newY)){
-				EType temp = model.removeObjFromBoardAtLocated(newX,newY);
+			} else if (model.getObjAtLocatedAt(newX, newY)) {
+				EType temp = model.removeObjFromBoardAtLocated(newX, newY);
 				info.setMoved(temp, true);
-				
-			}
+
 			}
 		}
-
-	
+	}
 
 	/**
 	 * This method gets the position of the mouse and allows for select-ability

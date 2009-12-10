@@ -40,16 +40,16 @@ public class TestBench extends AbstractDemo {
 //		world.add(ground);
 
 		// HorizontalRubberWall
-		Body hRubberWall = new StaticBody("rHorzWall", new Box(125.0f, 10.0f));
-		hRubberWall.setPosition(150.0f, 250.0f);
-		hRubberWall.setRestitution(3.0f);
-		world.add(hRubberWall);
+//		Body hRubberWall = new StaticBody("rHorzWall", new Box(125.0f, 10.0f));
+//		hRubberWall.setPosition(150.0f, 250.0f);
+//		hRubberWall.setRestitution(3.0f);
+//		world.add(hRubberWall);
 		
 		// VerticalRubberWall
-		Body vRubberWall = new StaticBody("rVertWall", new Box(10.0f, 125.0f));
-		vRubberWall.setPosition(150.0f, 250.0f);
-		vRubberWall.setRestitution(3.0f);
-		world.add(vRubberWall);
+//		Body vRubberWall = new StaticBody("rVertWall", new Box(10.0f, 125.0f));
+//		vRubberWall.setPosition(150.0f, 250.0f);
+//		vRubberWall.setRestitution(3.0f);
+//		world.add(vRubberWall);
 		
 		// HorizontalCementWall
 //		Body hCementWall = new StaticBody("cHorzWall", new Box(125.0f, 10.0f));

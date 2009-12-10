@@ -94,7 +94,7 @@ public class MainGUI extends JFrame{
 	 * Sets up the JFrame and master panel
 	 */
 	public void setupJFrameModel(){
-		this.setSize(950, 645);
+		this.setSize(950, 650);
 		this.setLayout(null);
 		this.setLocation(150, 50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,7 +104,7 @@ public class MainGUI extends JFrame{
 		
 		// Sets master panel specifications
 		master.setLayout(null);
-		master.setSize(950, 920);
+		master.setSize(950, 650);
 		master.setLocation(0,0);
 		
 		// Sets up all individual frames
@@ -117,8 +117,8 @@ public class MainGUI extends JFrame{
 		//master.add(main);
 		//master.add(scenario);
 		//master.add(options);
-		master.add(sandbox);
-		//master.add(mmp);
+		//master.add(sandbox);
+		master.add(mmp);
 		cp.add(master);
 	}
 	
