@@ -82,6 +82,4 @@ public class Balloon extends Entities {
 	public int gettouchingBodies() {
 		return this.balloon.getTouchingCount();
 	}
-
-	
 }
