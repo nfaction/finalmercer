@@ -19,6 +19,7 @@ public class RubberBall extends Entities{
 		rubberBall = new Body("rubberBall", new Circle(10.0f), 1.0f);
 		rubberBall.setRestitution(1.0f);
 		rubberBall.setDamping(.001f);	
+		rubberBall.setCanRest(true);
 	}
 
 	@Override
