@@ -3,6 +3,8 @@ package entities;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
+
+import playSounds.PlaySound;
 import engine.World;
 import enums.EType;
 
@@ -22,7 +24,9 @@ public abstract class Entities extends Observable {
 	/** Image for specific object type */
 	private String imagePath;
 	protected BufferedImage[] sprite;	
-
+	protected PlaySound mySoundPlayer = new PlaySound();
+	protected String baseDir = System.getProperty("user.dir")	+ "/sounds/";
+	protected int soundCount = 0;
 
 	/**Basic constructor. Must remember to set all the variables on its own
 	 * @param objType The Object Type
@@ -162,11 +166,11 @@ public abstract class Entities extends Observable {
 	}
 	
 	public int getXLength(){
-		return utils.width(sprite[0])/2;
+		return utils.width(sprite[state])/2;
 	}
 	
 	public int getYLength(){
-		return utils.height(sprite[0])/2;
+		return utils.height(sprite[state])/2;
 	}
 	
 	public String toString(){

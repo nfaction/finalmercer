@@ -2,6 +2,8 @@ package entities;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+
+import playSounds.PlaySound;
 import engine.World;
 import engine.shapes.*;
 import enums.EType;
@@ -59,5 +61,17 @@ public class BasketBall extends Entities {
 		temp = utils.makeColorTransparent(temp, Color.black);
 		return temp;
 
+	}
+	
+	public void upDate(){
+		super.upDate();
+		if (gettouchingBodies() > 0 && soundCount > 20){
+			mySoundPlayer.play(baseDir + "Tap.wav");
+			soundCount = 0;
+		}
+		soundCount++;
+		if(gettouchingBodies() > 0){
+			soundCount = 0;
+		}
 	}
 }

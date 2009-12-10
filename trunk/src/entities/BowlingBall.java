@@ -66,4 +66,15 @@ public strictfp class BowlingBall extends Entities {
 		return temp;
 
 	}
+	public void upDate(){
+		super.upDate();
+		if (gettouchingBodies() > 0 && soundCount > 20){
+			mySoundPlayer.play(baseDir + "BowlingBall.wav");
+			soundCount = 0;
+		}
+		soundCount++;
+		if(gettouchingBodies() > 0){
+			soundCount = 0;
+		}
+	}
 }
