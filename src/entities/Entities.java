@@ -176,6 +176,9 @@ public abstract class Entities extends Observable {
 	public String toString(){
 		return this.objType.toString();
 	}
+	public boolean inField() {
+		return false;
+	}
 
 	public abstract void addObj(World world, float x, float y);
 
