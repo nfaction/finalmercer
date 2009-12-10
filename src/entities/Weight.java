@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import engine.World;
@@ -54,6 +55,18 @@ public class Weight extends Entities{
 		
 		world.remove(weight);
 	}
+	
+	public BufferedImage getSpriteImage() {
+		float rotation = weight.getRotation();
+		rotation = rotation % (2f * (new Float(Math.PI)));
+
+		BufferedImage temp = sprite[0];
+		temp = utils.rotate(temp, rotation);
+		temp = utils.makeColorTransparent(temp, Color.black);
+		return temp;
+
+	}
+	
 
 	public void upDate(){
 		super.upDate();
