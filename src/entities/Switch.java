@@ -21,8 +21,6 @@ public class Switch extends Entities {
 		sprite = staticSprites;
 
 		s = new StaticBody(toString(), new Box(10f, 20f));
-		s.setCanRest(true);
-		s.setRotatable(false);
 	}
 
 	@Override
@@ -35,13 +33,14 @@ public class Switch extends Entities {
 
 	public void upDate() {
 		super.upDate();
-		if(s.isRotatable()){
+		if (gettouchingBodies() > 0) {
 			state = 1;
-		} else {
-			state = 0;
 		}
+
 	}
-	
+
+
+
 	@Override
 	public float getX() {
 		return s.getPosition().getX();
