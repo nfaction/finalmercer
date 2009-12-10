@@ -15,7 +15,7 @@ public class Balloon extends Entities {
 	private int count = 0;
 	
 	public Balloon() {
-		super(EType.balloon, "Images/Balloon.gif");
+		super(EType.balloon);
 		if(staticSprites == null )
 			staticSprites = utils.splitImage(utils.loadImage("Images/balloonSpriteSheet.png"), 5, 5);
 		sprite = staticSprites;
