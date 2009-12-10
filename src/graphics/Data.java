@@ -8,6 +8,7 @@ import entities.ConveyorBelt;
 import entities.Entities;
 import entities.Gear;
 import entities.HCementWall;
+import entities.HRubberWall;
 import entities.LeftRamp;
 import entities.Light;
 import entities.Motor;
@@ -20,6 +21,7 @@ import entities.StraightRamp;
 import entities.Switch;
 import entities.Tack;
 import entities.VCementWall;
+import entities.VRubberWall;
 import entities.Weight;
 import enums.EType;
 
@@ -90,11 +92,13 @@ public class Data {
 		initObjHellper(new PowerGear());
 		initObjHellper(new HCementWall());
 		initObjHellper(new VCementWall());
+		initObjHellper(new HRubberWall());
+		initObjHellper(new VRubberWall());
 		// initObjHellper(new );
 		// initObjHellper(new );
 		// initObjHellper(new );
-
-
+		// initObjHellper(new );
+		// initObjHellper(new );
 	}
 
 	private void initObjHellper(Entities ent) {
@@ -164,6 +168,12 @@ public class Data {
 		
 		imageX[getLocation(EType.vCWall)] = 95 + toolboxShiftX;
 		imageY[getLocation(EType.vCWall)] = 145 + toolboxShiftY;
+
+		imageX[getLocation(EType.hRWall)] = 101 + toolboxShiftX;
+		imageY[getLocation(EType.hRWall)] = 160 + toolboxShiftY;
+		
+		imageX[getLocation(EType.vRWall)] = 120 + toolboxShiftX;
+		imageY[getLocation(EType.vRWall)] = 145 + toolboxShiftY;
 
 
 	}
