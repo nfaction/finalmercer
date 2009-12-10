@@ -108,8 +108,8 @@ public class Data {
 		imageX[getLocation(EType.pingPongBall)] = 195 + toolboxShiftX;
 		imageY[getLocation(EType.pingPongBall)] = 55 + toolboxShiftY;
 
-		//imageX[getLocation(EType.powerGear)] = 0 + toolboxShiftX;
-		//imageY[getLocation(EType.powerGear)] = 200 + toolboxShiftY;
+		imageX[getLocation(EType.powerGear)] = 0 + toolboxShiftX;
+		imageY[getLocation(EType.powerGear)] = 1000 + toolboxShiftY;
 
 		imageX[getLocation(EType.gear)] = 220 + toolboxShiftX;
 		imageY[getLocation(EType.gear)] = 190 + toolboxShiftY;
@@ -120,11 +120,11 @@ public class Data {
 		imageX[getLocation(EType.conveyorBelt)] = 130 + toolboxShiftX;
 		imageY[getLocation(EType.conveyorBelt)] = 95 + toolboxShiftY;
 
-		//imageX[getLocation(EType.leftRamp)] = 20 + toolboxShiftX;
-		//imageY[getLocation(EType.leftRamp)] = 270 + toolboxShiftY;
+		imageX[getLocation(EType.leftRamp)] = 20 + toolboxShiftX;
+		imageY[getLocation(EType.leftRamp)] = 800 + toolboxShiftY;
 		
-		//imageX[getLocation(EType.rightRamp)] = 20 + toolboxShiftX;
-		//imageY[getLocation(EType.rightRamp)] = 80 + toolboxShiftY;
+		imageX[getLocation(EType.rightRamp)] = 20 + toolboxShiftX;
+		imageY[getLocation(EType.rightRamp)] = 800 + toolboxShiftY;
 		
 		imageX[getLocation(EType.tack)] = 70 + toolboxShiftX;
 		imageY[getLocation(EType.tack)] = 160 + toolboxShiftY;
@@ -145,7 +145,7 @@ public class Data {
 		imageY[getLocation(EType.rocket)] = 260 + toolboxShiftY;
 
 		imageX[getLocation(EType.straightRamp)] = 30 + toolboxShiftX;
-		imageY[getLocation(EType.straightRamp)] = 350 + toolboxShiftY;
+		imageY[getLocation(EType.straightRamp)] = 800 + toolboxShiftY;
 		
 		imageX[getLocation(EType.motor)] = 220 + toolboxShiftX;
 		imageY[getLocation(EType.motor)] = 250 + toolboxShiftY;
