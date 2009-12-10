@@ -2,6 +2,7 @@ package states;
 
 import java.util.ArrayList;
 
+import engine.World;
 import entities.Entities;
 
 public class CurrentState extends AbstractState{
@@ -23,10 +24,15 @@ public class CurrentState extends AbstractState{
 	public void set(AbstractState list) {
 		objList.clear();
 		for(int i = 0 ; i < list.size() ; i++){
-			System.out.print(i+",");
 			objList.add(list.get(i));
 		}
 		
 	}
-
+	@Override
+	public void reset(World world) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }
