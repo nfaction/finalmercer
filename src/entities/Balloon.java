@@ -49,6 +49,14 @@ public class Balloon extends Entities {
 	@Override
 	public void upDate() {
 		super.upDate();
+			if (gettouchingBodies() > 0 && soundCount > 20){
+				mySoundPlayer.play(baseDir + "PingPong.wav");
+				soundCount = 0;
+			}
+			soundCount++;
+			if(gettouchingBodies() > 0){
+				soundCount = 0;
+			}
 		
 		if(balloon.isMoveable()){
 		balloon.adjustVelocity(new Vector(0.0f, -1.0f));
@@ -75,4 +83,5 @@ public class Balloon extends Entities {
 		return this.balloon.getTouchingCount();
 	}
 
+	
 }
