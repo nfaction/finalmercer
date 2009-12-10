@@ -66,7 +66,7 @@ public class BasketBall extends Entities {
 	public void upDate(){
 		super.upDate();
 		if (gettouchingBodies() > 0 && soundCount > 20){
-			mySoundPlayer.play(baseDir + "Tap.wav");
+			mySoundPlayer.play(baseDir + "Boink.wav");
 			soundCount = 0;
 		}
 		soundCount++;
