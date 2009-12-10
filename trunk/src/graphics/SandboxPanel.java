@@ -38,6 +38,7 @@ public class SandboxPanel extends JPanel implements Observer,
 	private int xsize;
 	private int ysize;
 
+	private JButton lr = new JButton("");
 	private Image toolbox;
 	private Image sandbox;
 

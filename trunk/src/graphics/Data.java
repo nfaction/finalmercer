@@ -1,28 +1,6 @@
 package graphics;
 
-import entities.Balloon;
-import entities.BasketBall;
-import entities.Battery;
-import entities.BowlingBall;
-import entities.ConveyorBelt;
-import entities.Entities;
-import entities.Gear;
-import entities.HCementWall;
-import entities.HRubberWall;
-import entities.LeftRamp;
-import entities.Light;
-import entities.Motor;
-import entities.PingPongBall;
-import entities.PowerGear;
-import entities.RightRamp;
-import entities.Rock;
-import entities.Rocket;
-import entities.StraightRamp;
-import entities.Switch;
-import entities.Tack;
-import entities.VCementWall;
-import entities.VRubberWall;
-import entities.Weight;
+import entities.*;
 import enums.EType;
 
 import java.awt.Image;
@@ -89,11 +67,17 @@ public class Data {
 		initObjHellper(new RightRamp());
 		initObjHellper(new Motor());
 		initObjHellper(new StraightRamp());
-		initObjHellper(new PowerGear());
+		//initObjHellper(new PowerGear());
 		initObjHellper(new HCementWall());
 		initObjHellper(new VCementWall());
 		initObjHellper(new HRubberWall());
 		initObjHellper(new VRubberWall());
+		initObjHellper(new Bomb());
+		initObjHellper(new Poop());
+		initObjHellper(new Mouse());
+		initObjHellper(new RubberBall());
+		initObjHellper(new StickMan());
+		
 		// initObjHellper(new );
 		// initObjHellper(new );
 		// initObjHellper(new );
@@ -112,70 +96,86 @@ public class Data {
 	}
 
 	private void initImageX_Y() {
-		imageX[getLocation(EType.balloon)] = 20 + toolboxShiftX;
-		imageY[getLocation(EType.balloon)] = 20 + toolboxShiftY;
+		imageX[getLocation(EType.balloon)] = 40 + toolboxShiftX;
+		imageY[getLocation(EType.balloon)] = 40 + toolboxShiftY;
 
-		imageX[getLocation(EType.basketball)] = 75 + toolboxShiftX;
-		imageY[getLocation(EType.basketball)] = 20 + toolboxShiftY;
+		imageX[getLocation(EType.basketball)] = 85 + toolboxShiftX;
+		imageY[getLocation(EType.basketball)] = 40 + toolboxShiftY;
 
 		imageX[getLocation(EType.bowlingball)] = 140 + toolboxShiftX;
-		imageY[getLocation(EType.bowlingball)] = 30 + toolboxShiftY;
+		imageY[getLocation(EType.bowlingball)] = 40 + toolboxShiftY;
 
-		imageX[getLocation(EType.pingPongBall)] = 185 + toolboxShiftX;
-		imageY[getLocation(EType.pingPongBall)] = 40 + toolboxShiftY;
+		imageX[getLocation(EType.pingPongBall)] = 195 + toolboxShiftX;
+		imageY[getLocation(EType.pingPongBall)] = 55 + toolboxShiftY;
 
-		imageX[getLocation(EType.powerGear)] = 0 + toolboxShiftX;
-		imageY[getLocation(EType.powerGear)] = 200 + toolboxShiftY;
+		//imageX[getLocation(EType.powerGear)] = 0 + toolboxShiftX;
+		//imageY[getLocation(EType.powerGear)] = 200 + toolboxShiftY;
 
-		imageX[getLocation(EType.gear)] = 50 + toolboxShiftX;
-		imageY[getLocation(EType.gear)] = 200 + toolboxShiftY;
+		imageX[getLocation(EType.gear)] = 220 + toolboxShiftX;
+		imageY[getLocation(EType.gear)] = 190 + toolboxShiftY;
 		
-		imageX[getLocation(EType.battery)] = 0 + toolboxShiftX;
-		imageY[getLocation(EType.battery)] = 150 + toolboxShiftY;
+		imageX[getLocation(EType.battery)] = 10 + toolboxShiftX;
+		imageY[getLocation(EType.battery)] = 280 + toolboxShiftY;
 
-		imageX[getLocation(EType.conveyorBelt)] = 100 + toolboxShiftX;
-		imageY[getLocation(EType.conveyorBelt)] = 100 + toolboxShiftY;
+		imageX[getLocation(EType.conveyorBelt)] = 130 + toolboxShiftX;
+		imageY[getLocation(EType.conveyorBelt)] = 95 + toolboxShiftY;
 
-		imageX[getLocation(EType.leftRamp)] = 20 + toolboxShiftX;
-		imageY[getLocation(EType.leftRamp)] = 270 + toolboxShiftY;
+		//imageX[getLocation(EType.leftRamp)] = 20 + toolboxShiftX;
+		//imageY[getLocation(EType.leftRamp)] = 270 + toolboxShiftY;
 		
-		imageX[getLocation(EType.tack)] = 130 + toolboxShiftX;
-		imageY[getLocation(EType.tack)] = 200 + toolboxShiftY;
+		//imageX[getLocation(EType.rightRamp)] = 20 + toolboxShiftX;
+		//imageY[getLocation(EType.rightRamp)] = 80 + toolboxShiftY;
 		
-		imageX[getLocation(EType.light)] = 170 + toolboxShiftX;
-		imageY[getLocation(EType.light)] = 200 + toolboxShiftY;
+		imageX[getLocation(EType.tack)] = 70 + toolboxShiftX;
+		imageY[getLocation(EType.tack)] = 160 + toolboxShiftY;
 		
-		imageX[getLocation(EType.weight)] = 170 + toolboxShiftX;
-		imageY[getLocation(EType.weight)] = 325 + toolboxShiftY;
+		imageX[getLocation(EType.light)] = 220 + toolboxShiftX;
+		imageY[getLocation(EType.light)] = 130 + toolboxShiftY;
 		
-		imageX[getLocation(EType.Switch)] = 20 + toolboxShiftX;
-		imageY[getLocation(EType.Switch)] = 450 + toolboxShiftY;
+		imageX[getLocation(EType.weight)] = 180 + toolboxShiftX;
+		imageY[getLocation(EType.weight)] = 315 + toolboxShiftY;
 		
-		imageX[getLocation(EType.rock)] = 20 + toolboxShiftX;
-		imageY[getLocation(EType.rock)] = 450 + toolboxShiftY;
+		imageX[getLocation(EType.Switch)] = 100 + toolboxShiftX;
+		imageY[getLocation(EType.Switch)] = 160 + toolboxShiftY;
 		
-		imageX[getLocation(EType.rocket)] = 150 + toolboxShiftX;
-		imageY[getLocation(EType.rocket)] = 400 + toolboxShiftY;
+		imageX[getLocation(EType.rock)] = 60 + toolboxShiftX;
+		imageY[getLocation(EType.rock)] = 360 + toolboxShiftY;
+		
+		imageX[getLocation(EType.rocket)] = 80 + toolboxShiftX;
+		imageY[getLocation(EType.rocket)] = 260 + toolboxShiftY;
 
-		imageX[getLocation(EType.straightRamp)] = 50 + toolboxShiftX;
-		imageY[getLocation(EType.straightRamp)] = 400 + toolboxShiftY;
+		imageX[getLocation(EType.straightRamp)] = 30 + toolboxShiftX;
+		imageY[getLocation(EType.straightRamp)] = 350 + toolboxShiftY;
 		
-		imageX[getLocation(EType.motor)] = 80 + toolboxShiftX;
-		imageY[getLocation(EType.motor)] = 380 + toolboxShiftY;
+		imageX[getLocation(EType.motor)] = 220 + toolboxShiftX;
+		imageY[getLocation(EType.motor)] = 250 + toolboxShiftY;
 		
-		imageX[getLocation(EType.hCWall)] = 100 + toolboxShiftX;
-		imageY[getLocation(EType.hCWall)] = 150 + toolboxShiftY;
+		imageX[getLocation(EType.hCWall)] = 90 + toolboxShiftX;
+		imageY[getLocation(EType.hCWall)] = 200 + toolboxShiftY;
 		
-		imageX[getLocation(EType.vCWall)] = 95 + toolboxShiftX;
+		imageX[getLocation(EType.vCWall)] = 10 + toolboxShiftX;
 		imageY[getLocation(EType.vCWall)] = 145 + toolboxShiftY;
 
-		imageX[getLocation(EType.hRWall)] = 101 + toolboxShiftX;
-		imageY[getLocation(EType.hRWall)] = 160 + toolboxShiftY;
+		imageX[getLocation(EType.hRWall)] = 90 + toolboxShiftX;
+		imageY[getLocation(EType.hRWall)] = 230 + toolboxShiftY;
 		
-		imageX[getLocation(EType.vRWall)] = 120 + toolboxShiftX;
+		imageX[getLocation(EType.vRWall)] = 40 + toolboxShiftX;
 		imageY[getLocation(EType.vRWall)] = 145 + toolboxShiftY;
 
-
+		imageX[getLocation(EType.bomb)] = 110 + toolboxShiftX;
+		imageY[getLocation(EType.bomb)] = 448 + toolboxShiftY;
+		
+		imageX[getLocation(EType.poop)] = 2 + toolboxShiftX;
+		imageY[getLocation(EType.poop)] = 380 + toolboxShiftY;
+		
+		imageX[getLocation(EType.rubberBall)] = 120 + toolboxShiftX;
+		imageY[getLocation(EType.rubberBall)] = 145 + toolboxShiftY;
+		
+		imageX[getLocation(EType.stickMan)] = 50 + toolboxShiftX;
+		imageY[getLocation(EType.stickMan)] = 465 + toolboxShiftY;
+		
+		imageX[getLocation(EType.mouse)] = 120 + toolboxShiftX;
+		imageY[getLocation(EType.mouse)] = 168 + toolboxShiftY;
 	}
 
 	// =============================================================
