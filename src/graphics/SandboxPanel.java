@@ -163,7 +163,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		newY = arg0.getY();
 		System.out.println("newX = " + newX);
 		// Code for each type of object in toolbox
-		if (newX < sandboxShiftX) {// && !model.getStarted()) {
+		if (newX < sandboxShiftX && !model.getStarted()) {
 			if (info.anyHasMoved()) {
 				System.out.println("set down");
 				EType toRemove = info.whoIsMoving();
