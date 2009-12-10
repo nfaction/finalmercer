@@ -14,7 +14,7 @@ public class HRubberWall extends Entities{
 	private static BufferedImage[] staticSprites;
 	
 	public HRubberWall() {
-		super(EType.vCWall);
+		super(EType.hRWall);
 			if(staticSprites == null )
 				staticSprites = utils.splitImage(utils.loadImage("Images/hRWall.gif"), 1, 1);
 			sprite = staticSprites;
