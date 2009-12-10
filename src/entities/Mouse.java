@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import engine.World;
 import engine.shapes.Body;
 import engine.shapes.Box;
+import engine.vector.Vector;
 import enums.EType;
 
 public class Mouse extends Entities{
@@ -16,7 +17,8 @@ public class Mouse extends Entities{
 		if(staticSprites == null )
 			staticSprites = utils.splitImage(utils.loadImage("Images/mouseSpriteSheet.gif"), 2, 1);
 		sprite = staticSprites;
-		mouse = new Body("mouse", new Box(10,20), 10f);
+		mouse = new Body("mouse", new Box(75,20), 10f);
+		mouse.adjustVelocity(new Vector(10.0f, 0f));
 	}
 
 	@Override
@@ -42,6 +44,10 @@ public class Mouse extends Entities{
 
 	}
 	
+	public void upDate(){
+		super.upDate();
+		mouse.adjustVelocity(new Vector(1.0f, 0f));
+	}
 	
 
 	@Override
