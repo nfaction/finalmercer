@@ -179,6 +179,10 @@ public abstract class Entities extends Observable {
 	public boolean inField() {
 		return false;
 	}
+	
+	public void setField(boolean b) {
+		
+	}
 
 	public abstract void addObj(World world, float x, float y);
 
