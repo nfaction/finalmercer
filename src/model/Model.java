@@ -29,6 +29,7 @@ public class Model extends Observable {
 	private int maxX;
 	private ReadAndWrite randw = new ReadAndWrite();
 	private boolean playedBaloonSound = false;
+	private boolean playedRocketSound = false;
 	private boolean started = false;
 	private boolean running = false;
 	private CollisionListenerImpl collisionListenerImpl;
@@ -184,7 +185,7 @@ public class Model extends Observable {
 			// newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
 			notifyObservers();
-			setStatesForBatteryObjs(100,100);
+			setStatesForBatteryObjs(75,75);
 			return true;
 
 		}
@@ -201,6 +202,16 @@ public class Model extends Observable {
 				String baseDir = System.getProperty("user.dir") + "/sounds/";
 				mySoundPlayer.play(baseDir + "BaloonUp.wav");
 				playedBaloonSound = true;
+			}
+		}
+		
+		for (int i = 0; i < objList.size(); i++) {
+			if (this.objList.get(i).toString().equalsIgnoreCase("Rocket")
+					&& playedRocketSound == false) {
+				PlaySound mySoundPlayer = new PlaySound();
+				String baseDir = System.getProperty("user.dir") + "/sounds/";
+				mySoundPlayer.play(baseDir + "Rocket.wav");
+				playedRocketSound = true;
 			}
 		}
 
@@ -232,6 +243,15 @@ public class Model extends Observable {
 		for (int i = 0; i < objList.size(); i++) {
 			objList.get(i).removeObj(world);
 		}
+	}
+	
+	public int isSwichInModel() {
+		for (int i = 0; i < objList.size(); i++) {
+			if (this.objList.get(i).toString().equalsIgnoreCase("switch")) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public ArrayList<Entities> getObjList() {
@@ -326,6 +346,7 @@ public class Model extends Observable {
 
 	public void setStatesForBatteryObjs(float offsetX, float offsetY) {
 		// find each battery and then look for each object around them
+		if(isSwichInModel() != -1){
 		for (int i = 0; i < objList.size(); i++) {
 			if (this.objList.get(i).toString().equalsIgnoreCase("battery")) {
 
@@ -341,14 +362,13 @@ public class Model extends Observable {
 						if (this.objList.get(j).getX() > this.objList.get(i).getX() - offsetX &&
 						this.objList.get(j).getY() > this.objList.get(i).getY() - offsetY &&	
 						this.objList.get(j).getX() < this.objList.get(i).getX()+ offsetX &&
-						this.objList.get(j).getY() < this.objList.get(i).getY()+ offsetY 
-							
-){
+						this.objList.get(j).getY() < this.objList.get(i).getY()+ offsetY ){
 								
 								
 								this.objList.get(i).setState(1);
 								this.objList.get(j).setState(1);
 							}
+					}
 						}
 					}
 				}
