@@ -36,6 +36,15 @@ public class Switch extends Entities {
 		if (gettouchingBodies() > 0) {
 			state = 1;
 		}
+			if (gettouchingBodies() > 0 && soundCount > 20){
+				mySoundPlayer.play(baseDir + "PSWITCH2.WAV");
+				soundCount = 0;
+			}
+			soundCount++;
+			if(gettouchingBodies() > 0){
+				soundCount = 0;
+			}
+		
 
 	}
 
