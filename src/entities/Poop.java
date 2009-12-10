@@ -16,7 +16,7 @@ public class Poop extends Entities{
 		if(staticSprites == null )
 			staticSprites = utils.splitImage(utils.loadImage("Images/poopSpriteSheet.gif"), 2, 1);
 		sprite = staticSprites;
-		poop = new Body("poop", new Box(10,20), 10f);
+		poop = new Body("poop", new Box(5,5), 10f);
 	}
 
 	@Override
@@ -49,6 +49,9 @@ public class Poop extends Entities{
 	
 	public void upDate(){
 		super.upDate();
+		if(gettouchingBodies()>2){
+			state = 1;
+		}
 		if (gettouchingBodies() > 0 && soundCount > 20){
 			mySoundPlayer.play(baseDir + "fart.wav");
 			soundCount = 0;
