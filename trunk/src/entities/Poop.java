@@ -49,7 +49,7 @@ public class Poop extends Entities{
 	
 	public void upDate(){
 		super.upDate();
-		if(gettouchingBodies()>2){
+		if(gettouchingBodies()>1){
 			state = 1;
 		}
 		if (gettouchingBodies() > 0 && soundCount > 20){

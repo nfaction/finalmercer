@@ -41,7 +41,7 @@ public class StickMan extends Entities {
 		//joints[0] = new FixedJoint(Lside, Rside);
 		joints[1] = new FixedJoint(Lside, bottom);
 		joints[2] = new FixedJoint(Rside, bottom);
-		bottom.adjustVelocity(new Vector(-10.0f, 0f));
+		bottom.adjustVelocity(new Vector(4.0f, 0f));
 		Rside.addExcludedBody(Lside);
 		Rside.addExcludedBody(bottom);
 		Lside.addExcludedBody(Rside);
@@ -57,11 +57,11 @@ public class StickMan extends Entities {
 		bottom.setPosition(x  , y);
 		Lside.setPosition(x+24 + 30, y-40);
 		// world.add(man);
-		world.add(Rside);
+//		world.add(Rside);
 		world.add(bottom);
-		world.add(Lside);
-		for (int i = 1; i < 3; i++)
-			world.add(joints[i]);
+//		world.add(Lside);
+//		for (int i = 1; i < 3; i++)
+//			world.add(joints[i]);
 
 	}
 
@@ -89,7 +89,7 @@ public class StickMan extends Entities {
 	@Override
 	public void upDate() {
 		super.upDate();
-		bottom.adjustVelocity(new Vector(-1.0f, 0f));
+		bottom.adjustVelocity(new Vector(-10.0f, 0f));
 		if(count > 20){
 			state++;
 			if (state > 4)
