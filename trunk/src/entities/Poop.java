@@ -14,7 +14,7 @@ public class Poop extends Entities{
 	public Poop(){
 		super(EType.poop);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/poopSpriteSheet"), 5, 5);
 		sprite = staticSprites;
 		poop = new Body("poop", new Box(10,20), 10f);
 	}
