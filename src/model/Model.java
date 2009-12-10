@@ -24,7 +24,7 @@ public class Model extends Observable {
 			10, new Strategy(1, 5));
 
 	private AbstractState objList = new CurrentState();
-	private  AbstractState saveObjList = new SaveState();
+	private AbstractState saveObjList = new SaveState();
 	private int maxY;
 	private int maxX;
 	private ReadAndWrite randw = new ReadAndWrite();
@@ -33,6 +33,7 @@ public class Model extends Observable {
 	private boolean started = false;
 	private boolean running = false;
 	private CollisionListenerImpl collisionListenerImpl;
+	private int conveyorBeltState = 0;
 
 	private Model(int maxX, int maxY) {
 		this.maxX = maxX;
@@ -55,22 +56,22 @@ public class Model extends Observable {
 		return single;
 	}
 
-	public void setStarted(boolean b){
+	public void setStarted(boolean b) {
 		this.started = b;
 	}
-	
-	public boolean getStarted(){
+
+	public boolean getStarted() {
 		return started;
 	}
-	
-	public void setRunning(boolean b){
+
+	public void setRunning(boolean b) {
 		this.running = b;
 	}
-	
-	public boolean getRunning(){
+
+	public boolean getRunning() {
 		return running;
 	}
-	
+
 	private void initWorld() {
 		world.clear();
 		world.setGravity(0, 0);
@@ -112,8 +113,6 @@ public class Model extends Observable {
 		} else if (objType.equals(EType.gear)) {
 			newEntity = new Gear();
 
-
-
 		} else if (objType.equals(EType.light)) {
 			newEntity = new Light();
 
@@ -141,30 +140,26 @@ public class Model extends Observable {
 			newEntity = new StraightRamp();
 		} else if (objType.equals(EType.motor)) {
 			newEntity = new PowerGear();
-			
-		}
-		else if (objType.equals(EType.hCWall)) {
+
+		} else if (objType.equals(EType.hCWall)) {
 			newEntity = new HCementWall();
-			
-		}
-		else if (objType.equals(EType.vCWall)) {
+
+		} else if (objType.equals(EType.vCWall)) {
 			newEntity = new VCementWall();
-			
-		}
-		else if (objType.equals(EType.hRWall)) {
+
+		} else if (objType.equals(EType.hRWall)) {
 			newEntity = new HRubberWall();
-			
-		}
-		else if (objType.equals(EType.vRWall)) {
+
+		} else if (objType.equals(EType.vRWall)) {
 			newEntity = new VRubberWall();
-			
+
 		}
 
 		else if (objType.equals(EType.Switch)) {
 			newEntity = new Switch();
-			
+
 		}
-		
+
 		// prevent overlapping objects in the world
 		newEntity.addObj(world, x, y);
 		world.step();
@@ -185,7 +180,7 @@ public class Model extends Observable {
 			// newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
 			notifyObservers();
-			setStatesForBatteryObjs(75,75);
+			setStatesForBatteryObjs(75, 75);
 			return true;
 
 		}
@@ -193,6 +188,7 @@ public class Model extends Observable {
 	}
 
 	public void step() {
+		setStatesForBatteryObjs(80,80);
 		world.setGravity(0, gravity);
 
 		for (int i = 0; i < objList.size(); i++) {
@@ -204,7 +200,7 @@ public class Model extends Observable {
 				playedBaloonSound = true;
 			}
 		}
-		
+
 		for (int i = 0; i < objList.size(); i++) {
 			if (this.objList.get(i).toString().equalsIgnoreCase("Rocket")
 					&& playedRocketSound == false) {
@@ -244,7 +240,7 @@ public class Model extends Observable {
 			objList.get(i).removeObj(world);
 		}
 	}
-	
+
 	public int isSwichInModel() {
 		for (int i = 0; i < objList.size(); i++) {
 			if (this.objList.get(i).toString().equalsIgnoreCase("switch")) {
@@ -346,36 +342,62 @@ public class Model extends Observable {
 
 	public void setStatesForBatteryObjs(float offsetX, float offsetY) {
 		// find each battery and then look for each object around them
-		if(isSwichInModel() != -1){
-		for (int i = 0; i < objList.size(); i++) {
-			if (this.objList.get(i).toString().equalsIgnoreCase("battery")) {
+		if (isSwichInModel() != -1) {
+			if (this.objList.get(isSwichInModel()).getState() == 1) {
+				for (int i = 0; i < objList.size(); i++) {
+					if (this.objList.get(i).toString().equalsIgnoreCase(
+							"battery")) {
 
-				for (int j = 0; j < objList.size(); j++) {
-					if (!this.objList.get(j).toString().equalsIgnoreCase("battery")&&
-							(this.objList.get(j).toString().equalsIgnoreCase("light")||
-							this.objList.get(j).toString().equalsIgnoreCase("powerGear"))	) {
-						
-						System.out.println("Battery X = "+this.objList.get(i).getX());
-						System.out.println("Battery Y = "+this.objList.get(i).getY());
-						//System.out.println("Upper X= "+ this.objList.get(j).getX()+">"+this.objList.get(i).getX() - offsetX);
-						
-						if (this.objList.get(j).getX() > this.objList.get(i).getX() - offsetX &&
-						this.objList.get(j).getY() > this.objList.get(i).getY() - offsetY &&	
-						this.objList.get(j).getX() < this.objList.get(i).getX()+ offsetX &&
-						this.objList.get(j).getY() < this.objList.get(i).getY()+ offsetY ){
-								
-								
-								this.objList.get(i).setState(1);
-								this.objList.get(j).setState(1);
+						for (int j = 0; j < objList.size(); j++) {
+							if (!this.objList.get(j).toString()
+									.equalsIgnoreCase("battery")
+									&& (this.objList.get(j).toString()
+											.equalsIgnoreCase("light")
+											|| this.objList.get(j).toString()
+													.equalsIgnoreCase(
+															"powerGear") || this.objList
+											.get(j).toString()
+											.equalsIgnoreCase("ConveyorBelt"))) {
+
+								// System.out.println("Upper X= "+
+								// this.objList.get(j).getX()+">"+this.objList.get(i).getX()
+								// - offsetX);
+
+								if (this.objList.get(j).getX() > this.objList
+										.get(i).getX()
+										- offsetX
+										&& this.objList.get(j).getY() > this.objList
+												.get(i).getY()
+												- offsetY
+										&& this.objList.get(j).getX() < this.objList
+												.get(i).getX()
+												+ offsetX
+										&& this.objList.get(j).getY() < this.objList
+												.get(i).getY()
+												+ offsetY) {
+
+									if (this.objList.get(j).toString()
+											.equalsIgnoreCase("ConveyorBelt")) {
+										if (this.objList.get(j).getX() < this.objList
+												.get(i).getX()) {
+											this.objList.get(j).setState(5);
+
+										} else {
+											this.objList.get(j).setState(2);
+										}
+									} else {
+										this.objList.get(i).setField(true);
+										this.objList.get(j).setField(true);
+										this.objList.get(j).setState(1);
+										this.objList.get(i).setState(1);
+
+									}
+								}
 							}
-					}
 						}
 					}
 				}
 			}
 		}
 	}
-
-
-
-
+}
