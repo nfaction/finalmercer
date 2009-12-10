@@ -29,10 +29,6 @@ public class AbstractGear extends Entities {
 		super(e);
 		factor = newFactor;
 		init();
-		if (staticSprites == null) {
-			staticSprites = utils.splitImage(
-					utils.loadImage("Images/gear.gif"), 1, 1);
-		}
 	}
 
 	public AbstractGear(EType e, float newFactor, float rotation) {
@@ -40,15 +36,13 @@ public class AbstractGear extends Entities {
 		factor = newFactor;
 		init();
 		wheel.adjustAngularVelocity(rotation);
-		if (staticSprites == null)
-			staticSprites = utils.splitImage(
-					utils.loadImage("Images/gear.gif"), 1, 1);
+
 	}
 
 	private void init() {
 		if (staticSprites == null)
 			staticSprites = utils.splitImage(
-					utils.loadImage("Images/gear.gif"), 1, 1);
+					utils.loadImage("Images/gearSpriteSheet.gif"), 1, 1);
 		sprite = staticSprites;
 		wheel = new Body(new Circle(6f * factor), 2);
 		wheel.setMoveable(false);
