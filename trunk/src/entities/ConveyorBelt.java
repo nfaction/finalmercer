@@ -50,6 +50,7 @@ public class ConveyorBelt extends Entities {
 		speed = 3f;
 		setImagePath("Images/ConveyorBelt.gif");
 		count = 0;
+		state = 1;
 	}
 
 	public ConveyorBelt(float newSpeed) {
