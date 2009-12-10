@@ -155,7 +155,7 @@ public class Data {
 		imageY[getLocation(EType.rock)] = 450 + toolboxShiftY;
 		
 		imageX[getLocation(EType.rocket)] = 150 + toolboxShiftX;
-		imageY[getLocation(EType.rocket)] = 450 + toolboxShiftY;
+		imageY[getLocation(EType.rocket)] = 400 + toolboxShiftY;
 
 		imageX[getLocation(EType.straightRamp)] = 50 + toolboxShiftX;
 		imageY[getLocation(EType.straightRamp)] = 400 + toolboxShiftY;
