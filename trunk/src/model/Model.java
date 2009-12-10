@@ -168,9 +168,9 @@ public class Model extends Observable {
 		else if (objType.equals(EType.stickMan)) {
 			newEntity = new StickMan();
 		}
-//		else if (objType.equals(EType.mouse)) {
-//			newEntity = new Mouse();
-//		}
+		else if (objType.equals(EType.mouse)) {
+			newEntity = new Mouse();
+		}
 
 		// prevent overlapping objects in the world
 		newEntity.addObj(world, x, y);
