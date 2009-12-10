@@ -240,7 +240,7 @@ public class Model extends Observable {
 		clearModel();
 		this.objList.set(this.saveObjList);
 		
-		for (int i = 0; i < saveObjList.size(); i++) {
+		for (int i = 0; i < objList.size(); i++) {
 			//addObjToBoard(saveObjList.get(i).getObjType(), saveObjList.get(i).x, saveObjList.y);
 			objList.get(i).addObj(world, objList.get(i).getX(),objList.get(i).getY());
 		
