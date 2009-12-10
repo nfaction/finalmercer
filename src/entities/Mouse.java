@@ -14,7 +14,7 @@ public class Mouse extends Entities{
 	public Mouse(){
 		super(EType.mouse);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/mouseSpriteSheet.gif"), 2, 1);
 		sprite = staticSprites;
 		mouse = new Body("mouse", new Box(10,20), 10f);
 	}
