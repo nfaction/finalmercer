@@ -14,9 +14,9 @@ public class VRubberWall extends Entities{
 	private static BufferedImage[] staticSprites;
 	
 	public VRubberWall() {
-		super(EType.vCWall);
+		super(EType.vRWall);
 			if(staticSprites == null )
-				staticSprites = utils.splitImage(utils.loadImage("Images/vRWall.gif"), 5, 5);
+				staticSprites = utils.splitImage(utils.loadImage("Images/vRWall.gif"), 1, 1);
 			sprite = staticSprites;
 			vRubberWall = new StaticBody("rVertWall", new Box(10.0f, 125.0f));
 			vRubberWall.setRestitution(3.0f);
