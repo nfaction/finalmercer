@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import engine.World;
 import engine.shapes.Body;
-import engine.shapes.Box;
+import engine.shapes.Circle;
 import enums.EType;
 
 public class RubberBall extends Entities{
@@ -14,16 +14,18 @@ public class RubberBall extends Entities{
 	public RubberBall(){
 		super(EType.rubberBall);
 		if(staticSprites == null )
-			staticSprites = utils.splitImage(utils.loadImage("Images/rubberBall.gif"), 5, 5);
+			staticSprites = utils.splitImage(utils.loadImage("Images/rubberBall.gif"), 1, 1);
 		sprite = staticSprites;
-		rubberBall = new Body("rubberBall", new Box(10,20), 10f);
+		rubberBall = new Body("rubberBall", new Circle(10.0f), 1.0f);
+		rubberBall.setRestitution(1.0f);
+		rubberBall.setDamping(.001f);	
 	}
 
 	@Override
 	public void addObj(World world, float x, float y) {
 		rubberBall.setPosition(x, y);
+		this.setImageLocations(x, y);
 		world.add(rubberBall);
-		
 	}
 
 	@Override
