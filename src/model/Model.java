@@ -238,11 +238,12 @@ public class Model extends Observable {
 
 	public void reset() {
 		clearModel();
-		//this.objList.set(this.saveObjList);
+		this.objList.set(this.saveObjList);
 		
 		for (int i = 0; i < saveObjList.size(); i++) {
 			//addObjToBoard(saveObjList.get(i).getObjType(), saveObjList.get(i).x, saveObjList.y);
-			//objList.get(i).addObj(world, objList.get(i).getX(),objList.get(i).getY());
+			objList.get(i).addObj(world, objList.get(i).getX(),objList.get(i).getY());
+		
 		}
 
 	}
@@ -257,6 +258,7 @@ public class Model extends Observable {
 	public void clearModel() {
 		for (int i = 0; i < objList.size(); i++) {
 			objList.get(i).removeObj(world);
+			
 		}
 	}
 
