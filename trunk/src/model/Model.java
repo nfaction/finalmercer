@@ -111,6 +111,8 @@ public class Model extends Observable {
 		} else if (objType.equals(EType.gear)) {
 			newEntity = new Gear();
 
+
+
 		} else if (objType.equals(EType.light)) {
 			newEntity = new Light();
 
@@ -169,7 +171,7 @@ public class Model extends Observable {
 			// newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
 			notifyObservers();
-			setStatesForBatteryObjs();
+			setStatesForBatteryObjs(100,100);
 			return true;
 
 		}
@@ -309,43 +311,28 @@ public class Model extends Observable {
 
 	}
 
-	public void setStatesForBatteryObjs() {
+	public void setStatesForBatteryObjs(float offsetX, float offsetY) {
 		// find each battery and then look for each object around them
 		for (int i = 0; i < objList.size(); i++) {
 			if (this.objList.get(i).toString().equalsIgnoreCase("battery")) {
 
 				for (int j = 0; j < objList.size(); j++) {
-					if (!this.objList.get(j).toString().equalsIgnoreCase(
-							"battery")) {
-						if (isOverlapTopLeft(this.objList.get(i), this.objList
-								.get(j))
-								|| isOverlapTopRight(this.objList.get(i),
-										this.objList.get(j))
-								|| isOverlapBottomRight(this.objList.get(i),
-										this.objList.get(j))
-								|| isOverlapBottomLeft(this.objList.get(i),
-										this.objList.get(j))) {
-							if (this.objList.get(j).toString()
-									.equalsIgnoreCase("light")
-									||
-
-									this.objList.get(j).toString()
-											.equalsIgnoreCase("powerGear")) {
-
-								System.out.println("TL"
-										+ isOverlapTopLeft(this.objList.get(i),
-												this.objList.get(j)));
-								System.out.println("TR"
-										+ isOverlapTopRight(
-												this.objList.get(i),
-												this.objList.get(j)));
-								System.out.println("BR"
-										+ isOverlapBottomRight(this.objList
-												.get(i), this.objList.get(j)));
-								System.out.println("BL"
-										+ isOverlapBottomLeft(this.objList
-												.get(i), this.objList.get(j)));
-								System.out.println("LightOn");
+					if (!this.objList.get(j).toString().equalsIgnoreCase("battery")&&
+							(this.objList.get(j).toString().equalsIgnoreCase("light")||
+							this.objList.get(j).toString().equalsIgnoreCase("powerGear"))	) {
+						
+						System.out.println("Battery X = "+this.objList.get(i).getX());
+						System.out.println("Battery Y = "+this.objList.get(i).getY());
+						//System.out.println("Upper X= "+ this.objList.get(j).getX()+">"+this.objList.get(i).getX() - offsetX);
+						
+						if (this.objList.get(j).getX() > this.objList.get(i).getX() - offsetX &&
+						this.objList.get(j).getY() > this.objList.get(i).getY() - offsetY &&	
+						this.objList.get(j).getX() < this.objList.get(i).getX()+ offsetX &&
+						this.objList.get(j).getY() < this.objList.get(i).getY()+ offsetY 
+							
+){
+								
+								
 								this.objList.get(i).setState(1);
 								this.objList.get(j).setState(1);
 							}
@@ -356,61 +343,6 @@ public class Model extends Observable {
 		}
 	}
 
-	public boolean isOverlapTopLeft(Entities battery, Entities other) {
-		System.out.println("other LowerX in TL= " + other.getLowerX());
-		System.out.println("other LowerY in TL= " + other.getLowerY());
-		System.out.println("battery UpperX= " + battery.getUpperX());
-		System.out.println("battery LowerX= " + battery.getLowerX());
-		System.out.println("battery UpperY= " + battery.getUpperY());
-		System.out.println("battery LowerY= " + battery.getLowerY());
 
-		if (other.getLowerX() + other.getXLength() > battery.getUpperX()
-				+ battery.getXLength()
-				&& other.getLowerX() + other.getXLength() < battery.getLowerX()
-						+ battery.getXLength()
-				&& other.getLowerY() + other.getXLength() > battery.getUpperY()
-						+ battery.getXLength()
-				&& other.getLowerY() + other.getXLength() < battery.getLowerY()
-						+ battery.getXLength()) {
-			return true;
-		}
-		return false;
-	}
 
-	public boolean isOverlapTopRight(Entities battery, Entities other) {
-		System.out.println("other UpperX in TR= " + other.getUpperX());
-		System.out.println("other LowerY in TR= " + other.getLowerY());
-		if (other.getUpperX() > battery.getUpperX()
-				&& other.getUpperX() < battery.getLowerX()
-				&& other.getLowerY() < battery.getUpperY()
-				&& other.getLowerY() < battery.getLowerY()) {
-			return true;
-		}
-		return true;
-	}
 
-	public boolean isOverlapBottomLeft(Entities battery, Entities other) {
-		System.out.println("other LowerX in BL= " + other.getLowerX());
-		System.out.println("other UpperYin BL= " + other.getUpperY());
-		if (other.getLowerX() > battery.getUpperX()
-				&& other.getLowerX() < battery.getLowerX()
-				&& other.getUpperY() > battery.getUpperY()
-				&& other.getUpperY() < battery.getLowerY()) {
-			return true;
-		}
-		return true;
-	}
-
-	public boolean isOverlapBottomRight(Entities battery, Entities other) {
-		System.out.println("other UpperX in BR= " + other.getUpperX());
-		System.out.println("other UpperY in BR= " + other.getUpperY());
-		if (other.getUpperX() > battery.getUpperX()
-				&& other.getUpperX() < battery.getLowerX()
-				&& other.getUpperY() > battery.getUpperY()
-				&& other.getUpperY() < battery.getLowerY()) {
-			return true;
-		}
-		return false;
-	}
-
-}
