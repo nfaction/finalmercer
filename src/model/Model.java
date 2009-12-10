@@ -80,7 +80,10 @@ public class Model extends Observable {
 		ground.setRestitution(1.0f);
 		world.add(ground);
 		world.enableRestingBodyDetection(1f, 1f, 1f);
+		
+		
 	}
+
 
 	public boolean addObjToBoard(EType objType, float x, float y) {
 		Entities newEntity = null;
@@ -222,13 +225,16 @@ public class Model extends Observable {
 
 	public void reset() {
 		clearModel();
-		this.objList.set(this.saveObjList);
-		for (int i = 0; i < objList.size(); i++) {
-			objList.get(i).addObj(world, objList.get(i).getX(),
-					objList.get(i).getY());
+		//this.objList.set(this.saveObjList);
+		
+		for (int i = 0; i < saveObjList.size(); i++) {
+			//addObjToBoard(saveObjList.get(i).getObjType(), saveObjList.get(i).x, saveObjList.y);
+			//objList.get(i).addObj(world, objList.get(i).getX(),objList.get(i).getY());
 		}
 
 	}
+
+
 
 	public World getWorld() {
 		return world;
