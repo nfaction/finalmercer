@@ -38,7 +38,9 @@ public class SandboxPanel extends JPanel implements Observer,
 	private int xsize;
 	private int ysize;
 
-	private JButton lr = new JButton("");
+	private JButton lr = new JButton("Left Ramp");
+	private JButton sr = new JButton("Straight Ramp");
+	private JButton rr = new JButton("Right Ramp");
 	private Image toolbox;
 	private Image sandbox;
 
@@ -60,10 +62,19 @@ public class SandboxPanel extends JPanel implements Observer,
 		this.setLayout(null);
 		this.setSize(950, 600);
 		this.setLocation(0, 0);
+		lr.setSize(100, 20);
+		lr.setLocation(10, 570);
+		sr.setSize(100, 20);
+		sr.setLocation(120, 570);
+		rr.setSize(100, 20);
+		rr.setLocation(230, 570);
 		// this.setBackground(Color.BLACK);
 		start.setSize(75, 30);
 		start.setLocation(390 - 78, 10);
 		this.add(start);
+		this.add(lr);
+		this.add(sr);
+		this.add(rr);
 		registerListeners();
 		try {
 			// Static Background images
