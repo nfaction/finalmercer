@@ -27,13 +27,13 @@ public class Model extends Observable {
 	private AbstractState saveObjList = new SaveState();
 	private int maxY;
 	private int maxX;
-	private ReadAndWrite randw = new ReadAndWrite();
+
 	private boolean playedBaloonSound = false;
 	private boolean playedRocketSound = false;
 	private boolean started = false;
 	private boolean running = false;
 	private CollisionListenerImpl collisionListenerImpl;
-	private int conveyorBeltState = 0;
+
 
 	private Model(int maxX, int maxY) {
 		this.maxX = maxX;
@@ -180,7 +180,7 @@ public class Model extends Observable {
 			// newEntity.addObj(world, x, y);
 			this.objList.add(newEntity);
 			notifyObservers();
-			setStatesForBatteryObjs(75, 75);
+			setStatesForBatteryObjs(100, 100);
 			return true;
 
 		}
@@ -188,7 +188,7 @@ public class Model extends Observable {
 	}
 
 	public void step() {
-		setStatesForBatteryObjs(80,80);
+		setStatesForBatteryObjs(100,100);
 		world.setGravity(0, gravity);
 
 		for (int i = 0; i < objList.size(); i++) {
@@ -381,9 +381,13 @@ public class Model extends Observable {
 										if (this.objList.get(j).getX() < this.objList
 												.get(i).getX()) {
 											this.objList.get(j).setState(5);
+											this.objList.get(i).setField(true);
+											this.objList.get(i).setState(1);
 
 										} else {
 											this.objList.get(j).setState(2);
+											this.objList.get(i).setField(true);
+											this.objList.get(i).setState(1);
 										}
 									} else {
 										this.objList.get(i).setField(true);
