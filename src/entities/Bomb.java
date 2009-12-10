@@ -42,6 +42,13 @@ public class Bomb extends Entities {
 
 	}
 
+	public void upDate() {
+		super.upDate();
+		if (gettouchingBodies() > 0) {
+			state = 1;
+		}
+	}
+	
 	@Override
 	public int gettouchingBodies() {
 		return this.bomb.getTouchingCount();
