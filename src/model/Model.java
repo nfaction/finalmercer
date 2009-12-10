@@ -155,13 +155,22 @@ public class Model extends Observable {
 
 		} else if (objType.equals(EType.vRWall)) {
 			newEntity = new VRubberWall();
-
 		}
-
-		else if (objType.equals(EType.Switch)) {
-			newEntity = new Switch();
-
+		else if (objType.equals(EType.bomb)) {
+			newEntity = new Bomb();
 		}
+		else if (objType.equals(EType.poop)) {
+			newEntity = new Poop();
+		}
+		else if (objType.equals(EType.rubberBall)) {
+			newEntity = new RubberBall();
+		}
+		else if (objType.equals(EType.stickMan)) {
+			newEntity = new StickMan();
+		}
+//		else if (objType.equals(EType.mouse)) {
+//			newEntity = new Mouse();
+//		}
 
 		// prevent overlapping objects in the world
 		newEntity.addObj(world, x, y);
