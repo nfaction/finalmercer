@@ -58,6 +58,17 @@ public class PingPongBall extends Entities{
 		
 		return ppBall.getTouchingCount();
 	}
-
+	
+	public void upDate(){
+		super.upDate();
+		if (gettouchingBodies() > 0 && soundCount > 20){
+			mySoundPlayer.play(baseDir + "Tink.wav");
+			soundCount = 0;
+		}
+		soundCount++;
+		if(gettouchingBodies() > 0){
+			soundCount = 0;
+		}
+	}
 	
 }

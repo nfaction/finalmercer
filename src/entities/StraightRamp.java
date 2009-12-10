@@ -22,7 +22,7 @@ public class StraightRamp extends Entities {
 
 	
 		sRamp = new StaticBody("Straight Ramp", new Box(225.0f, 25.0f));
-		sRamp.setPosition(350.0f, 300);
+		//sRamp.setPosition(350.0f, 300);
 		sRamp.setRestitution(1.0f);
 	}
 
