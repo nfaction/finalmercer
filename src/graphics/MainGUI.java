@@ -48,20 +48,6 @@ public class MainGUI extends JFrame{
 	JButton startB = new JButton("Start");
 	JButton scenarioB = new JButton("Scenarios");
 	JButton optionB = new JButton("Options");
-	/** Scenarios panel*/
-	JPanel scenario = new JPanel();
-	JLabel select = new JLabel("Please select a scenario:");
-	JButton mainMenuScenario = new JButton("Main Menu");
-	JButton s1 = new JButton("Scenario 1");
-	JButton s2 = new JButton("Scenario 2");
-	JButton s3 = new JButton("Scenario 3");
-	JButton s4 = new JButton("Scenario 4");
-	JButton s5 = new JButton("Scenario 5");
-	JButton s6 = new JButton("Scenario 6");
-	JButton s7 = new JButton("Scenario 7");
-	JButton s8 = new JButton("Scenario 8");
-	JButton s9 = new JButton("Scenario 9");
-	JButton s10 = new JButton("Scenario 10");
 	/** Options panel*/
 	JPanel options = new JPanel();
 	JLabel optionL = new JLabel("Options:");
@@ -108,7 +94,7 @@ public class MainGUI extends JFrame{
 	 * Sets up the JFrame and master panel
 	 */
 	public void setupJFrameModel(){
-		this.setSize(950, 620);
+		this.setSize(950, 920);
 		this.setLayout(null);
 		this.setLocation(150, 50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,14 +104,13 @@ public class MainGUI extends JFrame{
 		
 		// Sets master panel specifications
 		master.setLayout(null);
-		master.setSize(950, 600);
+		master.setSize(950, 920);
 		master.setLocation(0,0);
 		
 		// Sets up all individual frames
 		setupMain();
 		repaint();
 		setupOptions();
-		setupScenarios();
 		setupSandbox();
 		
 		// First panel added
@@ -177,9 +162,6 @@ public class MainGUI extends JFrame{
 		m_load.addActionListener(new userChoice());
 		m_gravity.addActionListener(new userChoice());
 		
-		startB.addActionListener(new startButtonListener());
-		scenarioB.addActionListener(new scenarioButtonListener());
-		optionB.addActionListener(new optionButtonListener());
 		//Sandbox
 		
 		//Options
@@ -230,63 +212,6 @@ public class MainGUI extends JFrame{
 		
 		//sandbox.add(mainMenuSandbox);
 		sandbox.add(sandboxPanel);
-	}
-	
-	public void setupScenarios(){
-		scenario.setLayout(null);
-		scenario.setSize(950, 500);
-		scenario.setLocation(0,0);
-		
-		select.setSize(250, 20);
-		select.setLocation(50, 20);
-		
-		mainMenuScenario.setSize(125, 30);
-		mainMenuScenario.setLocation(800, 10);
-		
-		// First Column
-		s1.setSize(150, 80);
-		s1.setLocation(50, 50);
-		
-		s2.setSize(150, 80);
-		s2.setLocation(50, 140);
-		
-		s3.setSize(150, 80);
-		s3.setLocation(50, 230);
-		
-		s4.setSize(150, 80);
-		s4.setLocation(50, 320);
-		
-		s5.setSize(150, 80);
-		s5.setLocation(50, 410);
-		
-		// Second Column
-		s6.setSize(150, 80);
-		s6.setLocation(450, 50);
-		
-		s7.setSize(150, 80);
-		s7.setLocation(450, 140);
-		
-		s8.setSize(150, 80);
-		s8.setLocation(450, 230);
-		
-		s9.setSize(150, 80);
-		s9.setLocation(450, 320);
-		
-		s10.setSize(150, 80);
-		s10.setLocation(450, 410);
-		
-		scenario.add(select);
-		scenario.add(mainMenuScenario);
-		scenario.add(s1);
-		scenario.add(s2);
-		scenario.add(s3);
-		scenario.add(s4);
-		scenario.add(s5);
-		scenario.add(s6);
-		scenario.add(s7);
-		scenario.add(s8);
-		scenario.add(s9);
-		scenario.add(s10);
 	}
 	
 	public void setupOptions(){
@@ -347,20 +272,6 @@ public class MainGUI extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			master.removeAll();
 			master.add(sandbox);
-			master.updateUI();
-			repaint();
-		}
-	}
-
-	/**
-	 * This action listener listens for a scenario button click and handles that
-	 * action.
-	 */
-	public class scenarioButtonListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent arg0) {
-			master.removeAll();
-			master.add(scenario);
 			master.updateUI();
 			repaint();
 		}
