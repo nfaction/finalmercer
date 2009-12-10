@@ -53,7 +53,7 @@ public class Poop extends Entities{
 			state = 1;
 		}
 		if (gettouchingBodies() > 0 && soundCount > 20){
-			mySoundPlayer.play(baseDir + "fart.wav");
+			mySoundPlayer.play(baseDir + "tada.wav");
 			soundCount = 0;
 		}
 		soundCount++;
