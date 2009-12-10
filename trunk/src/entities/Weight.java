@@ -55,4 +55,16 @@ public class Weight extends Entities{
 		world.remove(weight);
 	}
 
+	public void upDate(){
+		super.upDate();
+		if (gettouchingBodies() > 0 && soundCount > 20){
+			mySoundPlayer.play(baseDir + "crash_metal2.wav");
+			soundCount = 0;
+		}
+		soundCount++;
+		if(gettouchingBodies() > 0){
+			soundCount = 0;
+		}
+	}
+	
 }
