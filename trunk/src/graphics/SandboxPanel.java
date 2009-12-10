@@ -32,7 +32,7 @@ import enums.EType;
 public class SandboxPanel extends JPanel implements Observer,
 		MouseMotionListener, MouseListener, Runnable {
 	protected static final int sandboxShiftX = 390;
-	protected static final int sandboxShiftY = 10;
+	protected static final int sandboxShiftY = 0;
 	protected static final int toolboxShiftX = 20;
 	protected static final int toolboxShiftY = 10;
 	private int xsize;
@@ -119,7 +119,7 @@ public class SandboxPanel extends JPanel implements Observer,
 		if (entitiesIter.hasNext()) {
 			while (entitiesIter.hasNext()) {
 				Entities ent = entitiesIter.next();
-				int upperx = (int) ent.getUpperX() + sandboxShiftX + 30;
+				int upperx = (int) ent.getUpperX() + sandboxShiftX ;
 				int uppery = (int) ent.getUpperY() + sandboxShiftY;
 				o.drawImage(ent.getSpriteImage(), upperx, uppery, this);
 			}
@@ -158,12 +158,13 @@ public class SandboxPanel extends JPanel implements Observer,
 			EType mover = info.whoIsMoving();
 			newX -= sandboxShiftX;
 			newY += sandboxShiftY;
+			System.out.println("Mouse clicked at x = " + newX + " y = " + newY);
 			if (info.anyHasMoved()) {
 				//EType mover = info.whoIsMoving();
-				if (model.addObjToBoard(mover, newX - info.getXLENGTH(mover),
-						newY - info.getYLENGTH(mover))) {
+				if (model.addObjToBoard(mover, newX,
+						newY)) {
 					info.setMoved(mover, false);
-					System.out.println(mover + " = true");
+					System.out.println(mover + " = true at location x = " + (newX - info.getXLENGTH(mover)) + " y = " + (newY - info.getYLENGTH(mover)));
 				}
 			}
 			else if(model.getObjAtLocatedAt(newX,newY)){
