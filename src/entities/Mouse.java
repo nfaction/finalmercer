@@ -41,6 +41,8 @@ public class Mouse extends Entities{
 		world.remove(mouse);
 
 	}
+	
+	
 
 	@Override
 	public int gettouchingBodies() {
