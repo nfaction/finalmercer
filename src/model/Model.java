@@ -171,6 +171,10 @@ public class Model extends Observable {
 		else if (objType.equals(EType.mouse)) {
 			newEntity = new Mouse();
 		}
+		
+		else if (objType.equals(EType.Switch)) {
+			newEntity = new Switch();
+		}
 
 		// prevent overlapping objects in the world
 		newEntity.addObj(world, x, y);
